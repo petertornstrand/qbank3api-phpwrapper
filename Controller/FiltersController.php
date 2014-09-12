@@ -22,8 +22,9 @@ class FiltersController extends ControllerAbstract {
 	 * @return FilterItem[]
 	 */
 	public function categories($categoryIds, $deploymentSiteIds = null) {
+		$query[ 'deploymentSiteIds'] = $deploymentSiteIds;
 		$filterItem = array();
-		foreach ($this->get('v1/filters/categories/' . $categoryIds) as $item ) {
+		foreach ($this->get('v1/filters/categories/' . $categoryIds . '', $query) as $item ) {
 			$filterItem[] = new FilterItem($item);
 		}
 
@@ -39,8 +40,10 @@ class FiltersController extends ControllerAbstract {
 	 * @return FilterItem[]
 	 */
 	public function folder($parentFolderId, $categoryIds = null, $deploymentSiteIds = null) {
+		$query[ 'categoryIds'] = $categoryIds;
+		$query[ 'deploymentSiteIds'] = $deploymentSiteIds;
 		$filterItem = array();
-		foreach ($this->get('v1/filters/folder/' . $parentFolderId) as $item ) {
+		foreach ($this->get('v1/filters/folder/' . $parentFolderId . '', $query) as $item ) {
 			$filterItem[] = new FilterItem($item);
 		}
 
@@ -57,8 +60,11 @@ class FiltersController extends ControllerAbstract {
 	 * @return FilterItem[]
 	 */
 	public function property($systemName, $preloadNames = false, $categoryIds = null, $deploymentSiteIds = null) {
+		$query[ 'preloadNames'] = $preloadNames;
+		$query[ 'categoryIds'] = $categoryIds;
+		$query[ 'deploymentSiteIds'] = $deploymentSiteIds;
 		$filterItem = array();
-		foreach ($this->get('v1/filters/property/' . $systemName) as $item ) {
+		foreach ($this->get('v1/filters/property/' . $systemName . '', $query) as $item ) {
 			$filterItem[] = new FilterItem($item);
 		}
 

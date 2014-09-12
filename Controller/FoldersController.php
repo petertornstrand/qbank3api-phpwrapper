@@ -23,8 +23,10 @@ class FoldersController extends ControllerAbstract {
 	 * @return Folder[]
 	 */
 	public function listFolders($root = 0, $depth = 0) {
+		$query[ 'root'] = $root;
+		$query[ 'depth'] = $depth;
 		$folder = array();
-		foreach ($this->get('v1/folders') as $item ) {
+		foreach ($this->get('v1/folders', $query) as $item ) {
 			$folder[] = new Folder($item);
 		}
 
@@ -39,7 +41,8 @@ class FoldersController extends ControllerAbstract {
 	 * @return Folder
 	 */
 	public function retrieveFolder($id, $depth = 0) {
-		return new Folder($this->get('v1/folders/' . $id));
+		$query[ 'depth'] = $depth;
+		return new Folder($this->get('v1/folders/' . $id . '', $query));
 	}
 
 	/**

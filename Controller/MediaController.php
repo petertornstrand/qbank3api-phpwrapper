@@ -35,7 +35,8 @@ class MediaController extends ControllerAbstract {
 	 * @return void
 	 */
 	public function retrieveFileData($id, $template = null) {
-		$this->get('v1/media/' . $id . '/asset');
+		$query[ 'template'] = $template;
+		$this->get('v1/media/' . $id . '/asset', $query);
 	}
 
 	/**
@@ -61,7 +62,8 @@ class MediaController extends ControllerAbstract {
 	 * @return void
 	 */
 	public function download($id, $template = null) {
-		$this->get('v1/media/' . $id . '/download');
+		$query[ 'template'] = $template;
+		$this->get('v1/media/' . $id . '/download', $query);
 	}
 
 	/**
@@ -72,8 +74,9 @@ class MediaController extends ControllerAbstract {
 	 * @return Folder[]
 	 */
 	public function listFolders($id, $depth = 0) {
+		$query[ 'depth'] = $depth;
 		$folder = array();
-		foreach ($this->get('v1/media/' . $id . '/folders') as $item ) {
+		foreach ($this->get('v1/media/' . $id . '/folders', $query) as $item ) {
 			$folder[] = new Folder($item);
 		}
 
@@ -103,7 +106,9 @@ class MediaController extends ControllerAbstract {
 	 * @return void
 	 */
 	public function downloadArchive($ids, $template = null) {
-		$this->get('v1/media/download');
+		$query[ 'ids'] = $ids;
+		$query[ 'template'] = $template;
+		$this->get('v1/media/download', $query);
 	}
 
 }
