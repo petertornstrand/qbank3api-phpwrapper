@@ -122,33 +122,33 @@ class QBankApi {
 	* @return \QBNK\QBank\API\Controller\Oauth2Controller
 	*/
 	public function oauth2() {
-		if (!$this->folders instanceof Oauth2Controller) {
-			$this->folders = new Oauth2Controller($this->getConnection());
-			$this->folders->setLogger($this->logger);
+		if (!$this->oauth2 instanceof Oauth2Controller) {
+			$this->oauth2 = new Oauth2Controller($this->getConnection());
+			$this->oauth2->setLogger($this->logger);
 		}
-		return $this->folders;
+		return $this->oauth2;
 	}
 	
 	/**
 	* @return \QBNK\QBank\API\Controller\MoodboardsController
 	*/
 	public function moodboards() {
-		if (!$this->folders instanceof MoodboardsController) {
-			$this->folders = new MoodboardsController($this->getConnection());
-			$this->folders->setLogger($this->logger);
+		if (!$this->moodboards instanceof MoodboardsController) {
+			$this->moodboards = new MoodboardsController($this->getConnection());
+			$this->moodboards->setLogger($this->logger);
 		}
-		return $this->folders;
+		return $this->moodboards;
 	}
 	
 	/**
 	* @return \QBNK\QBank\API\Controller\CategoriesController
 	*/
 	public function categories() {
-		if (!$this->folders instanceof CategoriesController) {
-			$this->folders = new CategoriesController($this->getConnection());
-			$this->folders->setLogger($this->logger);
+		if (!$this->categories instanceof CategoriesController) {
+			$this->categories = new CategoriesController($this->getConnection());
+			$this->categories->setLogger($this->logger);
 		}
-		return $this->folders;
+		return $this->categories;
 	}
 	
 	/**
@@ -166,66 +166,66 @@ class QBankApi {
 	* @return \QBNK\QBank\API\Controller\MediaController
 	*/
 	public function media() {
-		if (!$this->folders instanceof MediaController) {
-			$this->folders = new MediaController($this->getConnection());
-			$this->folders->setLogger($this->logger);
+		if (!$this->media instanceof MediaController) {
+			$this->media = new MediaController($this->getConnection());
+			$this->media->setLogger($this->logger);
 		}
-		return $this->folders;
+		return $this->media;
 	}
 	
 	/**
 	* @return \QBNK\QBank\API\Controller\TemplatesController
 	*/
 	public function templates() {
-		if (!$this->folders instanceof TemplatesController) {
-			$this->folders = new TemplatesController($this->getConnection());
-			$this->folders->setLogger($this->logger);
+		if (!$this->templates instanceof TemplatesController) {
+			$this->templates = new TemplatesController($this->getConnection());
+			$this->templates->setLogger($this->logger);
 		}
-		return $this->folders;
+		return $this->templates;
 	}
 	
 	/**
 	* @return \QBNK\QBank\API\Controller\AccountsController
 	*/
 	public function accounts() {
-		if (!$this->folders instanceof AccountsController) {
-			$this->folders = new AccountsController($this->getConnection());
-			$this->folders->setLogger($this->logger);
+		if (!$this->accounts instanceof AccountsController) {
+			$this->accounts = new AccountsController($this->getConnection());
+			$this->accounts->setLogger($this->logger);
 		}
-		return $this->folders;
+		return $this->accounts;
 	}
 	
 	/**
 	* @return \QBNK\QBank\API\Controller\SearchController
 	*/
 	public function search() {
-		if (!$this->folders instanceof SearchController) {
-			$this->folders = new SearchController($this->getConnection());
-			$this->folders->setLogger($this->logger);
+		if (!$this->search instanceof SearchController) {
+			$this->search = new SearchController($this->getConnection());
+			$this->search->setLogger($this->logger);
 		}
-		return $this->folders;
+		return $this->search;
 	}
 	
 	/**
 	* @return \QBNK\QBank\API\Controller\DeploymentController
 	*/
 	public function deployment() {
-		if (!$this->folders instanceof DeploymentController) {
-			$this->folders = new DeploymentController($this->getConnection());
-			$this->folders->setLogger($this->logger);
+		if (!$this->deployment instanceof DeploymentController) {
+			$this->deployment = new DeploymentController($this->getConnection());
+			$this->deployment->setLogger($this->logger);
 		}
-		return $this->folders;
+		return $this->deployment;
 	}
 	
 	/**
 	* @return \QBNK\QBank\API\Controller\FiltersController
 	*/
 	public function filters() {
-		if (!$this->folders instanceof FiltersController) {
-			$this->folders = new FiltersController($this->getConnection());
-			$this->folders->setLogger($this->logger);
+		if (!$this->filters instanceof FiltersController) {
+			$this->filters = new FiltersController($this->getConnection());
+			$this->filters->setLogger($this->logger);
 		}
-		return $this->folders;
+		return $this->filters;
 	}
 	
 	
