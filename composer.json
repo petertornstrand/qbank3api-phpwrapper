@@ -19,7 +19,7 @@
 	},
 	"suggest": {
 		"monolog/monolog": "Great logging alternative."
-	}
+	},
 	"autoload": {
 		"psr-4": {
 			"QBNK\\QBank\\API\\": "."
