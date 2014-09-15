@@ -150,7 +150,7 @@ class SearchResult {
 		if (is_array($results)) {
 			$this->results = array();
 			foreach ($results as $item) {
-				$this->results[] = $item;
+				$this->results[] = new Media($item);
 			}
 		}
 		return $this;

@@ -505,7 +505,7 @@ class Media {
 		if (is_array($metadata)) {
 			$this->metadata = array();
 			foreach ($metadata as $item) {
-				$this->metadata[] = $item;
+				$this->metadata[] = new MetaData($item);
 			}
 		}
 		return $this;
@@ -666,7 +666,7 @@ class Media {
 		if (is_array($propertySets)) {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
-				$this->propertySets[] = $item;
+				$this->propertySets[] = new PropertySet($item);
 			}
 		}
 		return $this;

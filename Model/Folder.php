@@ -275,7 +275,7 @@ class Folder {
 		if (is_array($subFolders)) {
 			$this->subFolders = array();
 			foreach ($subFolders as $item) {
-				$this->subFolders[] = $item;
+				$this->subFolders[] = new Folder($item);
 			}
 		}
 		return $this;
@@ -376,7 +376,7 @@ class Folder {
 		if (is_array($propertySets)) {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
-				$this->propertySets[] = $item;
+				$this->propertySets[] = new PropertySet($item);
 			}
 		}
 		return $this;

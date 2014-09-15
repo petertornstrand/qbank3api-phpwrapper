@@ -495,7 +495,7 @@ class Moodboard {
 		if (is_array($propertySets)) {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
-				$this->propertySets[] = $item;
+				$this->propertySets[] = new PropertySet($item);
 			}
 		}
 		return $this;

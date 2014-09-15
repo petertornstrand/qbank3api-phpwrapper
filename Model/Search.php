@@ -408,7 +408,7 @@ class Search {
 		if (is_array($objectIds)) {
 			$this->objectIds = array();
 			foreach ($objectIds as $item) {
-				$this->objectIds[] = $item;
+				$this->objectIds[] = (int) $item;
 			}
 		}
 		return $this;
@@ -423,7 +423,7 @@ class Search {
 		if (is_array($createdByIds)) {
 			$this->createdByIds = array();
 			foreach ($createdByIds as $item) {
-				$this->createdByIds[] = $item;
+				$this->createdByIds[] = (int) $item;
 			}
 		}
 		return $this;
@@ -448,7 +448,7 @@ class Search {
 		if (is_array($updatedByIds)) {
 			$this->updatedByIds = array();
 			foreach ($updatedByIds as $item) {
-				$this->updatedByIds[] = $item;
+				$this->updatedByIds[] = (int) $item;
 			}
 		}
 		return $this;
@@ -473,7 +473,7 @@ class Search {
 		if (is_array($mediaStatusIds)) {
 			$this->mediaStatusIds = array();
 			foreach ($mediaStatusIds as $item) {
-				$this->mediaStatusIds[] = $item;
+				$this->mediaStatusIds[] = (int) $item;
 			}
 		}
 		return $this;
@@ -488,7 +488,7 @@ class Search {
 		if (is_array($folderIds)) {
 			$this->folderIds = array();
 			foreach ($folderIds as $item) {
-				$this->folderIds[] = $item;
+				$this->folderIds[] = (int) $item;
 			}
 		}
 		return $this;
@@ -503,7 +503,7 @@ class Search {
 		if (is_array($moodboardIds)) {
 			$this->moodboardIds = array();
 			foreach ($moodboardIds as $item) {
-				$this->moodboardIds[] = $item;
+				$this->moodboardIds[] = (int) $item;
 			}
 		}
 		return $this;
@@ -518,7 +518,7 @@ class Search {
 		if (is_array($categoryIds)) {
 			$this->categoryIds = array();
 			foreach ($categoryIds as $item) {
-				$this->categoryIds[] = $item;
+				$this->categoryIds[] = (int) $item;
 			}
 		}
 		return $this;
@@ -533,7 +533,7 @@ class Search {
 		if (is_array($deploymentSiteIds)) {
 			$this->deploymentSiteIds = array();
 			foreach ($deploymentSiteIds as $item) {
-				$this->deploymentSiteIds[] = $item;
+				$this->deploymentSiteIds[] = (int) $item;
 			}
 		}
 		return $this;
@@ -548,7 +548,7 @@ class Search {
 		if (is_array($properties)) {
 			$this->properties = array();
 			foreach ($properties as $item) {
-				$this->properties[] = $item;
+				$this->properties[] = new PropertyCriteria($item);
 			}
 		}
 		return $this;

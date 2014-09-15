@@ -333,7 +333,7 @@ class Role {
 		if (is_array($functionalities)) {
 			$this->functionalities = array();
 			foreach ($functionalities as $item) {
-				$this->functionalities[] = $item;
+				$this->functionalities[] = new Functionality($item);
 			}
 		}
 		return $this;

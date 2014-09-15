@@ -333,7 +333,7 @@ class PropertySet {
 		if (is_array($properties)) {
 			$this->properties = array();
 			foreach ($properties as $item) {
-				$this->properties[] = $item;
+				$this->properties[] = new Property($item);
 			}
 		}
 		return $this;

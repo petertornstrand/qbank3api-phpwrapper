@@ -545,7 +545,7 @@ class DeploymentSite {
 		if (is_array($imagetemplates)) {
 			$this->imagetemplates = array();
 			foreach ($imagetemplates as $item) {
-				$this->imagetemplates[] = $item;
+				$this->imagetemplates[] = new Image($item);
 			}
 		}
 		return $this;
@@ -560,7 +560,7 @@ class DeploymentSite {
 		if (is_array($videotemplates)) {
 			$this->videotemplates = array();
 			foreach ($videotemplates as $item) {
-				$this->videotemplates[] = $item;
+				$this->videotemplates[] = new \QBNK\QBank\Api\v1\Model\Templates\Video($item);
 			}
 		}
 		return $this;
@@ -575,7 +575,7 @@ class DeploymentSite {
 		if (is_array($categories)) {
 			$this->categories = array();
 			foreach ($categories as $item) {
-				$this->categories[] = $item;
+				$this->categories[] = new Category($item);
 			}
 		}
 		return $this;
@@ -676,7 +676,7 @@ class DeploymentSite {
 		if (is_array($propertySets)) {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
-				$this->propertySets[] = $item;
+				$this->propertySets[] = new PropertySet($item);
 			}
 		}
 		return $this;

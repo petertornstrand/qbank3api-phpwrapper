@@ -83,7 +83,7 @@ class FilterItem {
 		if (is_array($objectIds)) {
 			$this->objectIds = array();
 			foreach ($objectIds as $item) {
-				$this->objectIds[] = $item;
+				$this->objectIds[] = (string) $item;
 			}
 		}
 		return $this;
