@@ -6,6 +6,7 @@ use QBNK\QBank\API\Model\Media;
 use QBNK\QBank\API\Model\DeploymentSite;
 use QBNK\QBank\API\Model\Folder;
 use QBNK\QBank\API\Model\Moodboard;
+use QBNK\QBank\API\Model\Array[int];
 
 
 /**
@@ -35,6 +36,7 @@ class MediaController extends ControllerAbstract {
 	 * @return void
 	 */
 	public function retrieveFileData($id, $template = null) {
+		$query = array();
 		$query[ 'template'] = $template;
 		$this->get('v1/media/' . $id . '/asset', $query);
 	}
@@ -62,6 +64,7 @@ class MediaController extends ControllerAbstract {
 	 * @return void
 	 */
 	public function download($id, $template = null) {
+		$query = array();
 		$query[ 'template'] = $template;
 		$this->get('v1/media/' . $id . '/download', $query);
 	}
@@ -74,6 +77,7 @@ class MediaController extends ControllerAbstract {
 	 * @return Folder[]
 	 */
 	public function listFolders($id, $depth = 0) {
+		$query = array();
 		$query[ 'depth'] = $depth;
 		$folder = array();
 		foreach ($this->get('v1/media/' . $id . '/folders', $query) as $item ) {
@@ -106,6 +110,7 @@ class MediaController extends ControllerAbstract {
 	 * @return void
 	 */
 	public function downloadArchive($ids, $template = null) {
+		$query = array();
 		$query[ 'ids'] = $ids;
 		$query[ 'template'] = $template;
 		$this->get('v1/media/download', $query);

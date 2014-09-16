@@ -13,7 +13,7 @@ use \Exception;
  *
  */
 
-class DateTimeRange {
+class DateTimeRange implements \JsonSerializable {
 
 	/**
 	 * Minimum date in this range, leave empty for none.
@@ -100,5 +100,21 @@ class DateTimeRange {
 			}
 		}
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->min !== null) {
+			$array['min'] = $this->min;
+		}
+		if ($this->max !== null) {
+			$array['max'] = $this->max;
+		}
+		return $array;
 	}
 }

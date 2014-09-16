@@ -22,6 +22,7 @@ class FiltersController extends ControllerAbstract {
 	 * @return FilterItem[]
 	 */
 	public function categories($categoryIds, $deploymentSiteIds = null) {
+		$query = array();
 		$query[ 'deploymentSiteIds'] = $deploymentSiteIds;
 		$filterItem = array();
 		foreach ($this->get('v1/filters/categories/' . $categoryIds . '', $query) as $item ) {
@@ -40,6 +41,7 @@ class FiltersController extends ControllerAbstract {
 	 * @return FilterItem[]
 	 */
 	public function folder($parentFolderId, $categoryIds = null, $deploymentSiteIds = null) {
+		$query = array();
 		$query[ 'categoryIds'] = $categoryIds;
 		$query[ 'deploymentSiteIds'] = $deploymentSiteIds;
 		$filterItem = array();
@@ -60,6 +62,7 @@ class FiltersController extends ControllerAbstract {
 	 * @return FilterItem[]
 	 */
 	public function property($systemName, $preloadNames = false, $categoryIds = null, $deploymentSiteIds = null) {
+		$query = array();
 		$query[ 'preloadNames'] = $preloadNames;
 		$query[ 'categoryIds'] = $categoryIds;
 		$query[ 'deploymentSiteIds'] = $deploymentSiteIds;

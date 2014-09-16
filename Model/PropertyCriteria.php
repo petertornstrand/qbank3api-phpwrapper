@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class PropertyCriteria {
+class PropertyCriteria implements \JsonSerializable {
 
 	/**
 	 * The system name of the Property we filter on
@@ -111,5 +111,24 @@ class PropertyCriteria {
 	public function setOperator($operator) {
 		$this->operator = $operator;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->systemName !== null) {
+			$array['systemName'] = $this->systemName;
+		}
+		if ($this->value !== null) {
+			$array['value'] = $this->value;
+		}
+		if ($this->operator !== null) {
+			$array['operator'] = $this->operator;
+		}
+		return $array;
 	}
 }

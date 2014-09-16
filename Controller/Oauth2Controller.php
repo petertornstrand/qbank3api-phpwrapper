@@ -2,6 +2,7 @@
 
 namespace QBNK\QBank\API\Controller;
 
+use QBNK\QBank\API\Model\Object;
 use QBNK\QBank\API\Model\Response;
 
 
@@ -37,7 +38,9 @@ class Oauth2Controller extends ControllerAbstract {
 	public function createAuthorize($rEQUEST_BODY = {
 
 }) {
-		return new Response($this->post('v1/oauth2/authorize'));
+		$query = array();
+		$query = array_merge($query, $rEQUEST_BODY->jsonSerialize());
+		return new Response($this->post('v1/oauth2/authorize', $query));
 	}
 
 	/**

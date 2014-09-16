@@ -13,7 +13,7 @@ use \Exception;
  *
  */
 
-class Folder {
+class Folder implements \JsonSerializable {
 
 	/**
 	 * The Folder identifier.
@@ -400,5 +400,51 @@ class Folder {
 	protected function setTypeId($typeId) {
 		$this->typeId = $typeId;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->subFolders !== null) {
+			$array['subFolders'] = $this->subFolders;
+		}
+		if ($this->objectId !== null) {
+			$array['objectId'] = $this->objectId;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->created !== null) {
+			$array['created'] = $this->created;
+		}
+		if ($this->createdBy !== null) {
+			$array['createdBy'] = $this->createdBy;
+		}
+		if ($this->updated !== null) {
+			$array['updated'] = $this->updated;
+		}
+		if ($this->updatedBy !== null) {
+			$array['updatedBy'] = $this->updatedBy;
+		}
+		if ($this->deleted !== null) {
+			$array['deleted'] = $this->deleted;
+		}
+		if ($this->propertySets !== null) {
+			$array['propertySets'] = $this->propertySets;
+		}
+		if ($this->dirty !== null) {
+			$array['dirty'] = $this->dirty;
+		}
+		if ($this->typeId !== null) {
+			$array['typeId'] = $this->typeId;
+		}
+		return $array;
 	}
 }

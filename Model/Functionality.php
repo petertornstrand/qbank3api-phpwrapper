@@ -13,7 +13,7 @@ use \Exception;
  *
  */
 
-class Functionality {
+class Functionality implements \JsonSerializable {
 
 	/**
 	 * The Functionality identifier.
@@ -332,5 +332,45 @@ class Functionality {
 	protected function setTitle($title) {
 		$this->title = $title;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->description !== null) {
+			$array['description'] = $this->description;
+		}
+		if ($this->dirty !== null) {
+			$array['dirty'] = $this->dirty;
+		}
+		if ($this->deleted !== null) {
+			$array['deleted'] = $this->deleted;
+		}
+		if ($this->created !== null) {
+			$array['created'] = $this->created;
+		}
+		if ($this->createdBy !== null) {
+			$array['createdBy'] = $this->createdBy;
+		}
+		if ($this->updated !== null) {
+			$array['updated'] = $this->updated;
+		}
+		if ($this->updatedBy !== null) {
+			$array['updatedBy'] = $this->updatedBy;
+		}
+		if ($this->title !== null) {
+			$array['title'] = $this->title;
+		}
+		return $array;
 	}
 }

@@ -13,7 +13,7 @@ use \Exception;
  *
  */
 
-class ExtraData {
+class ExtraData implements \JsonSerializable {
 
 	/**
 	 * The ExtraData identifier.
@@ -332,5 +332,45 @@ class ExtraData {
 	public function setValue($value) {
 		$this->value = $value;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->dirty !== null) {
+			$array['dirty'] = $this->dirty;
+		}
+		if ($this->deleted !== null) {
+			$array['deleted'] = $this->deleted;
+		}
+		if ($this->created !== null) {
+			$array['created'] = $this->created;
+		}
+		if ($this->createdBy !== null) {
+			$array['createdBy'] = $this->createdBy;
+		}
+		if ($this->updated !== null) {
+			$array['updated'] = $this->updated;
+		}
+		if ($this->updatedBy !== null) {
+			$array['updatedBy'] = $this->updatedBy;
+		}
+		if ($this->key !== null) {
+			$array['key'] = $this->key;
+		}
+		if ($this->keyId !== null) {
+			$array['keyId'] = $this->keyId;
+		}
+		if ($this->value !== null) {
+			$array['value'] = $this->value;
+		}
+		return $array;
 	}
 }

@@ -13,7 +13,7 @@ use \Exception;
  *
  */
 
-class PropertySet {
+class PropertySet implements \JsonSerializable {
 
 	/**
 	 * The PropertySet identifier
@@ -337,5 +337,45 @@ class PropertySet {
 			}
 		}
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->created !== null) {
+			$array['created'] = $this->created;
+		}
+		if ($this->createdBy !== null) {
+			$array['createdBy'] = $this->createdBy;
+		}
+		if ($this->updated !== null) {
+			$array['updated'] = $this->updated;
+		}
+		if ($this->updatedBy !== null) {
+			$array['updatedBy'] = $this->updatedBy;
+		}
+		if ($this->deleted !== null) {
+			$array['deleted'] = $this->deleted;
+		}
+		if ($this->dirty !== null) {
+			$array['dirty'] = $this->dirty;
+		}
+		if ($this->system !== null) {
+			$array['system'] = $this->system;
+		}
+		if ($this->properties !== null) {
+			$array['properties'] = $this->properties;
+		}
+		return $array;
 	}
 }

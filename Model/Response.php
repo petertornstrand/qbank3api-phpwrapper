@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class Response {
+class Response implements \JsonSerializable {
 
 	/**
 	 * 
@@ -53,5 +53,18 @@ class Response {
 	protected function setVersion($version) {
 		$this->version = $version;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->version !== null) {
+			$array['version'] = $this->version;
+		}
+		return $array;
 	}
 }

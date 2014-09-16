@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class FilterItem {
+class FilterItem implements \JsonSerializable {
 
 	/**
 	 * Title
@@ -87,5 +87,21 @@ class FilterItem {
 			}
 		}
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->title !== null) {
+			$array['title'] = $this->title;
+		}
+		if ($this->objectIds !== null) {
+			$array['objectIds'] = $this->objectIds;
+		}
+		return $array;
 	}
 }

@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class MimeType {
+class MimeType implements \JsonSerializable {
 
 	/**
 	 * The MimeType identifier.
@@ -227,5 +227,36 @@ class MimeType {
 	public function setClassification($classification) {
 		$this->classification = $classification;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->mimetype !== null) {
+			$array['mimetype'] = $this->mimetype;
+		}
+		if ($this->description !== null) {
+			$array['description'] = $this->description;
+		}
+		if ($this->imagetemplate !== null) {
+			$array['imagetemplate'] = $this->imagetemplate;
+		}
+		if ($this->videotemplate !== null) {
+			$array['videotemplate'] = $this->videotemplate;
+		}
+		if ($this->defaultextension !== null) {
+			$array['defaultextension'] = $this->defaultextension;
+		}
+		if ($this->classification !== null) {
+			$array['classification'] = $this->classification;
+		}
+		return $array;
 	}
 }

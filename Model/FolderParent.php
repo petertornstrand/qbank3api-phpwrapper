@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class FolderParent {
+class FolderParent implements \JsonSerializable {
 
 	/**
 	 * The Folder identifier.
@@ -82,5 +82,21 @@ class FolderParent {
 	protected function setDepth($depth) {
 		$this->depth = $depth;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->folderid !== null) {
+			$array['folderid'] = $this->folderid;
+		}
+		if ($this->depth !== null) {
+			$array['depth'] = $this->depth;
+		}
+		return $array;
 	}
 }

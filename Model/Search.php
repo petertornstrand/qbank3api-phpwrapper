@@ -12,7 +12,7 @@ use \DateTime;
  *
  */
 
-class Search {
+class Search implements \JsonSerializable {
 
 	/**
 	 * Starting offset of the search
@@ -592,5 +592,69 @@ class Search {
 	public function setDeploymentDateRange($deploymentDateRange) {
 		$this->deploymentDateRange = $deploymentDateRange;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->offset !== null) {
+			$array['offset'] = $this->offset;
+		}
+		if ($this->limit !== null) {
+			$array['limit'] = $this->limit;
+		}
+		if ($this->freeText !== null) {
+			$array['freeText'] = $this->freeText;
+		}
+		if ($this->objectIds !== null) {
+			$array['objectIds'] = $this->objectIds;
+		}
+		if ($this->createdByIds !== null) {
+			$array['createdByIds'] = $this->createdByIds;
+		}
+		if ($this->createdRange !== null) {
+			$array['createdRange'] = $this->createdRange;
+		}
+		if ($this->updatedByIds !== null) {
+			$array['updatedByIds'] = $this->updatedByIds;
+		}
+		if ($this->updatedRange !== null) {
+			$array['updatedRange'] = $this->updatedRange;
+		}
+		if ($this->mediaStatusIds !== null) {
+			$array['mediaStatusIds'] = $this->mediaStatusIds;
+		}
+		if ($this->folderIds !== null) {
+			$array['folderIds'] = $this->folderIds;
+		}
+		if ($this->moodboardIds !== null) {
+			$array['moodboardIds'] = $this->moodboardIds;
+		}
+		if ($this->categoryIds !== null) {
+			$array['categoryIds'] = $this->categoryIds;
+		}
+		if ($this->deploymentSiteIds !== null) {
+			$array['deploymentSiteIds'] = $this->deploymentSiteIds;
+		}
+		if ($this->properties !== null) {
+			$array['properties'] = $this->properties;
+		}
+		if ($this->fileSizeRange !== null) {
+			$array['fileSizeRange'] = $this->fileSizeRange;
+		}
+		if ($this->mimeType !== null) {
+			$array['mimeType'] = $this->mimeType;
+		}
+		if ($this->fileName !== null) {
+			$array['fileName'] = $this->fileName;
+		}
+		if ($this->deploymentDateRange !== null) {
+			$array['deploymentDateRange'] = $this->deploymentDateRange;
+		}
+		return $array;
 	}
 }

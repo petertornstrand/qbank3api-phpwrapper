@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class IntRange {
+class IntRange implements \JsonSerializable {
 
 	/**
 	 * Minimum integer in this range, leave empty for none.
@@ -82,5 +82,21 @@ class IntRange {
 	public function setMax($max) {
 		$this->max = $max;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->min !== null) {
+			$array['min'] = $this->min;
+		}
+		if ($this->max !== null) {
+			$array['max'] = $this->max;
+		}
+		return $array;
 	}
 }

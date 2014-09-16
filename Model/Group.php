@@ -13,7 +13,7 @@ use \Exception;
  *
  */
 
-class Group {
+class Group implements \JsonSerializable {
 
 	/**
 	 * The Group identifier.
@@ -405,5 +405,51 @@ class Group {
 			}
 		}
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->description !== null) {
+			$array['description'] = $this->description;
+		}
+		if ($this->dirty !== null) {
+			$array['dirty'] = $this->dirty;
+		}
+		if ($this->deleted !== null) {
+			$array['deleted'] = $this->deleted;
+		}
+		if ($this->created !== null) {
+			$array['created'] = $this->created;
+		}
+		if ($this->createdBy !== null) {
+			$array['createdBy'] = $this->createdBy;
+		}
+		if ($this->updated !== null) {
+			$array['updated'] = $this->updated;
+		}
+		if ($this->updatedBy !== null) {
+			$array['updatedBy'] = $this->updatedBy;
+		}
+		if ($this->functionalities !== null) {
+			$array['functionalities'] = $this->functionalities;
+		}
+		if ($this->roles !== null) {
+			$array['roles'] = $this->roles;
+		}
+		if ($this->extraData !== null) {
+			$array['extraData'] = $this->extraData;
+		}
+		return $array;
 	}
 }

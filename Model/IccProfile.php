@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class IccProfile {
+class IccProfile implements \JsonSerializable {
 
 	/**
 	 * The IccProfile identifier.
@@ -111,5 +111,24 @@ class IccProfile {
 	public function setDescription($description) {
 		$this->description = $description;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->description !== null) {
+			$array['description'] = $this->description;
+		}
+		return $array;
 	}
 }

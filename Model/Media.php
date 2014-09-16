@@ -13,7 +13,7 @@ use \Exception;
  *
  */
 
-class Media {
+class Media implements \JsonSerializable {
 
 	/**
 	 * The Media identifier.
@@ -690,5 +690,81 @@ class Media {
 	protected function setTypeId($typeId) {
 		$this->typeId = $typeId;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->mediaId !== null) {
+			$array['mediaId'] = $this->mediaId;
+		}
+		if ($this->categoryId !== null) {
+			$array['categoryId'] = $this->categoryId;
+		}
+		if ($this->extension !== null) {
+			$array['extension'] = $this->extension;
+		}
+		if ($this->filename !== null) {
+			$array['filename'] = $this->filename;
+		}
+		if ($this->statusId !== null) {
+			$array['statusId'] = $this->statusId;
+		}
+		if ($this->metadata !== null) {
+			$array['metadata'] = $this->metadata;
+		}
+		if ($this->mimetype !== null) {
+			$array['mimetype'] = $this->mimetype;
+		}
+		if ($this->parentId !== null) {
+			$array['parentId'] = $this->parentId;
+		}
+		if ($this->replacedBy !== null) {
+			$array['replacedBy'] = $this->replacedBy;
+		}
+		if ($this->size !== null) {
+			$array['size'] = $this->size;
+		}
+		if ($this->uploaded !== null) {
+			$array['uploaded'] = $this->uploaded;
+		}
+		if ($this->uploadedBy !== null) {
+			$array['uploadedBy'] = $this->uploadedBy;
+		}
+		if ($this->objectId !== null) {
+			$array['objectId'] = $this->objectId;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->created !== null) {
+			$array['created'] = $this->created;
+		}
+		if ($this->createdBy !== null) {
+			$array['createdBy'] = $this->createdBy;
+		}
+		if ($this->updated !== null) {
+			$array['updated'] = $this->updated;
+		}
+		if ($this->updatedBy !== null) {
+			$array['updatedBy'] = $this->updatedBy;
+		}
+		if ($this->deleted !== null) {
+			$array['deleted'] = $this->deleted;
+		}
+		if ($this->propertySets !== null) {
+			$array['propertySets'] = $this->propertySets;
+		}
+		if ($this->dirty !== null) {
+			$array['dirty'] = $this->dirty;
+		}
+		if ($this->typeId !== null) {
+			$array['typeId'] = $this->typeId;
+		}
+		return $array;
 	}
 }

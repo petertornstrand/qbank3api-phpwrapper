@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class SearchResult {
+class SearchResult implements \JsonSerializable {
 
 	/**
 	 * Number of hits per page in the SearchResult
@@ -174,5 +174,30 @@ class SearchResult {
 	protected function setTotalHits($totalHits) {
 		$this->totalHits = $totalHits;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->limit !== null) {
+			$array['limit'] = $this->limit;
+		}
+		if ($this->offset !== null) {
+			$array['offset'] = $this->offset;
+		}
+		if ($this->results !== null) {
+			$array['results'] = $this->results;
+		}
+		if ($this->timeSearching !== null) {
+			$array['timeSearching'] = $this->timeSearching;
+		}
+		if ($this->totalHits !== null) {
+			$array['totalHits'] = $this->totalHits;
+		}
+		return $array;
 	}
 }

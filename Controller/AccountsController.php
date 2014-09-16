@@ -24,6 +24,7 @@ class AccountsController extends ControllerAbstract {
 	 * @return Functionality[]
 	 */
 	public function listFunctionalities($includeDeleted = false) {
+		$query = array();
 		$query[ 'includeDeleted'] = $includeDeleted;
 		$functionality = array();
 		foreach ($this->get('v1/accounts/functionalities', $query) as $item ) {
@@ -50,6 +51,7 @@ class AccountsController extends ControllerAbstract {
 	 * @return Group[]
 	 */
 	public function listGroups($includeDeleted = false) {
+		$query = array();
 		$query[ 'includeDeleted'] = $includeDeleted;
 		$group = array();
 		foreach ($this->get('v1/accounts/groups', $query) as $item ) {
@@ -76,6 +78,7 @@ class AccountsController extends ControllerAbstract {
 	 * @return Role[]
 	 */
 	public function listRoles($includeDeleted = false) {
+		$query = array();
 		$query[ 'includeDeleted'] = $includeDeleted;
 		$role = array();
 		foreach ($this->get('v1/accounts/roles', $query) as $item ) {
@@ -102,6 +105,7 @@ class AccountsController extends ControllerAbstract {
 	 * @return User[]
 	 */
 	public function listUsers($includeDeleted = false) {
+		$query = array();
 		$query[ 'includeDeleted'] = $includeDeleted;
 		$user = array();
 		foreach ($this->get('v1/accounts/users', $query) as $item ) {

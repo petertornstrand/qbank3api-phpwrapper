@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class Protocol {
+class Protocol implements \JsonSerializable {
 
 	/**
 	 * The Protocol identifier.
@@ -140,5 +140,27 @@ class Protocol {
 	protected function setDefinition($definition) {
 		$this->definition = $definition;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->description !== null) {
+			$array['description'] = $this->description;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->definition !== null) {
+			$array['definition'] = $this->definition;
+		}
+		return $array;
 	}
 }

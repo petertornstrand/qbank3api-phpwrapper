@@ -11,7 +11,7 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class Image {
+class Image implements \JsonSerializable {
 
 	/**
 	 * The Image Template identifier
@@ -430,5 +430,57 @@ class Image {
 	protected function setExtent($extent) {
 		$this->extent = (bool)$extent;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->background !== null) {
+			$array['background'] = $this->background;
+		}
+		if ($this->gravity !== null) {
+			$array['gravity'] = $this->gravity;
+		}
+		if ($this->iccProfile !== null) {
+			$array['iccProfile'] = $this->iccProfile;
+		}
+		if ($this->keepRatio !== null) {
+			$array['keepRatio'] = $this->keepRatio;
+		}
+		if ($this->mimeType !== null) {
+			$array['mimeType'] = $this->mimeType;
+		}
+		if ($this->quality !== null) {
+			$array['quality'] = $this->quality;
+		}
+		if ($this->ratiox !== null) {
+			$array['ratiox'] = $this->ratiox;
+		}
+		if ($this->ratioy !== null) {
+			$array['ratioy'] = $this->ratioy;
+		}
+		if ($this->resolution !== null) {
+			$array['resolution'] = $this->resolution;
+		}
+		if ($this->width !== null) {
+			$array['width'] = $this->width;
+		}
+		if ($this->height !== null) {
+			$array['height'] = $this->height;
+		}
+		if ($this->extent !== null) {
+			$array['extent'] = $this->extent;
+		}
+		return $array;
 	}
 }

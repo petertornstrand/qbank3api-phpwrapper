@@ -13,7 +13,7 @@ use \Exception;
  *
  */
 
-class User {
+class User implements \JsonSerializable {
 
 	/**
 	 * The User identifier.
@@ -598,5 +598,69 @@ class User {
 			}
 		}
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->email !== null) {
+			$array['email'] = $this->email;
+		}
+		if ($this->endDate !== null) {
+			$array['endDate'] = $this->endDate;
+		}
+		if ($this->startDate !== null) {
+			$array['startDate'] = $this->startDate;
+		}
+		if ($this->firstName !== null) {
+			$array['firstName'] = $this->firstName;
+		}
+		if ($this->lastName !== null) {
+			$array['lastName'] = $this->lastName;
+		}
+		if ($this->userName !== null) {
+			$array['userName'] = $this->userName;
+		}
+		if ($this->lastLogin !== null) {
+			$array['lastLogin'] = $this->lastLogin;
+		}
+		if ($this->groups !== null) {
+			$array['groups'] = $this->groups;
+		}
+		if ($this->dirty !== null) {
+			$array['dirty'] = $this->dirty;
+		}
+		if ($this->deleted !== null) {
+			$array['deleted'] = $this->deleted;
+		}
+		if ($this->created !== null) {
+			$array['created'] = $this->created;
+		}
+		if ($this->createdBy !== null) {
+			$array['createdBy'] = $this->createdBy;
+		}
+		if ($this->updated !== null) {
+			$array['updated'] = $this->updated;
+		}
+		if ($this->updatedBy !== null) {
+			$array['updatedBy'] = $this->updatedBy;
+		}
+		if ($this->functionalities !== null) {
+			$array['functionalities'] = $this->functionalities;
+		}
+		if ($this->extraData !== null) {
+			$array['extraData'] = $this->extraData;
+		}
+		return $array;
 	}
 }

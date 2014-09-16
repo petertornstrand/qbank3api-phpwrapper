@@ -13,7 +13,7 @@ use \Exception;
  *
  */
 
-class Moodboard {
+class Moodboard implements \JsonSerializable {
 
 	/**
 	 * The Moodboard identifier
@@ -519,5 +519,63 @@ class Moodboard {
 	protected function setTypeId($typeId) {
 		$this->typeId = $typeId;
 		return $this;
+	}
+
+	/**
+	 * Gets all data that should be available in a json representation.
+	 * @return array An associative array of the available variables.
+	 */
+	public function jsonSerialize() {
+		$array = array();
+		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
+		if ($this->pinCode !== null) {
+			$array['pinCode'] = $this->pinCode;
+		}
+		if ($this->templateId !== null) {
+			$array['templateId'] = $this->templateId;
+		}
+		if ($this->expireDate !== null) {
+			$array['expireDate'] = $this->expireDate;
+		}
+		if ($this->hash !== null) {
+			$array['hash'] = $this->hash;
+		}
+		if ($this->definition !== null) {
+			$array['definition'] = $this->definition;
+		}
+		if ($this->objectId !== null) {
+			$array['objectId'] = $this->objectId;
+		}
+		if ($this->name !== null) {
+			$array['name'] = $this->name;
+		}
+		if ($this->created !== null) {
+			$array['created'] = $this->created;
+		}
+		if ($this->createdBy !== null) {
+			$array['createdBy'] = $this->createdBy;
+		}
+		if ($this->updated !== null) {
+			$array['updated'] = $this->updated;
+		}
+		if ($this->updatedBy !== null) {
+			$array['updatedBy'] = $this->updatedBy;
+		}
+		if ($this->deleted !== null) {
+			$array['deleted'] = $this->deleted;
+		}
+		if ($this->propertySets !== null) {
+			$array['propertySets'] = $this->propertySets;
+		}
+		if ($this->dirty !== null) {
+			$array['dirty'] = $this->dirty;
+		}
+		if ($this->typeId !== null) {
+			$array['typeId'] = $this->typeId;
+		}
+		return $array;
 	}
 }

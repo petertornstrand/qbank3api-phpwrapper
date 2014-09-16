@@ -2,6 +2,7 @@
 
 namespace QBNK\QBank\API\Controller;
 
+use QBNK\QBank\API\Model\Search;
 use QBNK\QBank\API\Model\SearchResult;
 
 
@@ -16,12 +17,14 @@ class SearchController extends ControllerAbstract {
 	
 	/**
 	 * Search for Media in QBank
-	 * @param Object $rEQUEST_BODY Paste JSON data here
+	 * @param Search $search Search parameters
 	 * 
 	 * @return SearchResult
 	 */
-	public function search($rEQUEST_BODY) {
-		return new SearchResult($this->post('v1/search'));
+	public function search($search) {
+		$query = array();
+		$query = array_merge($query, $search->jsonSerialize());
+		return new SearchResult($this->post('v1/search', $query));
 	}
 
 }
