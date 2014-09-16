@@ -13,6 +13,7 @@
 		"email": "support@qbank.se"
 	},
 	"require": {
+		"php": "~5.3.3",
 		"commerceguys/guzzle-oauth2-plugin": "~1.0",
 		"doctrine/cache": "~1.3",
 		"psr/log": "1.0.0"
