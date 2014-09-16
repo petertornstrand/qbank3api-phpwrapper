@@ -36,29 +36,37 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 			}
 			$response = $request->send();
 			$this->logger->debug(
-				'Request to QBank sent.',
+				'Request to QBank sent. '.strtoupper($method).' '.$endpoint,
 				array(
 					'endpoint' => $endpoint,
 					'parameters' => $params,
-					'method' => $method
+					'method' => $method,
+					'response' => ($response instanceof Response) ? substr($response->getBody(), 0, 4096) : ''
 				)
 			);
 			return $response->json();
 		} catch (RequestException $re) {
 			$this->logger->error(
-				'Error while sending request to QBank.',
+				'Error while sending request to QBank. '.strtoupper($method).' '.$endpoint,
 				array(
 					'exception' => $re,
-					'message' => $re->getMessage()
+					'message' => $re->getMessage(),
+					'endpoint' => $endpoint,
+					'parameters' => $params,
+					'method' => $method,
+					'response' => ($response instanceof Response) ? substr($response->getBody(), 0, 4096) : ''
 				)
 			);
 			throw new QBankApiException('Error while sending request to QBank: '.$re->getMessage(), $re->getCode(), $re);
 		} catch (RuntimeException $re) {
 			$this->logger->critical(
-				'Error while decoding response from QBank.',
+				'Error while decoding response from QBank.  '.strtoupper($method).' '.$endpoint,
 				array(
 					'exception' => $re,
 					'message' => $re->getMessage(),
+					'endpoint' => $endpoint,
+					'parameters' => $params,
+					'method' => $method,
 					'response' => ($response instanceof Response) ? substr($response->getBody(), 0, 4096) : ''
 				)
 			);
