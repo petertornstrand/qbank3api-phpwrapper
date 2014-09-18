@@ -437,7 +437,14 @@ class Search implements \JsonSerializable  {
 	 * @return $this
 	 */
 	public function setCreatedRange($createdRange) {
-		$this->createdRange = $createdRange;
+		if ($createdRange instanceof DateTimeRange) {
+			$this->createdRange = $createdRange;
+		} else if (is_array($createdRange)) {
+			$this->createdRange = new DateTimeRange($createdRange);
+		} else {
+			$this->createdRange = null;
+			trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 
@@ -462,7 +469,14 @@ class Search implements \JsonSerializable  {
 	 * @return $this
 	 */
 	public function setUpdatedRange($updatedRange) {
-		$this->updatedRange = $updatedRange;
+		if ($updatedRange instanceof DateTimeRange) {
+			$this->updatedRange = $updatedRange;
+		} else if (is_array($updatedRange)) {
+			$this->updatedRange = new DateTimeRange($updatedRange);
+		} else {
+			$this->updatedRange = null;
+			trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 
@@ -562,7 +576,14 @@ class Search implements \JsonSerializable  {
 	 * @return $this
 	 */
 	public function setFileSizeRange($fileSizeRange) {
-		$this->fileSizeRange = $fileSizeRange;
+		if ($fileSizeRange instanceof IntRange) {
+			$this->fileSizeRange = $fileSizeRange;
+		} else if (is_array($fileSizeRange)) {
+			$this->fileSizeRange = new IntRange($fileSizeRange);
+		} else {
+			$this->fileSizeRange = null;
+			trigger_error('Argument must be an object of class IntRange. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 
@@ -592,7 +613,14 @@ class Search implements \JsonSerializable  {
 	 * @return $this
 	 */
 	public function setDeploymentDateRange($deploymentDateRange) {
-		$this->deploymentDateRange = $deploymentDateRange;
+		if ($deploymentDateRange instanceof DateTimeRange) {
+			$this->deploymentDateRange = $deploymentDateRange;
+		} else if (is_array($deploymentDateRange)) {
+			$this->deploymentDateRange = new DateTimeRange($deploymentDateRange);
+		} else {
+			$this->deploymentDateRange = null;
+			trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 

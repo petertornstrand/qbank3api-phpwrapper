@@ -340,7 +340,14 @@ class Image implements \JsonSerializable  {
 	 * @return $this
 	 */
 	protected function setIccProfile($iccProfile) {
-		$this->iccProfile = $iccProfile;
+		if ($iccProfile instanceof IccProfile) {
+			$this->iccProfile = $iccProfile;
+		} else if (is_array($iccProfile)) {
+			$this->iccProfile = new IccProfile($iccProfile);
+		} else {
+			$this->iccProfile = null;
+			trigger_error('Argument must be an object of class IccProfile. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 
@@ -360,7 +367,14 @@ class Image implements \JsonSerializable  {
 	 * @return $this
 	 */
 	protected function setMimeType($mimeType) {
-		$this->mimeType = $mimeType;
+		if ($mimeType instanceof MimeType) {
+			$this->mimeType = $mimeType;
+		} else if (is_array($mimeType)) {
+			$this->mimeType = new MimeType($mimeType);
+		} else {
+			$this->mimeType = null;
+			trigger_error('Argument must be an object of class MimeType. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 

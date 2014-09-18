@@ -264,7 +264,14 @@ class Property implements \JsonSerializable  {
 	 * @return $this
 	 */
 	public function setPropertyType($propertyType) {
-		$this->propertyType = $propertyType;
+		if ($propertyType instanceof PropertyType) {
+			$this->propertyType = $propertyType;
+		} else if (is_array($propertyType)) {
+			$this->propertyType = new PropertyType($propertyType);
+		} else {
+			$this->propertyType = null;
+			trigger_error('Argument must be an object of class PropertyType. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 

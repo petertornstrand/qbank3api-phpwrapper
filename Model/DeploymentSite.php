@@ -474,7 +474,14 @@ class DeploymentSite implements \JsonSerializable  {
 	 * @return $this
 	 */
 	protected function setProtocol($protocol) {
-		$this->protocol = $protocol;
+		if ($protocol instanceof Protocol) {
+			$this->protocol = $protocol;
+		} else if (is_array($protocol)) {
+			$this->protocol = new Protocol($protocol);
+		} else {
+			$this->protocol = null;
+			trigger_error('Argument must be an object of class Protocol. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 

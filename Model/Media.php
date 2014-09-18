@@ -519,7 +519,14 @@ class Media implements \JsonSerializable  {
 	 * @return $this
 	 */
 	protected function setMimetype($mimetype) {
-		$this->mimetype = $mimetype;
+		if ($mimetype instanceof MimeType) {
+			$this->mimetype = $mimetype;
+		} else if (is_array($mimetype)) {
+			$this->mimetype = new MimeType($mimetype);
+		} else {
+			$this->mimetype = null;
+			trigger_error('Argument must be an object of class MimeType. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 

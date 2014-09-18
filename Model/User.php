@@ -492,7 +492,14 @@ class User implements \JsonSerializable  {
 	 * @return $this
 	 */
 	protected function setGroups($groups) {
-		$this->groups = $groups;
+		if ($groups instanceof Group) {
+			$this->groups = $groups;
+		} else if (is_array($groups)) {
+			$this->groups = new Group($groups);
+		} else {
+			$this->groups = null;
+			trigger_error('Argument must be an object of class Group. Data loss!', E_USER_WARNING);
+		}
 		return $this;
 	}
 
