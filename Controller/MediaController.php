@@ -6,7 +6,6 @@ use QBNK\QBank\API\Model\Media;
 use QBNK\QBank\API\Model\DeploymentSite;
 use QBNK\QBank\API\Model\Folder;
 use QBNK\QBank\API\Model\Moodboard;
-use QBNK\QBank\API\Model\Array[int];
 
 
 /**
