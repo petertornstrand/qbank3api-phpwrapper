@@ -12,7 +12,9 @@ use \DateTime;
  *
  */
 
-class Search implements \JsonSerializable {
+class Search implements \JsonSerializable  {
+
+
 
 	/**
 	 * Starting offset of the search
@@ -593,6 +595,7 @@ class Search implements \JsonSerializable {
 		$this->deploymentDateRange = $deploymentDateRange;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

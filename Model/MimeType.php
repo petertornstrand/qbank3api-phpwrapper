@@ -11,7 +11,9 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class MimeType implements \JsonSerializable {
+class MimeType implements \JsonSerializable  {
+
+
 
 	/**
 	 * The MimeType identifier.
@@ -228,6 +230,7 @@ class MimeType implements \JsonSerializable {
 		$this->classification = $classification;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

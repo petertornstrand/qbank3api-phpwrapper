@@ -11,7 +11,9 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class FilterItem implements \JsonSerializable {
+class FilterItem implements \JsonSerializable  {
+
+
 
 	/**
 	 * Title
@@ -88,6 +90,7 @@ class FilterItem implements \JsonSerializable {
 		}
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

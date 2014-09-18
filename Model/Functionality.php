@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class Functionality implements \JsonSerializable {
+class Functionality implements \JsonSerializable  {
+
+
 
 	/**
 	 * The Functionality identifier.
@@ -333,6 +335,7 @@ class Functionality implements \JsonSerializable {
 		$this->title = $title;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

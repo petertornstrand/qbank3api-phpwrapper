@@ -11,7 +11,9 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class MetaData implements \JsonSerializable {
+class MetaData implements \JsonSerializable  {
+
+
 
 	/**
 	 * The MetaData section name.
@@ -83,6 +85,7 @@ class MetaData implements \JsonSerializable {
 		$this->data = $data;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

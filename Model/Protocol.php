@@ -11,7 +11,9 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class Protocol implements \JsonSerializable {
+class Protocol implements \JsonSerializable  {
+
+
 
 	/**
 	 * The Protocol identifier.
@@ -141,6 +143,7 @@ class Protocol implements \JsonSerializable {
 		$this->definition = $definition;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

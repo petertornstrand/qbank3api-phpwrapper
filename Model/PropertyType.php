@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class PropertyType implements \JsonSerializable {
+class PropertyType implements \JsonSerializable  {
+
+
 
 	/**
 	 * When the Property was created.
@@ -333,6 +335,7 @@ class PropertyType implements \JsonSerializable {
 		$this->definition = $definition;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

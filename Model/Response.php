@@ -11,7 +11,9 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class Response implements \JsonSerializable {
+class Response implements \JsonSerializable  {
+
+
 
 	/**
 	 * 
@@ -54,6 +56,7 @@ class Response implements \JsonSerializable {
 		$this->version = $version;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

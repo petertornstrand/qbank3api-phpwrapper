@@ -11,7 +11,9 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class Image implements \JsonSerializable {
+class Image implements \JsonSerializable  {
+
+
 
 	/**
 	 * The Image Template identifier
@@ -431,6 +433,7 @@ class Image implements \JsonSerializable {
 		$this->extent = (bool)$extent;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

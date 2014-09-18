@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class DateTimeRange implements \JsonSerializable {
+class DateTimeRange implements \JsonSerializable  {
+
+
 
 	/**
 	 * Minimum date in this range, leave empty for none.
@@ -101,6 +103,7 @@ class DateTimeRange implements \JsonSerializable {
 		}
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

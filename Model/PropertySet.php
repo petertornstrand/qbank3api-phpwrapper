@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class PropertySet implements \JsonSerializable {
+class PropertySet implements \JsonSerializable  {
+
+
 
 	/**
 	 * The PropertySet identifier
@@ -338,6 +340,7 @@ class PropertySet implements \JsonSerializable {
 		}
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

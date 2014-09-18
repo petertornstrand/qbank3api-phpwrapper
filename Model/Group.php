@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class Group implements \JsonSerializable {
+class Group implements \JsonSerializable  {
+
+
 
 	/**
 	 * The Group identifier.
@@ -406,6 +408,7 @@ class Group implements \JsonSerializable {
 		}
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

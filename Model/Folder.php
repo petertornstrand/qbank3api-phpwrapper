@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class Folder implements \JsonSerializable {
+class Folder implements \JsonSerializable  {
+
+
 
 	/**
 	 * The Folder identifier.
@@ -401,6 +403,7 @@ class Folder implements \JsonSerializable {
 		$this->typeId = $typeId;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

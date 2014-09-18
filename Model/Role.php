@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class Role implements \JsonSerializable {
+class Role implements \JsonSerializable  {
+
+
 
 	/**
 	 * The Role identifier.
@@ -338,6 +340,7 @@ class Role implements \JsonSerializable {
 		}
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class Category implements \JsonSerializable {
+class Category implements \JsonSerializable  {
+
+
 
 	/**
 	 * The Category identifier.
@@ -396,6 +398,7 @@ class Category implements \JsonSerializable {
 		$this->typeId = $typeId;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

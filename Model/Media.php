@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class Media implements \JsonSerializable {
+class Media implements \JsonSerializable  {
+
+
 
 	/**
 	 * The Media identifier.
@@ -691,6 +693,7 @@ class Media implements \JsonSerializable {
 		$this->typeId = $typeId;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

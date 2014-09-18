@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class User implements \JsonSerializable {
+class User implements \JsonSerializable  {
+
+
 
 	/**
 	 * The User identifier.
@@ -599,6 +601,7 @@ class User implements \JsonSerializable {
 		}
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

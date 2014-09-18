@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class Moodboard implements \JsonSerializable {
+class Moodboard implements \JsonSerializable  {
+
+
 
 	/**
 	 * The Moodboard identifier
@@ -520,6 +522,7 @@ class Moodboard implements \JsonSerializable {
 		$this->typeId = $typeId;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

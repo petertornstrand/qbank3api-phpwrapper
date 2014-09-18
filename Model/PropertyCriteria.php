@@ -11,7 +11,9 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class PropertyCriteria implements \JsonSerializable {
+class PropertyCriteria implements \JsonSerializable  {
+
+
 
 	/**
 	 * The system name of the Property we filter on
@@ -112,6 +114,7 @@ class PropertyCriteria implements \JsonSerializable {
 		$this->operator = $operator;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

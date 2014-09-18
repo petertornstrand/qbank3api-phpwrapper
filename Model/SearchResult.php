@@ -11,7 +11,11 @@ namespace QBNK\QBank\API\Model;
  *
  */
 
-class SearchResult implements \JsonSerializable {
+class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess {
+
+	/** @var int */
+	protected $iteratorPosition = 0;
+
 
 	/**
 	 * Number of hits per page in the SearchResult
@@ -174,6 +178,86 @@ class SearchResult implements \JsonSerializable {
 	protected function setTotalHits($totalHits) {
 		$this->totalHits = $totalHits;
 		return $this;
+	}
+
+	/**
+	 * Gets the current element.
+	 * @return mixed
+	 */
+	public function current() {
+		return $this->results[$this->iteratorPosition];
+	}
+
+	/**
+	 * Gets the key of the current element.
+	 */
+	public function key() {
+		return $this->iteratorPosition;
+	}
+
+	/**
+	 * Moves the internal pointer to the next element.
+	 * @return void
+	 */
+	public function next() {
+		$this->iteratorPosition++;
+	}
+
+	/**
+	 * Resets the internal pointer.
+	 * @return void
+	 */
+	public function rewind() {
+		$this->iteratorPosition = 0;
+	}
+
+	/**
+	 * Checks if the current internal pointer position is valid.
+	 * @return bool
+	 */
+	public function valid() {
+		return isset($this->results[$this->iteratorPosition]);
+	}
+
+	/**
+	 * Whether an offset exists.
+	 * @param int $offset
+	 * @return bool
+	 */
+	public function offsetExists($offset) {
+		return isset($this->results[$offset]);
+	}
+
+	/**
+	 * Gets the element at the specified offset.
+	 * @param int $offset
+	 * @return mixed
+	 */
+	public function offsetGet($offset) {
+		return $this->offsetExists($offset) ? $this->results[$offset] : null;
+	}
+
+	/**
+	 * Assigns an element to the specified offset.
+	 * @param int|null $offset
+	 * @param mixed $value
+	 * @return void
+	 */
+	public function offsetSet($offset, $value) {
+		if ($offset === null) {
+			$this->results[] = $value;
+		} else {
+			$this->results[$offset] = $value;
+		}
+	}
+
+	/**
+	 * Unsets an element at the specified offset.
+	 * @param int $offset
+	 * @return void
+	 */
+	public function offsetUnset($offset) {
+		unset($this->results[$offset]);
 	}
 
 	/**

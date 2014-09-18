@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class DeploymentSite implements \JsonSerializable {
+class DeploymentSite implements \JsonSerializable  {
+
+
 
 	/**
 	 * The DeploymentSite identifier.
@@ -701,6 +703,7 @@ class DeploymentSite implements \JsonSerializable {
 		$this->typeId = $typeId;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.

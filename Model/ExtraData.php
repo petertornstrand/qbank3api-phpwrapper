@@ -13,7 +13,9 @@ use \Exception;
  *
  */
 
-class ExtraData implements \JsonSerializable {
+class ExtraData implements \JsonSerializable  {
+
+
 
 	/**
 	 * The ExtraData identifier.
@@ -333,6 +335,7 @@ class ExtraData implements \JsonSerializable {
 		$this->value = $value;
 		return $this;
 	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.
