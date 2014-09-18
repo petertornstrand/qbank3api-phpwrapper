@@ -46,6 +46,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 			);
 			return $response->json();
 		} catch (RequestException $re) {
+			$response = $re->getRequest()->getResponse();
 			$this->logger->error(
 				'Error while sending request to QBank. '.strtoupper($method).' '.$endpoint,
 				array(
@@ -59,6 +60,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 			);
 			throw new QBankApiException('Error while sending request to QBank: '.$re->getMessage(), $re->getCode(), $re);
 		} catch (RuntimeException $re) {
+			$response = $re->getRequest()->getResponse();
 			$this->logger->critical(
 				'Error while decoding response from QBank.  '.strtoupper($method).' '.$endpoint,
 				array(
