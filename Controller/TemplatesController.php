@@ -6,7 +6,7 @@ use QBNK\QBank\API\Model\Image;
 
 
 /**
- * Use PHPDoc comment to describe here
+ * 
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *

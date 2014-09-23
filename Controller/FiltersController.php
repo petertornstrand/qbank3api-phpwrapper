@@ -34,7 +34,7 @@ class FiltersController extends ControllerAbstract {
 
 	/**
 	 * Returns a array of FilterItem for the chosen folder subfolders, optionally filtered by specific CategoryIds and/or DeploymentSites.
-	 * @param int $parentFolderId 
+	 * @param int $parentFolderId add <mark>@param {type} $parentFolderId {comment}</mark> to describe here
 	 * @param string $categoryIds Comma separated string categoryIds we should fetch objectIds for.
 	 * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch objectIds for.
 	 * 

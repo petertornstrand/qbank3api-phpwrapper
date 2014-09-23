@@ -9,7 +9,7 @@ use QBNK\QBank\API\Model\User;
 
 
 /**
- * Use PHPDoc comment to describe here
+ * Accounts control the security in QBank.
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *
@@ -99,6 +99,25 @@ class AccountsController extends ControllerAbstract {
 	}
 
 	/**
+	 * Fetches all settings currently available for the current user.
+	 * 
+	 * @return array
+	 */
+	public function listSettings() {
+		return $this->get('v1/accounts/settings');
+	}
+
+	/**
+	 * Fetches a setting for the current user.
+	 * @param string $key add <mark>@param {type} $key {comment}</mark> to describe here
+	 * 
+	 * @return array
+	 */
+	public function retrieveSetting($key) {
+		return $this->get('v1/accounts/settings/' . $key);
+	}
+
+	/**
 	 * Lists all Users available
 	 * @param bool $includeDeleted Indicates if we should include removed Users in the result.
 	 * 
@@ -123,6 +142,33 @@ class AccountsController extends ControllerAbstract {
 	 */
 	public function retrieveUser($id) {
 		return new User($this->get('v1/accounts/users/' . $id));
+	}
+
+	/**
+	 * Creates a new, previously not existing setting.
+	 * @param string $key The key (identifier) of the setting
+	 * @param string $value The value of the setting
+	 * 
+	 * @return void
+	 */
+	public function createSetting($key, $value) {
+		$query = array();
+		$query['key'] = $key;
+		$query['value'] = $value;
+		$this->post('v1/accounts/settings', $query);
+	}
+
+	/**
+	 * Updates a previously created setting.
+	 * @param string $key The key (identifier) of the setting..
+	 * @param string $value The value of the setting
+	 * 
+	 * @return void
+	 */
+	public function updateSetting($key, $value) {
+		$query = array();
+		$query['value'] = $value;
+		$this->put('v1/accounts/settings/' . $key . '', $query);
 	}
 
 }
