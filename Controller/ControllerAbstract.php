@@ -68,7 +68,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 					'response' => ($response instanceof Response) ? substr($response->getBody(), 0, 4096) : ''
 				)
 			);
-			throw new QBankApiException('Error while sending request to QBank: '.$re->getMessage(), $re->getCode(), $re);
+			throw new QBankApiException('Error while sending request to QBank: '.$re->getMessage(), $response->getStatusCode(), $re);
 		} catch (RuntimeException $re) {
 			$response = $re->getRequest()->getResponse();
 			$this->logger->critical(
