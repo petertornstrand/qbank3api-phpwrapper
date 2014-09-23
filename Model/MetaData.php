@@ -37,6 +37,7 @@ class MetaData implements \JsonSerializable  {
 	 */
 	public function __construct($parameters) {
 		
+		
 		if (isset($parameters['section'])) {
 			$this->setSection($parameters['section']);
 		}

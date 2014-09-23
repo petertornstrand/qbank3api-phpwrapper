@@ -37,6 +37,7 @@ class FolderParent implements \JsonSerializable  {
 	 */
 	public function __construct($parameters) {
 		
+		
 		if (isset($parameters['folderid'])) {
 			$this->setFolderid($parameters['folderid']);
 		}

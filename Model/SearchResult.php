@@ -60,6 +60,7 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess {
 	 */
 	public function __construct($parameters) {
 		
+		
 		if (isset($parameters['limit'])) {
 			$this->setLimit($parameters['limit']);
 		}

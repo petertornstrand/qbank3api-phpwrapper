@@ -179,6 +179,7 @@ class DeploymentSite implements \JsonSerializable  {
 	 */
 	public function __construct($parameters) {
 		
+		
 		if (isset($parameters['id'])) {
 			$this->setId($parameters['id']);
 		}

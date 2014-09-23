@@ -81,6 +81,7 @@ class Property implements \JsonSerializable  {
 	 */
 	public function __construct($parameters) {
 		
+		
 		if (isset($parameters['created'])) {
 			$this->setCreated($parameters['created']);
 		}

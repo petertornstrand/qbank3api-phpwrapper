@@ -149,6 +149,10 @@ class Search implements \JsonSerializable  {
 	 * 
 	 */
 	public function __construct($parameters) {
+		$this->offset = 0;
+		$this->limit = 50;
+		$this->mediaStatusIds = array(4);
+		
 		
 		if (isset($parameters['offset'])) {
 			$this->setOffset($parameters['offset']);
