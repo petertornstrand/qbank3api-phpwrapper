@@ -12,6 +12,7 @@ use QBNK\QBank\API\QBankApiException;
 abstract class ControllerAbstract implements LoggerAwareInterface {
 	const METHOD_GET = 'get';
 	const METHOD_POST = 'post';
+	const METHOD_PUT = 'put';
 
 	/** @var \Guzzle\Http\Client $client */
 	protected $client;
@@ -23,11 +24,20 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 		$this->client = $client;
 	}
 
+	/**
+	 * @param string $endpoint
+	 * @param array $params
+	 * @param string $method
+	 * @return mixed
+	 */
 	protected function call($endpoint, array $params = array(), $method = self::METHOD_GET) {
 		try {
 			switch ($method) {
 				case self::METHOD_POST:
 					$request = $this->client->post($endpoint, null, $params);
+					break;
+				case self::METHOD_PUT:
+					$request = $this->client->put($endpoint, null, $params);
 					break;
 				case self::METHOD_GET:
 				default:
@@ -76,12 +86,31 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 		}
 	}
 
+	/**
+	 * @param string $endpoint
+	 * @param array $parameters
+	 * @return mixed
+	 */
 	protected function get($endpoint, array $parameters = array()) {
 		return $this->call($endpoint, $parameters, self::METHOD_GET);
 	}
 
+	/**
+	* @param string $endpoint
+	* @param array $parameters
+	* @return mixed
+	*/
 	protected function post($endpoint, array $parameters = array())  {
 		return $this->call($endpoint, $parameters, self::METHOD_POST);
+	}
+
+	/**
+	* @param string $endpoint
+	* @param array $parameters
+	* @return mixed
+	*/
+	protected function put($endpoint, array $parameters = array()) {
+		return $this->call($endpoint, $parameters, self::METHOD_PUT);
 	}
 
 	public function setLogger(LoggerInterface $logger) {
