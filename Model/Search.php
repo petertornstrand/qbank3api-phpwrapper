@@ -41,6 +41,12 @@ class Search implements \JsonSerializable  {
 	protected $objectIds;
 
 	/**
+	 * An array with MediaIds to filter by
+	 * @var Array
+	 */
+	protected $mediaIds;
+
+	/**
 	 * Filter by creators of Media
 	 * @var Array
 	 */
@@ -132,6 +138,7 @@ class Search implements \JsonSerializable  {
 	 * - <b>limit</b> - The number of results to return
 	 * - <b>freeText</b> - A freetext string to search for, operators like and/or/not and grouping by parentheses is available
 	 * - <b>objectIds</b> - An array with ObjectIds to filter by
+	 * - <b>mediaIds</b> - An array with MediaIds to filter by
 	 * - <b>createdByIds</b> - Filter by creators of Media
 	 * - <b>createdRange</b> - Filter by created date
 	 * - <b>updatedByIds</b> - Filter by updaters of Media
@@ -168,6 +175,10 @@ class Search implements \JsonSerializable  {
 	
 		if (isset($parameters['objectIds'])) {
 			$this->setObjectIds($parameters['objectIds']);
+		}
+	
+		if (isset($parameters['mediaIds'])) {
+			$this->setMediaIds($parameters['mediaIds']);
 		}
 	
 		if (isset($parameters['createdByIds'])) {
@@ -259,6 +270,14 @@ class Search implements \JsonSerializable  {
 	 */
 	public function getObjectIds() {
 		return $this->objectIds;
+	}
+
+	/**
+	 * Gets the mediaIds of the Search
+	 * @return Array
+	 */
+	public function getMediaIds() {
+		return $this->mediaIds;
 	}
 
 	/**
@@ -415,6 +434,21 @@ class Search implements \JsonSerializable  {
 			$this->objectIds = array();
 			foreach ($objectIds as $item) {
 				$this->objectIds[] = (int) $item;
+			}
+		}
+		return $this;
+	}
+
+	/**
+	 * Sets the "mediaIds" of the Search
+	 * @param Array $mediaIds
+	 * @return $this
+	 */
+	public function setMediaIds($mediaIds) {
+		if (is_array($mediaIds)) {
+			$this->mediaIds = array();
+			foreach ($mediaIds as $item) {
+				$this->mediaIds[] = (int) $item;
 			}
 		}
 		return $this;
@@ -647,6 +681,9 @@ class Search implements \JsonSerializable  {
 		}
 		if ($this->objectIds !== null) {
 			$array['objectIds'] = $this->objectIds;
+		}
+		if ($this->mediaIds !== null) {
+			$array['mediaIds'] = $this->mediaIds;
 		}
 		if ($this->createdByIds !== null) {
 			$array['createdByIds'] = $this->createdByIds;
