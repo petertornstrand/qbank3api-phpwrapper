@@ -38,6 +38,9 @@ class QBankApi {
 	/** @var  \Doctrine\Common\Cache\Cache */
 	protected $cache;
 
+	/** @var  QBankCachePolicy */
+    protected $cachePolicy;
+
 	/** @var  \Psr\Log\LoggerInterface */
 	protected $logger;
 
@@ -79,6 +82,8 @@ class QBankApi {
 	 * @param array $options Associative array containing options.
 	 * <ul>
 	 * <li> Cache $options[cache] A cache implementation to store tokens in. Highly recommended.</li>
+	 * <li> QBankCachePolicy $options[cachePolicy] A policy on how to use caching for API queries,
+	 *      if not provided cache will not be available for API queries.</li>
 	 * <li> LoggerInterface $options[log] A PSR-3 log implementation.</li>
 	 * </ul>
 	 */
@@ -111,11 +116,21 @@ class QBankApi {
 		$this->credentials = $credentials;
 
 		// Optionaly setup cache
-		if (!empty($options['cache']) && $options['cache'] instanceof Cache) {
+		if (!empty($options['cache']) && $options['cache'] instanceOf Cache) {
 			$this->cache = $options['cache'];
 		} else {
-			$this->logger->notice('No caching supplied! Without caching the user credententials will have to be sent anew for each instance of QBankApi');
+			$this->logger->notice('No caching supplied! Without caching the user credentials will have to be sent anew for each instance of QBankApi');
 		}
+
+		if (!empty($options['cachePolicy']) && $options['cachePolicy'] instanceOf QBankCachePolicy) {
+            $this->cachePolicy = $options['cachePolicy'];
+            if (!($this->cache instanceOf Cache) && $this->cachePolicy->isEnabled()) {
+                throw new \LogicException('You have supplied a cache policy that says cache is enabled but no cache provider have been defined.');
+            }
+        } else {
+            $this->cachePolicy = new QBankCachePolicy(false, 0);
+            $this->logger->warning('No cache policy supplied! Without a cache policy no API queries will be cached.');
+        }
 	}
 
 	/**
@@ -123,7 +138,7 @@ class QBankApi {
 	*/
 	public function oauth2() {
 		if (!$this->oauth2 instanceof Oauth2Controller) {
-			$this->oauth2 = new Oauth2Controller($this->getConnection());
+			$this->oauth2 = new Oauth2Controller($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->oauth2->setLogger($this->logger);
 		}
 		return $this->oauth2;
@@ -134,7 +149,7 @@ class QBankApi {
 	*/
 	public function moodboards() {
 		if (!$this->moodboards instanceof MoodboardsController) {
-			$this->moodboards = new MoodboardsController($this->getConnection());
+			$this->moodboards = new MoodboardsController($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->moodboards->setLogger($this->logger);
 		}
 		return $this->moodboards;
@@ -145,7 +160,7 @@ class QBankApi {
 	*/
 	public function categories() {
 		if (!$this->categories instanceof CategoriesController) {
-			$this->categories = new CategoriesController($this->getConnection());
+			$this->categories = new CategoriesController($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->categories->setLogger($this->logger);
 		}
 		return $this->categories;
@@ -156,7 +171,7 @@ class QBankApi {
 	*/
 	public function folders() {
 		if (!$this->folders instanceof FoldersController) {
-			$this->folders = new FoldersController($this->getConnection());
+			$this->folders = new FoldersController($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->folders->setLogger($this->logger);
 		}
 		return $this->folders;
@@ -167,7 +182,7 @@ class QBankApi {
 	*/
 	public function media() {
 		if (!$this->media instanceof MediaController) {
-			$this->media = new MediaController($this->getConnection());
+			$this->media = new MediaController($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->media->setLogger($this->logger);
 		}
 		return $this->media;
@@ -178,7 +193,7 @@ class QBankApi {
 	*/
 	public function templates() {
 		if (!$this->templates instanceof TemplatesController) {
-			$this->templates = new TemplatesController($this->getConnection());
+			$this->templates = new TemplatesController($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->templates->setLogger($this->logger);
 		}
 		return $this->templates;
@@ -189,7 +204,7 @@ class QBankApi {
 	*/
 	public function accounts() {
 		if (!$this->accounts instanceof AccountsController) {
-			$this->accounts = new AccountsController($this->getConnection());
+			$this->accounts = new AccountsController($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->accounts->setLogger($this->logger);
 		}
 		return $this->accounts;
@@ -200,7 +215,7 @@ class QBankApi {
 	*/
 	public function search() {
 		if (!$this->search instanceof SearchController) {
-			$this->search = new SearchController($this->getConnection());
+			$this->search = new SearchController($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->search->setLogger($this->logger);
 		}
 		return $this->search;
@@ -211,7 +226,7 @@ class QBankApi {
 	*/
 	public function deployment() {
 		if (!$this->deployment instanceof DeploymentController) {
-			$this->deployment = new DeploymentController($this->getConnection());
+			$this->deployment = new DeploymentController($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->deployment->setLogger($this->logger);
 		}
 		return $this->deployment;
@@ -222,7 +237,7 @@ class QBankApi {
 	*/
 	public function filters() {
 		if (!$this->filters instanceof FiltersController) {
-			$this->filters = new FiltersController($this->getConnection());
+			$this->filters = new FiltersController($this->getConnection(), $this->cachePolicy, $this->cache);
 			$this->filters->setLogger($this->logger);
 		}
 		return $this->filters;

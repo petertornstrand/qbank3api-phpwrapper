@@ -2,12 +2,13 @@
 
 namespace QBNK\QBank\API\Controller;
 
+use QBNK\QBank\API\QBankCachePolicy;
 use QBNK\QBank\API\Model\Search;
 use QBNK\QBank\API\Model\SearchResult;
 
 
 /**
- * 
+ * Use PHPDoc comment to describe here
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *

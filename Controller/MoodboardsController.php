@@ -2,11 +2,12 @@
 
 namespace QBNK\QBank\API\Controller;
 
+use QBNK\QBank\API\QBankCachePolicy;
 use QBNK\QBank\API\Model\Moodboard;
 
 
 /**
- * 
+ * Use PHPDoc comment to describe here
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *
@@ -16,12 +17,13 @@ class MoodboardsController extends ControllerAbstract {
 	
 	/**
 	 * Lists all Moodboards that the current user has access to.
+	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
 	 * @return Moodboard[]
 	 */
-	public function listMoodboards() {
+	public function listMoodboards(QBankCachePolicy $cachePolicy = null) {
 		$moodboard = array();
-		foreach ($this->get('v1/moodboards') as $item ) {
+		foreach ($this->get('v1/moodboards', [], $cachePolicy) as $item ) {
 			$moodboard[] = new Moodboard($item);
 		}
 
@@ -31,11 +33,12 @@ class MoodboardsController extends ControllerAbstract {
 	/**
 	 * Fetches a Moodboard by the specified identifier.
 	 * @param int $id The Moodboard identifier.
+	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
 	 * @return Moodboard
 	 */
-	public function retrieveMoodboard($id) {
-		return new Moodboard($this->get('v1/moodboards/' . $id));
+	public function retrieveMoodboard($id, QBankCachePolicy $cachePolicy = null) {
+		return new Moodboard($this->get('v1/moodboards/' . $id . '', [], $cachePolicy));
 	}
 
 }

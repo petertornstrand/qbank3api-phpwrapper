@@ -8,6 +8,9 @@ use Guzzle\Http\Exception\RequestException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use QBNK\QBank\API\QBankApiException;
+use QBNK\QBank\API\QBankCachePolicy;
+use Doctrine\Common\Cache\Cache;
+
 
 abstract class ControllerAbstract implements LoggerAwareInterface {
 	const METHOD_GET = 'get';
@@ -20,8 +23,16 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 	/** @var \Psr\Log\LoggerInterface $logger */
 	protected $logger;
 
-	public function __construct(Client $client) {
+    /** @var QBankCachePolicy */
+    protected $cachePolicy;
+
+	/** @var \Doctrine\Common\Cache\Cache */
+	protected $cache;
+
+	public function __construct(Client $client, QBankCachePolicy $cachePolicy, Cache $cache = null) {
 		$this->client = $client;
+        $this->cachePolicy = $cachePolicy;
+        $this->cache = $cache;
 	}
 
 	/**
@@ -30,7 +41,8 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 	 * @param string $method
 	 * @return mixed
 	 */
-	protected function call($endpoint, array $params = array(), $method = self::METHOD_GET) {
+	protected function call($endpoint, array $params = array(), $method = self::METHOD_GET, QBankCachePolicy $cachePolicy = null) {
+        $cachePolicy = ($cachePolicy !== null) ? $cachePolicy : $this->cachePolicy;
 		try {
 			switch ($method) {
 				case self::METHOD_POST:
@@ -41,7 +53,19 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 					break;
 				case self::METHOD_GET:
 				default:
-					$request = $this->client->get($endpoint, null, array('query' => $params));
+                    if ($cachePolicy->isEnabled() && $this->cache->contains(md5($endpoint . json_encode($params)))) {
+                        $this->logger->info(
+                            'Using cached response. '.strtoupper($method).' '.$endpoint,
+                            array(
+                                'endpoint' => $endpoint,
+                                'parameters' => $params,
+                                'method' => $method
+                            )
+                        );
+                        return $this->cache->fetch(md5($endpoint . json_encode($params)));
+                    } else {
+    					$request = $this->client->get($endpoint, null, array('query' => $params));
+    				}
 					break;
 			}
 			$response = $request->send();
@@ -54,6 +78,9 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 					'response' => ($response instanceof Response) ? substr($response->getBody(), 0, 4096) : ''
 				)
 			);
+			if ($cachePolicy->isEnabled()) {
+			    $this->cache->save(md5($endpoint . json_encode($params)), $response->json(), $cachePolicy->getLifetime());
+			}
 			return $response->json();
 		} catch (RequestException $re) {
 			$response = $re->getRequest()->getResponse();
@@ -91,8 +118,8 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 	 * @param array $parameters
 	 * @return mixed
 	 */
-	protected function get($endpoint, array $parameters = array()) {
-		return $this->call($endpoint, $parameters, self::METHOD_GET);
+	protected function get($endpoint, array $parameters = array(), QBankCachePolicy $cachePolicy = null) {
+		return $this->call($endpoint, $parameters, self::METHOD_GET, $cachePolicy);
 	}
 
 	/**

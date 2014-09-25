@@ -2,6 +2,7 @@
 
 namespace QBNK\QBank\API\Controller;
 
+use QBNK\QBank\API\QBankCachePolicy;
 use QBNK\QBank\API\Model\Category;
 
 
@@ -16,12 +17,13 @@ class CategoriesController extends ControllerAbstract {
 	
 	/**
 	 * Lists all categories that the current user has access to.
+	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
 	 * @return Category[]
 	 */
-	public function listCategories() {
+	public function listCategories(QBankCachePolicy $cachePolicy = null) {
 		$category = array();
-		foreach ($this->get('v1/categories') as $item ) {
+		foreach ($this->get('v1/categories', [], $cachePolicy) as $item ) {
 			$category[] = new Category($item);
 		}
 
@@ -31,11 +33,12 @@ class CategoriesController extends ControllerAbstract {
 	/**
 	 * Fetches a Category by the specified identifier.
 	 * @param int $id The Category identifier.
+	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
 	 * @return Category
 	 */
-	public function retrieveCategory($id) {
-		return new Category($this->get('v1/categories/' . $id));
+	public function retrieveCategory($id, QBankCachePolicy $cachePolicy = null) {
+		return new Category($this->get('v1/categories/' . $id . '', [], $cachePolicy));
 	}
 
 }
