@@ -501,13 +501,17 @@ class Media implements \JsonSerializable  {
 
 	/**
 	 * Sets the "metadata" of the Media
-	 * @param Array $metadata
+	 * @param MetaData[] $metadata
 	 * @return $this
 	 */
 	protected function setMetadata($metadata) {
 		if (is_array($metadata)) {
 			$this->metadata = array();
 			foreach ($metadata as $item) {
+				if (!($item instanceof MetaData)) {
+					trigger_error('Array parameter item is not of expected type "MetaData"!', E_USER_WARNING);
+					continue;
+				}
 				$this->metadata[] = new MetaData($item);
 			}
 		}
@@ -669,13 +673,17 @@ class Media implements \JsonSerializable  {
 
 	/**
 	 * Sets the "propertySets" of the Media
-	 * @param Array $propertySets
+	 * @param PropertySet[] $propertySets
 	 * @return $this
 	 */
 	protected function setPropertySets($propertySets) {
 		if (is_array($propertySets)) {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
+				if (!($item instanceof PropertySet)) {
+					trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+					continue;
+				}
 				$this->propertySets[] = new PropertySet($item);
 			}
 		}

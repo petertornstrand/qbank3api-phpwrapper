@@ -148,13 +148,17 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess {
 
 	/**
 	 * Sets the "results" of the SearchResult
-	 * @param Array $results
+	 * @param Media[] $results
 	 * @return $this
 	 */
 	protected function setResults($results) {
 		if (is_array($results)) {
 			$this->results = array();
 			foreach ($results as $item) {
+				if (!($item instanceof Media)) {
+					trigger_error('Array parameter item is not of expected type "Media"!', E_USER_WARNING);
+					continue;
+				}
 				$this->results[] = new Media($item);
 			}
 		}

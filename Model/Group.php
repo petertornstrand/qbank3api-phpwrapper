@@ -367,13 +367,17 @@ class Group implements \JsonSerializable  {
 
 	/**
 	 * Sets the "functionalities" of the Group
-	 * @param Array $functionalities
+	 * @param Functionality[] $functionalities
 	 * @return $this
 	 */
 	protected function setFunctionalities($functionalities) {
 		if (is_array($functionalities)) {
 			$this->functionalities = array();
 			foreach ($functionalities as $item) {
+				if (!($item instanceof Functionality)) {
+					trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
+					continue;
+				}
 				$this->functionalities[] = new Functionality($item);
 			}
 		}
@@ -382,13 +386,17 @@ class Group implements \JsonSerializable  {
 
 	/**
 	 * Sets the "roles" of the Group
-	 * @param Array $roles
+	 * @param Role[] $roles
 	 * @return $this
 	 */
 	protected function setRoles($roles) {
 		if (is_array($roles)) {
 			$this->roles = array();
 			foreach ($roles as $item) {
+				if (!($item instanceof Role)) {
+					trigger_error('Array parameter item is not of expected type "Role"!', E_USER_WARNING);
+					continue;
+				}
 				$this->roles[] = new Role($item);
 			}
 		}
@@ -397,13 +405,17 @@ class Group implements \JsonSerializable  {
 
 	/**
 	 * Sets the "extraData" of the Group
-	 * @param Array $extraData
+	 * @param ExtraData[] $extraData
 	 * @return $this
 	 */
 	protected function setExtraData($extraData) {
 		if (is_array($extraData)) {
 			$this->extraData = array();
 			foreach ($extraData as $item) {
+				if (!($item instanceof ExtraData)) {
+					trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
+					continue;
+				}
 				$this->extraData[] = new ExtraData($item);
 			}
 		}

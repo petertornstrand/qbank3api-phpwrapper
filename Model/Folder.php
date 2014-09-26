@@ -271,13 +271,17 @@ class Folder implements \JsonSerializable  {
 
 	/**
 	 * Sets the "subFolders" of the Folder
-	 * @param Array $subFolders
+	 * @param Folder[] $subFolders
 	 * @return $this
 	 */
 	protected function setSubFolders($subFolders) {
 		if (is_array($subFolders)) {
 			$this->subFolders = array();
 			foreach ($subFolders as $item) {
+				if (!($item instanceof Folder)) {
+					trigger_error('Array parameter item is not of expected type "Folder"!', E_USER_WARNING);
+					continue;
+				}
 				$this->subFolders[] = new Folder($item);
 			}
 		}
@@ -372,13 +376,17 @@ class Folder implements \JsonSerializable  {
 
 	/**
 	 * Sets the "propertySets" of the Folder
-	 * @param Array $propertySets
+	 * @param PropertySet[] $propertySets
 	 * @return $this
 	 */
 	protected function setPropertySets($propertySets) {
 		if (is_array($propertySets)) {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
+				if (!($item instanceof PropertySet)) {
+					trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+					continue;
+				}
 				$this->propertySets[] = new PropertySet($item);
 			}
 		}

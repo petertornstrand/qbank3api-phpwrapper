@@ -491,13 +491,17 @@ class Moodboard implements \JsonSerializable  {
 
 	/**
 	 * Sets the "propertySets" of the Moodboard
-	 * @param Array $propertySets
+	 * @param PropertySet[] $propertySets
 	 * @return $this
 	 */
 	protected function setPropertySets($propertySets) {
 		if (is_array($propertySets)) {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
+				if (!($item instanceof PropertySet)) {
+					trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+					continue;
+				}
 				$this->propertySets[] = new PropertySet($item);
 			}
 		}

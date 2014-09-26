@@ -329,13 +329,17 @@ class PropertySet implements \JsonSerializable  {
 
 	/**
 	 * Sets the "properties" of the PropertySet
-	 * @param Array $properties
+	 * @param Property[] $properties
 	 * @return $this
 	 */
 	public function setProperties($properties) {
 		if (is_array($properties)) {
 			$this->properties = array();
 			foreach ($properties as $item) {
+				if (!($item instanceof Property)) {
+					trigger_error('Array parameter item is not of expected type "Property"!', E_USER_WARNING);
+					continue;
+				}
 				$this->properties[] = new Property($item);
 			}
 		}

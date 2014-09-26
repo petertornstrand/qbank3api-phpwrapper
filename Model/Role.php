@@ -329,13 +329,17 @@ class Role implements \JsonSerializable  {
 
 	/**
 	 * Sets the "functionalities" of the Role
-	 * @param Array $functionalities
+	 * @param Functionality[] $functionalities
 	 * @return $this
 	 */
 	protected function setFunctionalities($functionalities) {
 		if (is_array($functionalities)) {
 			$this->functionalities = array();
 			foreach ($functionalities as $item) {
+				if (!($item instanceof Functionality)) {
+					trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
+					continue;
+				}
 				$this->functionalities[] = new Functionality($item);
 			}
 		}

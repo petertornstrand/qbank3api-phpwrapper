@@ -79,7 +79,7 @@ class FilterItem implements \JsonSerializable  {
 
 	/**
 	 * Sets the "objectIds" of the FilterItem
-	 * @param Array $objectIds
+	 * @param string[] $objectIds
 	 * @return $this
 	 */
 	protected function setObjectIds($objectIds) {

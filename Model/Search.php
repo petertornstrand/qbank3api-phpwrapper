@@ -426,7 +426,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "objectIds" of the Search
-	 * @param Array $objectIds
+	 * @param int[] $objectIds
 	 * @return $this
 	 */
 	public function setObjectIds($objectIds) {
@@ -441,7 +441,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "mediaIds" of the Search
-	 * @param Array $mediaIds
+	 * @param int[] $mediaIds
 	 * @return $this
 	 */
 	public function setMediaIds($mediaIds) {
@@ -456,7 +456,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "createdByIds" of the Search
-	 * @param Array $createdByIds
+	 * @param int[] $createdByIds
 	 * @return $this
 	 */
 	public function setCreatedByIds($createdByIds) {
@@ -488,7 +488,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "updatedByIds" of the Search
-	 * @param Array $updatedByIds
+	 * @param int[] $updatedByIds
 	 * @return $this
 	 */
 	public function setUpdatedByIds($updatedByIds) {
@@ -520,7 +520,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "mediaStatusIds" of the Search
-	 * @param Array $mediaStatusIds
+	 * @param int[] $mediaStatusIds
 	 * @return $this
 	 */
 	public function setMediaStatusIds($mediaStatusIds) {
@@ -535,7 +535,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "folderIds" of the Search
-	 * @param Array $folderIds
+	 * @param int[] $folderIds
 	 * @return $this
 	 */
 	public function setFolderIds($folderIds) {
@@ -550,7 +550,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "moodboardIds" of the Search
-	 * @param Array $moodboardIds
+	 * @param int[] $moodboardIds
 	 * @return $this
 	 */
 	public function setMoodboardIds($moodboardIds) {
@@ -565,7 +565,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "categoryIds" of the Search
-	 * @param Array $categoryIds
+	 * @param int[] $categoryIds
 	 * @return $this
 	 */
 	public function setCategoryIds($categoryIds) {
@@ -580,7 +580,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "deploymentSiteIds" of the Search
-	 * @param Array $deploymentSiteIds
+	 * @param int[] $deploymentSiteIds
 	 * @return $this
 	 */
 	public function setDeploymentSiteIds($deploymentSiteIds) {
@@ -595,13 +595,17 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "properties" of the Search
-	 * @param Array $properties
+	 * @param PropertyCriteria[] $properties
 	 * @return $this
 	 */
 	public function setProperties($properties) {
 		if (is_array($properties)) {
 			$this->properties = array();
 			foreach ($properties as $item) {
+				if (!($item instanceof PropertyCriteria)) {
+					trigger_error('Array parameter item is not of expected type "PropertyCriteria"!', E_USER_WARNING);
+					continue;
+				}
 				$this->properties[] = new PropertyCriteria($item);
 			}
 		}

@@ -582,13 +582,17 @@ class User implements \JsonSerializable  {
 
 	/**
 	 * Sets the "functionalities" of the User
-	 * @param Array $functionalities
+	 * @param Functionality[] $functionalities
 	 * @return $this
 	 */
 	protected function setFunctionalities($functionalities) {
 		if (is_array($functionalities)) {
 			$this->functionalities = array();
 			foreach ($functionalities as $item) {
+				if (!($item instanceof Functionality)) {
+					trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
+					continue;
+				}
 				$this->functionalities[] = new Functionality($item);
 			}
 		}
@@ -597,13 +601,17 @@ class User implements \JsonSerializable  {
 
 	/**
 	 * Sets the "extraData" of the User
-	 * @param Array $extraData
+	 * @param ExtraData[] $extraData
 	 * @return $this
 	 */
 	protected function setExtraData($extraData) {
 		if (is_array($extraData)) {
 			$this->extraData = array();
 			foreach ($extraData as $item) {
+				if (!($item instanceof ExtraData)) {
+					trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
+					continue;
+				}
 				$this->extraData[] = new ExtraData($item);
 			}
 		}

@@ -548,13 +548,17 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Sets the "imagetemplates" of the DeploymentSite
-	 * @param Array $imagetemplates
+	 * @param Image[] $imagetemplates
 	 * @return $this
 	 */
 	protected function setImagetemplates($imagetemplates) {
 		if (is_array($imagetemplates)) {
 			$this->imagetemplates = array();
 			foreach ($imagetemplates as $item) {
+				if (!($item instanceof Image)) {
+					trigger_error('Array parameter item is not of expected type "Image"!', E_USER_WARNING);
+					continue;
+				}
 				$this->imagetemplates[] = new Image($item);
 			}
 		}
@@ -563,13 +567,17 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Sets the "videotemplates" of the DeploymentSite
-	 * @param Array $videotemplates
+	 * @param \QBNK\QBank\Api\v1\Model\Templates\Video[] $videotemplates
 	 * @return $this
 	 */
 	protected function setVideotemplates($videotemplates) {
 		if (is_array($videotemplates)) {
 			$this->videotemplates = array();
 			foreach ($videotemplates as $item) {
+				if (!($item instanceof \QBNK\QBank\Api\v1\Model\Templates\Video)) {
+					trigger_error('Array parameter item is not of expected type "\QBNK\QBank\Api\v1\Model\Templates\Video"!', E_USER_WARNING);
+					continue;
+				}
 				$this->videotemplates[] = new \QBNK\QBank\Api\v1\Model\Templates\Video($item);
 			}
 		}
@@ -578,13 +586,17 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Sets the "categories" of the DeploymentSite
-	 * @param Array $categories
+	 * @param Category[] $categories
 	 * @return $this
 	 */
 	protected function setCategories($categories) {
 		if (is_array($categories)) {
 			$this->categories = array();
 			foreach ($categories as $item) {
+				if (!($item instanceof Category)) {
+					trigger_error('Array parameter item is not of expected type "Category"!', E_USER_WARNING);
+					continue;
+				}
 				$this->categories[] = new Category($item);
 			}
 		}
@@ -679,13 +691,17 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Sets the "propertySets" of the DeploymentSite
-	 * @param Array $propertySets
+	 * @param PropertySet[] $propertySets
 	 * @return $this
 	 */
 	protected function setPropertySets($propertySets) {
 		if (is_array($propertySets)) {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
+				if (!($item instanceof PropertySet)) {
+					trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+					continue;
+				}
 				$this->propertySets[] = new PropertySet($item);
 			}
 		}
