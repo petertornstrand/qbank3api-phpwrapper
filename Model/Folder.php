@@ -279,10 +279,18 @@ class Folder implements \JsonSerializable  {
 			$this->subFolders = array();
 			foreach ($subFolders as $item) {
 				if (!($item instanceof Folder)) {
-					trigger_error('Array parameter item is not of expected type "Folder"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new Folder($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate Folder. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "Folder"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->subFolders[] = new Folder($item);
+				$this->subFolders[] = $item;
 			}
 		}
 		return $this;
@@ -384,10 +392,18 @@ class Folder implements \JsonSerializable  {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
 				if (!($item instanceof PropertySet)) {
-					trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new PropertySet($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->propertySets[] = new PropertySet($item);
+				$this->propertySets[] = $item;
 			}
 		}
 		return $this;

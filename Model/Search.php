@@ -3,6 +3,7 @@
 namespace QBNK\QBank\API\Model;
 
 use \DateTime;
+use \Exception;
 
 
 /**
@@ -603,10 +604,18 @@ class Search implements \JsonSerializable  {
 			$this->properties = array();
 			foreach ($properties as $item) {
 				if (!($item instanceof PropertyCriteria)) {
-					trigger_error('Array parameter item is not of expected type "PropertyCriteria"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new PropertyCriteria($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate PropertyCriteria. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "PropertyCriteria"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->properties[] = new PropertyCriteria($item);
+				$this->properties[] = $item;
 			}
 		}
 		return $this;

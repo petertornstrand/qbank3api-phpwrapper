@@ -337,10 +337,18 @@ class PropertySet implements \JsonSerializable  {
 			$this->properties = array();
 			foreach ($properties as $item) {
 				if (!($item instanceof Property)) {
-					trigger_error('Array parameter item is not of expected type "Property"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new Property($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate Property. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "Property"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->properties[] = new Property($item);
+				$this->properties[] = $item;
 			}
 		}
 		return $this;

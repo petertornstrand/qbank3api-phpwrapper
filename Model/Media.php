@@ -509,10 +509,18 @@ class Media implements \JsonSerializable  {
 			$this->metadata = array();
 			foreach ($metadata as $item) {
 				if (!($item instanceof MetaData)) {
-					trigger_error('Array parameter item is not of expected type "MetaData"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new MetaData($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate MetaData. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "MetaData"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->metadata[] = new MetaData($item);
+				$this->metadata[] = $item;
 			}
 		}
 		return $this;
@@ -681,10 +689,18 @@ class Media implements \JsonSerializable  {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
 				if (!($item instanceof PropertySet)) {
-					trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new PropertySet($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->propertySets[] = new PropertySet($item);
+				$this->propertySets[] = $item;
 			}
 		}
 		return $this;

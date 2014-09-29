@@ -337,10 +337,18 @@ class Role implements \JsonSerializable  {
 			$this->functionalities = array();
 			foreach ($functionalities as $item) {
 				if (!($item instanceof Functionality)) {
-					trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new Functionality($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->functionalities[] = new Functionality($item);
+				$this->functionalities[] = $item;
 			}
 		}
 		return $this;

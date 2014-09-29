@@ -590,10 +590,18 @@ class User implements \JsonSerializable  {
 			$this->functionalities = array();
 			foreach ($functionalities as $item) {
 				if (!($item instanceof Functionality)) {
-					trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new Functionality($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->functionalities[] = new Functionality($item);
+				$this->functionalities[] = $item;
 			}
 		}
 		return $this;
@@ -609,10 +617,18 @@ class User implements \JsonSerializable  {
 			$this->extraData = array();
 			foreach ($extraData as $item) {
 				if (!($item instanceof ExtraData)) {
-					trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new ExtraData($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate ExtraData. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->extraData[] = new ExtraData($item);
+				$this->extraData[] = $item;
 			}
 		}
 		return $this;

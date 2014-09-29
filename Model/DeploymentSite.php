@@ -556,10 +556,18 @@ class DeploymentSite implements \JsonSerializable  {
 			$this->imagetemplates = array();
 			foreach ($imagetemplates as $item) {
 				if (!($item instanceof Image)) {
-					trigger_error('Array parameter item is not of expected type "Image"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new Image($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate Image. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "Image"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->imagetemplates[] = new Image($item);
+				$this->imagetemplates[] = $item;
 			}
 		}
 		return $this;
@@ -575,10 +583,18 @@ class DeploymentSite implements \JsonSerializable  {
 			$this->videotemplates = array();
 			foreach ($videotemplates as $item) {
 				if (!($item instanceof \QBNK\QBank\Api\v1\Model\Templates\Video)) {
-					trigger_error('Array parameter item is not of expected type "\QBNK\QBank\Api\v1\Model\Templates\Video"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new \QBNK\QBank\Api\v1\Model\Templates\Video($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate \QBNK\QBank\Api\v1\Model\Templates\Video. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "\QBNK\QBank\Api\v1\Model\Templates\Video"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->videotemplates[] = new \QBNK\QBank\Api\v1\Model\Templates\Video($item);
+				$this->videotemplates[] = $item;
 			}
 		}
 		return $this;
@@ -594,10 +610,18 @@ class DeploymentSite implements \JsonSerializable  {
 			$this->categories = array();
 			foreach ($categories as $item) {
 				if (!($item instanceof Category)) {
-					trigger_error('Array parameter item is not of expected type "Category"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new Category($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate Category. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "Category"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->categories[] = new Category($item);
+				$this->categories[] = $item;
 			}
 		}
 		return $this;
@@ -699,10 +723,18 @@ class DeploymentSite implements \JsonSerializable  {
 			$this->propertySets = array();
 			foreach ($propertySets as $item) {
 				if (!($item instanceof PropertySet)) {
-					trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new PropertySet($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->propertySets[] = new PropertySet($item);
+				$this->propertySets[] = $item;
 			}
 		}
 		return $this;

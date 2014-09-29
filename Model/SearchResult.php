@@ -2,6 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
+use \Exception;
 
 
 /**
@@ -156,10 +157,18 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess {
 			$this->results = array();
 			foreach ($results as $item) {
 				if (!($item instanceof Media)) {
-					trigger_error('Array parameter item is not of expected type "Media"!', E_USER_WARNING);
-					continue;
+					if (is_array($item)) {
+						try {
+							$item = new Media($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate Media. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "Media"!', E_USER_WARNING);
+						continue;
+					}
 				}
-				$this->results[] = new Media($item);
+				$this->results[] = $item;
 			}
 		}
 		return $this;
