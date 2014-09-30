@@ -131,6 +131,12 @@ class Search implements \JsonSerializable  {
 	 */
 	protected $deploymentDateRange;
 
+	/**
+	 * An array of SearchSort fields to order results by
+	 * @var Array
+	 */
+	protected $sortFields;
+
 
 	/**
 	 * Constructs a {@link Search }.
@@ -154,6 +160,7 @@ class Search implements \JsonSerializable  {
 	 * - <b>mimeType</b> - Filter by mime type, uses normal LIKE database syntax, for example image/% will return all images, video/% all videos.
 	 * - <b>fileName</b> - Filter by file name, uses normal LIKE database syntax
 	 * - <b>deploymentDateRange</b> - Filter by deployment date
+	 * - <b>sortFields</b> - An array of SearchSort fields to order results by
 	 * 
 	 */
 	public function __construct($parameters) {
@@ -236,6 +243,10 @@ class Search implements \JsonSerializable  {
 	
 		if (isset($parameters['deploymentDateRange'])) {
 			$this->setDeploymentDateRange($parameters['deploymentDateRange']);
+		}
+	
+		if (isset($parameters['sortFields'])) {
+			$this->setSortFields($parameters['sortFields']);
 		}
 	
 	}
@@ -391,6 +402,14 @@ class Search implements \JsonSerializable  {
 	 */
 	public function getDeploymentDateRange() {
 		return $this->deploymentDateRange;
+	}
+
+	/**
+	 * Gets the sortFields of the Search
+	 * @return Array
+	 */
+	public function getSortFields() {
+		return $this->sortFields;
 	}
 
 
@@ -675,6 +694,33 @@ class Search implements \JsonSerializable  {
 		return $this;
 	}
 
+	/**
+	 * Sets the "sortFields" of the Search
+	 * @param SearchSort[] $sortFields
+	 * @return $this
+	 */
+	public function setSortFields($sortFields) {
+		if (is_array($sortFields)) {
+			$this->sortFields = array();
+			foreach ($sortFields as $item) {
+				if (!($item instanceof SearchSort)) {
+					if (is_array($item)) {
+						try {
+							$item = new SearchSort($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate SearchSort. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "SearchSort"!', E_USER_WARNING);
+						continue;
+					}
+				}
+				$this->sortFields[] = $item;
+			}
+		}
+		return $this;
+	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.
@@ -739,6 +785,9 @@ class Search implements \JsonSerializable  {
 		}
 		if ($this->deploymentDateRange !== null) {
 			$array['deploymentDateRange'] = $this->deploymentDateRange;
+		}
+		if ($this->sortFields !== null) {
+			$array['sortFields'] = $this->sortFields;
 		}
 		return $array;
 	}
