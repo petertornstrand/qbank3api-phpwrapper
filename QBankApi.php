@@ -9,7 +9,6 @@ use Doctrine\Common\Cache\Cache;
 use Guzzle\Http\Client;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use \QBNK\QBank\API\Controller\Oauth2Controller;
 use \QBNK\QBank\API\Controller\MoodboardsController;
 use \QBNK\QBank\API\Controller\CategoriesController;
 use \QBNK\QBank\API\Controller\FoldersController;
@@ -43,9 +42,6 @@ class QBankApi {
 
 	/** @var  \Psr\Log\LoggerInterface */
 	protected $logger;
-
-	/** @var \QBNK\QBank\API\Controller\Oauth2Controller */
-	protected $oauth2;
 
 	/** @var \QBNK\QBank\API\Controller\MoodboardsController */
 	protected $moodboards;
@@ -136,17 +132,6 @@ class QBankApi {
         }
 	}
 
-	/**
-	* @return \QBNK\QBank\API\Controller\Oauth2Controller
-	*/
-	public function oauth2() {
-		if (!$this->oauth2 instanceof Oauth2Controller) {
-			$this->oauth2 = new Oauth2Controller($this->getConnection(), $this->cachePolicy, $this->cache);
-			$this->oauth2->setLogger($this->logger);
-		}
-		return $this->oauth2;
-	}
-	
 	/**
 	* @return \QBNK\QBank\API\Controller\MoodboardsController
 	*/
