@@ -2,6 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
+use QBNK\QBank\API\QBankApiException;
 use \DateTime;
 use \Exception;
 
@@ -447,6 +448,22 @@ class Media implements \JsonSerializable  {
 		return $this->typeId;
 	}
 
+	/**
+	 * Gets a property from the first available PropertySet
+	 * @param string $systemName The system name of the property to get.
+	 * @throws QBankApiException Thrown if the requested property does not exist.
+	 * @return Property
+	 */
+	public function getProperty($systemName) {
+		foreach ($this->propertySets as $propertySet) {
+			foreach ($propertySet->getProperties() as $property) {
+				if ($property->getPropertyType()->getSystemName() == $systemName) {
+					return $property;
+				}
+			}
+		}
+		throw new QBankApiException('No Property with the system name "'.$systemName.'" exists.');
+	}
 
 
 	/**
