@@ -236,8 +236,10 @@ class QBankApi {
 	public function updateCredentials($user, $password) {
 		$oldUser = $this->credentials->getUsername();
 		$this->credentials = new QBankCredentials($this->credentials->getClientId(), $user, $password);
-		$this->client->getEventDispatcher()->removeSubscriber($this->oauth2Plugin);
-		$this->client->addSubscriber($this->getOAuthPlugin());
+		if ($this->client instanceof Client) {
+			$this->client->getEventDispatcher()->removeSubscriber($this->oauth2Plugin);
+			$this->client->addSubscriber($this->getOAuthPlugin());
+		}
 		if ($this->cache instanceof Cache) {
 			$this->cache->setNamespace(md5($this->basePath.$this->credentials->getUsername().$this->credentials->getPassword()));
 		}
