@@ -12,7 +12,7 @@ use \Exception;
  *
  */
 
-class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess {
+class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess, \Countable {
 
 	/** @var int */
 	protected $iteratorPosition = 0;
@@ -272,6 +272,14 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess {
 	 */
 	public function offsetUnset($offset) {
 		unset($this->results[$offset]);
+	}
+
+	/**
+	 * Counts the number of search results
+	 * @return int
+	 */
+	public function count() {
+		return count($this->results);
 	}
 
 	/**
