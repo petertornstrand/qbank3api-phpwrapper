@@ -17,6 +17,8 @@ use \Exception;
 class Media implements \JsonSerializable  {
 
 
+	const TEMPLATE_IMAGE = 'image';
+	const TEMPLATE_VIDEO = 'video';
 
 	/**
 	 * The Media identifier.
@@ -482,6 +484,25 @@ class Media implements \JsonSerializable  {
 			}
 		}
 		throw new QBankApiException('No Property with the system name "'.$systemName.'" exists.');
+	}
+	/**
+	 * Gets a DeployedFile
+	 * @param int $templateId The id of the template to get.
+	 * @param string $templateType The type of template.
+	 * @param int $siteId The DeploymentSite id to get the template for. If not supplied, first available will be used.
+	 * @throws QBankApiException Thrown if the requested deployed file does not exist.
+	 * @return DeploymentFile
+	 */
+	public function getDeployedFile($templateId, $templateType = self::TEMPLATE_IMAGE, $siteId = null) {
+		foreach ($this->deployedFiles as $deployedFile) {
+			if (($templateType == self::TEMPLATE_IMAGE && $templateId == $deployedFile->getImageTemplateId()) ||
+				($templateType == self::TEMPLATE_VIDEO && $templateId == $deployedFile->getVideoTemplateId())) {
+				if ($siteId === null || $siteId == $deployedFile->getDeployMentSiteId()) {
+					return $deployedFile;
+				}
+			}
+		}
+		throw new QBankApiException('No DeploymentFile with the id "'.$templateId.'" exists.');
 	}
 
 
