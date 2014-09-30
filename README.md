@@ -15,6 +15,6 @@ Install via composer.
 
 	{
 		"require": {
-			"qbnk/qbank3api-phpwrapper": "0.1.*"
+			"qbnk/qbank3api-phpwrapper": "dev-master"
 		}
 	}
