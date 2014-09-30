@@ -73,19 +73,19 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * The connected ImageTemplates.
-	 * @var Array
+	 * @var Image[]
 	 */
 	protected $imagetemplates;
 
 	/**
 	 * The connected VideoTemplates.
-	 * @var Array
+	 * @var \QBNK\QBank\Api\v1\Model\Templates\Video[]
 	 */
 	protected $videotemplates;
 
 	/**
 	 * The connected Categories.
-	 * @var Array
+	 * @var Category[]
 	 */
 	protected $categories;
 
@@ -133,7 +133,7 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * The objects PropertySets.
-	 * @var Array
+	 * @var PropertySet[]
 	 */
 	protected $propertySets;
 
@@ -345,7 +345,7 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Gets the imagetemplates of the DeploymentSite
-	 * @return Array
+	 * @return Image[]
 	 */
 	public function getImagetemplates() {
 		return $this->imagetemplates;
@@ -353,7 +353,7 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Gets the videotemplates of the DeploymentSite
-	 * @return Array
+	 * @return \QBNK\QBank\Api\v1\Model\Templates\Video[]
 	 */
 	public function getVideotemplates() {
 		return $this->videotemplates;
@@ -361,7 +361,7 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Gets the categories of the DeploymentSite
-	 * @return Array
+	 * @return Category[]
 	 */
 	public function getCategories() {
 		return $this->categories;
@@ -425,7 +425,7 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Gets the propertySets of the DeploymentSite
-	 * @return Array
+	 * @return PropertySet[]
 	 */
 	public function getPropertySets() {
 		return $this->propertySets;

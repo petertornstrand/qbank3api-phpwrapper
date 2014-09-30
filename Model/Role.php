@@ -73,7 +73,7 @@ class Role implements \JsonSerializable  {
 
 	/**
 	 * An array of Functionalities connected to this role
-	 * @var Array
+	 * @var Functionality[]
 	 */
 	protected $functionalities;
 
@@ -213,7 +213,7 @@ class Role implements \JsonSerializable  {
 
 	/**
 	 * Gets the functionalities of the Role
-	 * @return Array
+	 * @return Functionality[]
 	 */
 	public function getFunctionalities() {
 		return $this->functionalities;

@@ -73,19 +73,19 @@ class Group implements \JsonSerializable  {
 
 	/**
 	 * An array of Functionalities connected to this Group
-	 * @var Array
+	 * @var Functionality[]
 	 */
 	protected $functionalities;
 
 	/**
 	 * An array of Roles connected to this Group
-	 * @var Array
+	 * @var Role[]
 	 */
 	protected $roles;
 
 	/**
 	 * An array of ExtraData connected to this Group.
-	 * @var Array
+	 * @var ExtraData[]
 	 */
 	protected $extraData;
 
@@ -235,7 +235,7 @@ class Group implements \JsonSerializable  {
 
 	/**
 	 * Gets the functionalities of the Group
-	 * @return Array
+	 * @return Functionality[]
 	 */
 	public function getFunctionalities() {
 		return $this->functionalities;
@@ -243,7 +243,7 @@ class Group implements \JsonSerializable  {
 
 	/**
 	 * Gets the roles of the Group
-	 * @return Array
+	 * @return Role[]
 	 */
 	public function getRoles() {
 		return $this->roles;
@@ -251,7 +251,7 @@ class Group implements \JsonSerializable  {
 
 	/**
 	 * Gets the extraData of the Group
-	 * @return Array
+	 * @return ExtraData[]
 	 */
 	public function getExtraData() {
 		return $this->extraData;

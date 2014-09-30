@@ -50,7 +50,7 @@ class Media implements \JsonSerializable  {
 
 	/**
 	 * The MetaData extracted from the Media file.
-	 * @var Array
+	 * @var MetaData[]
 	 */
 	protected $metadata;
 
@@ -92,7 +92,7 @@ class Media implements \JsonSerializable  {
 
 	/**
 	 * An array of deployed files
-	 * @var Array
+	 * @var DeploymentFile[]
 	 */
 	protected $deployedFiles;
 
@@ -140,7 +140,7 @@ class Media implements \JsonSerializable  {
 
 	/**
 	 * The objects PropertySets.
-	 * @var Array
+	 * @var PropertySet[]
 	 */
 	protected $propertySets;
 
@@ -325,7 +325,7 @@ class Media implements \JsonSerializable  {
 
 	/**
 	 * Gets the metadata of the Media
-	 * @return Array
+	 * @return MetaData[]
 	 */
 	public function getMetadata() {
 		return $this->metadata;
@@ -381,7 +381,7 @@ class Media implements \JsonSerializable  {
 
 	/**
 	 * Gets the deployedFiles of the Media
-	 * @return Array
+	 * @return DeploymentFile[]
 	 */
 	public function getDeployedFiles() {
 		return $this->deployedFiles;
@@ -445,7 +445,7 @@ class Media implements \JsonSerializable  {
 
 	/**
 	 * Gets the propertySets of the Media
-	 * @return Array
+	 * @return PropertySet[]
 	 */
 	public function getPropertySets() {
 		return $this->propertySets;

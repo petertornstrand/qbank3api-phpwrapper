@@ -25,7 +25,7 @@ class Folder implements \JsonSerializable  {
 
 	/**
 	 * The Folder's children, ie. subfolders.
-	 * @var Array
+	 * @var Folder[]
 	 */
 	protected $subFolders;
 
@@ -73,7 +73,7 @@ class Folder implements \JsonSerializable  {
 
 	/**
 	 * The objects PropertySets.
-	 * @var Array
+	 * @var PropertySet[]
 	 */
 	protected $propertySets;
 
@@ -171,7 +171,7 @@ class Folder implements \JsonSerializable  {
 
 	/**
 	 * Gets the subFolders of the Folder
-	 * @return Array
+	 * @return Folder[]
 	 */
 	public function getSubFolders() {
 		return $this->subFolders;
@@ -235,7 +235,7 @@ class Folder implements \JsonSerializable  {
 
 	/**
 	 * Gets the propertySets of the Folder
-	 * @return Array
+	 * @return PropertySet[]
 	 */
 	public function getPropertySets() {
 		return $this->propertySets;

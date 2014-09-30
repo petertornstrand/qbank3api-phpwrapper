@@ -97,7 +97,7 @@ class Moodboard implements \JsonSerializable  {
 
 	/**
 	 * The objects PropertySets.
-	 * @var Array
+	 * @var PropertySet[]
 	 */
 	protected $propertySets;
 
@@ -311,7 +311,7 @@ class Moodboard implements \JsonSerializable  {
 
 	/**
 	 * Gets the propertySets of the Moodboard
-	 * @return Array
+	 * @return PropertySet[]
 	 */
 	public function getPropertySets() {
 		return $this->propertySets;

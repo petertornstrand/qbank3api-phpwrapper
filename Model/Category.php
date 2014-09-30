@@ -73,7 +73,7 @@ class Category implements \JsonSerializable  {
 
 	/**
 	 * The objects PropertySets.
-	 * @var Array
+	 * @var PropertySet[]
 	 */
 	protected $propertySets;
 
@@ -235,7 +235,7 @@ class Category implements \JsonSerializable  {
 
 	/**
 	 * Gets the propertySets of the Category
-	 * @return Array
+	 * @return PropertySet[]
 	 */
 	public function getPropertySets() {
 		return $this->propertySets;

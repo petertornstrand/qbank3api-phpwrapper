@@ -115,13 +115,13 @@ class User implements \JsonSerializable  {
 
 	/**
 	 * An array of Functionalities connected to this User
-	 * @var Array
+	 * @var Functionality[]
 	 */
 	protected $functionalities;
 
 	/**
 	 * An array of ExtraData connected to this User.
-	 * @var Array
+	 * @var ExtraData[]
 	 */
 	protected $extraData;
 
@@ -357,7 +357,7 @@ class User implements \JsonSerializable  {
 
 	/**
 	 * Gets the functionalities of the User
-	 * @return Array
+	 * @return Functionality[]
 	 */
 	public function getFunctionalities() {
 		return $this->functionalities;
@@ -365,7 +365,7 @@ class User implements \JsonSerializable  {
 
 	/**
 	 * Gets the extraData of the User
-	 * @return Array
+	 * @return ExtraData[]
 	 */
 	public function getExtraData() {
 		return $this->extraData;

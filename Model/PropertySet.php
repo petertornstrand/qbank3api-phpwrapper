@@ -73,7 +73,7 @@ class PropertySet implements \JsonSerializable  {
 
 	/**
 	 * The Properties associated with the PropertySet.
-	 * @var Array
+	 * @var Property[]
 	 */
 	protected $properties;
 
@@ -213,7 +213,7 @@ class PropertySet implements \JsonSerializable  {
 
 	/**
 	 * Gets the properties of the PropertySet
-	 * @return Array
+	 * @return Property[]
 	 */
 	public function getProperties() {
 		return $this->properties;

@@ -23,7 +23,7 @@ class FilterItem implements \JsonSerializable  {
 
 	/**
 	 * An array of objectIds that are tagged with this title
-	 * @var Array
+	 * @var string[]
 	 */
 	protected $objectIds;
 
@@ -59,7 +59,7 @@ class FilterItem implements \JsonSerializable  {
 
 	/**
 	 * Gets the objectIds of the FilterItem
-	 * @return Array
+	 * @return string[]
 	 */
 	public function getObjectIds() {
 		return $this->objectIds;

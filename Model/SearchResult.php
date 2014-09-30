@@ -32,7 +32,7 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess, \Coun
 
 	/**
 	 * An array of Media matching the search
-	 * @var Array
+	 * @var Media[]
 	 */
 	protected $results;
 
@@ -103,7 +103,7 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess, \Coun
 
 	/**
 	 * Gets the results of the SearchResult
-	 * @return Array
+	 * @return Media[]
 	 */
 	public function getResults() {
 		return $this->results;

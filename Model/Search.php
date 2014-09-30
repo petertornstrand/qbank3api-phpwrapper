@@ -37,19 +37,19 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * An array with ObjectIds to filter by
-	 * @var Array
+	 * @var int[]
 	 */
 	protected $objectIds;
 
 	/**
 	 * An array with MediaIds to filter by
-	 * @var Array
+	 * @var int[]
 	 */
 	protected $mediaIds;
 
 	/**
 	 * Filter by creators of Media
-	 * @var Array
+	 * @var int[]
 	 */
 	protected $createdByIds;
 
@@ -61,7 +61,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Filter by updaters of Media
-	 * @var Array
+	 * @var int[]
 	 */
 	protected $updatedByIds;
 
@@ -73,37 +73,37 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * An array with MediaStatuses to filter by
-	 * @var Array
+	 * @var int[]
 	 */
 	protected $mediaStatusIds;
 
 	/**
 	 * An array with FolderIds to search within
-	 * @var Array
+	 * @var int[]
 	 */
 	protected $folderIds;
 
 	/**
 	 * An array with MoodboardIds to search within
-	 * @var Array
+	 * @var int[]
 	 */
 	protected $moodboardIds;
 
 	/**
 	 * An array with CategoryIds to search within
-	 * @var Array
+	 * @var int[]
 	 */
 	protected $categoryIds;
 
 	/**
 	 * An array with DeploymentSiteIds to search within
-	 * @var Array
+	 * @var int[]
 	 */
 	protected $deploymentSiteIds;
 
 	/**
 	 * An array of Properties to filter by
-	 * @var Array
+	 * @var PropertyCriteria[]
 	 */
 	protected $properties;
 
@@ -133,7 +133,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * An array of SearchSort fields to order results by
-	 * @var Array
+	 * @var SearchSort[]
 	 */
 	protected $sortFields;
 
@@ -278,7 +278,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the objectIds of the Search
-	 * @return Array
+	 * @return int[]
 	 */
 	public function getObjectIds() {
 		return $this->objectIds;
@@ -286,7 +286,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the mediaIds of the Search
-	 * @return Array
+	 * @return int[]
 	 */
 	public function getMediaIds() {
 		return $this->mediaIds;
@@ -294,7 +294,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the createdByIds of the Search
-	 * @return Array
+	 * @return int[]
 	 */
 	public function getCreatedByIds() {
 		return $this->createdByIds;
@@ -310,7 +310,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the updatedByIds of the Search
-	 * @return Array
+	 * @return int[]
 	 */
 	public function getUpdatedByIds() {
 		return $this->updatedByIds;
@@ -326,7 +326,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the mediaStatusIds of the Search
-	 * @return Array
+	 * @return int[]
 	 */
 	public function getMediaStatusIds() {
 		return $this->mediaStatusIds;
@@ -334,7 +334,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the folderIds of the Search
-	 * @return Array
+	 * @return int[]
 	 */
 	public function getFolderIds() {
 		return $this->folderIds;
@@ -342,7 +342,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the moodboardIds of the Search
-	 * @return Array
+	 * @return int[]
 	 */
 	public function getMoodboardIds() {
 		return $this->moodboardIds;
@@ -350,7 +350,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the categoryIds of the Search
-	 * @return Array
+	 * @return int[]
 	 */
 	public function getCategoryIds() {
 		return $this->categoryIds;
@@ -358,7 +358,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the deploymentSiteIds of the Search
-	 * @return Array
+	 * @return int[]
 	 */
 	public function getDeploymentSiteIds() {
 		return $this->deploymentSiteIds;
@@ -366,7 +366,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the properties of the Search
-	 * @return Array
+	 * @return PropertyCriteria[]
 	 */
 	public function getProperties() {
 		return $this->properties;
@@ -406,7 +406,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the sortFields of the Search
-	 * @return Array
+	 * @return SearchSort[]
 	 */
 	public function getSortFields() {
 		return $this->sortFields;
