@@ -53,6 +53,12 @@ class DeploymentFile implements \JsonSerializable  {
 	 */
 	protected $filename;
 
+	/**
+	 * Metadata associated with the deployed media
+	 * @var Object
+	 */
+	protected $metadata;
+
 
 	/**
 	 * Constructs a {@link DeploymentFile }.
@@ -63,6 +69,7 @@ class DeploymentFile implements \JsonSerializable  {
 	 * - <b>videoTemplateId</b> - The identifier of the Video template used.
 	 * - <b>created</b> - The time of deployment for this file.
 	 * - <b>filename</b> - The original filename of the file when uploaded to QBank.
+	 * - <b>metadata</b> - Metadata associated with the deployed media
 	 * 
 	 */
 	public function __construct($parameters) {
@@ -90,6 +97,10 @@ class DeploymentFile implements \JsonSerializable  {
 	
 		if (isset($parameters['filename'])) {
 			$this->setFilename($parameters['filename']);
+		}
+	
+		if (isset($parameters['metadata'])) {
+			$this->setMetadata($parameters['metadata']);
 		}
 	
 	}
@@ -141,6 +152,14 @@ class DeploymentFile implements \JsonSerializable  {
 	 */
 	public function getFilename() {
 		return $this->filename;
+	}
+
+	/**
+	 * Gets the metadata of the DeploymentFile
+	 * @return Object
+	 */
+	public function getMetadata() {
+		return $this->metadata;
 	}
 
 
@@ -213,6 +232,16 @@ class DeploymentFile implements \JsonSerializable  {
 		return $this;
 	}
 
+	/**
+	 * Sets the "metadata" of the DeploymentFile
+	 * @param Object $metadata
+	 * @return $this
+	 */
+	protected function setMetadata($metadata) {
+		$this->metadata = $metadata;
+		return $this;
+	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.
@@ -238,6 +267,9 @@ class DeploymentFile implements \JsonSerializable  {
 		}
 		if ($this->filename !== null) {
 			$array['filename'] = $this->filename;
+		}
+		if ($this->metadata !== null) {
+			$array['metadata'] = $this->metadata;
 		}
 		return $array;
 	}
