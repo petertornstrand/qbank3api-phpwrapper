@@ -123,7 +123,7 @@ class QBankApi {
 
 		if (!empty($options['cachePolicy']) && $options['cachePolicy'] instanceOf QBankCachePolicy) {
             $this->cachePolicy = $options['cachePolicy'];
-            if (!($this->cache instanceOf Cache) && $this->cachePolicy->isEnabled()) {
+            if (!($this->cache instanceof Cache) && $this->cachePolicy->isEnabled()) {
                 throw new \LogicException('You have supplied a cache policy that says cache is enabled but no cache provider have been defined.');
             }
         } else {
@@ -233,25 +233,20 @@ class QBankApi {
 	
 	
 
+	public function updateCredentials($user, $password) {
+		$oldUser = $this->credentials->getUsername();
+		$this->credentials = new QBankCredentials($this->credentials->getClientId(), $user, $password);
+		$this->client->getEventDispatcher()->removeSubscriber($this->oauth2Plugin);
+		$this->client->addSubscriber($this->getOAuthPlugin());
+		if ($this->cache instanceof Cache) {
+			$this->cache->setNamespace(md5($this->basePath.$this->credentials->getUsername().$this->credentials->getPassword()));
+		}
+		$this->logger->notice('Updated user!', array('old' => $oldUser, 'new' => $user));
+	}
+
 	protected function getConnection() {
 		if (!($this->client instanceof Client)) {
-			$oauthClient = new Client($this->basePath.'oauth2/token');
-			$this->oauth2Plugin = new Oauth2Plugin(
-				new PasswordCredentials(
-					$oauthClient,
-					array(
-						'username' => $this->credentials->getUsername(),
-						'password' => $this->credentials->getPassword(),
-						'client_id' => $this->credentials->getClientId()
-					)
-				),
-				new RefreshToken(
-					$oauthClient,
-					array(
-						'client_id' => $this->credentials->getClientId()
-					)
-				)
-			);
+			$this->oauth2Plugin = $this->getOAuthPlugin();
 			if ($this->cache instanceof Cache && $this->cache->contains('access_token')) {
 				$this->oauth2Plugin->setAccessToken($this->cache->fetch('access_token'));
 			}
@@ -273,6 +268,26 @@ class QBankApi {
 		}
 
 		return $this->client;
+	}
+
+	protected function getOAuthPlugin() {
+		$oauthClient = new Client($this->basePath.'oauth2/token');
+		return new Oauth2Plugin(
+			new PasswordCredentials(
+				$oauthClient,
+				array(
+					'username' => $this->credentials->getUsername(),
+					'password' => $this->credentials->getPassword(),
+					'client_id' => $this->credentials->getClientId()
+				)
+			),
+			new RefreshToken(
+				$oauthClient,
+				array(
+					'client_id' => $this->credentials->getClientId()
+				)
+			)
+		);
 	}
 
 	public function __destruct() {
