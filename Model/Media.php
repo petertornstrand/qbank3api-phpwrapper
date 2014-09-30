@@ -91,6 +91,12 @@ class Media implements \JsonSerializable  {
 	protected $uploadedBy;
 
 	/**
+	 * An array of deployed files
+	 * @var Array
+	 */
+	protected $deployedFiles;
+
+	/**
 	 * The base Object identifier.
 	 * @var int
 	 */
@@ -166,6 +172,7 @@ class Media implements \JsonSerializable  {
 	 * - <b>size</b> - The Media size in bytes.
 	 * - <b>uploaded</b> - When the Media was uploaded. A datetime string on the format ISO8601.
 	 * - <b>uploadedBy</b> - The identifier of the User who uploaded the Media.
+	 * - <b>deployedFiles</b> - An array of deployed files
 	 * - <b>objectId</b> - The base Object identifier.
 	 * - <b>name</b> - The Objects name.
 	 * - <b>created</b> - When the Object was created.
@@ -227,6 +234,10 @@ class Media implements \JsonSerializable  {
 	
 		if (isset($parameters['uploadedBy'])) {
 			$this->setUploadedBy($parameters['uploadedBy']);
+		}
+	
+		if (isset($parameters['deployedFiles'])) {
+			$this->setDeployedFiles($parameters['deployedFiles']);
 		}
 	
 		if (isset($parameters['objectId'])) {
@@ -366,6 +377,14 @@ class Media implements \JsonSerializable  {
 	 */
 	public function getUploadedBy() {
 		return $this->uploadedBy;
+	}
+
+	/**
+	 * Gets the deployedFiles of the Media
+	 * @return Array
+	 */
+	public function getDeployedFiles() {
+		return $this->deployedFiles;
 	}
 
 	/**
@@ -611,6 +630,33 @@ class Media implements \JsonSerializable  {
 	}
 
 	/**
+	 * Sets the "deployedFiles" of the Media
+	 * @param DeploymentFile[] $deployedFiles
+	 * @return $this
+	 */
+	protected function setDeployedFiles($deployedFiles) {
+		if (is_array($deployedFiles)) {
+			$this->deployedFiles = array();
+			foreach ($deployedFiles as $item) {
+				if (!($item instanceof DeploymentFile)) {
+					if (is_array($item)) {
+						try {
+							$item = new DeploymentFile($item);
+						} catch (\Exception $e) {
+							trigger_error('Could not auto-instantiate DeploymentFile. '.$e->getMessage(), E_USER_WARNING);
+						}
+					} else {
+						trigger_error('Array parameter item is not of expected type "DeploymentFile"!', E_USER_WARNING);
+						continue;
+					}
+				}
+				$this->deployedFiles[] = $item;
+			}
+		}
+		return $this;
+	}
+
+	/**
 	 * Sets the "objectId" of the Media
 	 * @param int $objectId
 	 * @return $this
@@ -786,6 +832,9 @@ class Media implements \JsonSerializable  {
 		}
 		if ($this->uploadedBy !== null) {
 			$array['uploadedBy'] = $this->uploadedBy;
+		}
+		if ($this->deployedFiles !== null) {
+			$array['deployedFiles'] = $this->deployedFiles;
 		}
 		if ($this->objectId !== null) {
 			$array['objectId'] = $this->objectId;
