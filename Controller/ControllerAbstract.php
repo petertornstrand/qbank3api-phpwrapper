@@ -39,6 +39,8 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 	 * @param string $endpoint
 	 * @param array $params
 	 * @param string $method
+	 * @param QBankCachePolicy $cachePolicy
+	 * @throws QBankApiException
 	 * @return mixed
 	 */
 	protected function call($endpoint, array $params = array(), $method = self::METHOD_GET, QBankCachePolicy $cachePolicy = null) {
@@ -97,7 +99,6 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 			);
 			throw new QBankApiException('Error while sending request to QBank: '.$re->getMessage(), $response->getStatusCode(), $re);
 		} catch (RuntimeException $re) {
-			$response = $re->getRequest()->getResponse();
 			$this->logger->critical(
 				'Error while decoding response from QBank.  '.strtoupper($method).' '.$endpoint,
 				array(
@@ -116,6 +117,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 	/**
 	 * @param string $endpoint
 	 * @param array $parameters
+	 * @param QBankCachePolicy $cachePolicy
 	 * @return mixed
 	 */
 	protected function get($endpoint, array $parameters = array(), QBankCachePolicy $cachePolicy = null) {
