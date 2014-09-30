@@ -118,6 +118,9 @@ class QBankApi {
 		// Optionaly setup cache
 		if (!empty($options['cache']) && $options['cache'] instanceOf Cache) {
 			$this->cache = $options['cache'];
+			if (!$this->cache->getNamespace()) {
+				$this->cache->setNamespace(md5($this->basePath.$this->credentials->getUsername()));
+			}
 		} else {
 			$this->logger->notice('No caching supplied! Without caching the user credentials will have to be sent anew for each instance of QBankApi');
 		}
