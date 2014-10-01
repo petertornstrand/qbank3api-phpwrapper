@@ -30,6 +30,7 @@ class PropertyRequest extends PropertyCriteria implements \JsonSerializable  {
 	 */
 	public function __construct($parameters) {
 		parent::__construct($parameters);
+		$this->forfetching = true;
 		
 		
 		if (isset($parameters['forfetching'])) {
@@ -65,7 +66,7 @@ class PropertyRequest extends PropertyCriteria implements \JsonSerializable  {
 	 * @return array An associative array of the available variables.
 	 */
 	public function jsonSerialize() {
-		$array = array();
+		$array = parent::jsonSerialize();
 		
 		if ($this->forfetching !== null) {
 			$array['forfetching'] = $this->forfetching;
