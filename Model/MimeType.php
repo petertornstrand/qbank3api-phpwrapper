@@ -5,7 +5,7 @@ namespace QBNK\QBank\API\Model;
 
 
 /**
- * The MimeType human readable description.
+ * 
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *
@@ -71,6 +71,7 @@ class MimeType implements \JsonSerializable  {
 	 * 
 	 */
 	public function __construct($parameters) {
+		
 		
 		
 		if (isset($parameters['id'])) {

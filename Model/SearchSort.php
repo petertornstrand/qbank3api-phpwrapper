@@ -38,6 +38,7 @@ class SearchSort implements \JsonSerializable  {
 	public function __construct($parameters) {
 		
 		
+		
 		if (isset($parameters['sortField'])) {
 			$this->setSortField($parameters['sortField']);
 		}

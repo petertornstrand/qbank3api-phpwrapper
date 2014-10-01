@@ -38,6 +38,7 @@ class FilterItem implements \JsonSerializable  {
 	public function __construct($parameters) {
 		
 		
+		
 		if (isset($parameters['title'])) {
 			$this->setTitle($parameters['title']);
 		}

@@ -7,7 +7,7 @@ use \Exception;
 
 
 /**
- * Description of what this Role means
+ * 
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *
@@ -94,6 +94,7 @@ class Role implements \JsonSerializable  {
 	 * 
 	 */
 	public function __construct($parameters) {
+		
 		
 		
 		if (isset($parameters['id'])) {

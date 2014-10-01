@@ -103,7 +103,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * An array of Properties to filter by
-	 * @var PropertyCriteria[]
+	 * @var PropertyRequest[]
 	 */
 	protected $properties;
 
@@ -164,6 +164,7 @@ class Search implements \JsonSerializable  {
 	 * 
 	 */
 	public function __construct($parameters) {
+		
 		$this->offset = 0;
 		$this->limit = 50;
 		$this->mediaStatusIds = array(4);
@@ -366,7 +367,7 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Gets the properties of the Search
-	 * @return PropertyCriteria[]
+	 * @return PropertyRequest[]
 	 */
 	public function getProperties() {
 		return $this->properties;
@@ -615,22 +616,22 @@ class Search implements \JsonSerializable  {
 
 	/**
 	 * Sets the "properties" of the Search
-	 * @param PropertyCriteria[] $properties
+	 * @param PropertyRequest[] $properties
 	 * @return $this
 	 */
 	public function setProperties($properties) {
 		if (is_array($properties)) {
 			$this->properties = array();
 			foreach ($properties as $item) {
-				if (!($item instanceof PropertyCriteria)) {
+				if (!($item instanceof PropertyRequest)) {
 					if (is_array($item)) {
 						try {
-							$item = new PropertyCriteria($item);
+							$item = new PropertyRequest($item);
 						} catch (\Exception $e) {
-							trigger_error('Could not auto-instantiate PropertyCriteria. '.$e->getMessage(), E_USER_WARNING);
+							trigger_error('Could not auto-instantiate PropertyRequest. '.$e->getMessage(), E_USER_WARNING);
 						}
 					} else {
-						trigger_error('Array parameter item is not of expected type "PropertyCriteria"!', E_USER_WARNING);
+						trigger_error('Array parameter item is not of expected type "PropertyRequest"!', E_USER_WARNING);
 						continue;
 					}
 				}

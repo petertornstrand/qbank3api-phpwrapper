@@ -7,7 +7,7 @@ use \Exception;
 
 
 /**
- * Description of what this Group means
+ * 
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *
@@ -108,6 +108,7 @@ class Group implements \JsonSerializable  {
 	 * 
 	 */
 	public function __construct($parameters) {
+		
 		
 		
 		if (isset($parameters['id'])) {

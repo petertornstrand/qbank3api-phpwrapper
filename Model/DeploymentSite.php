@@ -7,7 +7,7 @@ use \Exception;
 
 
 /**
- * The human readable description of the DeploymentSite.
+ * 
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *
@@ -178,6 +178,7 @@ class DeploymentSite implements \JsonSerializable  {
 	 * 
 	 */
 	public function __construct($parameters) {
+		
 		
 		
 		if (isset($parameters['id'])) {

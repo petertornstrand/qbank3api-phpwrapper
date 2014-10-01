@@ -5,7 +5,7 @@ namespace QBNK\QBank\API\Model;
 
 
 /**
- * The human readable description of the Protocol.
+ * 
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *
@@ -50,6 +50,7 @@ class Protocol implements \JsonSerializable  {
 	 * 
 	 */
 	public function __construct($parameters) {
+		
 		
 		
 		if (isset($parameters['id'])) {

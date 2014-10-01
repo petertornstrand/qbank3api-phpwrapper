@@ -40,6 +40,7 @@ class DateTimeRange implements \JsonSerializable  {
 	public function __construct($parameters) {
 		
 		
+		
 		if (isset($parameters['min'])) {
 			$this->setMin($parameters['min']);
 		}

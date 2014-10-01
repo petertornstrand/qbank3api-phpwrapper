@@ -7,7 +7,7 @@ use \Exception;
 
 
 /**
- * A description of the PropertyType.
+ * 
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *
@@ -94,6 +94,7 @@ class PropertyType implements \JsonSerializable  {
 	 * 
 	 */
 	public function __construct($parameters) {
+		
 		
 		
 		if (isset($parameters['created'])) {
