@@ -36,7 +36,7 @@ class FiltersController extends ControllerAbstract {
 
 	/**
 	 * Returns a array of FilterItem for the chosen folder subfolders, optionally filtered by specific CategoryIds and/or DeploymentSites.
-	 * @param int $parentFolderId 
+	 * @param int $parentFolderId The folder id..
 	 * @param string $categoryIds Comma separated string categoryIds we should fetch objectIds for.
 	 * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch objectIds for.
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy

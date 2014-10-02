@@ -7,7 +7,7 @@ use QBNK\QBank\API\Model\Moodboard;
 
 
 /**
- * Use PHPDoc comment to describe here
+ * 
  *
  * NOTE: This class is auto generated. Do not edit the class manually.
  *

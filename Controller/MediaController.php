@@ -36,12 +36,12 @@ class MediaController extends ControllerAbstract {
 	 * @param string $template Optional template of Media..
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
-	 * @return array
+	 * @return void
 	 */
 	public function retrieveFileData($id, $template = null, QBankCachePolicy $cachePolicy = null) {
 		$query = array();
 		$query[ 'template'] = $template;
-		return $this->get('v1/media/' . $id . '/asset', $query, $cachePolicy);
+		$this->get('v1/media/' . $id . '/asset', $query, $cachePolicy);
 	}
 
 	/**
@@ -82,12 +82,12 @@ class MediaController extends ControllerAbstract {
 	 * @param string $template Optional template to download the media in.
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
-	 * @return array
+	 * @return void
 	 */
 	public function download($id, $template = null, QBankCachePolicy $cachePolicy = null) {
 		$query = array();
 		$query[ 'template'] = $template;
-		return $this->get('v1/media/' . $id . '/download', $query, $cachePolicy);
+		$this->get('v1/media/' . $id . '/download', $query, $cachePolicy);
 	}
 
 	/**
@@ -131,13 +131,13 @@ class MediaController extends ControllerAbstract {
 	 * @param string $template Optional template to download all Media in..
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
-	 * @return array
+	 * @return void
 	 */
 	public function downloadArchive($ids, $template = null, QBankCachePolicy $cachePolicy = null) {
 		$query = array();
 		$query[ 'ids'] = $ids;
 		$query[ 'template'] = $template;
-		return $this->get('v1/media/download', $query, $cachePolicy);
+		$this->get('v1/media/download', $query, $cachePolicy);
 	}
 
 }

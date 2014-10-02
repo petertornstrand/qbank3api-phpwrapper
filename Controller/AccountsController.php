@@ -117,7 +117,7 @@ class AccountsController extends ControllerAbstract {
 
 	/**
 	 * Fetches a setting for the current user.
-	 * @param string $key 
+	 * @param string $key The key of the setting to fetch..
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
 	 * @return array
@@ -160,13 +160,13 @@ class AccountsController extends ControllerAbstract {
 	 * @param string $key The key (identifier) of the setting
 	 * @param string $value The value of the setting
 	 * 
-	 * @return array
+	 * @return void
 	 */
 	public function createSetting($key, $value) {
 		$query = array();
 		$query['key'] = $key;
 		$query['value'] = $value;
-		return $this->post('v1/accounts/settings', $query);
+		$this->post('v1/accounts/settings', $query);
 	}
 
 	/**
@@ -174,12 +174,12 @@ class AccountsController extends ControllerAbstract {
 	 * @param string $key The key (identifier) of the setting..
 	 * @param string $value The value of the setting
 	 * 
-	 * @return array
+	 * @return void
 	 */
 	public function updateSetting($key, $value) {
 		$query = array();
 		$query['value'] = $value;
-		return $this->put('v1/accounts/settings/' . $key . '', $query);
+		$this->put('v1/accounts/settings/' . $key . '', $query);
 	}
 
 }
