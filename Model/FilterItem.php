@@ -16,6 +16,12 @@ class FilterItem implements \JsonSerializable  {
 
 
 	/**
+	 * ID of the Filter (only applicable if Category or Folder FilterItem)
+	 * @var integer
+	 */
+	protected $id;
+
+	/**
 	 * Title
 	 * @var string
 	 */
@@ -31,6 +37,7 @@ class FilterItem implements \JsonSerializable  {
 	/**
 	 * Constructs a {@link FilterItem }.
 	 * @param array $parameters An array of parameters to initialize the {@link FilterItem } with.
+	 * - <b>id</b> - ID of the Filter (only applicable if Category or Folder FilterItem)
 	 * - <b>title</b> - Title
 	 * - <b>mediaIds</b> - An array of mediaIds that are tagged with this title
 	 * 
@@ -39,6 +46,10 @@ class FilterItem implements \JsonSerializable  {
 		
 		
 		
+		if (isset($parameters['id'])) {
+			$this->setId($parameters['id']);
+		}
+	
 		if (isset($parameters['title'])) {
 			$this->setTitle($parameters['title']);
 		}
@@ -49,6 +60,14 @@ class FilterItem implements \JsonSerializable  {
 	
 	}
 
+
+	/**
+	 * Gets the id of the FilterItem
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
 	/**
 	 * Gets the title of the FilterItem
@@ -67,6 +86,16 @@ class FilterItem implements \JsonSerializable  {
 	}
 
 
+
+	/**
+	 * Sets the "id" of the FilterItem
+	 * @param integer $id
+	 * @return $this
+	 */
+	protected function setId($id) {
+		$this->id = (int)$id;
+		return $this;
+	}
 
 	/**
 	 * Sets the "title" of the FilterItem
@@ -101,6 +130,9 @@ class FilterItem implements \JsonSerializable  {
 	public function jsonSerialize() {
 		$array = array();
 		
+		if ($this->id !== null) {
+			$array['id'] = $this->id;
+		}
 		if ($this->title !== null) {
 			$array['title'] = $this->title;
 		}
