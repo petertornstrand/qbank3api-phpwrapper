@@ -22,17 +22,17 @@ class FilterItem implements \JsonSerializable  {
 	protected $title;
 
 	/**
-	 * An array of objectIds that are tagged with this title
+	 * An array of mediaIds that are tagged with this title
 	 * @var string[]
 	 */
-	protected $objectIds;
+	protected $mediaIds;
 
 
 	/**
 	 * Constructs a {@link FilterItem }.
 	 * @param array $parameters An array of parameters to initialize the {@link FilterItem } with.
 	 * - <b>title</b> - Title
-	 * - <b>objectIds</b> - An array of objectIds that are tagged with this title
+	 * - <b>mediaIds</b> - An array of mediaIds that are tagged with this title
 	 * 
 	 */
 	public function __construct($parameters) {
@@ -43,8 +43,8 @@ class FilterItem implements \JsonSerializable  {
 			$this->setTitle($parameters['title']);
 		}
 	
-		if (isset($parameters['objectIds'])) {
-			$this->setObjectIds($parameters['objectIds']);
+		if (isset($parameters['mediaIds'])) {
+			$this->setMediaIds($parameters['mediaIds']);
 		}
 	
 	}
@@ -59,11 +59,11 @@ class FilterItem implements \JsonSerializable  {
 	}
 
 	/**
-	 * Gets the objectIds of the FilterItem
+	 * Gets the mediaIds of the FilterItem
 	 * @return string[]
 	 */
-	public function getObjectIds() {
-		return $this->objectIds;
+	public function getMediaIds() {
+		return $this->mediaIds;
 	}
 
 
@@ -79,15 +79,15 @@ class FilterItem implements \JsonSerializable  {
 	}
 
 	/**
-	 * Sets the "objectIds" of the FilterItem
-	 * @param string[] $objectIds
+	 * Sets the "mediaIds" of the FilterItem
+	 * @param string[] $mediaIds
 	 * @return $this
 	 */
-	protected function setObjectIds($objectIds) {
-		if (is_array($objectIds)) {
-			$this->objectIds = array();
-			foreach ($objectIds as $item) {
-				$this->objectIds[] = (string) $item;
+	protected function setMediaIds($mediaIds) {
+		if (is_array($mediaIds)) {
+			$this->mediaIds = array();
+			foreach ($mediaIds as $item) {
+				$this->mediaIds[] = (string) $item;
 			}
 		}
 		return $this;
@@ -104,8 +104,8 @@ class FilterItem implements \JsonSerializable  {
 		if ($this->title !== null) {
 			$array['title'] = $this->title;
 		}
-		if ($this->objectIds !== null) {
-			$array['objectIds'] = $this->objectIds;
+		if ($this->mediaIds !== null) {
+			$array['mediaIds'] = $this->mediaIds;
 		}
 		return $array;
 	}

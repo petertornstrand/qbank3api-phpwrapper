@@ -17,8 +17,8 @@ class FiltersController extends ControllerAbstract {
 	
 	/**
 	 * Returns a array of FilterItem for the chosen categories, optionally filtered by specific DeploymentSites.
-	 * @param string $categoryIds Comma separated string categoryIds we should fetch objectIds for.
-	 * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch objectIds for.
+	 * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
+	 * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
 	 * @return FilterItem[]
@@ -37,8 +37,8 @@ class FiltersController extends ControllerAbstract {
 	/**
 	 * Returns a array of FilterItem for the chosen folder subfolders, optionally filtered by specific CategoryIds and/or DeploymentSites.
 	 * @param int $parentFolderId The folder id..
-	 * @param string $categoryIds Comma separated string categoryIds we should fetch objectIds for.
-	 * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch objectIds for.
+	 * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
+	 * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
 	 * @return FilterItem[]
@@ -59,8 +59,8 @@ class FiltersController extends ControllerAbstract {
 	 * Returns a array of FilterItem for the chosen property, optionally filtered by specific CategoryIds and/or DeploymentSites.
 	 * @param string $systemName System name of property to filter by.
 	 * @param bool $preloadNames If item names should be preloaded from property type.
-	 * @param string $categoryIds Comma separated string categoryIds we should fetch objectIds for.
-	 * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch objectIds for.
+	 * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
+	 * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
 	 * @return FilterItem[]
