@@ -84,6 +84,12 @@ class Search implements \JsonSerializable  {
 	protected $folderIds;
 
 	/**
+	 * The depth of folders to fetch objects from when doing folder searches
+	 * @var int
+	 */
+	protected $folderDepth;
+
+	/**
 	 * An array with MoodboardIds to search within
 	 * @var int[]
 	 */
@@ -152,6 +158,7 @@ class Search implements \JsonSerializable  {
 	 * - <b>updatedRange</b> - Filter by updated date
 	 * - <b>mediaStatusIds</b> - An array with MediaStatuses to filter by
 	 * - <b>folderIds</b> - An array with FolderIds to search within
+	 * - <b>folderDepth</b> - The depth of folders to fetch objects from when doing folder searches
 	 * - <b>moodboardIds</b> - An array with MoodboardIds to search within
 	 * - <b>categoryIds</b> - An array with CategoryIds to search within
 	 * - <b>deploymentSiteIds</b> - An array with DeploymentSiteIds to search within
@@ -212,6 +219,10 @@ class Search implements \JsonSerializable  {
 	
 		if (isset($parameters['folderIds'])) {
 			$this->setFolderIds($parameters['folderIds']);
+		}
+	
+		if (isset($parameters['folderDepth'])) {
+			$this->setFolderDepth($parameters['folderDepth']);
 		}
 	
 		if (isset($parameters['moodboardIds'])) {
@@ -339,6 +350,14 @@ class Search implements \JsonSerializable  {
 	 */
 	public function getFolderIds() {
 		return $this->folderIds;
+	}
+
+	/**
+	 * Gets the folderDepth of the Search
+	 * @return int
+	 */
+	public function getFolderDepth() {
+		return $this->folderDepth;
 	}
 
 	/**
@@ -570,6 +589,16 @@ class Search implements \JsonSerializable  {
 	}
 
 	/**
+	 * Sets the "folderDepth" of the Search
+	 * @param int $folderDepth
+	 * @return $this
+	 */
+	public function setFolderDepth($folderDepth) {
+		$this->folderDepth = $folderDepth;
+		return $this;
+	}
+
+	/**
 	 * Sets the "moodboardIds" of the Search
 	 * @param int[] $moodboardIds
 	 * @return $this
@@ -762,6 +791,9 @@ class Search implements \JsonSerializable  {
 		}
 		if ($this->folderIds !== null) {
 			$array['folderIds'] = $this->folderIds;
+		}
+		if ($this->folderDepth !== null) {
+			$array['folderDepth'] = $this->folderDepth;
 		}
 		if ($this->moodboardIds !== null) {
 			$array['moodboardIds'] = $this->moodboardIds;
