@@ -54,6 +54,12 @@ class DeploymentFile implements \JsonSerializable  {
 	protected $filename;
 
 	/**
+	 * The size of the file on disk
+	 * @var int
+	 */
+	protected $filesize;
+
+	/**
 	 * Metadata associated with the deployed media
 	 * @var Object
 	 */
@@ -69,6 +75,7 @@ class DeploymentFile implements \JsonSerializable  {
 	 * - <b>videoTemplateId</b> - The identifier of the Video template used.
 	 * - <b>created</b> - The time of deployment for this file.
 	 * - <b>filename</b> - The original filename of the file when uploaded to QBank.
+	 * - <b>filesize</b> - The size of the file on disk
 	 * - <b>metadata</b> - Metadata associated with the deployed media
 	 * 
 	 */
@@ -98,6 +105,10 @@ class DeploymentFile implements \JsonSerializable  {
 	
 		if (isset($parameters['filename'])) {
 			$this->setFilename($parameters['filename']);
+		}
+	
+		if (isset($parameters['filesize'])) {
+			$this->setFilesize($parameters['filesize']);
 		}
 	
 		if (isset($parameters['metadata'])) {
@@ -153,6 +164,14 @@ class DeploymentFile implements \JsonSerializable  {
 	 */
 	public function getFilename() {
 		return $this->filename;
+	}
+
+	/**
+	 * Gets the filesize of the DeploymentFile
+	 * @return int
+	 */
+	public function getFilesize() {
+		return $this->filesize;
 	}
 
 	/**
@@ -234,6 +253,16 @@ class DeploymentFile implements \JsonSerializable  {
 	}
 
 	/**
+	 * Sets the "filesize" of the DeploymentFile
+	 * @param int $filesize
+	 * @return $this
+	 */
+	protected function setFilesize($filesize) {
+		$this->filesize = $filesize;
+		return $this;
+	}
+
+	/**
 	 * Sets the "metadata" of the DeploymentFile
 	 * @param Object $metadata
 	 * @return $this
@@ -268,6 +297,9 @@ class DeploymentFile implements \JsonSerializable  {
 		}
 		if ($this->filename !== null) {
 			$array['filename'] = $this->filename;
+		}
+		if ($this->filesize !== null) {
+			$array['filesize'] = $this->filesize;
 		}
 		if ($this->metadata !== null) {
 			$array['metadata'] = $this->metadata;
