@@ -102,6 +102,12 @@ class Search implements \JsonSerializable  {
 	protected $categoryIds;
 
 	/**
+	 * Search for media that have this media as parent
+	 * @var int
+	 */
+	protected $parentId;
+
+	/**
 	 * An array with DeploymentSiteIds to search within
 	 * @var int[]
 	 */
@@ -161,6 +167,7 @@ class Search implements \JsonSerializable  {
 	 * - <b>folderDepth</b> - The depth of folders to fetch objects from when doing folder searches
 	 * - <b>moodboardIds</b> - An array with MoodboardIds to search within
 	 * - <b>categoryIds</b> - An array with CategoryIds to search within
+	 * - <b>parentId</b> - Search for media that have this media as parent
 	 * - <b>deploymentSiteIds</b> - An array with DeploymentSiteIds to search within
 	 * - <b>properties</b> - An array of Properties to filter by
 	 * - <b>fileSizeRange</b> - Filter by file size
@@ -231,6 +238,10 @@ class Search implements \JsonSerializable  {
 	
 		if (isset($parameters['categoryIds'])) {
 			$this->setCategoryIds($parameters['categoryIds']);
+		}
+	
+		if (isset($parameters['parentId'])) {
+			$this->setParentId($parameters['parentId']);
 		}
 	
 		if (isset($parameters['deploymentSiteIds'])) {
@@ -374,6 +385,14 @@ class Search implements \JsonSerializable  {
 	 */
 	public function getCategoryIds() {
 		return $this->categoryIds;
+	}
+
+	/**
+	 * Gets the parentId of the Search
+	 * @return int
+	 */
+	public function getParentId() {
+		return $this->parentId;
 	}
 
 	/**
@@ -629,6 +648,16 @@ class Search implements \JsonSerializable  {
 	}
 
 	/**
+	 * Sets the "parentId" of the Search
+	 * @param int $parentId
+	 * @return $this
+	 */
+	public function setParentId($parentId) {
+		$this->parentId = $parentId;
+		return $this;
+	}
+
+	/**
 	 * Sets the "deploymentSiteIds" of the Search
 	 * @param int[] $deploymentSiteIds
 	 * @return $this
@@ -800,6 +829,9 @@ class Search implements \JsonSerializable  {
 		}
 		if ($this->categoryIds !== null) {
 			$array['categoryIds'] = $this->categoryIds;
+		}
+		if ($this->parentId !== null) {
+			$array['parentId'] = $this->parentId;
 		}
 		if ($this->deploymentSiteIds !== null) {
 			$array['deploymentSiteIds'] = $this->deploymentSiteIds;
