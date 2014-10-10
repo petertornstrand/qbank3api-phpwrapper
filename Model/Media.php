@@ -189,6 +189,8 @@ class Media implements \JsonSerializable  {
 	 */
 	public function __construct($parameters) {
 		
+		$this->deployedFiles = array();
+		$this->propertySets = array();
 		
 		
 		if (isset($parameters['mediaId'])) {
