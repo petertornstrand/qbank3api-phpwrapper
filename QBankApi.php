@@ -274,6 +274,9 @@ class QBankApi {
 
 	protected function getOAuthPlugin() {
 		$oauthClient = new Client($this->basePath.'oauth2/token');
+		if ($this->cache instanceof Cache) {
+			$oauthClient->addSubscriber(new Oauth2RefreshTokenCacheBusterPlugin($this->cache, $this->logger));
+		}
 		return new Oauth2Plugin(
 			new PasswordCredentials(
 				$oauthClient,
@@ -295,7 +298,7 @@ class QBankApi {
 	public function __destruct() {
 		if ($this->cache instanceof Cache && $this->oauth2Plugin instanceof Oauth2Plugin) {
 			$this->cache->save('access_token', $this->oauth2Plugin->getAccessToken());
-			$this->cache->save('refresh_token', $this->oauth2Plugin->getRefreshToken());
+			$this->cache->save('refresh_token', $this->oauth2Plugin->getRefreshToken(), 3600 * 24 * 13);
 		}
 	}
 }
