@@ -137,6 +137,7 @@ class Moodboard implements \JsonSerializable  {
 	 */
 	public function __construct($parameters) {
 		
+		$this->propertySets = array();
 		
 		
 		if (isset($parameters['id'])) {
@@ -310,6 +311,22 @@ class Moodboard implements \JsonSerializable  {
 		return $this->deleted;
 	}
 
+	/**
+	 * Gets a property from the first available PropertySet
+	 * @param string $systemName The system name of the property to get.
+	 * @throws QBankApiException Thrown if the requested property does not exist.
+	 * @return Property
+	 */
+	public function getProperty($systemName) {
+		foreach ($this->propertySets as $propertySet) {
+			foreach ($propertySet->getProperties() as $property) {
+				if ($property->getPropertyType()->getSystemName() == $systemName) {
+					return $property;
+				}
+			}
+		}
+		throw new QBankApiException('No Property with the system name "'.$systemName.'" exists.');
+	}
 	/**
 	 * Gets the propertySets of the Moodboard
 	 * @return PropertySet[]

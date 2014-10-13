@@ -449,6 +449,22 @@ class Media implements \JsonSerializable  {
 	}
 
 	/**
+	 * Gets a property from the first available PropertySet
+	 * @param string $systemName The system name of the property to get.
+	 * @throws QBankApiException Thrown if the requested property does not exist.
+	 * @return Property
+	 */
+	public function getProperty($systemName) {
+		foreach ($this->propertySets as $propertySet) {
+			foreach ($propertySet->getProperties() as $property) {
+				if ($property->getPropertyType()->getSystemName() == $systemName) {
+					return $property;
+				}
+			}
+		}
+		throw new QBankApiException('No Property with the system name "'.$systemName.'" exists.');
+	}
+	/**
 	 * Gets the propertySets of the Media
 	 * @return PropertySet[]
 	 */
@@ -472,22 +488,6 @@ class Media implements \JsonSerializable  {
 		return $this->typeId;
 	}
 
-	/**
-	 * Gets a property from the first available PropertySet
-	 * @param string $systemName The system name of the property to get.
-	 * @throws QBankApiException Thrown if the requested property does not exist.
-	 * @return Property
-	 */
-	public function getProperty($systemName) {
-		foreach ($this->propertySets as $propertySet) {
-			foreach ($propertySet->getProperties() as $property) {
-				if ($property->getPropertyType()->getSystemName() == $systemName) {
-					return $property;
-				}
-			}
-		}
-		throw new QBankApiException('No Property with the system name "'.$systemName.'" exists.');
-	}
 	/**
 	 * Gets a DeployedFile
 	 * @param int $templateId The id of the template to get.
