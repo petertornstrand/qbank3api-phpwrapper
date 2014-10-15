@@ -18,6 +18,7 @@ use \QBNK\QBank\API\Controller\AccountsController;
 use \QBNK\QBank\API\Controller\SearchController;
 use \QBNK\QBank\API\Controller\DeploymentController;
 use \QBNK\QBank\API\Controller\FiltersController;
+use \QBNK\QBank\API\Controller\EventsController;
 
 
 class QBankApi {
@@ -69,6 +70,9 @@ class QBankApi {
 
 	/** @var \QBNK\QBank\API\Controller\FiltersController */
 	protected $filters;
+
+	/** @var \QBNK\QBank\API\Controller\EventsController */
+	protected $events;
 
 	
 
@@ -229,6 +233,17 @@ class QBankApi {
 			$this->filters->setLogger($this->logger);
 		}
 		return $this->filters;
+	}
+	
+	/**
+	* @return \QBNK\QBank\API\Controller\EventsController
+	*/
+	public function events() {
+		if (!$this->events instanceof EventsController) {
+			$this->events = new EventsController($this->getConnection(), $this->cachePolicy, $this->cache);
+			$this->events->setLogger($this->logger);
+		}
+		return $this->events;
 	}
 	
 	

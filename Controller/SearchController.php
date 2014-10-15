@@ -37,7 +37,7 @@ class SearchController extends ControllerAbstract {
 			return new SearchResult($this->cache->fetch(md5('search-'.json_encode($search))));
 		}
 		$query = array();
-		$query = array_merge($query, json_decode(json_encode($search), true));
+		$query['search'] = json_decode(json_encode($search), true);
 		$response = $this->post('v1/search', $query);
 		if ($cachePolicy->isEnabled()) {
 			$this->cache->save(md5('search-'.json_encode($search)), $response, $cachePolicy->getLifetime());

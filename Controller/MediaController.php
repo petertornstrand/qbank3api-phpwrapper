@@ -127,7 +127,7 @@ class MediaController extends ControllerAbstract {
 
 	/**
 	 * Downloads an archive of several Media. You may append an optional template parameter to the query. Omitting the template parameter will return the original files.
-	 * @param Array[int] $ids Array of Media ID:s to download.
+	 * @param int[] $ids Array of Media ID:s to download.
 	 * @param string $template Optional template to download all Media in..
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
