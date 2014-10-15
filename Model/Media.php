@@ -329,14 +329,6 @@ class Media implements \JsonSerializable  {
 	}
 
 	/**
-	 * Gets the metadata of the Media
-	 * @return MetaData[]
-	 */
-	public function getMetadata() {
-		return $this->metadata;
-	}
-
-	/**
 	 * Gets the mimetype of the Media
 	 * @return MimeType
 	 */
@@ -507,6 +499,35 @@ class Media implements \JsonSerializable  {
 		}
 		throw new QBankApiException('No DeploymentFile with the id "'.$templateId.'" exists.');
 	}
+
+	/**
+	 * Gets MetaData
+	 * @param string $section The Metadata section to get. Eg. "Exif", "IPTC", etc.
+	 * @param string $key The Metadata key to get. Eg. "width", "shutterspeed", etc.
+	 * @throws QBankApiException Thrown if the requested Metadata does not exist.
+	 * @return MetaData[]|MetaData|string The requested metadata
+	 */
+	public function getMetadata($section = null, $key = null) {
+		if ($section === null) {
+			return $this->metadata;
+		}
+		foreach ($this->metadata as $md) {
+			if ($section != $md->getSection()) {
+				continue;
+			}
+			if ($key === null) {
+				return $md;
+			}
+			foreach ($md->getData() as $k => $data) {
+				if ($key == $k) {
+					return $data;
+				}
+			}
+			throw new QBankApiException('No metadata with section "'.$section.'" and key "'.$key.'" exists.');
+		}
+		throw new QBankApiException('No metadata with section "'.$section.'" exists.');
+	}
+
 
 
 	/**
