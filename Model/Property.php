@@ -283,7 +283,35 @@ class Property implements \JsonSerializable  {
 	 * @return $this
 	 */
 	public function setValue($value) {
-		$this->value = $value;
+		switch ($this->propertyType->getDataTypeId()) {
+			case 1:		// bool.
+				$this->value = (bool)$value;
+				break;
+			case 2:		// DateTime
+				if ($value instanceof DateTime) {
+					$this->value = $value;
+				} else {
+					try {
+						$this->value = new DateTime($value);
+					} catch (Exception $e) {
+						var_dump($e->getMessage());
+						$this->value = null;
+					}
+				}
+				break;
+			case 4:		// float
+				$this->value = (float)$value;
+				break;
+			case 5:		// int
+				$this->value = (int)$value;
+				break;
+			case 6:		// string
+				$this->value = (string)$value;
+				break;
+			default:
+				$this->value = $value;
+				break;
+		}
 		return $this;
 	}
 
