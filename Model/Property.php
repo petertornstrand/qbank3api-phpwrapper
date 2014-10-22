@@ -283,33 +283,43 @@ class Property implements \JsonSerializable  {
 	 * @return $this
 	 */
 	public function setValue($value) {
-		switch ($this->propertyType->getDataTypeId()) {
-			case 1:		// bool.
-				$this->value = (bool)$value;
-				break;
-			case 2:		// DateTime
-				if ($value instanceof DateTime) {
-					$this->value = $value;
-				} else {
-					try {
-						$this->value = new DateTime($value);
-					} catch (Exception $e) {
-						$this->value = null;
+		$convertValue = function($value) {
+			switch ($this->propertyType->getDataTypeId()) {
+				case 1:		// bool.
+					return (bool)$value;
+					break;
+				case 2:		// DateTime
+					if ($value instanceof DateTime) {
+						return $value;
+					} else {
+						try {
+							return new DateTime($value);
+						} catch (Exception $e) {
+							return null;
+						}
 					}
-				}
-				break;
-			case 4:		// float
-				$this->value = (float)$value;
-				break;
-			case 5:		// int
-				$this->value = (int)$value;
-				break;
-			case 6:		// string
-				$this->value = (string)$value;
-				break;
-			default:
-				$this->value = $value;
-				break;
+					break;
+				case 4:		// float
+					return (float)$value;
+					break;
+				case 5:		// int
+					return (int)$value;
+					break;
+				case 6:		// string
+					return (string)$value;
+					break;
+				default:
+					return $value;
+					break;
+			}
+		};
+		if ($this->propertyType->getDefinition()['array']) {
+			$this->value = array();
+			foreach ($value as $v) {
+				$this->value[] = $convertValue($v['value']);
+			}
+		} else {
+			$this->value = $convertValue($value);
 		}
 		return $this;
 	}
