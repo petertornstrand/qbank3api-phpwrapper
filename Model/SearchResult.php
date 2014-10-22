@@ -14,8 +14,6 @@ use \Exception;
 
 class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess, \Countable {
 
-	/** @var int */
-	protected $iteratorPosition = 0;
 
 
 	/**
@@ -200,14 +198,15 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess, \Coun
 	 * @return mixed
 	 */
 	public function current() {
-		return $this->results[$this->iteratorPosition];
+		return current($this->results);
 	}
 
 	/**
 	 * Gets the key of the current element.
+	 * @return mixed
 	 */
 	public function key() {
-		return $this->iteratorPosition;
+		return key($this->results);
 	}
 
 	/**
@@ -215,7 +214,7 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess, \Coun
 	 * @return void
 	 */
 	public function next() {
-		$this->iteratorPosition++;
+		next($this->results);
 	}
 
 	/**
@@ -223,7 +222,7 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess, \Coun
 	 * @return void
 	 */
 	public function rewind() {
-		$this->iteratorPosition = 0;
+		reset($this->results);
 	}
 
 	/**
@@ -231,7 +230,7 @@ class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess, \Coun
 	 * @return bool
 	 */
 	public function valid() {
-		return isset($this->results[$this->iteratorPosition]);
+		return $this->key() !== null;
 	}
 
 	/**
