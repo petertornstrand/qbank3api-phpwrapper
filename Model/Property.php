@@ -294,7 +294,6 @@ class Property implements \JsonSerializable  {
 					try {
 						$this->value = new DateTime($value);
 					} catch (Exception $e) {
-						var_dump($e->getMessage());
 						$this->value = null;
 					}
 				}
