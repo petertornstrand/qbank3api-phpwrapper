@@ -277,9 +277,7 @@ class QBankApi {
 			$this->logger->debug(
 				'Guzzle client instantiated.',
 				array(
-					'basepath' => $this->basePath,
-					'accesstoken' => $this->oauth2Plugin->getAccessToken(),
-					'refreshtoken' => $this->oauth2Plugin->getRefreshToken()
+					'basepath' => $this->basePath
 				)
 			);
 		}

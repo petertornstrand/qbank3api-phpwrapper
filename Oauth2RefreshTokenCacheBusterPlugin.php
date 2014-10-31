@@ -46,6 +46,9 @@ class Oauth2RefreshTokenCacheBusterPlugin implements EventSubscriberInterface {
 		if (isset($event['response']) && $event['response'] instanceof Response) {
 			try {
 				$response = $event['response']->json();
+				if (isset($response['access_token'])) {
+					$this->logger->debug('Got requested access token', $response);
+				}
 				if (isset($response['access_token']) && $this->cache->contains('access_token')) {
 					$accessToken = ['access_token' => $response['access_token']];
 					if (isset($response['expires_in'])) {
