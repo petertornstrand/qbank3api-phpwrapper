@@ -53,7 +53,7 @@ class EventsController extends ControllerAbstract {
 	 * @param string $remoteIp Ip-address of the user
 	 * @param string $userAgent the User Agent of the user
 	 * 
-	 * @return void
+	 * @return int
 	 */
 	public function session($sourceId, $sessionHash, $remoteIp, $userAgent) {
 		$query = array();
@@ -61,7 +61,7 @@ class EventsController extends ControllerAbstract {
 		$query['sessionHash'] = $sessionHash;
 		$query['remoteIp'] = $remoteIp;
 		$query['userAgent'] = $userAgent;
-		$this->post('v1/events/session', $query, true);
+		return (int)$this->post('v1/events/session', $query);
 	}
 
 	/**
