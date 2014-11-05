@@ -313,8 +313,9 @@ class Property implements \JsonSerializable  {
 					break;
 			}
 		};
-		if ($this->propertyType->getDefinition()['array']) {
-			if (!$this->propertyType->getDefinition()['multiplechoice'] && isset($this->propertyType->getDefinition()['options']) && is_array($this->propertyType->getDefinition()['options'])) {
+		$definition = $this->propertyType->getDefinition();
+		if ($definition['array']) {
+			if (!empty($definition['multiplechoice']) && isset($definition['options']) && is_array($definition['options'])) {
 				$this->value = $convertValue(current($value)['value']);
 			} else {
 				$this->value = array();
