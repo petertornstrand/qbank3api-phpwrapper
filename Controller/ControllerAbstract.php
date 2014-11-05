@@ -1,6 +1,7 @@
 <?php
 namespace QBNK\QBank\API\Controller;
 
+use CommerceGuys\Guzzle\Plugin\Oauth2\Oauth2Plugin;
 use Guzzle\Common\Exception\RuntimeException;
 use Guzzle\Http\Client;
 use Guzzle\Http\Message\Response;
@@ -169,28 +170,56 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 	}
 
 	public function __destruct() {
-		foreach ($this->delayedRequests as $request) {
-			if ($request instanceof Request) {
-				try {
-					$request->send();
-					$path = str_replace(parse_url($this->client->getBaseUrl(), PHP_URL_PATH), '', $request->getPath());
-					$this->logger->debug(
-						'Delayed request to QBank sent. ' . strtoupper($request->getMethod()) . ' ' . $path,
-						array(
+		flush();
+		if (is_array($this->delayedRequests)) {
+			foreach ($this->delayedRequests as $request) {
+				if ($request instanceof Request) {
+					try {
+						$path = str_replace(parse_url($this->client->getBaseUrl(), PHP_URL_PATH), '', $request->getPath());
+						$circumstances = [
 							'endpoint' => $path,
 							'parameters' => ($request instanceof EntityEnclosingRequest) ? $request->getPostFields() : '',
 							'method' => $request->getMethod()
-						)
-					);
-				} catch (\Exception $e) {
-					$this->logger->warning(
-						'Error while sending delayed request to QBank: '.$e->getMessage(),
-						array(
-							'endpoint' => $path,
-							'parameters' => ($request instanceof EntityEnclosingRequest) ? $request->getPostFields() : '',
-							'method' => $request->getMethod()
-						)
-					);
+						];
+						$socket = fsockopen(parse_url($this->client->getBaseUrl(), PHP_URL_HOST), 80, $errno, $errstr);
+						if ($socket === false) {
+							throw new \Exception('Could not open socket for delayed request: '.$errstr, $errno);
+						}
+						stream_set_blocking($socket, 0);
+						$listeners = $request->getEventDispatcher()->getListeners('request.before_send');
+						$accessToken = null;
+						foreach ($listeners as $listener) {
+							if ($listener[0] instanceof Oauth2Plugin) {
+								$accessToken = $listener[0]->getAccessToken();
+								break;
+							}
+						}
+						if (!$accessToken) {
+							throw new \Exception('Could not get access token for delayed request');
+						}
+						$request->addHeader('Authorization', 'Bearer ' . $accessToken['access_token']);
+						if ($request instanceof EntityEnclosingRequest) {
+							$request->addHeader('Content-length', strlen($request->getPostFields()));
+						}
+						$bytesWritten = 0;
+						$bytesTotal = strlen($request->__toString());
+						$closed = false;
+						while (!$closed && $bytesWritten < $bytesTotal) {
+							$written = @fwrite($socket, substr($request->__toString(), $bytesWritten));
+							if ($written == false) {
+								fclose($socket);
+								throw new \Exception(
+									'Error while writing to socket for delayed request: '.socket_strerror(socket_last_error($socket)),
+									socket_last_error($socket)
+								);
+							}
+							$bytesWritten += $written;
+						}
+						fclose($socket);
+						$this->logger->debug('Delayed request to QBank sent. ' . strtoupper($request->getMethod()) . ' ' . $path, $circumstances);
+					} catch (\Exception $e) {
+						$this->logger->warning('Error while sending delayed request to QBank: ' . $e->getMessage(), isset($circumstances) ? $circumstances : []);
+					}
 				}
 			}
 		}
