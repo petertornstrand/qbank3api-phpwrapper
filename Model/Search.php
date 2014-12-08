@@ -120,16 +120,28 @@ class Search implements \JsonSerializable  {
 	protected $properties;
 
 	/**
-	 * Filter by file size
-	 * @var IntRange
+	 * Filter by file size. An array with "min" and/or "max" values.
+	 * @var string[]
 	 */
-	protected $fileSizeRange;
+	protected $fileSizeCriteria;
 
 	/**
-	 * Filter by mime type, uses normal LIKE database syntax, for example image/% will return all images, video/% all videos.
-	 * @var string
+	 * Filter by file width. An array with "min" and/or "max" values.
+	 * @var string[]
 	 */
-	protected $mimeType;
+	protected $widthCriteria;
+
+	/**
+	 * Filter by file height. An array with "min" and/or "max" values.
+	 * @var string[]
+	 */
+	protected $heightCriteria;
+
+	/**
+	 * Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos.
+	 * @var string[]
+	 */
+	protected $mimeTypes;
 
 	/**
 	 * Filter by file name, uses normal LIKE database syntax
@@ -170,8 +182,10 @@ class Search implements \JsonSerializable  {
 	 * - <b>parentId</b> - Search for media that have this media as parent
 	 * - <b>deploymentSiteIds</b> - An array with DeploymentSiteIds to search within
 	 * - <b>properties</b> - An array of Properties to filter by
-	 * - <b>fileSizeRange</b> - Filter by file size
-	 * - <b>mimeType</b> - Filter by mime type, uses normal LIKE database syntax, for example image/% will return all images, video/% all videos.
+	 * - <b>fileSizeCriteria</b> - Filter by file size. An array with "min" and/or "max" values.
+	 * - <b>widthCriteria</b> - Filter by file width. An array with "min" and/or "max" values.
+	 * - <b>heightCriteria</b> - Filter by file height. An array with "min" and/or "max" values.
+	 * - <b>mimeTypes</b> - Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos.
 	 * - <b>fileName</b> - Filter by file name, uses normal LIKE database syntax
 	 * - <b>deploymentDateRange</b> - Filter by deployment date
 	 * - <b>sortFields</b> - An array of SearchSort fields to order results by
@@ -252,12 +266,20 @@ class Search implements \JsonSerializable  {
 			$this->setProperties($parameters['properties']);
 		}
 	
-		if (isset($parameters['fileSizeRange'])) {
-			$this->setFileSizeRange($parameters['fileSizeRange']);
+		if (isset($parameters['fileSizeCriteria'])) {
+			$this->setFileSizeCriteria($parameters['fileSizeCriteria']);
 		}
 	
-		if (isset($parameters['mimeType'])) {
-			$this->setMimeType($parameters['mimeType']);
+		if (isset($parameters['widthCriteria'])) {
+			$this->setWidthCriteria($parameters['widthCriteria']);
+		}
+	
+		if (isset($parameters['heightCriteria'])) {
+			$this->setHeightCriteria($parameters['heightCriteria']);
+		}
+	
+		if (isset($parameters['mimeTypes'])) {
+			$this->setMimeTypes($parameters['mimeTypes']);
 		}
 	
 		if (isset($parameters['fileName'])) {
@@ -412,19 +434,35 @@ class Search implements \JsonSerializable  {
 	}
 
 	/**
-	 * Gets the fileSizeRange of the Search
-	 * @return IntRange
+	 * Gets the fileSizeCriteria of the Search
+	 * @return string[]
 	 */
-	public function getFileSizeRange() {
-		return $this->fileSizeRange;
+	public function getFileSizeCriteria() {
+		return $this->fileSizeCriteria;
 	}
 
 	/**
-	 * Gets the mimeType of the Search
-	 * @return string
+	 * Gets the widthCriteria of the Search
+	 * @return string[]
 	 */
-	public function getMimeType() {
-		return $this->mimeType;
+	public function getWidthCriteria() {
+		return $this->widthCriteria;
+	}
+
+	/**
+	 * Gets the heightCriteria of the Search
+	 * @return string[]
+	 */
+	public function getHeightCriteria() {
+		return $this->heightCriteria;
+	}
+
+	/**
+	 * Gets the mimeTypes of the Search
+	 * @return string[]
+	 */
+	public function getMimeTypes() {
+		return $this->mimeTypes;
 	}
 
 	/**
@@ -700,29 +738,62 @@ class Search implements \JsonSerializable  {
 	}
 
 	/**
-	 * Sets the "fileSizeRange" of the Search
-	 * @param IntRange $fileSizeRange
+	 * Sets the "fileSizeCriteria" of the Search
+	 * @param string[] $fileSizeCriteria
 	 * @return $this
 	 */
-	public function setFileSizeRange($fileSizeRange) {
-		if ($fileSizeRange instanceof IntRange) {
-			$this->fileSizeRange = $fileSizeRange;
-		} else if (is_array($fileSizeRange)) {
-			$this->fileSizeRange = new IntRange($fileSizeRange);
-		} else {
-			$this->fileSizeRange = null;
-			trigger_error('Argument must be an object of class IntRange. Data loss!', E_USER_WARNING);
+	public function setFileSizeCriteria($fileSizeCriteria) {
+		if (is_array($fileSizeCriteria)) {
+			$this->fileSizeCriteria = array();
+			foreach ($fileSizeCriteria as $item) {
+				$this->fileSizeCriteria[] = (string) $item;
+			}
 		}
 		return $this;
 	}
 
 	/**
-	 * Sets the "mimeType" of the Search
-	 * @param string $mimeType
+	 * Sets the "widthCriteria" of the Search
+	 * @param string[] $widthCriteria
 	 * @return $this
 	 */
-	public function setMimeType($mimeType) {
-		$this->mimeType = $mimeType;
+	public function setWidthCriteria($widthCriteria) {
+		if (is_array($widthCriteria)) {
+			$this->widthCriteria = array();
+			foreach ($widthCriteria as $item) {
+				$this->widthCriteria[] = (string) $item;
+			}
+		}
+		return $this;
+	}
+
+	/**
+	 * Sets the "heightCriteria" of the Search
+	 * @param string[] $heightCriteria
+	 * @return $this
+	 */
+	public function setHeightCriteria($heightCriteria) {
+		if (is_array($heightCriteria)) {
+			$this->heightCriteria = array();
+			foreach ($heightCriteria as $item) {
+				$this->heightCriteria[] = (string) $item;
+			}
+		}
+		return $this;
+	}
+
+	/**
+	 * Sets the "mimeTypes" of the Search
+	 * @param string[] $mimeTypes
+	 * @return $this
+	 */
+	public function setMimeTypes($mimeTypes) {
+		if (is_array($mimeTypes)) {
+			$this->mimeTypes = array();
+			foreach ($mimeTypes as $item) {
+				$this->mimeTypes[] = (string) $item;
+			}
+		}
 		return $this;
 	}
 
@@ -839,11 +910,17 @@ class Search implements \JsonSerializable  {
 		if ($this->properties !== null) {
 			$array['properties'] = $this->properties;
 		}
-		if ($this->fileSizeRange !== null) {
-			$array['fileSizeRange'] = $this->fileSizeRange;
+		if ($this->fileSizeCriteria !== null) {
+			$array['fileSizeCriteria'] = $this->fileSizeCriteria;
 		}
-		if ($this->mimeType !== null) {
-			$array['mimeType'] = $this->mimeType;
+		if ($this->widthCriteria !== null) {
+			$array['widthCriteria'] = $this->widthCriteria;
+		}
+		if ($this->heightCriteria !== null) {
+			$array['heightCriteria'] = $this->heightCriteria;
+		}
+		if ($this->mimeTypes !== null) {
+			$array['mimeTypes'] = $this->mimeTypes;
 		}
 		if ($this->fileName !== null) {
 			$array['fileName'] = $this->fileName;

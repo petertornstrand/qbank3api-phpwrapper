@@ -27,6 +27,12 @@ class Media implements \JsonSerializable  {
 	protected $mediaId;
 
 	/**
+	 * Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000;
+	 * @var int
+	 */
+	protected $thumbPreviewStatus;
+
+	/**
 	 * The Category identifier of the Category the Media belongs to.
 	 * @var int
 	 */
@@ -163,6 +169,7 @@ class Media implements \JsonSerializable  {
 	 * Constructs a {@link Media }.
 	 * @param array $parameters An array of parameters to initialize the {@link Media } with.
 	 * - <b>mediaId</b> - The Media identifier.
+	 * - <b>thumbPreviewStatus</b> - Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000;
 	 * - <b>categoryId</b> - The Category identifier of the Category the Media belongs to.
 	 * - <b>extension</b> - The Media's filename extension.
 	 * - <b>filename</b> - The Media's filename.
@@ -196,6 +203,10 @@ class Media implements \JsonSerializable  {
 		
 		if (isset($parameters['mediaId'])) {
 			$this->setMediaId($parameters['mediaId']);
+		}
+	
+		if (isset($parameters['thumbPreviewStatus'])) {
+			$this->setThumbPreviewStatus($parameters['thumbPreviewStatus']);
 		}
 	
 		if (isset($parameters['categoryId'])) {
@@ -295,6 +306,14 @@ class Media implements \JsonSerializable  {
 	 */
 	public function getMediaId() {
 		return $this->mediaId;
+	}
+
+	/**
+	 * Gets the thumbPreviewStatus of the Media
+	 * @return int
+	 */
+	public function getThumbPreviewStatus() {
+		return $this->thumbPreviewStatus;
 	}
 
 	/**
@@ -538,6 +557,16 @@ class Media implements \JsonSerializable  {
 	 */
 	protected function setMediaId($mediaId) {
 		$this->mediaId = $mediaId;
+		return $this;
+	}
+
+	/**
+	 * Sets the "thumbPreviewStatus" of the Media
+	 * @param int $thumbPreviewStatus
+	 * @return $this
+	 */
+	protected function setThumbPreviewStatus($thumbPreviewStatus) {
+		$this->thumbPreviewStatus = $thumbPreviewStatus;
 		return $this;
 	}
 
@@ -845,6 +874,9 @@ class Media implements \JsonSerializable  {
 		
 		if ($this->mediaId !== null) {
 			$array['mediaId'] = $this->mediaId;
+		}
+		if ($this->thumbPreviewStatus !== null) {
+			$array['thumbPreviewStatus'] = $this->thumbPreviewStatus;
 		}
 		if ($this->categoryId !== null) {
 			$array['categoryId'] = $this->categoryId;
