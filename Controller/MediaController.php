@@ -33,7 +33,7 @@ class MediaController extends ControllerAbstract {
 	/**
 	 * Gets the raw file data of a Media. You may append an optional template parameter to the query. Omitting the template parameter will return the medium thumbnail. <br><br> Existing templates are:<br> <b>original</b> - The original file<br> <b>preview</b> - A preview image, sized 1000px on the long side<br> <b>thumb_small</b> - A thumbnail image, sized 100px on the long side<br> <b>thumb_medium</b> - A thumbnail image, sized 200px on the long side<br> <b>thumb_large</b> - A thumbnail image, sized 300px on the long side<br> <b>videopreview</b> - A preview video, sized 360p and maximum 2min<br> <b>{integer}</b> - An image template identifier
 	 * @param int $id The Media identifier..
-	 * @param string $template Optional template of Media..
+	 * @param mixed $template Optional template of Media..
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
 	 * 
 	 * @return void
