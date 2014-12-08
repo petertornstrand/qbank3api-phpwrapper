@@ -17,6 +17,16 @@ use QBNK\QBank\API\Model\SearchResult;
 class SearchController extends ControllerAbstract {
 	
 	/**
+	 * Add PHPDoc long description to <mark>Search::metadata();</mark>  (the api method) to write here
+	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
+	 * 
+	 * @return void
+	 */
+	public function metadata(QBankCachePolicy $cachePolicy = null) {
+		$this->get('v1/search/metadata', [], $cachePolicy);
+	}
+
+	/**
 	 * Search for Media in QBank
 	 * @param Search $search Search parameters
 	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
