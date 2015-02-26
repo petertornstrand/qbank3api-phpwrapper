@@ -2,70 +2,152 @@
 
 namespace QBNK\QBank\API\Controller;
 
-use QBNK\QBank\API\QBankCachePolicy;
-use QBNK\QBank\API\Model\Protocol;
 use QBNK\QBank\API\Model\DeploymentSite;
+use QBNK\QBank\API\Model\DeploymentSiteResponse;
+use QBNK\QBank\API\Model\Protocol;
 
+class DeploymentController extends ControllerAbstract
+{
+    /**
+     * Lists all Protocols.
+     *
+     * @return Protocol[]
+     */
+    public function listProtocols()
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => [],
+            'headers' => [],
+        ];
+        $result = $this->get('v1/deployment/protocols', $parameters);
+        foreach ($result as &$entry) {
+            $entry = new Protocol($entry);
+        }
+        unset($entry);
+        reset($result);
 
-/**
- * DeploymentSites are places where Media from QBank may be published to, to allow public access. Protocols define the way the publishing executes.
- *
- * NOTE: This class is auto generated. Do not edit the class manually.
- *
- */
+        return $result;
+    }
+    /**
+     * Fetches a specific Protocol.
+     *
+     * @param int $id The Protocol identifier..
+     *
+     * @return Protocol
+     */
+    public function retrieveProtocol($id)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => [],
+            'headers' => [],
+        ];
+        $result = $this->get('v1/deployment/protocols/'.$id.'', $parameters);
+        $result = new Protocol($result);
 
-class DeploymentController extends ControllerAbstract {
-	
-	/**
-	 * Lists all Protocols.
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return Protocol[]
-	 */
-	public function listProtocols(QBankCachePolicy $cachePolicy = null) {
-		$protocol = array();
-		foreach ($this->get('v1/deployment/protocols', [], $cachePolicy) as $item ) {
-			$protocol[] = new Protocol($item);
-		}
+        return $result;
+    }
+    /**
+     * Lists all DeploymentSites.
+     *
+     * Lists all DeploymentSites the current User has access to.
+     *
+     * @return DeploymentSite[]
+     */
+    public function listSites()
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => [],
+            'headers' => [],
+        ];
+        $result = $this->get('v1/deployment/sites', $parameters);
+        foreach ($result as &$entry) {
+            $entry = new DeploymentSite($entry);
+        }
+        unset($entry);
+        reset($result);
 
-		return $protocol;
-	}
+        return $result;
+    }
+    /**
+     * Fetches a specific DeploymentSite.
+     *
+     * @param int $id The DeploymentSite identifier..
+     *
+     * @return DeploymentSite
+     */
+    public function retrieveSite($id)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => [],
+            'headers' => [],
+        ];
+        $result = $this->get('v1/deployment/sites/'.$id.'', $parameters);
+        $result = new DeploymentSite($result);
 
-	/**
-	 * Fetches a specific Protocol.
-	 * @param int $id The Protocol identifier..
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return Protocol
-	 */
-	public function retrieveProtocol($id, QBankCachePolicy $cachePolicy = null) {
-		return new Protocol($this->get('v1/deployment/protocols/' . $id . '', [], $cachePolicy));
-	}
+        return $result;
+    }
+    /**
+     * Create a DeploymentSite.
+     *
+     * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite to create
+     *
+     * @return DeploymentSiteResponse
+     */
+    public function createSite(DeploymentSite $deploymentSite)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => ['deploymentSite' => json_decode(json_encode($deploymentSite), true)],
+            'headers' => [],
+        ];
+        $result = $this->post('v1/deployment', $parameters);
+        $result = new DeploymentSiteResponse($result);
 
-	/**
-	 * Lists all DeploymentSites the current User has access to.
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return DeploymentSite[]
-	 */
-	public function listSites(QBankCachePolicy $cachePolicy = null) {
-		$deploymentSite = array();
-		foreach ($this->get('v1/deployment/sites', [], $cachePolicy) as $item ) {
-			$deploymentSite[] = new DeploymentSite($item);
-		}
+        return $result;
+    }
+    /**
+     * Update a DeploymentSite.
+     *
+     * @param int $id The DeploymentSite identifier.
+     * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite representing the updates
+     *
+     * @return DeploymentSiteResponse
+     */
+    public function updateSite($id, DeploymentSite $deploymentSite)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => ['deploymentSite' => json_decode(json_encode($deploymentSite), true)],
+            'headers' => [],
+        ];
+        $result = $this->post('v1/deployment/'.$id.'', $parameters);
+        $result = new DeploymentSiteResponse($result);
 
-		return $deploymentSite;
-	}
+        return $result;
+    }
+    /**
+     * Delete a DeploymentSite.
+     *
+     * You can not delete a DeploymentSite while there are still media deployed there!
+     *
+     * @param int $id The DeploymentSite identifier.
+     *
+     * @return DeploymentSiteResponse
+     */
+    public function removeSite($id)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => [],
+            'headers' => [],
+        ];
+        $result = $this->delete('v1/deployment/'.$id.'', $parameters);
+        $result = new DeploymentSiteResponse($result);
 
-	/**
-	 * Fetches a specific DeploymentSite.
-	 * @param int $id The DeploymentSite identifier..
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return DeploymentSite
-	 */
-	public function retrieveSite($id, QBankCachePolicy $cachePolicy = null) {
-		return new DeploymentSite($this->get('v1/deployment/sites/' . $id . '', [], $cachePolicy));
-	}
-
+        return $result;
+    }
 }

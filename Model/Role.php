@@ -2,397 +2,386 @@
 
 namespace QBNK\QBank\API\Model;
 
-use \DateTime;
-use \Exception;
+use DateTime;
 
+class Role  implements \JsonSerializable
+{
+    /**
+     * The Role identifier.
+     * @val int	 */
+    protected $id;
+    /**
+     * The name of the Role.
+     * @val string	 */
+    protected $name;
+    /**
+     * Description of what this Role means.
+     * @val string	 */
+    protected $description;
+    /**
+     * Whether the object has been modified since constructed.
+     * @val bool	 */
+    protected $dirty;
+    /**
+     * Indicates if this Role is deleted.
+     * @val bool	 */
+    protected $deleted;
+    /**
+     * When the Role was created.
+     * @val DateTime	 */
+    protected $created;
+    /**
+     * The User Id that created the Role.
+     * @val int	 */
+    protected $createdBy;
+    /**
+     * When the Role was updated.
+     * @val DateTime	 */
+    protected $updated;
+    /**
+     * User Id that updated the Role.
+     * @val int	 */
+    protected $updatedBy;
+    /**
+     * An array of Functionalities connected to this role.
+     * @val Functionality[]	 */
+    protected $functionalities;
 
-/**
- * 
- *
- * NOTE: This class is auto generated. Do not edit the class manually.
- *
- */
+    /**
+     * Constructs a Role.
+     *
+     * @param array $parameters An array of parameters to initialize the { @link Role } with.
+     * - <b>id</b> - The Role identifier.
+     * - <b>name</b> - The name of the Role
+     * - <b>description</b> - Description of what this Role means
+     * - <b>dirty</b> - Whether the object has been modified since constructed.
+     * - <b>deleted</b> - Indicates if this Role is deleted
+     * - <b>created</b> - When the Role was created.
+     * - <b>createdBy</b> - The User Id that created the Role
+     * - <b>updated</b> - When the Role was updated.
+     * - <b>updatedBy</b> - User Id that updated the Role
+     * - <b>functionalities</b> - An array of Functionalities connected to this role
+     */
+    public function __construct($parameters = [])
+    {
+        $this->functionalities = [];
 
-class Role implements \JsonSerializable  {
+        if (isset($parameters['id'])) {
+            $this->setId($parameters['id']);
+        }
+        if (isset($parameters['name'])) {
+            $this->setName($parameters['name']);
+        }
+        if (isset($parameters['description'])) {
+            $this->setDescription($parameters['description']);
+        }
+        if (isset($parameters['dirty'])) {
+            $this->setDirty($parameters['dirty']);
+        }
+        if (isset($parameters['deleted'])) {
+            $this->setDeleted($parameters['deleted']);
+        }
+        if (isset($parameters['created'])) {
+            $this->setCreated($parameters['created']);
+        }
+        if (isset($parameters['createdBy'])) {
+            $this->setCreatedBy($parameters['createdBy']);
+        }
+        if (isset($parameters['updated'])) {
+            $this->setUpdated($parameters['updated']);
+        }
+        if (isset($parameters['updatedBy'])) {
+            $this->setUpdatedBy($parameters['updatedBy']);
+        }
+        if (isset($parameters['functionalities'])) {
+            $this->setFunctionalities($parameters['functionalities']);
+        }
+    }
 
+    /**
+     * Gets the id of the Role.
+     * @return int	 */
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * Sets the "id" of the Role.
+     *
+     * @param int $id
+     *
+     * @return Role
+     */
+    public function setId($id)
+    {
+        $this->id =  $id;
 
-	/**
-	 * The Role identifier.
-	 * @var int
-	 */
-	protected $id;
+        return $this;
+    }
+    /**
+     * Gets the name of the Role.
+     * @return string	 */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	/**
-	 * The name of the Role
-	 * @var string
-	 */
-	protected $name;
+    /**
+     * Sets the "name" of the Role.
+     *
+     * @param string $name
+     *
+     * @return Role
+     */
+    public function setName($name)
+    {
+        $this->name =  $name;
 
-	/**
-	 * Description of what this Role means
-	 * @var string
-	 */
-	protected $description;
+        return $this;
+    }
+    /**
+     * Gets the description of the Role.
+     * @return string	 */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
-	/**
-	 * Whether the object has been modified since constructed.
-	 * @var boolean
-	 */
-	protected $dirty;
+    /**
+     * Sets the "description" of the Role.
+     *
+     * @param string $description
+     *
+     * @return Role
+     */
+    public function setDescription($description)
+    {
+        $this->description =  $description;
 
-	/**
-	 * Indicates if this Role is deleted
-	 * @var boolean
-	 */
-	protected $deleted;
+        return $this;
+    }
+    /**
+     * Tells whether the Role is dirty.
+     * @return bool	 */
+    public function isDirty()
+    {
+        return $this->dirty;
+    }
 
-	/**
-	 * When the Role was created.
-	 * @var DateTime
-	 */
-	protected $created;
+    /**
+     * Sets the "dirty" of the Role.
+     *
+     * @param bool $dirty
+     *
+     * @return Role
+     */
+    public function setDirty($dirty)
+    {
+        $this->dirty =  $dirty;
 
-	/**
-	 * The User Id that created the Role
-	 * @var int
-	 */
-	protected $createdBy;
+        return $this;
+    }
+    /**
+     * Tells whether the Role is deleted.
+     * @return bool	 */
+    public function isDeleted()
+    {
+        return $this->deleted;
+    }
 
-	/**
-	 * When the Role was updated.
-	 * @var DateTime
-	 */
-	protected $updated;
+    /**
+     * Sets the "deleted" of the Role.
+     *
+     * @param bool $deleted
+     *
+     * @return Role
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted =  $deleted;
 
-	/**
-	 * User Id that updated the Role
-	 * @var int
-	 */
-	protected $updatedBy;
+        return $this;
+    }
+    /**
+     * Gets the created of the Role.
+     * @return DateTime	 */
+    public function getCreated()
+    {
+        return $this->created;
+    }
 
-	/**
-	 * An array of Functionalities connected to this role
-	 * @var Functionality[]
-	 */
-	protected $functionalities;
+    /**
+     * Sets the "created" of the Role.
+     *
+     * @param DateTime $created
+     *
+     * @return Role
+     */
+    public function setCreated($created)
+    {
+        if ($created instanceof DateTime) {
+            $this->created = $created;
+        } else {
+            try {
+                $this->created = new DateTime($created);
+            } catch (\Exception $e) {
+                $this->created = null;
+            }
+        }
 
+        return $this;
+    }
+    /**
+     * Gets the createdBy of the Role.
+     * @return int	 */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
 
-	/**
-	 * Constructs a {@link Role }.
-	 * @param array $parameters An array of parameters to initialize the {@link Role } with.
-	 * - <b>id</b> - The Role identifier.
-	 * - <b>name</b> - The name of the Role
-	 * - <b>description</b> - Description of what this Role means
-	 * - <b>dirty</b> - Whether the object has been modified since constructed.
-	 * - <b>deleted</b> - Indicates if this Role is deleted
-	 * - <b>created</b> - When the Role was created.
-	 * - <b>createdBy</b> - The User Id that created the Role
-	 * - <b>updated</b> - When the Role was updated.
-	 * - <b>updatedBy</b> - User Id that updated the Role
-	 * - <b>functionalities</b> - An array of Functionalities connected to this role
-	 * 
-	 */
-	public function __construct($parameters) {
-		
-		
-		
-		if (isset($parameters['id'])) {
-			$this->setId($parameters['id']);
-		}
-	
-		if (isset($parameters['name'])) {
-			$this->setName($parameters['name']);
-		}
-	
-		if (isset($parameters['description'])) {
-			$this->setDescription($parameters['description']);
-		}
-	
-		if (isset($parameters['dirty'])) {
-			$this->setDirty($parameters['dirty']);
-		}
-	
-		if (isset($parameters['deleted'])) {
-			$this->setDeleted($parameters['deleted']);
-		}
-	
-		if (isset($parameters['created'])) {
-			$this->setCreated($parameters['created']);
-		}
-	
-		if (isset($parameters['createdBy'])) {
-			$this->setCreatedBy($parameters['createdBy']);
-		}
-	
-		if (isset($parameters['updated'])) {
-			$this->setUpdated($parameters['updated']);
-		}
-	
-		if (isset($parameters['updatedBy'])) {
-			$this->setUpdatedBy($parameters['updatedBy']);
-		}
-	
-		if (isset($parameters['functionalities'])) {
-			$this->setFunctionalities($parameters['functionalities']);
-		}
-	
-	}
+    /**
+     * Sets the "createdBy" of the Role.
+     *
+     * @param int $createdBy
+     *
+     * @return Role
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy =  $createdBy;
 
+        return $this;
+    }
+    /**
+     * Gets the updated of the Role.
+     * @return DateTime	 */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
 
-	/**
-	 * Gets the id of the Role
-	 * @return int
-	 */
-	public function getId() {
-		return $this->id;
-	}
+    /**
+     * Sets the "updated" of the Role.
+     *
+     * @param DateTime $updated
+     *
+     * @return Role
+     */
+    public function setUpdated($updated)
+    {
+        if ($updated instanceof DateTime) {
+            $this->updated = $updated;
+        } else {
+            try {
+                $this->updated = new DateTime($updated);
+            } catch (\Exception $e) {
+                $this->updated = null;
+            }
+        }
 
-	/**
-	 * Gets the name of the Role
-	 * @return string
-	 */
-	public function getName() {
-		return $this->name;
-	}
+        return $this;
+    }
+    /**
+     * Gets the updatedBy of the Role.
+     * @return int	 */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
 
-	/**
-	 * Gets the description of the Role
-	 * @return string
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
+    /**
+     * Sets the "updatedBy" of the Role.
+     *
+     * @param int $updatedBy
+     *
+     * @return Role
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy =  $updatedBy;
 
-	/**
-	 * Gets the dirty of the Role
-	 * @return boolean
-	 */
-	public function getDirty() {
-		return $this->dirty;
-	}
+        return $this;
+    }
+    /**
+     * Gets the functionalities of the Role.
+     * @return Functionality[]	 */
+    public function getFunctionalities()
+    {
+        return $this->functionalities;
+    }
 
-	/**
-	 * Gets the deleted of the Role
-	 * @return boolean
-	 */
-	public function getDeleted() {
-		return $this->deleted;
-	}
+    /**
+     * Sets the "functionalities" of the Role.
+     *
+     * @param Functionality[] $functionalities
+     *
+     * @return Role
+     */
+    public function setFunctionalities($functionalities)
+    {
+        if (is_array($functionalities)) {
+            $this->functionalities = [];
+            foreach ($functionalities as $item) {
+                if (!($item instanceof Functionality)) {
+                    if (is_array($item)) {
+                        try {
+                            $item = new Functionality($item);
+                        } catch (\Exception $e) {
+                            trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
+                        }
+                    } else {
+                        trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
+                        continue;
+                    }
+                }
+                $this->functionalities[] = $item;
+            }
+        }
 
-	/**
-	 * Gets the created of the Role
-	 * @return date
-	 */
-	public function getCreated() {
-		return $this->created;
-	}
+        return $this;
+    }
 
-	/**
-	 * Gets the createdBy of the Role
-	 * @return int
-	 */
-	public function getCreatedBy() {
-		return $this->createdBy;
-	}
+    /**
+     * Gets all data that should be available in a json representation.
+     *
+     * @return array An associative array of the available variables.
+     */
+    public function jsonSerialize()
+    {
+        $json = [];
 
-	/**
-	 * Gets the updated of the Role
-	 * @return date
-	 */
-	public function getUpdated() {
-		return $this->updated;
-	}
+        if ($this->id !== null) {
+            $json['id'] = $this->id;
+        }
+        if ($this->name !== null) {
+            $json['name'] = $this->name;
+        }
+        if ($this->description !== null) {
+            $json['description'] = $this->description;
+        }
+        if ($this->dirty !== null) {
+            $json['dirty'] = $this->dirty;
+        }
+        if ($this->deleted !== null) {
+            $json['deleted'] = $this->deleted;
+        }
+        if ($this->created !== null) {
+            $json['created'] = $this->created;
+        }
+        if ($this->createdBy !== null) {
+            $json['createdBy'] = $this->createdBy;
+        }
+        if ($this->updated !== null) {
+            $json['updated'] = $this->updated;
+        }
+        if ($this->updatedBy !== null) {
+            $json['updatedBy'] = $this->updatedBy;
+        }
+        if ($this->functionalities !== null && !empty($this->functionalities)) {
+            $json['functionalities'] = $this->functionalities;
+        }
 
-	/**
-	 * Gets the updatedBy of the Role
-	 * @return int
-	 */
-	public function getUpdatedBy() {
-		return $this->updatedBy;
-	}
-
-	/**
-	 * Gets the functionalities of the Role
-	 * @return Functionality[]
-	 */
-	public function getFunctionalities() {
-		return $this->functionalities;
-	}
-
-
-
-	/**
-	 * Sets the "id" of the Role
-	 * @param int $id
-	 * @return $this
-	 */
-	protected function setId($id) {
-		$this->id = $id;
-		return $this;
-	}
-
-	/**
-	 * Sets the "name" of the Role
-	 * @param string $name
-	 * @return $this
-	 */
-	protected function setName($name) {
-		$this->name = $name;
-		return $this;
-	}
-
-	/**
-	 * Sets the "description" of the Role
-	 * @param string $description
-	 * @return $this
-	 */
-	protected function setDescription($description) {
-		$this->description = $description;
-		return $this;
-	}
-
-	/**
-	 * Sets the "dirty" of the Role
-	 * @param boolean $dirty
-	 * @return $this
-	 */
-	protected function setDirty($dirty) {
-		$this->dirty = (bool)$dirty;
-		return $this;
-	}
-
-	/**
-	 * Sets the "deleted" of the Role
-	 * @param boolean $deleted
-	 * @return $this
-	 */
-	protected function setDeleted($deleted) {
-		$this->deleted = (bool)$deleted;
-		return $this;
-	}
-
-	/**
-	 * Sets the "created" of the Role
-	 * @param DateTime $created
-	 * @return $this
-	 */
-	protected function setCreated($created) {
-		if ($created instanceOf DateTime) {
-			$this->created = $created;
-		} else {
-			try {
-				$this->created = new DateTime($created);
-			} catch (Exception $e) {
-				$this->created = null;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "createdBy" of the Role
-	 * @param int $createdBy
-	 * @return $this
-	 */
-	protected function setCreatedBy($createdBy) {
-		$this->createdBy = $createdBy;
-		return $this;
-	}
-
-	/**
-	 * Sets the "updated" of the Role
-	 * @param DateTime $updated
-	 * @return $this
-	 */
-	protected function setUpdated($updated) {
-		if ($updated instanceOf DateTime) {
-			$this->updated = $updated;
-		} else {
-			try {
-				$this->updated = new DateTime($updated);
-			} catch (Exception $e) {
-				$this->updated = null;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "updatedBy" of the Role
-	 * @param int $updatedBy
-	 * @return $this
-	 */
-	protected function setUpdatedBy($updatedBy) {
-		$this->updatedBy = $updatedBy;
-		return $this;
-	}
-
-	/**
-	 * Sets the "functionalities" of the Role
-	 * @param Functionality[] $functionalities
-	 * @return $this
-	 */
-	protected function setFunctionalities($functionalities) {
-		if (is_array($functionalities)) {
-			$this->functionalities = array();
-			foreach ($functionalities as $item) {
-				if (!($item instanceof Functionality)) {
-					if (is_array($item)) {
-						try {
-							$item = new Functionality($item);
-						} catch (\Exception $e) {
-							trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
-						}
-					} else {
-						trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
-						continue;
-					}
-				}
-				$this->functionalities[] = $item;
-			}
-		}
-		return $this;
-	}
-
-
-	/**
-	 * Gets all data that should be available in a json representation.
-	 * @return array An associative array of the available variables.
-	 */
-	public function jsonSerialize() {
-		$array = array();
-		
-		if ($this->id !== null) {
-			$array['id'] = $this->id;
-		}
-		if ($this->name !== null) {
-			$array['name'] = $this->name;
-		}
-		if ($this->description !== null) {
-			$array['description'] = $this->description;
-		}
-		if ($this->dirty !== null) {
-			$array['dirty'] = $this->dirty;
-		}
-		if ($this->deleted !== null) {
-			$array['deleted'] = $this->deleted;
-		}
-		if ($this->created !== null) {
-			$array['created'] = $this->created;
-		}
-		if ($this->createdBy !== null) {
-			$array['createdBy'] = $this->createdBy;
-		}
-		if ($this->updated !== null) {
-			$array['updated'] = $this->updated;
-		}
-		if ($this->updatedBy !== null) {
-			$array['updatedBy'] = $this->updatedBy;
-		}
-		if ($this->functionalities !== null) {
-			$array['functionalities'] = $this->functionalities;
-		}
-		return $array;
-	}
+        return $json;
+    }
 }

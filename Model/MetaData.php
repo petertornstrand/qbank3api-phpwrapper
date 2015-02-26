@@ -2,106 +2,101 @@
 
 namespace QBNK\QBank\API\Model;
 
+class MetaData  implements \JsonSerializable
+{
+    /**
+     * The MetaData section name.
+     * @val string	 */
+    protected $section;
+    /**
+     * The MetaData data as a key-value object.
+     * @val object	 */
+    protected $data;
 
+    /**
+     * Constructs a MetaData.
+     *
+     * @param array $parameters An array of parameters to initialize the { @link MetaData } with.
+     * - <b>section</b> - The MetaData section name.
+     * - <b>data</b> - The MetaData data as a key-value object.
+     */
+    public function __construct($parameters = [])
+    {
+        if (isset($parameters['section'])) {
+            $this->setSection($parameters['section']);
+        }
+        if (isset($parameters['data'])) {
+            $this->setData($parameters['data']);
+        }
+    }
 
-/**
- * 
- *
- * NOTE: This class is auto generated. Do not edit the class manually.
- *
- */
+    /**
+     * Gets the section of the MetaData.
+     * @return string	 */
+    public function getSection()
+    {
+        return $this->section;
+    }
 
-class MetaData implements \JsonSerializable  {
+    /**
+     * Sets the "section" of the MetaData.
+     *
+     * @param string $section
+     *
+     * @return MetaData
+     */
+    public function setSection($section)
+    {
+        $this->section =  $section;
 
+        return $this;
+    }
+    /**
+     * Gets the data of the MetaData.
+     * @return object	 */
+    public function getData()
+    {
+        return $this->data;
+    }
 
+    /**
+     * Sets the "data" of the MetaData.
+     *
+     * @param array|string $data
+     *
+     * @return MetaData
+     */
+    public function setData($data)
+    {
+        if (is_array($data)) {
+            $this->data = $data;
 
-	/**
-	 * The MetaData section name.
-	 * @var string
-	 */
-	protected $section;
+            return $this;
+        }
+        $this->data = json_decode($data, true);
+        if ($this->data === null) {
+            $this->data = $data;
+        }
 
-	/**
-	 * The MetaData data as a key-value object.
-	 * @var Object
-	 */
-	protected $data;
+        return $this;
+    }
 
+    /**
+     * Gets all data that should be available in a json representation.
+     *
+     * @return array An associative array of the available variables.
+     */
+    public function jsonSerialize()
+    {
+        $json = [];
 
-	/**
-	 * Constructs a {@link MetaData }.
-	 * @param array $parameters An array of parameters to initialize the {@link MetaData } with.
-	 * - <b>section</b> - The MetaData section name.
-	 * - <b>data</b> - The MetaData data as a key-value object.
-	 * 
-	 */
-	public function __construct($parameters) {
-		
-		
-		
-		if (isset($parameters['section'])) {
-			$this->setSection($parameters['section']);
-		}
-	
-		if (isset($parameters['data'])) {
-			$this->setData($parameters['data']);
-		}
-	
-	}
+        if ($this->section !== null) {
+            $json['section'] = $this->section;
+        }
+        if ($this->data !== null) {
+            $json['data'] = $this->data;
+        }
 
-
-	/**
-	 * Gets the section of the MetaData
-	 * @return string
-	 */
-	public function getSection() {
-		return $this->section;
-	}
-
-	/**
-	 * Gets the data of the MetaData
-	 * @return Object
-	 */
-	public function getData() {
-		return $this->data;
-	}
-
-
-
-	/**
-	 * Sets the "section" of the MetaData
-	 * @param string $section
-	 * @return $this
-	 */
-	public function setSection($section) {
-		$this->section = $section;
-		return $this;
-	}
-
-	/**
-	 * Sets the "data" of the MetaData
-	 * @param Object $data
-	 * @return $this
-	 */
-	public function setData($data) {
-		$this->data = $data;
-		return $this;
-	}
-
-
-	/**
-	 * Gets all data that should be available in a json representation.
-	 * @return array An associative array of the available variables.
-	 */
-	public function jsonSerialize() {
-		$array = array();
-		
-		if ($this->section !== null) {
-			$array['section'] = $this->section;
-		}
-		if ($this->data !== null) {
-			$array['data'] = $this->data;
-		}
-		return $array;
-	}
+        return $json;
+    }
 }
