@@ -53,38 +53,38 @@ class QBankApi
     /** @var OAuth2Subscriber */
     protected $oauth2Subscriber;
 
-    /** @var FiltersController */
-    protected $filters;
-
-    /** @var TemplatesController */
-    protected $templates;
-
-    /** @var SearchController */
-    protected $search;
-
-    /** @var EventsController */
-    protected $events;
-
     /** @var AccountsController */
     protected $accounts;
-
-    /** @var DeploymentController */
-    protected $deployment;
-
-    /** @var MoodboardsController */
-    protected $moodboards;
-
-    /** @var FoldersController */
-    protected $folders;
-
-    /** @var PropertysetsController */
-    protected $propertysets;
 
     /** @var CategoriesController */
     protected $categories;
 
+    /** @var DeploymentController */
+    protected $deployment;
+
+    /** @var EventsController */
+    protected $events;
+
+    /** @var FiltersController */
+    protected $filters;
+
+    /** @var FoldersController */
+    protected $folders;
+
     /** @var MediaController */
     protected $media;
+
+    /** @var MoodboardsController */
+    protected $moodboards;
+
+    /** @var PropertysetsController */
+    protected $propertysets;
+
+    /** @var SearchController */
+    protected $search;
+
+    /** @var TemplatesController */
+    protected $templates;
 
     /**
      * @param string $qbankURL The URL to the QBank API.
@@ -135,58 +135,6 @@ class QBankApi
     }
 
     /**
-     * Filters are used for filtering media by its folder, category or a specific property.
-     *
-     * @return FiltersController
-     */
-    public function filters()
-    {
-        if (!$this->filters instanceof FiltersController) {
-            $this->filters = new FiltersController($this->getClient(), $this->cachePolicy, $this->cache);
-            $this->filters->setLogger($this->logger);
-        }
-
-        return $this->filters;
-    }
-    /**
-     * @return TemplatesController
-     */
-    public function templates()
-    {
-        if (!$this->templates instanceof TemplatesController) {
-            $this->templates = new TemplatesController($this->getClient(), $this->cachePolicy, $this->cache);
-            $this->templates->setLogger($this->logger);
-        }
-
-        return $this->templates;
-    }
-    /**
-     * @return SearchController
-     */
-    public function search()
-    {
-        if (!$this->search instanceof SearchController) {
-            $this->search = new SearchController($this->getClient(), $this->cachePolicy, $this->cache);
-            $this->search->setLogger($this->logger);
-        }
-
-        return $this->search;
-    }
-    /**
-     * Class Events.
-     *
-     * @return EventsController
-     */
-    public function events()
-    {
-        if (!$this->events instanceof EventsController) {
-            $this->events = new EventsController($this->getClient(), $this->cachePolicy, $this->cache);
-            $this->events->setLogger($this->logger);
-        }
-
-        return $this->events;
-    }
-    /**
      * Accounts control the security in QBank.
      *
      * @return AccountsController
@@ -199,62 +147,6 @@ class QBankApi
         }
 
         return $this->accounts;
-    }
-    /**
-     * DeploymentSites are places where Media from QBank may be published to, to allow public access. Protocols define the way the publishing executes.
-     *
-     * @return DeploymentController
-     */
-    public function deployment()
-    {
-        if (!$this->deployment instanceof DeploymentController) {
-            $this->deployment = new DeploymentController($this->getClient(), $this->cachePolicy, $this->cache);
-            $this->deployment->setLogger($this->logger);
-        }
-
-        return $this->deployment;
-    }
-    /**
-     * Moodboards are public, usually temporary, areas used to expose Media in QBank. Any Media may be added to a Moodboard, which any outside user may then access until the Moodboard expiration date is due. Moodboards can be templated in different ways to fit many purposes.
-     *
-     * @return MoodboardsController
-     */
-    public function moodboards()
-    {
-        if (!$this->moodboards instanceof MoodboardsController) {
-            $this->moodboards = new MoodboardsController($this->getClient(), $this->cachePolicy, $this->cache);
-            $this->moodboards->setLogger($this->logger);
-        }
-
-        return $this->moodboards;
-    }
-    /**
-     * Folders are used to group Media in a hierarchial manner.
-     *
-     * @return FoldersController
-     */
-    public function folders()
-    {
-        if (!$this->folders instanceof FoldersController) {
-            $this->folders = new FoldersController($this->getClient(), $this->cachePolicy, $this->cache);
-            $this->folders->setLogger($this->logger);
-        }
-
-        return $this->folders;
-    }
-    /**
-     * PropertySets groups Properties together.
-     *
-     * @return PropertysetsController
-     */
-    public function propertysets()
-    {
-        if (!$this->propertysets instanceof PropertysetsController) {
-            $this->propertysets = new PropertysetsController($this->getClient(), $this->cachePolicy, $this->cache);
-            $this->propertysets->setLogger($this->logger);
-        }
-
-        return $this->propertysets;
     }
     /**
      * Categories defines which PropertySets should be available for Media. All Media belongs to exactly one Category.
@@ -271,6 +163,62 @@ class QBankApi
         return $this->categories;
     }
     /**
+     * DeploymentSites are places where Media from QBank may be published to, to allow public access. Protocols define the way the publishing executes.
+     *
+     * @return DeploymentController
+     */
+    public function deployment()
+    {
+        if (!$this->deployment instanceof DeploymentController) {
+            $this->deployment = new DeploymentController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->deployment->setLogger($this->logger);
+        }
+
+        return $this->deployment;
+    }
+    /**
+     * Class Events.
+     *
+     * @return EventsController
+     */
+    public function events()
+    {
+        if (!$this->events instanceof EventsController) {
+            $this->events = new EventsController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->events->setLogger($this->logger);
+        }
+
+        return $this->events;
+    }
+    /**
+     * Filters are used for filtering media by its folder, category or a specific property.
+     *
+     * @return FiltersController
+     */
+    public function filters()
+    {
+        if (!$this->filters instanceof FiltersController) {
+            $this->filters = new FiltersController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->filters->setLogger($this->logger);
+        }
+
+        return $this->filters;
+    }
+    /**
+     * Folders are used to group Media in a hierarchial manner.
+     *
+     * @return FoldersController
+     */
+    public function folders()
+    {
+        if (!$this->folders instanceof FoldersController) {
+            $this->folders = new FoldersController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->folders->setLogger($this->logger);
+        }
+
+        return $this->folders;
+    }
+    /**
      * A Media is any uploaded file in QBank. A Media belongs to a Category and may have customer defined Properties.
      *
      * @return MediaController
@@ -283,6 +231,58 @@ class QBankApi
         }
 
         return $this->media;
+    }
+    /**
+     * Moodboards are public, usually temporary, areas used to expose Media in QBank. Any Media may be added to a Moodboard, which any outside user may then access until the Moodboard expiration date is due. Moodboards can be templated in different ways to fit many purposes.
+     *
+     * @return MoodboardsController
+     */
+    public function moodboards()
+    {
+        if (!$this->moodboards instanceof MoodboardsController) {
+            $this->moodboards = new MoodboardsController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->moodboards->setLogger($this->logger);
+        }
+
+        return $this->moodboards;
+    }
+    /**
+     * PropertySets groups Properties together.
+     *
+     * @return PropertysetsController
+     */
+    public function propertysets()
+    {
+        if (!$this->propertysets instanceof PropertysetsController) {
+            $this->propertysets = new PropertysetsController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->propertysets->setLogger($this->logger);
+        }
+
+        return $this->propertysets;
+    }
+    /**
+     * @return SearchController
+     */
+    public function search()
+    {
+        if (!$this->search instanceof SearchController) {
+            $this->search = new SearchController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->search->setLogger($this->logger);
+        }
+
+        return $this->search;
+    }
+    /**
+     * @return TemplatesController
+     */
+    public function templates()
+    {
+        if (!$this->templates instanceof TemplatesController) {
+            $this->templates = new TemplatesController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->templates->setLogger($this->logger);
+        }
+
+        return $this->templates;
     }
 
     /**
@@ -331,9 +331,9 @@ class QBankApi
                 'base_url' => $this->basepath,
                 'defaults' => [
                     'headers' => [
-                        'Accept'     => 'application/json',
+                        'Accept'       => 'application/json',
                         'Content-type' => 'application/json',
-                        'User-Agent' => 'qbank3api-phpwrapper/1 (qbankapi: 1; swagger: 1.1)',
+                        'User-Agent'   => 'qbank3api-phpwrapper/1 (qbankapi: 1; swagger: 1.1)',
                     ],
                 ],
             ]);
