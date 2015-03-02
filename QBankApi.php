@@ -272,7 +272,7 @@ class QBankApi {
 			}
 			$this->client = new Client($this->basePath);
 			$this->client->addSubscriber($this->oauth2Plugin);
-			$this->client->setDefaultOption('headers', array('Accept' => 'application/json'));
+			$this->client->setDefaultOption('headers', array('Accept' => 'application/json', 'Content-type' => 'application/json'));
 			$this->client->setUserAgent('QBank-API-PHP-Wrapper', true);
 			$this->logger->debug(
 				'Guzzle client instantiated.',

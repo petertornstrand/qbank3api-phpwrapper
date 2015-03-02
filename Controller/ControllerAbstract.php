@@ -56,10 +56,10 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 		try {
 			switch ($method) {
 				case self::METHOD_POST:
-					$request = $this->client->post($endpoint, null, $params);
+					$request = $this->client->post($endpoint, null, json_encode($params));
 					break;
 				case self::METHOD_PUT:
-					$request = $this->client->put($endpoint, null, $params);
+					$request = $this->client->put($endpoint, null, json_encode($params));
 					break;
 				case self::METHOD_GET:
 				default:
