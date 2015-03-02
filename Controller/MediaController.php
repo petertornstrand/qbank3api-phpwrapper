@@ -22,7 +22,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/media/'.$id.'', $parameters);
@@ -51,7 +51,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => ['template' => $template],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/media/'.$id.'/asset', $parameters);
@@ -69,7 +69,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/media/'.$id.'/deployment/files', $parameters);
@@ -92,7 +92,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/media/'.$id.'/deployment/sites', $parameters);
@@ -116,7 +116,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => ['template' => $template],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/media/'.$id.'/download', $parameters);
@@ -135,7 +135,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => ['depth' => $depth],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/media/'.$id.'/folders', $parameters);
@@ -158,7 +158,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/media/'.$id.'/moodboards', $parameters);
@@ -182,7 +182,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => ['ids' => $ids, 'template' => $template],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/media/download', $parameters);
@@ -210,7 +210,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['name' => $name, 'chunk' => $chunk, 'chunks' => $chunks, 'fileId' => $fileId, 'categoryId' => $categoryId],
+            'body'    => json_encode(['name' => $name, 'chunk' => $chunk, 'chunks' => $chunks, 'fileId' => $fileId, 'categoryId' => $categoryId]),
             'headers' => [],
         ];
         $result = $this->post('v1/media', $parameters);
@@ -231,7 +231,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['media' => json_decode(json_encode($media), true)],
+            'body'    => json_encode(['media' => $media]),
             'headers' => [],
         ];
         $result = $this->post('v1/media/'.$id.'', $parameters);
@@ -252,7 +252,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->post('v1/media/'.$id.'/restore', $parameters);
@@ -274,7 +274,7 @@ class MediaController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->delete('v1/media/'.$id.'', $parameters);

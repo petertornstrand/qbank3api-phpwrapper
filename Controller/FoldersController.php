@@ -22,7 +22,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query'   => ['root' => $root, 'depth' => $depth],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/folders', $parameters);
@@ -48,7 +48,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query'   => ['depth' => $depth],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/folders/'.$id.'', $parameters);
@@ -69,7 +69,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/folders/'.$id.'/parents', $parameters);
@@ -93,8 +93,8 @@ class FoldersController extends ControllerAbstract
     public function createFolder($parentId = 0, Folder $folder, $inheritAccess)
     {
         $parameters = [
-            'query'   => ['parentId' => $parentId],
-            'body'    => ['folder'   => json_decode(json_encode($folder), true), 'inheritAccess' => $inheritAccess],
+            'query'   => ['parentId'           => $parentId],
+            'body'    => json_encode(['folder' => $folder, 'inheritAccess' => $inheritAccess]),
             'headers' => [],
         ];
         $result = $this->post('v1/folders', $parameters);
@@ -116,7 +116,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['folder' => json_decode(json_encode($folder), true)],
+            'body'    => json_encode(['folder' => $folder]),
             'headers' => [],
         ];
         $result = $this->post('v1/folders/'.$id.'', $parameters);
@@ -137,7 +137,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->delete('v1/folders/'.$id.'', $parameters);

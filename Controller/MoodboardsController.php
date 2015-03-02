@@ -18,7 +18,7 @@ class MoodboardsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/moodboards', $parameters);
@@ -43,7 +43,7 @@ class MoodboardsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/moodboards/'.$id.'', $parameters);
@@ -64,7 +64,7 @@ class MoodboardsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['moodboard' => json_decode(json_encode($moodboard), true)],
+            'body'    => json_encode(['moodboard' => $moodboard]),
             'headers' => [],
         ];
         $result = $this->post('v1/moodboards', $parameters);
@@ -86,7 +86,7 @@ class MoodboardsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['moodboard' => json_decode(json_encode($moodboard), true)],
+            'body'    => json_encode(['moodboard' => $moodboard]),
             'headers' => [],
         ];
         $result = $this->post('v1/moodboards/'.$id.'', $parameters);
@@ -107,7 +107,7 @@ class MoodboardsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->delete('v1/moodboards/'.$id.'', $parameters);

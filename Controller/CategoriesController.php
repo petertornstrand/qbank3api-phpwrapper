@@ -18,7 +18,7 @@ class CategoriesController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/categories', $parameters);
@@ -43,7 +43,7 @@ class CategoriesController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/categories/'.$id.'', $parameters);
@@ -62,7 +62,7 @@ class CategoriesController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['category' => json_decode(json_encode($category), true)],
+            'body'    => json_encode(['category' => $category]),
             'headers' => [],
         ];
         $result = $this->post('v1/categories', $parameters);
@@ -82,7 +82,7 @@ class CategoriesController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['category' => json_decode(json_encode($category), true)],
+            'body'    => json_encode(['category' => $category]),
             'headers' => [],
         ];
         $result = $this->post('v1/categories/'.$id.'', $parameters);
@@ -103,7 +103,7 @@ class CategoriesController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->delete('v1/categories/'.$id.'', $parameters);

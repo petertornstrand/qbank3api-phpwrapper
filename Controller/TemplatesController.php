@@ -16,7 +16,7 @@ class TemplatesController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/templates/images', $parameters);
@@ -41,7 +41,7 @@ class TemplatesController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/templates/images/'.$id.'', $parameters);
@@ -58,7 +58,7 @@ class TemplatesController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/templates/videos', $parameters);
@@ -83,7 +83,7 @@ class TemplatesController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/templates/videos/'.$id.'', $parameters);

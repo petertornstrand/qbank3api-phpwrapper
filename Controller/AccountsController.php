@@ -22,7 +22,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/functionalities', $parameters);
@@ -47,7 +47,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/functionalities/'.$id.'', $parameters);
@@ -68,7 +68,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/groups', $parameters);
@@ -93,7 +93,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/groups/'.$id.'', $parameters);
@@ -114,7 +114,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/roles', $parameters);
@@ -139,7 +139,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/roles/'.$id.'', $parameters);
@@ -158,7 +158,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/settings', $parameters);
@@ -178,7 +178,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/settings/'.$key.'', $parameters);
@@ -198,7 +198,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/users', $parameters);
@@ -223,7 +223,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/accounts/users/'.$id.'', $parameters);
@@ -243,7 +243,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['key' => $key, 'value' => $value],
+            'body'    => json_encode(['key' => $key, 'value' => $value]),
             'headers' => [],
         ];
         $result = $this->post('v1/accounts/settings', $parameters);
@@ -262,7 +262,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['value' => $value],
+            'body'    => json_encode(['value' => $value]),
             'headers' => [],
         ];
         $result = $this->put('v1/accounts/settings/'.$key.'', $parameters);

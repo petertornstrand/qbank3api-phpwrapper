@@ -20,7 +20,7 @@ class FiltersController extends ControllerAbstract
     {
         $parameters = [
             'query'   => ['deploymentSiteIds' => $deploymentSiteIds],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/filters/categories/'.$categoryIds.'', $parameters);
@@ -47,7 +47,7 @@ class FiltersController extends ControllerAbstract
     {
         $parameters = [
             'query'   => ['categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/filters/folder/'.$parentFolderId.'', $parameters);
@@ -75,7 +75,7 @@ class FiltersController extends ControllerAbstract
     {
         $parameters = [
             'query'   => ['preloadNames' => $preloadNames, 'categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/filters/property/'.$systemName.'', $parameters);

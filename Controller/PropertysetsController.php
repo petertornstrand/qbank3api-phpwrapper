@@ -16,7 +16,7 @@ class PropertysetsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/propertysets', $parameters);
@@ -37,7 +37,7 @@ class PropertysetsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/propertysets/propertytypes', $parameters);

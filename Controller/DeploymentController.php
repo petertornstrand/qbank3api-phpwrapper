@@ -17,7 +17,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/deployment/protocols', $parameters);
@@ -40,7 +40,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/deployment/protocols/'.$id.'', $parameters);
@@ -59,7 +59,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/deployment/sites', $parameters);
@@ -82,7 +82,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/deployment/sites/'.$id.'', $parameters);
@@ -101,7 +101,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['deploymentSite' => json_decode(json_encode($deploymentSite), true)],
+            'body'    => json_encode(['deploymentSite' => $deploymentSite]),
             'headers' => [],
         ];
         $result = $this->post('v1/deployment', $parameters);
@@ -121,7 +121,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['deploymentSite' => json_decode(json_encode($deploymentSite), true)],
+            'body'    => json_encode(['deploymentSite' => $deploymentSite]),
             'headers' => [],
         ];
         $result = $this->post('v1/deployment/'.$id.'', $parameters);
@@ -142,7 +142,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->delete('v1/deployment/'.$id.'', $parameters);

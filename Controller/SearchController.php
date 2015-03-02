@@ -14,7 +14,7 @@ class SearchController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => [],
+            'body'    => json_encode([]),
             'headers' => [],
         ];
         $result = $this->get('v1/search/metadata', $parameters);
@@ -34,7 +34,7 @@ class SearchController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['search' => json_decode(json_encode($search), true)],
+            'body'    => json_encode(['search' => $search]),
             'headers' => [],
         ];
         $result = $this->post('v1/search', $parameters);

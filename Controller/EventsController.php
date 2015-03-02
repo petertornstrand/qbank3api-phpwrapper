@@ -17,7 +17,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['sessionId' => $sessionId, 'downloads' => json_decode(json_encode($downloads), true)],
+            'body'    => json_encode(['sessionId' => $sessionId, 'downloads' => $downloads]),
             'headers' => [],
         ];
         $result = $this->post('v1/events/download', $parameters);
@@ -35,7 +35,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['sessionId' => $sessionId, 'search' => json_decode(json_encode($search), true), 'hits' => $hits],
+            'body'    => json_encode(['sessionId' => $sessionId, 'search' => $search, 'hits' => $hits]),
             'headers' => [],
         ];
         $result = $this->post('v1/events/search', $parameters);
@@ -56,7 +56,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['sourceId' => $sourceId, 'sessionHash' => $sessionHash, 'remoteIp' => $remoteIp, 'userAgent' => $userAgent],
+            'body'    => json_encode(['sourceId' => $sourceId, 'sessionHash' => $sessionHash, 'remoteIp' => $remoteIp, 'userAgent' => $userAgent]),
             'headers' => [],
         ];
         $result = $this->post('v1/events/session', $parameters);
@@ -73,7 +73,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query'   => [],
-            'body'    => ['sessionId' => $sessionId, 'mediaId' => $mediaId],
+            'body'    => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId]),
             'headers' => [],
         ];
         $result = $this->post('v1/events/view', $parameters);
