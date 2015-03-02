@@ -332,12 +332,12 @@ class QBankApi
                 'defaults' => [
                     'headers' => [
                         'Accept'     => 'application/json',
+                        'Content-type' => 'application/json',
                         'User-Agent' => 'qbank3api-phpwrapper/1 (qbankapi: 1; swagger: 1.1)',
                     ],
                 ],
             ]);
             $this->client->getEmitter()->attach($this->getOAuth2Subscriber());
-            $this->client->setDefaultOption('headers', ['Accept' => 'application/json']);
             $this->logger->debug('Guzzle client instantiated.', ['basepath' => $this->basepath]);
         }
 
