@@ -89,6 +89,12 @@ class Folder implements \JsonSerializable  {
 	 */
 	protected $typeId;
 
+	/**
+	 * The Folder parent identifier.
+	 * @var int
+	 */
+	protected $parentId;
+
 
 	/**
 	 * Constructs a {@link Folder }.
@@ -159,7 +165,11 @@ class Folder implements \JsonSerializable  {
 		if (isset($parameters['typeId'])) {
 			$this->setTypeId($parameters['typeId']);
 		}
-	
+
+		if (isset($parameters['parentId'])) {
+			$this->setParentId($parameters['parentId']);
+		}
+
 	}
 
 
@@ -447,6 +457,24 @@ class Folder implements \JsonSerializable  {
 		return $this;
 	}
 
+	/**
+	 * Sets the "id" of the parent Folder
+	 * @param int $id
+	 * @return $this
+	 */
+	protected function setParentId($id) {
+		$this->parentId = $id;
+		return $this;
+	}
+
+	/**
+	 * Gets the "id" of the parent Folder
+ 	 * @return int
+ 	 */
+	public function getParentId() {
+		return $this->parentId;
+	}
+
 
 	/**
 	 * Gets all data that should be available in a json representation.
@@ -490,6 +518,9 @@ class Folder implements \JsonSerializable  {
 		}
 		if ($this->typeId !== null) {
 			$array['typeId'] = $this->typeId;
+		}
+		if ($this->parentId !== null) {
+			$array['parentId'] = $this->parentId;
 		}
 		return $array;
 	}
