@@ -79,7 +79,7 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * The connected VideoTemplates.
-	 * @var \QBNK\QBank\Api\v1\Model\Templates\Video[]
+	 * @var Video[]
 	 */
 	protected $videotemplates;
 
@@ -355,7 +355,7 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Gets the videotemplates of the DeploymentSite
-	 * @return \QBNK\QBank\Api\v1\Model\Templates\Video[]
+	 * @return Video[]
 	 */
 	public function getVideotemplates() {
 		return $this->videotemplates;
@@ -593,22 +593,22 @@ class DeploymentSite implements \JsonSerializable  {
 
 	/**
 	 * Sets the "videotemplates" of the DeploymentSite
-	 * @param \QBNK\QBank\Api\v1\Model\Templates\Video[] $videotemplates
+	 * @param Video[] $videotemplates
 	 * @return $this
 	 */
 	protected function setVideotemplates($videotemplates) {
 		if (is_array($videotemplates)) {
 			$this->videotemplates = array();
 			foreach ($videotemplates as $item) {
-				if (!($item instanceof \QBNK\QBank\Api\v1\Model\Templates\Video)) {
+				if (!($item instanceof Video)) {
 					if (is_array($item)) {
 						try {
-							$item = new \QBNK\QBank\Api\v1\Model\Templates\Video($item);
+							$item = new Video($item);
 						} catch (\Exception $e) {
-							trigger_error('Could not auto-instantiate \QBNK\QBank\Api\v1\Model\Templates\Video. '.$e->getMessage(), E_USER_WARNING);
+							trigger_error('Could not auto-instantiate Video. '.$e->getMessage(), E_USER_WARNING);
 						}
 					} else {
-						trigger_error('Array parameter item is not of expected type "\QBNK\QBank\Api\v1\Model\Templates\Video"!', E_USER_WARNING);
+						trigger_error('Array parameter item is not of expected type "Video"!', E_USER_WARNING);
 						continue;
 					}
 				}
