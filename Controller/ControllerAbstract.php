@@ -198,9 +198,6 @@ abstract class ControllerAbstract implements LoggerAwareInterface {
 							throw new \Exception('Could not get access token for delayed request');
 						}
 						$request->addHeader('Authorization', 'Bearer ' . $accessToken['access_token']);
-						if ($request instanceof EntityEnclosingRequest) {
-							$request->addHeader('Content-length', strlen($request->getPostFields()));
-						}
 						$bytesWritten = 0;
 						$bytesTotal = strlen($request->__toString());
 						$closed = false;
