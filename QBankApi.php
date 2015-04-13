@@ -312,7 +312,16 @@ class QBankApi
      */
     protected function buildBasepath($url)
     {
+        if (!preg_match('#(\w+:)?//#', $url)) {
+            $url = '//'.$url;
+        }
+
         $urlParts = parse_url($url);
+
+        if ($urlParts === false) {
+            throw new InvalidArgumentException('Could not parse QBank URL.');
+        }
+
         // Default to HTTP
         if (empty($urlParts['scheme'])) {
             $urlParts['scheme'] = 'http';
