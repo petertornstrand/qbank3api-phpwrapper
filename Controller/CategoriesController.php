@@ -12,7 +12,7 @@ class CategoriesController extends ControllerAbstract
      *
      * Lists all categories that the current user has access to.
      *
-     * @return Category[]
+     * @return CategoryResponse[]
      */
     public function listCategories()
     {
@@ -23,7 +23,7 @@ class CategoriesController extends ControllerAbstract
         ];
         $result = $this->get('v1/categories', $parameters);
         foreach ($result as &$entry) {
-            $entry = new Category($entry);
+            $entry = new CategoryResponse($entry);
         }
         unset($entry);
         reset($result);
@@ -37,7 +37,7 @@ class CategoriesController extends ControllerAbstract
      *
      * @param int $id The Category identifier.
      *
-     * @return Category
+     * @return CategoryResponse
      */
     public function retrieveCategory($id)
     {
@@ -47,7 +47,7 @@ class CategoriesController extends ControllerAbstract
             'headers' => [],
         ];
         $result = $this->get('v1/categories/'.$id.'', $parameters);
-        $result = new Category($result);
+        $result = new CategoryResponse($result);
 
         return $result;
     }

@@ -5,74 +5,79 @@ namespace QBNK\QBank\API\Model;
 use DateTime;
 use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-class FolderResponse extends Folder implements \JsonSerializable
+class ObjectType  implements \JsonSerializable
 {
     /**
-     * The Folder identifier.
+     * The name of the ObjectType.
+     * @val string	 */
+    protected $name;
+    /**
+     * A description of the ObjectType.
+     * @val string	 */
+    protected $description;
+    /**
+     * The type of Object Type.
+     * @val string	 */
+    protected $type;
+    /**
+     * The id of the ObjectType.
      * @val int	 */
     protected $id;
     /**
-     * The Folder's children, ie. subfolders.
-     * @val Folder[]	 */
-    protected $subFolders;
-    /**
-     * The base Object identifier.
-     * @val int	 */
-    protected $objectId;
-    /**
-     * When the Object was created.
+     * When the ObjectType was created.
      * @val DateTime	 */
     protected $created;
     /**
-     * The identifier of the User who created the Object.
+     * The identifier of the User who created the ObjectType.
      * @val int	 */
     protected $createdBy;
     /**
-     * When the Object was updated.
+     * When the ObjectType was updated.
      * @val DateTime	 */
     protected $updated;
     /**
-     * Which user that updated the Object.
+     * Which user that updated the ObjectType.
      * @val int	 */
     protected $updatedBy;
-    /**
-     * Whether the object has been modified since constructed.
-     * @val bool	 */
-    protected $dirty;
     /**
      * The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
      * @val PropertySet[]	 */
     protected $propertySets;
+    /**
+     * Whether this ObjectType is deleted.
+     * @val bool	 */
+    protected $deleted;
 
     /**
-     * Constructs a FolderResponse.
+     * Constructs a ObjectType.
      *
-     * @param array $parameters An array of parameters to initialize the { @link FolderResponse } with.
-     * - <b>id</b> - The Folder identifier.
-     * - <b>subFolders</b> - The Folder's children, ie. subfolders.
-     * - <b>objectId</b> - The base Object identifier.
-     * - <b>created</b> - When the Object was created.
-     * - <b>createdBy</b> - The identifier of the User who created the Object.
-     * - <b>updated</b> - When the Object was updated.
-     * - <b>updatedBy</b> - Which user that updated the Object.
-     * - <b>dirty</b> - Whether the object has been modified since constructed.
+     * @param array $parameters An array of parameters to initialize the { @link ObjectType } with.
+     * - <b>name</b> - The name of the ObjectType
+     * - <b>description</b> - A description of the ObjectType
+     * - <b>type</b> - The type of Object Type.
+     * - <b>id</b> - The id of the ObjectType
+     * - <b>created</b> - When the ObjectType was created.
+     * - <b>createdBy</b> - The identifier of the User who created the ObjectType.
+     * - <b>updated</b> - When the ObjectType was updated.
+     * - <b>updatedBy</b> - Which user that updated the ObjectType.
      * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     * - <b>deleted</b> - Whether this ObjectType is deleted.
      */
     public function __construct($parameters = [])
     {
-        parent::__construct($parameters);
-
-        $this->subFolders   = [];
         $this->propertySets = [];
 
+        if (isset($parameters['name'])) {
+            $this->setName($parameters['name']);
+        }
+        if (isset($parameters['description'])) {
+            $this->setDescription($parameters['description']);
+        }
+        if (isset($parameters['type'])) {
+            $this->setType($parameters['type']);
+        }
         if (isset($parameters['id'])) {
             $this->setId($parameters['id']);
-        }
-        if (isset($parameters['subFolders'])) {
-            $this->setSubFolders($parameters['subFolders']);
-        }
-        if (isset($parameters['objectId'])) {
-            $this->setObjectId($parameters['objectId']);
         }
         if (isset($parameters['created'])) {
             $this->setCreated($parameters['created']);
@@ -86,16 +91,79 @@ class FolderResponse extends Folder implements \JsonSerializable
         if (isset($parameters['updatedBy'])) {
             $this->setUpdatedBy($parameters['updatedBy']);
         }
-        if (isset($parameters['dirty'])) {
-            $this->setDirty($parameters['dirty']);
-        }
         if (isset($parameters['propertySets'])) {
             $this->setPropertySets($parameters['propertySets']);
+        }
+        if (isset($parameters['deleted'])) {
+            $this->setDeleted($parameters['deleted']);
         }
     }
 
     /**
-     * Gets the id of the FolderResponse.
+     * Gets the name of the ObjectType.
+     * @return string	 */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Sets the "name" of the ObjectType.
+     *
+     * @param string $name
+     *
+     * @return ObjectType
+     */
+    public function setName($name)
+    {
+        $this->name =  $name;
+
+        return $this;
+    }
+    /**
+     * Gets the description of the ObjectType.
+     * @return string	 */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Sets the "description" of the ObjectType.
+     *
+     * @param string $description
+     *
+     * @return ObjectType
+     */
+    public function setDescription($description)
+    {
+        $this->description =  $description;
+
+        return $this;
+    }
+    /**
+     * Gets the type of the ObjectType.
+     * @return string	 */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Sets the "type" of the ObjectType.
+     *
+     * @param string $type
+     *
+     * @return ObjectType
+     */
+    public function setType($type)
+    {
+        $this->type =  $type;
+
+        return $this;
+    }
+    /**
+     * Gets the id of the ObjectType.
      * @return int	 */
     public function getId()
     {
@@ -103,11 +171,11 @@ class FolderResponse extends Folder implements \JsonSerializable
     }
 
     /**
-     * Sets the "id" of the FolderResponse.
+     * Sets the "id" of the ObjectType.
      *
      * @param int $id
      *
-     * @return FolderResponse
+     * @return ObjectType
      */
     public function setId($id)
     {
@@ -116,66 +184,7 @@ class FolderResponse extends Folder implements \JsonSerializable
         return $this;
     }
     /**
-     * Gets the subFolders of the FolderResponse.
-     * @return Folder[]	 */
-    public function getSubFolders()
-    {
-        return $this->subFolders;
-    }
-
-    /**
-     * Sets the "subFolders" of the FolderResponse.
-     *
-     * @param Folder[] $subFolders
-     *
-     * @return FolderResponse
-     */
-    public function setSubFolders($subFolders)
-    {
-        if (is_array($subFolders)) {
-            $this->subFolders = [];
-            foreach ($subFolders as $item) {
-                if (!($item instanceof Folder)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new Folder($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate Folder. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "Folder"!', E_USER_WARNING);
-                        continue;
-                    }
-                }
-                $this->subFolders[] = $item;
-            }
-        }
-
-        return $this;
-    }
-    /**
-     * Gets the objectId of the FolderResponse.
-     * @return int	 */
-    public function getObjectId()
-    {
-        return $this->objectId;
-    }
-
-    /**
-     * Sets the "objectId" of the FolderResponse.
-     *
-     * @param int $objectId
-     *
-     * @return FolderResponse
-     */
-    public function setObjectId($objectId)
-    {
-        $this->objectId =  $objectId;
-
-        return $this;
-    }
-    /**
-     * Gets the created of the FolderResponse.
+     * Gets the created of the ObjectType.
      * @return DateTime	 */
     public function getCreated()
     {
@@ -183,11 +192,11 @@ class FolderResponse extends Folder implements \JsonSerializable
     }
 
     /**
-     * Sets the "created" of the FolderResponse.
+     * Sets the "created" of the ObjectType.
      *
      * @param DateTime $created
      *
-     * @return FolderResponse
+     * @return ObjectType
      */
     public function setCreated($created)
     {
@@ -204,7 +213,7 @@ class FolderResponse extends Folder implements \JsonSerializable
         return $this;
     }
     /**
-     * Gets the createdBy of the FolderResponse.
+     * Gets the createdBy of the ObjectType.
      * @return int	 */
     public function getCreatedBy()
     {
@@ -212,11 +221,11 @@ class FolderResponse extends Folder implements \JsonSerializable
     }
 
     /**
-     * Sets the "createdBy" of the FolderResponse.
+     * Sets the "createdBy" of the ObjectType.
      *
      * @param int $createdBy
      *
-     * @return FolderResponse
+     * @return ObjectType
      */
     public function setCreatedBy($createdBy)
     {
@@ -225,7 +234,7 @@ class FolderResponse extends Folder implements \JsonSerializable
         return $this;
     }
     /**
-     * Gets the updated of the FolderResponse.
+     * Gets the updated of the ObjectType.
      * @return DateTime	 */
     public function getUpdated()
     {
@@ -233,11 +242,11 @@ class FolderResponse extends Folder implements \JsonSerializable
     }
 
     /**
-     * Sets the "updated" of the FolderResponse.
+     * Sets the "updated" of the ObjectType.
      *
      * @param DateTime $updated
      *
-     * @return FolderResponse
+     * @return ObjectType
      */
     public function setUpdated($updated)
     {
@@ -254,7 +263,7 @@ class FolderResponse extends Folder implements \JsonSerializable
         return $this;
     }
     /**
-     * Gets the updatedBy of the FolderResponse.
+     * Gets the updatedBy of the ObjectType.
      * @return int	 */
     public function getUpdatedBy()
     {
@@ -262,11 +271,11 @@ class FolderResponse extends Folder implements \JsonSerializable
     }
 
     /**
-     * Sets the "updatedBy" of the FolderResponse.
+     * Sets the "updatedBy" of the ObjectType.
      *
      * @param int $updatedBy
      *
-     * @return FolderResponse
+     * @return ObjectType
      */
     public function setUpdatedBy($updatedBy)
     {
@@ -275,28 +284,7 @@ class FolderResponse extends Folder implements \JsonSerializable
         return $this;
     }
     /**
-     * Tells whether the FolderResponse is dirty.
-     * @return bool	 */
-    public function isDirty()
-    {
-        return $this->dirty;
-    }
-
-    /**
-     * Sets the "dirty" of the FolderResponse.
-     *
-     * @param bool $dirty
-     *
-     * @return FolderResponse
-     */
-    public function setDirty($dirty)
-    {
-        $this->dirty =  $dirty;
-
-        return $this;
-    }
-    /**
-     * Gets the propertySets of the FolderResponse.
+     * Gets the propertySets of the ObjectType.
      * @return PropertySet[]	 */
     public function getPropertySets()
     {
@@ -325,11 +313,11 @@ class FolderResponse extends Folder implements \JsonSerializable
     }
 
     /**
-     * Sets the "propertySets" of the FolderResponse.
+     * Sets the "propertySets" of the ObjectType.
      *
      * @param PropertySet[] $propertySets
      *
-     * @return FolderResponse
+     * @return ObjectType
      */
     public function setPropertySets($propertySets)
     {
@@ -354,6 +342,27 @@ class FolderResponse extends Folder implements \JsonSerializable
 
         return $this;
     }
+    /**
+     * Tells whether the ObjectType is deleted.
+     * @return bool	 */
+    public function isDeleted()
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * Sets the "deleted" of the ObjectType.
+     *
+     * @param bool $deleted
+     *
+     * @return ObjectType
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted =  $deleted;
+
+        return $this;
+    }
 
     /**
      * Gets all data that should be available in a json representation.
@@ -362,16 +371,19 @@ class FolderResponse extends Folder implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = parent::jsonSerialize();
+        $json = [];
 
+        if ($this->name !== null) {
+            $json['name'] = $this->name;
+        }
+        if ($this->description !== null) {
+            $json['description'] = $this->description;
+        }
+        if ($this->type !== null) {
+            $json['type'] = $this->type;
+        }
         if ($this->id !== null) {
             $json['id'] = $this->id;
-        }
-        if ($this->subFolders !== null && !empty($this->subFolders)) {
-            $json['subFolders'] = $this->subFolders;
-        }
-        if ($this->objectId !== null) {
-            $json['objectId'] = $this->objectId;
         }
         if ($this->created !== null) {
             $json['created'] = $this->created;
@@ -385,11 +397,11 @@ class FolderResponse extends Folder implements \JsonSerializable
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->dirty !== null) {
-            $json['dirty'] = $this->dirty;
-        }
         if ($this->propertySets !== null && !empty($this->propertySets)) {
             $json['propertySets'] = $this->propertySets;
+        }
+        if ($this->deleted !== null) {
+            $json['deleted'] = $this->deleted;
         }
 
         return $json;

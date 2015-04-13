@@ -86,7 +86,7 @@ class FoldersController extends ControllerAbstract
      *
      * @param int $parentId An optional parent folder ID. Will otherwise be created in the root level. Note that root level creation requires additional access!.
      * @param Folder $folder A JSON encoded Folder to create
-     * @param bool $inheritAccess Decides wheather this Folder will inherit access from its parent folder
+     * @param bool $inheritAccess Decides whether this Folder will inherit access from its parent folder
      *
      * @return FolderResponse
      */
@@ -99,6 +99,26 @@ class FoldersController extends ControllerAbstract
         ];
         $result = $this->post('v1/folders', $parameters);
         $result = new FolderResponse($result);
+
+        return $result;
+    }
+    /**
+     * Add Media to Folder.
+     *
+     * @param int $folderId Folder to add media to.
+     * @param array $mediaIds Paste JSON array data here (required) . <br/>An array of media ids to add to the specified folder.
+     *
+     * @return Folder
+     */
+    public function addMediaToFolder($folderId, $mediaIds)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['mediaIds' => $mediaIds]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/folders/'.$folderId.'/media', $parameters);
+        $result = new Folder($result);
 
         return $result;
     }
@@ -121,6 +141,25 @@ class FoldersController extends ControllerAbstract
         ];
         $result = $this->post('v1/folders/'.$id.'', $parameters);
         $result = new FolderResponse($result);
+
+        return $result;
+    }
+    /**
+     * Remove Media from Folder.
+     *
+     * @param int $folderId Folder to remove media from.
+     * @param int $mediaId Media to remove from specified folder.
+     *
+     * @return array
+     */
+    public function removeMediaFromFolder($folderId, $mediaId)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->delete('v1/folders/'.$folderId.'/media/'.$mediaId.'', $parameters);
 
         return $result;
     }

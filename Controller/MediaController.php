@@ -111,11 +111,14 @@ class MediaController extends ControllerAbstract
      *
      * @param int $id The Media identifier.
      * @param string $template Optional template to download the media in.
+     * @param string $templateType Indicates type of template, valid values are; image, video.
+     *
+     * @return array
      */
-    public function download($id, $template = null)
+    public function download($id, $template = null, $templateType = image)
     {
         $parameters = [
-            'query'   => ['template' => $template],
+            'query'   => ['template' => $template, 'templateType' => $templateType],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -192,7 +195,7 @@ class MediaController extends ControllerAbstract
     /**
      * Upload a new media to QBank.
      *
-     * This upload endpoint have been specially tailored to fit plupload2 chunked uploading. Max chunk size is about 10mb, if your files is larger then this, split it up and set correct chunk and chunks argument in the call.
+     * This upload endpoint has been specifically tailored to fit chunked uploading (works well with Plupload2 for example). Max chunk size is about 10mb, if your files are larger then this, split it up and set correct chunk and chunks argument in the call.
      *  For example a 26mb file might be split in 3 chunks, so the following 3 calls should be made
      *  POST /media.json?chunks=3&chunk=0&filename=largefile.txt&categoryId=1 (file data is sent in body)
      *  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
@@ -257,6 +260,28 @@ class MediaController extends ControllerAbstract
         ];
         $result = $this->post('v1/media/'.$id.'/restore', $parameters);
         $result = new MediaResponse($result);
+
+        return $result;
+    }
+    /**
+     * Change status of a Media.
+     *
+     * This is used to move media from the uploaded tab into the library.
+     *  Possible statuses are: <ul> <li>approved</li> </ul>
+     *
+     * @param int $id The Media identifier.
+     * @param string $status The new status of the media
+     *
+     * @return array
+     */
+    public function setStatus($id, $status)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['status' => $status]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media/'.$id.'/status', $parameters);
 
         return $result;
     }

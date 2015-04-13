@@ -61,6 +61,10 @@ class Search  implements \JsonSerializable
      * @val int[]	 */
     protected $categoryIds;
     /**
+     * Indicates that we should ignore grouping and return child objects in the result.
+     * @val bool	 */
+    protected $ignoreGrouping;
+    /**
      * Search for media that have this media as parent.
      * @val int	 */
     protected $parentId;
@@ -119,6 +123,7 @@ class Search  implements \JsonSerializable
      * - <b>folderDepth</b> - The depth of folders to fetch objects from when doing folder searches
      * - <b>moodboardIds</b> - An array with MoodboardIds to search within
      * - <b>categoryIds</b> - An array with CategoryIds to search within
+     * - <b>ignoreGrouping</b> - Indicates that we should ignore grouping and return child objects in the result
      * - <b>parentId</b> - Search for media that have this media as parent
      * - <b>deploymentSiteIds</b> - An array with DeploymentSiteIds to search within
      * - <b>properties</b> - An array of Properties to filter by
@@ -193,6 +198,9 @@ class Search  implements \JsonSerializable
         }
         if (isset($parameters['categoryIds'])) {
             $this->setCategoryIds($parameters['categoryIds']);
+        }
+        if (isset($parameters['ignoreGrouping'])) {
+            $this->setIgnoreGrouping($parameters['ignoreGrouping']);
         }
         if (isset($parameters['parentId'])) {
             $this->setParentId($parameters['parentId']);
@@ -535,6 +543,27 @@ class Search  implements \JsonSerializable
         return $this;
     }
     /**
+     * Tells whether the Search is ignoreGrouping.
+     * @return bool	 */
+    public function isIgnoreGrouping()
+    {
+        return $this->ignoreGrouping;
+    }
+
+    /**
+     * Sets the "ignoreGrouping" of the Search.
+     *
+     * @param bool $ignoreGrouping
+     *
+     * @return Search
+     */
+    public function setIgnoreGrouping($ignoreGrouping)
+    {
+        $this->ignoreGrouping =  $ignoreGrouping;
+
+        return $this;
+    }
+    /**
      * Gets the parentId of the Search.
      * @return int	 */
     public function getParentId()
@@ -836,6 +865,9 @@ class Search  implements \JsonSerializable
         }
         if ($this->categoryIds !== null && !empty($this->categoryIds)) {
             $json['categoryIds'] = $this->categoryIds;
+        }
+        if ($this->ignoreGrouping !== null) {
+            $json['ignoreGrouping'] = $this->ignoreGrouping;
         }
         if ($this->parentId !== null) {
             $json['parentId'] = $this->parentId;

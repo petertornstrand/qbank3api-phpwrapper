@@ -19,6 +19,7 @@ use QBNK\QBank\API\Controller\FiltersController;
 use QBNK\QBank\API\Controller\FoldersController;
 use QBNK\QBank\API\Controller\MediaController;
 use QBNK\QBank\API\Controller\MoodboardsController;
+use QBNK\QBank\API\Controller\ObjecttypesController;
 use QBNK\QBank\API\Controller\PropertysetsController;
 use QBNK\QBank\API\Controller\SearchController;
 use QBNK\QBank\API\Controller\TemplatesController;
@@ -76,6 +77,9 @@ class QBankApi
 
     /** @var MoodboardsController */
     protected $moodboards;
+
+    /** @var ObjecttypesController */
+    protected $objecttypes;
 
     /** @var PropertysetsController */
     protected $propertysets;
@@ -245,6 +249,20 @@ class QBankApi
         }
 
         return $this->moodboards;
+    }
+    /**
+     * Object types define sets of propertySets that can be applied to any Object of the corresponding object type class, such as a Media or a Folder.
+     *
+     * @return ObjecttypesController
+     */
+    public function objecttypes()
+    {
+        if (!$this->objecttypes instanceof ObjecttypesController) {
+            $this->objecttypes = new ObjecttypesController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->objecttypes->setLogger($this->logger);
+        }
+
+        return $this->objecttypes;
     }
     /**
      * PropertySets groups Properties together.

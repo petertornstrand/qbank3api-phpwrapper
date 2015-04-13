@@ -28,7 +28,7 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
      * @val DateTime	 */
     protected $updated;
     /**
-     * Which user who updated the Object.
+     * Which user that updated the Object.
      * @val int	 */
     protected $updatedBy;
     /**
@@ -49,7 +49,7 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
      * - <b>created</b> - When the Object was created.
      * - <b>createdBy</b> - The identifier of the User who created the Object.
      * - <b>updated</b> - When the Object was updated.
-     * - <b>updatedBy</b> - Which user who updated the Object.
+     * - <b>updatedBy</b> - Which user that updated the Object.
      * - <b>dirty</b> - Whether the object has been modified since constructed.
      * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
      */
