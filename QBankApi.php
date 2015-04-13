@@ -436,7 +436,7 @@ class QBankApi
     public function setCachedToken(TokenData $token)
     {
         if ($this->cache instanceof Cache) {
-            $this->cache->save('oauth2token', $token, 3600 * 24 * 13);
+            $this->cache->save('oauth2token', serialize($token), 3600 * 24 * 13);
         }
     }
 
@@ -449,7 +449,7 @@ class QBankApi
     {
         $token = $this->oauth2Subscriber->getTokenData();
         if (!$token->accessToken && $this->cache instanceof Cache && $this->cache->contains('oauth2token')) {
-            $token = $this->cache->fetch('oauth2token');
+            $token = unserialize($this->cache->fetch('oauth2token'));
         }
 
         return $token->accessToken ? $token : null;
