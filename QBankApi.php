@@ -312,11 +312,6 @@ class QBankApi
      */
     protected function buildBasepath($url)
     {
-        // If no scheme, use
-        if (preg_match('/^(.*:)?\/\//', $url) === 0) {
-            $url = '//'.$url;
-        }
-
         $urlParts = parse_url($url);
         // Default to HTTP
         if (empty($urlParts['scheme'])) {
@@ -334,7 +329,7 @@ class QBankApi
             $urlParts['path'] .= '/';
         }
 
-        return $urlParts['scheme'].'://'.$urlParts['host'].$urlParts['path'];
+        return $urlParts['scheme'].'://'.$urlParts['host'].(!empty($urlParts['port']) ? ':'.$urlParts['port'] : '').$urlParts['path'];
     }
 
     /**
