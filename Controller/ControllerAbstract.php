@@ -74,11 +74,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
                     'endpoint'   => $endpoint,
                     'parameters' => $parameters,
                     'method'     => $method,
-                    'response'   => substr($response, 0, 4096),
+                    'response'   => substr(print_r($response, true), 0, 4096),
                 ]
             );
 
-            return $this->cache->fetch(md5($endpoint.json_encode($parameters)));
+            return $response;
         }
 
         try {
