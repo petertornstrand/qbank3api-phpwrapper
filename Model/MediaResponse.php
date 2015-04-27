@@ -612,7 +612,7 @@ class MediaResponse extends Media implements \JsonSerializable
     /**
      * Gets a DeployedFile.
      *
-     * @param int $templateId The id of the template to get.
+     * @param int|null $templateId The id of the template to get. Null for the original file.
      * @param string $templateType The type of template.
      * @param int $siteId The DeploymentSite id to get the template for. If not supplied, first available will be used.
      *
@@ -625,7 +625,8 @@ class MediaResponse extends Media implements \JsonSerializable
         foreach ($this->deployedFiles as $deployedFile) {
             /* @var DeploymentFile $deployedFile */
             if (($templateType == self::TEMPLATE_IMAGE && $templateId == $deployedFile->getImageTemplateId()) ||
-                ($templateType == self::TEMPLATE_VIDEO && $templateId == $deployedFile->getVideoTemplateId())) {
+                ($templateType == self::TEMPLATE_VIDEO && $templateId == $deployedFile->getVideoTemplateId()) ||
+                ($templateId === null && $deployedFile->getImageTemplateId() === null && $deployedFile->getVideoTemplateId() === null)) {
                 if ($siteId === null || $siteId == $deployedFile->getDeployMentSiteId()) {
                     return $deployedFile;
                 }
