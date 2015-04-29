@@ -124,8 +124,20 @@ abstract class ControllerAbstract implements LoggerAwareInterface
                     'response'   => $re->hasResponse() ? substr($re->getResponse()->getBody(), 0, 4096) : '',
                 ]
             );
+            $message = null;
+            if ($re->hasResponse() && strpos($re->getResponse()->getHeader('content-type'), 'application/json') === 0) {
+                $content = $re->getResponse()->json();
+                if (isset($content['error']['message'])) {
+                    $message = ' [info]'.$content['error']['message'];
+                }
+                if (isset($content['error']['errors']) && is_array($content['error']['errors'])) {
+                    foreach ($content['error']['errors'] as $key => $error) {
+                        $message .= "\n\t$key: $error";
+                    }
+                }
+            }
             throw new RequestException(
-                'Error while sending request to QBank: '.$re->getMessage(),
+                'Error while sending request to QBank: '.$re->getMessage().$message,
                 $re->hasResponse() ? $re->getResponse()->getStatusCode() : 0,
                 $re
             );
