@@ -232,6 +232,11 @@ class MediaController extends ControllerAbstract
      */
     public function updateMedia($id, Media $media)
     {
+        if ($media instanceof MediaResponse) {
+            // Downcast to skip unnecessary params.
+        $media = new Media(json_decode(json_encode($media), true));
+        }
+
         $parameters = [
             'query'   => [],
             'body'    => json_encode(['media' => $media]),
