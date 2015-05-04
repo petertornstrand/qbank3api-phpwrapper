@@ -6,9 +6,7 @@ use The;
 
 class Command  implements \JsonSerializable
 {
-    /**
-     * name of the command.
-     * @val The	 */
+    /** @var The name of the command */
     protected $class;
 
     /**

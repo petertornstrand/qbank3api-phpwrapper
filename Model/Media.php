@@ -4,37 +4,28 @@ namespace QBNK\QBank\API\Model;
 
 class Media  implements \JsonSerializable
 {
-    /**
-     * The Category identifier of the Category the Media belongs to.
-     * @val int	 */
+    /** @var int The Category identifier of the Category the Media belongs to. */
     protected $categoryId;
-    /**
-     * The Media's filename.
-     * @val string	 */
+
+    /** @var string The Media's filename. */
     protected $filename;
-    /**
-     * The Media parent Media identifier. Only set when the Media is grouped.
-     * @val int	 */
+
+    /** @var int The Media parent Media identifier. Only set when the Media is grouped. */
     protected $parentId;
-    /**
-     * The Media replacement Media identifier. Only set when the Media has been replaced, ie. versioning.
-     * @val int	 */
+
+    /** @var int The Media replacement Media identifier. Only set when the Media has been replaced, ie. versioning. */
     protected $replacedBy;
-    /**
-     * The Objects name.
-     * @val string	 */
+
+    /** @var string The Objects name. */
     protected $name;
-    /**
-     * Whether the object is deleted.
-     * @val bool	 */
+
+    /** @var bool Whether the object is deleted. */
     protected $deleted;
-    /**
-     * A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     * @val string[]	 */
+
+    /** @var string[] A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object. */
     protected $properties;
-    /**
-     * The identifier of the ObjectType describing the propertysets this object should use.
-     * @val int	 */
+
+    /** @var int The identifier of the ObjectType describing the propertysets this object should use. */
     protected $typeId;
 
     /**

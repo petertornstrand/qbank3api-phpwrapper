@@ -4,17 +4,13 @@ namespace QBNK\QBank\API\Model;
 
 class PropertyCriteria  implements \JsonSerializable
 {
-    /**
-     * The system name of the Property we filter on.
-     * @val string	 */
+    /** @var string The system name of the Property we filter on */
     protected $systemName;
-    /**
-     * The value we filter by.
-     * @val string	 */
+
+    /** @var string The value we filter by */
     protected $value;
-    /**
-     * Comparison operator for the criteria.
-     * @val string	 */
+
+    /** @var string Comparison operator for the criteria */
     protected $operator;
 
     /**

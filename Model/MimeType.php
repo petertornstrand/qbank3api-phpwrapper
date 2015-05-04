@@ -4,33 +4,25 @@ namespace QBNK\QBank\API\Model;
 
 class MimeType  implements \JsonSerializable
 {
-    /**
-     * The MimeType identifier.
-     * @val int	 */
+    /** @var int The MimeType identifier. */
     protected $id;
-    /**
-     * The MimeType string representation.
-     * @val string	 */
+
+    /** @var string The MimeType string representation. */
     protected $mimetype;
-    /**
-     * The MimeType human readable description.
-     * @val string	 */
+
+    /** @var string The MimeType human readable description. */
     protected $description;
-    /**
-     * Whether the MimeType is usable in an ImageTemplate.
-     * @val bool	 */
+
+    /** @var bool Whether the MimeType is usable in an ImageTemplate. */
     protected $imagetemplate;
-    /**
-     * Whether the MimeType is usable in a VideoTemplate.
-     * @val bool	 */
+
+    /** @var bool Whether the MimeType is usable in a VideoTemplate. */
     protected $videotemplate;
-    /**
-     * The default file extension of the MimeType.
-     * @val string	 */
+
+    /** @var string The default file extension of the MimeType. */
     protected $defaultextension;
-    /**
-     * The MimeType class. Eg. image, video, document.
-     * @val string	 */
+
+    /** @var string The MimeType class. Eg. image, video, document. */
     protected $classification;
 
     /**

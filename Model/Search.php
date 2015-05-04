@@ -4,105 +4,79 @@ namespace QBNK\QBank\API\Model;
 
 class Search  implements \JsonSerializable
 {
-    /**
-     * Starting offset of the search.
-     * @val int	 */
+    /** @var int Starting offset of the search */
     protected $offset;
-    /**
-     * The number of results to return.
-     * @val int	 */
+
+    /** @var int The number of results to return */
     protected $limit;
-    /**
-     * A freetext string to search for, operators like and/or/not and grouping by parentheses is available.
-     * @val string	 */
+
+    /** @var string A freetext string to search for, operators like and/or/not and grouping by parentheses is available */
     protected $freeText;
-    /**
-     * An array with ObjectIds to filter by.
-     * @val int[]	 */
+
+    /** @var int[] An array with ObjectIds to filter by */
     protected $objectIds;
-    /**
-     * An array with MediaIds to filter by.
-     * @val int[]	 */
+
+    /** @var int[] An array with MediaIds to filter by */
     protected $mediaIds;
-    /**
-     * Filter by creators of Media.
-     * @val int[]	 */
+
+    /** @var int[] Filter by creators of Media */
     protected $createdByIds;
-    /**
-     * Filter by created date.
-     * @val DateTimeRange	 */
+
+    /** @var DateTimeRange Filter by created date */
     protected $createdRange;
-    /**
-     * Filter by updaters of Media.
-     * @val int[]	 */
+
+    /** @var int[] Filter by updaters of Media */
     protected $updatedByIds;
-    /**
-     * Filter by updated date.
-     * @val DateTimeRange	 */
+
+    /** @var DateTimeRange Filter by updated date */
     protected $updatedRange;
-    /**
-     * An array with MediaStatuses to filter by.
-     * @val int[]	 */
+
+    /** @var int[] An array with MediaStatuses to filter by */
     protected $mediaStatusIds;
-    /**
-     * An array with FolderIds to search within.
-     * @val int[]	 */
+
+    /** @var int[] An array with FolderIds to search within */
     protected $folderIds;
-    /**
-     * The depth of folders to fetch objects from when doing folder searches.
-     * @val int	 */
+
+    /** @var int The depth of folders to fetch objects from when doing folder searches */
     protected $folderDepth;
-    /**
-     * An array with MoodboardIds to search within.
-     * @val int[]	 */
+
+    /** @var int[] An array with MoodboardIds to search within */
     protected $moodboardIds;
-    /**
-     * An array with CategoryIds to search within.
-     * @val int[]	 */
+
+    /** @var int[] An array with CategoryIds to search within */
     protected $categoryIds;
-    /**
-     * Indicates that we should ignore grouping and return child objects in the result.
-     * @val bool	 */
+
+    /** @var bool Indicates that we should ignore grouping and return child objects in the result */
     protected $ignoreGrouping;
-    /**
-     * Search for media that have this media as parent.
-     * @val int	 */
+
+    /** @var int Search for media that have this media as parent */
     protected $parentId;
-    /**
-     * An array with DeploymentSiteIds to search within.
-     * @val int[]	 */
+
+    /** @var int[] An array with DeploymentSiteIds to search within */
     protected $deploymentSiteIds;
-    /**
-     * An array of Properties to filter by.
-     * @val PropertyCriteria[]	 */
+
+    /** @var PropertyCriteria[] An array of Properties to filter by */
     protected $properties;
-    /**
-     * Filter by file size. An array with "min" and/or "max" values.
-     * @val string[]	 */
+
+    /** @var string[] Filter by file size. An array with "min" and/or "max" values. */
     protected $fileSizeCriteria;
-    /**
-     * Filter by file width. An array with "min" and/or "max" values.
-     * @val string[]	 */
+
+    /** @var string[] Filter by file width. An array with "min" and/or "max" values. */
     protected $widthCriteria;
-    /**
-     * Filter by file height. An array with "min" and/or "max" values.
-     * @val string[]	 */
+
+    /** @var string[] Filter by file height. An array with "min" and/or "max" values. */
     protected $heightCriteria;
-    /**
-     * Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos.
-     * @val string[]	 */
+
+    /** @var string[] Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos. */
     protected $mimeTypes;
-    /**
-     * Filter by file name, uses normal LIKE database syntax.
-     * @val string	 */
+
+    /** @var string Filter by file name, uses normal LIKE database syntax */
     protected $fileName;
-    /**
-     * Filter by deployment date.
-     * @val DateTimeRange	 */
+
+    /** @var DateTimeRange Filter by deployment date */
     protected $deploymentDateRange;
-    /**
-     * An array of SearchSort fields to order results by.
-     * @val SearchSort[]	 */
+
+    /** @var SearchSort[] An array of SearchSort fields to order results by */
     protected $sortFields;
 
     /**

@@ -4,13 +4,10 @@ namespace QBNK\QBank\API\Model;
 
 class DownloadItem  implements \JsonSerializable
 {
-    /**
-     * Media ID.
-     * @val int	 */
+    /** @var int Media ID */
     protected $mediaId;
-    /**
-     * ImageTemplate ID.
-     * @val int	 */
+
+    /** @var int ImageTemplate ID */
     protected $imageTemplateId;
 
     /**

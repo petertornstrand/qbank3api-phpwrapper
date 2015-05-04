@@ -6,41 +6,31 @@ use DateTime;
 
 class DeploymentFile  implements \JsonSerializable
 {
-    /**
-     * The identifier of the DeploymentSite this file is deployed to.
-     * @val int	 */
+    /** @var int The identifier of the DeploymentSite this file is deployed to. */
     protected $deploymentSiteId;
-    /**
-     * The filename of the deployed file.
-     * @val string	 */
+
+    /** @var string The filename of the deployed file. */
     protected $remoteFile;
-    /**
-     * The identifier of the Image template used.
-     * @val int	 */
+
+    /** @var int The identifier of the Image template used. */
     protected $imageTemplateId;
-    /**
-     * The identifier of the Video template used.
-     * @val int	 */
+
+    /** @var int The identifier of the Video template used. */
     protected $videoTemplateId;
-    /**
-     * The name of the template, if any.
-     * @val string	 */
+
+    /** @var string The name of the template, if any. */
     protected $templateName;
-    /**
-     * The time of deployment for this file.
-     * @val DateTime	 */
+
+    /** @var DateTime The time of deployment for this file. */
     protected $created;
-    /**
-     * The original filename of the file when uploaded to QBank.
-     * @val string	 */
+
+    /** @var string The original filename of the file when uploaded to QBank. */
     protected $filename;
-    /**
-     * The size of the file on disk.
-     * @val int	 */
+
+    /** @var int The size of the file on disk */
     protected $filesize;
-    /**
-     * Metadata associated with the deployed media.
-     * @val object	 */
+
+    /** @var object Metadata associated with the deployed media */
     protected $metadata;
 
     /**
@@ -319,7 +309,7 @@ class DeploymentFile  implements \JsonSerializable
             $json['templateName'] = $this->templateName;
         }
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->filename !== null) {
             $json['filename'] = $this->filename;

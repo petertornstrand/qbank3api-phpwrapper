@@ -6,37 +6,28 @@ use DateTime;
 
 class Moodboard  implements \JsonSerializable
 {
-    /**
-     * The pincode used to access this Moodboard.
-     * @val string	 */
+    /** @var string The pincode used to access this Moodboard. */
     protected $pinCode;
-    /**
-     * The template used by the Moodboard.
-     * @val int	 */
+
+    /** @var int The template used by the Moodboard. */
     protected $templateId;
-    /**
-     * The date and time this Moodboard expires.
-     * @val DateTime	 */
+
+    /** @var DateTime The date and time this Moodboard expires. */
     protected $expireDate;
-    /**
-     * A Key/Value Object containing specific template related settings.
-     * @val object	 */
+
+    /** @var object A Key/Value Object containing specific template related settings. */
     protected $definition;
-    /**
-     * The Objects name.
-     * @val string	 */
+
+    /** @var string The Objects name. */
     protected $name;
-    /**
-     * Whether the object is deleted.
-     * @val bool	 */
+
+    /** @var bool Whether the object is deleted. */
     protected $deleted;
-    /**
-     * A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     * @val string[]	 */
+
+    /** @var string[] A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object. */
     protected $properties;
-    /**
-     * The identifier of the ObjectType describing the propertysets this object should use.
-     * @val int	 */
+
+    /** @var int The identifier of the ObjectType describing the propertysets this object should use. */
     protected $typeId;
 
     /**

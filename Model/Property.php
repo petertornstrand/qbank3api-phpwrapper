@@ -9,37 +9,28 @@ class Property  implements \JsonSerializable
     const TEMPLATE_IMAGE = 'image';
     const TEMPLATE_VIDEO = 'video';
 
-    /**
-     * When the Property was created.
-     * @val DateTime	 */
+    /** @var DateTime When the Property was created. */
     protected $created;
-    /**
-     * The identifier of the User who created the Property.
-     * @val int	 */
+
+    /** @var int The identifier of the User who created the Property. */
     protected $createdBy;
-    /**
-     * When the Property was updated.
-     * @val DateTime	 */
+
+    /** @var DateTime When the Property was updated. */
     protected $updated;
-    /**
-     * Which user who updated the Property.
-     * @val int	 */
+
+    /** @var int Which user who updated the Property. */
     protected $updatedBy;
-    /**
-     * Whether the Property is deleted.
-     * @val bool	 */
+
+    /** @var bool Whether the Property is deleted. */
     protected $deleted;
-    /**
-     * Whether the Property has been modified since constructed.
-     * @val bool	 */
+
+    /** @var bool Whether the Property has been modified since constructed. */
     protected $dirty;
-    /**
-     * The PropertyType describing this Property.
-     * @val PropertyType	 */
+
+    /** @var PropertyType The PropertyType describing this Property. */
     protected $propertyType;
-    /**
-     * The value of the Property.
-     * @val string	 */
+
+    /** @var string The value of the Property. */
     protected $value;
 
     /**
@@ -336,13 +327,13 @@ class Property  implements \JsonSerializable
         $json = [];
 
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->createdBy !== null) {
             $json['createdBy'] = $this->createdBy;
         }
         if ($this->updated !== null) {
-            $json['updated'] = $this->updated;
+            $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;
@@ -357,7 +348,11 @@ class Property  implements \JsonSerializable
             $json['propertyType'] = $this->propertyType;
         }
         if ($this->value !== null) {
-            $json['value'] = $this->value;
+            if ($this->value instanceof \DateTime) {
+                $json['value'] = $this->value->format(\DateTime::ISO8601);
+            } else {
+                $json['value'] = $this->value;
+            }
         }
 
         return $json;

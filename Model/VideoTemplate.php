@@ -4,21 +4,16 @@ namespace QBNK\QBank\API\Model;
 
 class VideoTemplate  implements \JsonSerializable
 {
-    /**
-     * The Video Template identifier.
-     * @val int	 */
+    /** @var int The Video Template identifier */
     protected $id;
-    /**
-     * The name of the Video Template.
-     * @val string	 */
+
+    /** @var string The name of the Video Template */
     protected $name;
-    /**
-     *
-     * @val MimeType	 */
+
+    /** @var MimeType  */
     protected $mimeType;
-    /**
-     * An array of commands for this template.
-     * @val Command[]	 */
+
+    /** @var Command[] An array of commands for this template */
     protected $commands;
 
     /**

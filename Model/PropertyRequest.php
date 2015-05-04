@@ -4,9 +4,7 @@ namespace QBNK\QBank\API\Model;
 
 class PropertyRequest extends PropertyCriteria implements \JsonSerializable
 {
-    /**
-     * Whether this property should be included in the SearchResult.
-     * @val bool	 */
+    /** @var bool Whether this property should be included in the SearchResult. */
     protected $forfetching;
 
     /**

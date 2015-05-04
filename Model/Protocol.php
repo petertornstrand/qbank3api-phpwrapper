@@ -4,21 +4,16 @@ namespace QBNK\QBank\API\Model;
 
 class Protocol  implements \JsonSerializable
 {
-    /**
-     * The Protocol identifier.
-     * @val int	 */
+    /** @var int The Protocol identifier. */
     protected $id;
-    /**
-     * The human readable description of the Protocol.
-     * @val string	 */
+
+    /** @var string The human readable description of the Protocol. */
     protected $description;
-    /**
-     * The Protocol name.
-     * @val string	 */
+
+    /** @var string The Protocol name. */
     protected $name;
-    /**
-     * The Protocol definition. Describes the needed values and other parameters.
-     * @val object	 */
+
+    /** @var object The Protocol definition. Describes the needed values and other parameters. */
     protected $definition;
 
     /**

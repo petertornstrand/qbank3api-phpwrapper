@@ -4,13 +4,10 @@ namespace QBNK\QBank\API\Model;
 
 class FolderParent  implements \JsonSerializable
 {
-    /**
-     * The Folder identifier.
-     * @val int	 */
+    /** @var int The Folder identifier. */
     protected $folderid;
-    /**
-     * The distance from the specified Folder identifer, ie. the reverse depth.
-     * @val int	 */
+
+    /** @var int The distance from the specified Folder identifer, ie. the reverse depth. */
     protected $depth;
 
     /**

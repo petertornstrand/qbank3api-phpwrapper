@@ -6,45 +6,34 @@ use DateTime;
 
 class Role  implements \JsonSerializable
 {
-    /**
-     * The Role identifier.
-     * @val int	 */
+    /** @var int The Role identifier. */
     protected $id;
-    /**
-     * The name of the Role.
-     * @val string	 */
+
+    /** @var string The name of the Role */
     protected $name;
-    /**
-     * Description of what this Role means.
-     * @val string	 */
+
+    /** @var string Description of what this Role means */
     protected $description;
-    /**
-     * Whether the object has been modified since constructed.
-     * @val bool	 */
+
+    /** @var bool Whether the object has been modified since constructed. */
     protected $dirty;
-    /**
-     * Indicates if this Role is deleted.
-     * @val bool	 */
+
+    /** @var bool Indicates if this Role is deleted */
     protected $deleted;
-    /**
-     * When the Role was created.
-     * @val DateTime	 */
+
+    /** @var DateTime When the Role was created. */
     protected $created;
-    /**
-     * The User Id that created the Role.
-     * @val int	 */
+
+    /** @var int The User Id that created the Role */
     protected $createdBy;
-    /**
-     * When the Role was updated.
-     * @val DateTime	 */
+
+    /** @var DateTime When the Role was updated. */
     protected $updated;
-    /**
-     * User Id that updated the Role.
-     * @val int	 */
+
+    /** @var int User Id that updated the Role */
     protected $updatedBy;
-    /**
-     * An array of Functionalities connected to this role.
-     * @val Functionality[]	 */
+
+    /** @var Functionality[] An array of Functionalities connected to this role */
     protected $functionalities;
 
     /**
@@ -367,13 +356,13 @@ class Role  implements \JsonSerializable
             $json['deleted'] = $this->deleted;
         }
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->createdBy !== null) {
             $json['createdBy'] = $this->createdBy;
         }
         if ($this->updated !== null) {
-            $json['updated'] = $this->updated;
+            $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;

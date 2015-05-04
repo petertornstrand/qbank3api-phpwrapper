@@ -13,45 +13,34 @@ class PropertyType  implements \JsonSerializable
     const DATATYPE_INTEGER  = 5;
     const DATATYPE_STRING   = 6;
 
-    /**
-     * When the Property was created.
-     * @val DateTime	 */
+    /** @var DateTime When the Property was created. */
     protected $created;
-    /**
-     * The identifier of the User who created the Property.
-     * @val int	 */
+
+    /** @var int The identifier of the User who created the Property. */
     protected $createdBy;
-    /**
-     * When the Property was updated.
-     * @val DateTime	 */
+
+    /** @var DateTime When the Property was updated. */
     protected $updated;
-    /**
-     * Which user who updated the Property.
-     * @val int	 */
+
+    /** @var int Which user who updated the Property. */
     protected $updatedBy;
-    /**
-     * Whether the Property is deleted.
-     * @val bool	 */
+
+    /** @var bool Whether the Property is deleted. */
     protected $deleted;
-    /**
-     * The Property name.
-     * @val string	 */
+
+    /** @var string The Property name. */
     protected $name;
-    /**
-     * The Property system name, this is used for programmatic access.
-     * @val string	 */
+
+    /** @var string The Property system name, this is used for programmatic access. */
     protected $systemName;
-    /**
-     * A description of the PropertyType.
-     * @val string	 */
+
+    /** @var string A description of the PropertyType. */
     protected $description;
-    /**
-     * Data type for the Property (1: Boolean, 2: DateTime, 3: Decimal, 4: Float, 5: Integer, 6: String) In addition, definition can alter the way a Property should be displayed.
-     * @val int	 */
+
+    /** @var int Data type for the Property (1: Boolean, 2: DateTime, 3: Decimal, 4: Float, 5: Integer, 6: String) In addition, definition can alter the way a Property should be displayed. */
     protected $dataTypeId;
-    /**
-     * A Key/Value Object containing extra information about how this Property should be used.
-     * @val object	 */
+
+    /** @var object A Key/Value Object containing extra information about how this Property should be used. */
     protected $definition;
 
     /**
@@ -348,13 +337,13 @@ class PropertyType  implements \JsonSerializable
         $json = [];
 
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->createdBy !== null) {
             $json['createdBy'] = $this->createdBy;
         }
         if ($this->updated !== null) {
-            $json['updated'] = $this->updated;
+            $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;

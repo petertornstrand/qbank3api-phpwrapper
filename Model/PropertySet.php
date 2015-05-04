@@ -6,45 +6,34 @@ use DateTime;
 
 class PropertySet  implements \JsonSerializable
 {
-    /**
-     * The PropertySet identifier.
-     * @val int	 */
+    /** @var int The PropertySet identifier */
     protected $id;
-    /**
-     * The PropertySet name.
-     * @val string	 */
+
+    /** @var string The PropertySet name. */
     protected $name;
-    /**
-     * When the PropertySet was created.
-     * @val DateTime	 */
+
+    /** @var DateTime When the PropertySet was created. */
     protected $created;
-    /**
-     * The identifier of the User who created the PropertySet.
-     * @val int	 */
+
+    /** @var int The identifier of the User who created the PropertySet. */
     protected $createdBy;
-    /**
-     * When the PropertySet was updated.
-     * @val DateTime	 */
+
+    /** @var DateTime When the PropertySet was updated. */
     protected $updated;
-    /**
-     * Which user who updated the PropertySet.
-     * @val int	 */
+
+    /** @var int Which user who updated the PropertySet. */
     protected $updatedBy;
-    /**
-     * Whether the PropertySet is deleted.
-     * @val bool	 */
+
+    /** @var bool Whether the PropertySet is deleted. */
     protected $deleted;
-    /**
-     * Whether the PropertySet has been modified since constructed.
-     * @val bool	 */
+
+    /** @var bool Whether the PropertySet has been modified since constructed. */
     protected $dirty;
-    /**
-     * Wheater the PropertySet is a system propertyset or not. (System propertysets are hidden from the enduser).
-     * @val bool	 */
+
+    /** @var bool Wheater the PropertySet is a system propertyset or not. (System propertysets are hidden from the enduser) */
     protected $system;
-    /**
-     * The Properties associated with the PropertySet.
-     * @val Property[]	 */
+
+    /** @var Property[] The Properties associated with the PropertySet. */
     protected $properties;
 
     /**
@@ -358,13 +347,13 @@ class PropertySet  implements \JsonSerializable
             $json['name'] = $this->name;
         }
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->createdBy !== null) {
             $json['createdBy'] = $this->createdBy;
         }
         if ($this->updated !== null) {
-            $json['updated'] = $this->updated;
+            $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;

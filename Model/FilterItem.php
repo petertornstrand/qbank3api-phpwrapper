@@ -4,17 +4,13 @@ namespace QBNK\QBank\API\Model;
 
 class FilterItem  implements \JsonSerializable
 {
-    /**
-     * ID of the Filter (only applicable if Category or Folder FilterItem).
-     * @val int	 */
+    /** @var int ID of the Filter (only applicable if Category or Folder FilterItem) */
     protected $id;
-    /**
-     * Title.
-     * @val string	 */
+
+    /** @var string Title */
     protected $title;
-    /**
-     * An array of mediaIds that are tagged with this title.
-     * @val string[]	 */
+
+    /** @var string[] An array of mediaIds that are tagged with this title */
     protected $mediaIds;
 
     /**

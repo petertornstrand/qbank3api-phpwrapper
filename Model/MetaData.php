@@ -4,13 +4,10 @@ namespace QBNK\QBank\API\Model;
 
 class MetaData  implements \JsonSerializable
 {
-    /**
-     * The MetaData section name.
-     * @val string	 */
+    /** @var string The MetaData section name. */
     protected $section;
-    /**
-     * The MetaData data as a key-value object.
-     * @val object	 */
+
+    /** @var object The MetaData data as a key-value object. */
     protected $data;
 
     /**

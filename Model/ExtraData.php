@@ -6,45 +6,34 @@ use DateTime;
 
 class ExtraData  implements \JsonSerializable
 {
-    /**
-     * The ExtraData identifier.
-     * @val int	 */
+    /** @var int The ExtraData identifier. */
     protected $id;
-    /**
-     * Whether the object has been modified since constructed.
-     * @val bool	 */
+
+    /** @var bool Whether the object has been modified since constructed. */
     protected $dirty;
-    /**
-     * Indicates if this ExtraData is deleted.
-     * @val bool	 */
+
+    /** @var bool Indicates if this ExtraData is deleted */
     protected $deleted;
-    /**
-     * When the ExtraData was created.
-     * @val DateTime	 */
+
+    /** @var DateTime When the ExtraData was created. */
     protected $created;
-    /**
-     * The User Id that created the ExtraData.
-     * @val int	 */
+
+    /** @var int The User Id that created the ExtraData */
     protected $createdBy;
-    /**
-     * When the ExtraData was updated.
-     * @val DateTime	 */
+
+    /** @var DateTime When the ExtraData was updated. */
     protected $updated;
-    /**
-     * User Id that updated the ExtraData.
-     * @val int	 */
+
+    /** @var int User Id that updated the ExtraData */
     protected $updatedBy;
-    /**
-     * The ExtraData key.
-     * @val string	 */
+
+    /** @var string The ExtraData key */
     protected $key;
-    /**
-     * The ExtraData Key Identifier.
-     * @val int	 */
+
+    /** @var int The ExtraData Key Identifier */
     protected $keyId;
-    /**
-     * The value of the ExtraData.
-     * @val string	 */
+
+    /** @var string The value of the ExtraData */
     protected $value;
 
     /**
@@ -342,13 +331,13 @@ class ExtraData  implements \JsonSerializable
             $json['deleted'] = $this->deleted;
         }
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->createdBy !== null) {
             $json['createdBy'] = $this->createdBy;
         }
         if ($this->updated !== null) {
-            $json['updated'] = $this->updated;
+            $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;

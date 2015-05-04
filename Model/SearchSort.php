@@ -4,29 +4,22 @@ namespace QBNK\QBank\API\Model;
 
 class SearchSort  implements \JsonSerializable
 {
-    /**
-     * Field to sort by.
-     * @val string	 */
+    /** @var string Field to sort by */
     protected $sortField;
-    /**
-     * Sort Direction.
-     * @val string	 */
+
+    /** @var string Sort Direction */
     protected $sortDirection;
-    /**
-     * When sorting on Media Popularity, the source to check (QBank Backend, frontend, etc).
-     * @val int	 */
+
+    /** @var int When sorting on Media Popularity, the source to check (QBank Backend, frontend, etc) */
     protected $sourceId;
-    /**
-     * When sorting on Media Popularity, a optional dateRange to find popular media within.
-     * @val DateTimeRange	 */
+
+    /** @var DateTimeRange When sorting on Media Popularity, a optional dateRange to find popular media within */
     protected $dateRange;
-    /**
-     * When sorting on a property, the system name of the property to sort on.
-     * @val string	 */
+
+    /** @var string When sorting on a property, the system name of the property to sort on */
     protected $systemName;
-    /**
-     * When sorting on a Json Property, the Json key to sort by.
-     * @val string	 */
+
+    /** @var string When sorting on a Json Property, the Json key to sort by */
     protected $jsonKey;
 
     /**

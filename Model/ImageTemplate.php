@@ -4,21 +4,16 @@ namespace QBNK\QBank\API\Model;
 
 class ImageTemplate  implements \JsonSerializable
 {
-    /**
-     * The Image Template identifier.
-     * @val int	 */
+    /** @var int The Image Template identifier */
     protected $id;
-    /**
-     * The name of the Image Template.
-     * @val string	 */
+
+    /** @var string The name of the Image Template */
     protected $name;
-    /**
-     *
-     * @val MimeType	 */
+
+    /** @var MimeType  */
     protected $mimeType;
-    /**
-     * An array of commands for this template.
-     * @val Command[]	 */
+
+    /** @var Command[] An array of commands for this template */
     protected $commands;
 
     /**

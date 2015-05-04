@@ -4,25 +4,19 @@ namespace QBNK\QBank\API\Model;
 
 class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \ArrayAccess
 {
-    /**
-     * Number of hits per page in the SearchResult.
-     * @val int	 */
+    /** @var int Number of hits per page in the SearchResult */
     protected $limit;
-    /**
-     * Starting position of SearchResult.
-     * @val int	 */
+
+    /** @var int Starting position of SearchResult */
     protected $offset;
-    /**
-     * An array of Media matching the search.
-     * @val MediaResponse[]	 */
+
+    /** @var MediaResponse[] An array of Media matching the search */
     protected $results;
-    /**
-     * Time spent searching.
-     * @val float	 */
+
+    /** @var float Time spent searching */
     protected $timeSearching;
-    /**
-     * Total number of hits.
-     * @val int	 */
+
+    /** @var int Total number of hits */
     protected $totalHits;
 
     /**

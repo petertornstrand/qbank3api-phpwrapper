@@ -11,73 +11,55 @@ class MediaResponse extends Media implements \JsonSerializable
     const TEMPLATE_IMAGE = 'image';
     const TEMPLATE_VIDEO = 'video';
 
-    /**
-     * The Media identifier.
-     * @val int	 */
+    /** @var int The Media identifier. */
     protected $mediaId;
-    /**
-     * Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000;.
-     * @val int	 */
+
+    /** @var int Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000; */
     protected $thumbPreviewStatus;
-    /**
-     * The Media's filename extension.
-     * @val string	 */
+
+    /** @var string The Media's filename extension. */
     protected $extension;
-    /**
-     * The MetaData extracted from the Media file.
-     * @val MetaData[]	 */
+
+    /** @var MetaData[] The MetaData extracted from the Media file. */
     protected $metadata;
-    /**
-     * The Media MimeType.
-     * @val MimeType	 */
+
+    /** @var MimeType The Media MimeType. */
     protected $mimetype;
-    /**
-     * The Media size in bytes.
-     * @val int	 */
+
+    /** @var int The Media size in bytes. */
     protected $size;
-    /**
-     * The Media status identifier.
-     * @val int	 */
+
+    /** @var int The Media status identifier. */
     protected $statusId;
-    /**
-     * When the Media was uploaded. A datetime string on the format ISO8601.
-     * @val string	 */
+
+    /** @var string When the Media was uploaded. A datetime string on the format ISO8601. */
     protected $uploaded;
-    /**
-     * The identifier of the User who uploaded the Media.
-     * @val int	 */
+
+    /** @var int The identifier of the User who uploaded the Media. */
     protected $uploadedBy;
-    /**
-     * An array of deployed files.
-     * @val DeploymentFile[]	 */
+
+    /** @var DeploymentFile[] An array of deployed files */
     protected $deployedFiles;
-    /**
-     * The base Object identifier.
-     * @val int	 */
+
+    /** @var int The base Object identifier. */
     protected $objectId;
-    /**
-     * When the Object was created.
-     * @val DateTime	 */
+
+    /** @var DateTime When the Object was created. */
     protected $created;
-    /**
-     * The identifier of the User who created the Object.
-     * @val int	 */
+
+    /** @var int The identifier of the User who created the Object. */
     protected $createdBy;
-    /**
-     * When the Object was updated.
-     * @val DateTime	 */
+
+    /** @var DateTime When the Object was updated. */
     protected $updated;
-    /**
-     * Which user that updated the Object.
-     * @val int	 */
+
+    /** @var int Which user that updated the Object. */
     protected $updatedBy;
-    /**
-     * Whether the object has been modified since constructed.
-     * @val bool	 */
+
+    /** @var bool Whether the object has been modified since constructed. */
     protected $dirty;
-    /**
-     * The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
-     * @val PropertySet[]	 */
+
+    /** @var PropertySet[] The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties. */
     protected $propertySets;
 
     /**
@@ -699,7 +681,7 @@ class MediaResponse extends Media implements \JsonSerializable
             $json['statusId'] = $this->statusId;
         }
         if ($this->uploaded !== null) {
-            $json['uploaded'] = $this->uploaded;
+            $json['uploaded'] = $this->uploaded->format(\DateTime::ISO8601);
         }
         if ($this->uploadedBy !== null) {
             $json['uploadedBy'] = $this->uploadedBy;
@@ -711,13 +693,13 @@ class MediaResponse extends Media implements \JsonSerializable
             $json['objectId'] = $this->objectId;
         }
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->createdBy !== null) {
             $json['createdBy'] = $this->createdBy;
         }
         if ($this->updated !== null) {
-            $json['updated'] = $this->updated;
+            $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;

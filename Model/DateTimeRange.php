@@ -6,13 +6,10 @@ use DateTime;
 
 class DateTimeRange  implements \JsonSerializable
 {
-    /**
-     * Minimum date in this range, leave empty for none.
-     * @val DateTime	 */
+    /** @var DateTime Minimum date in this range, leave empty for none. */
     protected $min;
-    /**
-     * Maximum date in this range, leave empty for none.
-     * @val DateTime	 */
+
+    /** @var DateTime Maximum date in this range, leave empty for none. */
     protected $max;
 
     /**

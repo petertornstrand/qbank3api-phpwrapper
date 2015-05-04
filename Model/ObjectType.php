@@ -7,45 +7,34 @@ use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
 class ObjectType  implements \JsonSerializable
 {
-    /**
-     * The name of the ObjectType.
-     * @val string	 */
+    /** @var string The name of the ObjectType */
     protected $name;
-    /**
-     * A description of the ObjectType.
-     * @val string	 */
+
+    /** @var string A description of the ObjectType */
     protected $description;
-    /**
-     * The type of Object Type.
-     * @val string	 */
+
+    /** @var string The type of Object Type. */
     protected $type;
-    /**
-     * The id of the ObjectType.
-     * @val int	 */
+
+    /** @var int The id of the ObjectType */
     protected $id;
-    /**
-     * When the ObjectType was created.
-     * @val DateTime	 */
+
+    /** @var DateTime When the ObjectType was created. */
     protected $created;
-    /**
-     * The identifier of the User who created the ObjectType.
-     * @val int	 */
+
+    /** @var int The identifier of the User who created the ObjectType. */
     protected $createdBy;
-    /**
-     * When the ObjectType was updated.
-     * @val DateTime	 */
+
+    /** @var DateTime When the ObjectType was updated. */
     protected $updated;
-    /**
-     * Which user that updated the ObjectType.
-     * @val int	 */
+
+    /** @var int Which user that updated the ObjectType. */
     protected $updatedBy;
-    /**
-     * The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
-     * @val PropertySet[]	 */
+
+    /** @var PropertySet[] The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties. */
     protected $propertySets;
-    /**
-     * Whether this ObjectType is deleted.
-     * @val bool	 */
+
+    /** @var bool Whether this ObjectType is deleted. */
     protected $deleted;
 
     /**
@@ -386,13 +375,13 @@ class ObjectType  implements \JsonSerializable
             $json['id'] = $this->id;
         }
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->createdBy !== null) {
             $json['createdBy'] = $this->createdBy;
         }
         if ($this->updated !== null) {
-            $json['updated'] = $this->updated;
+            $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;

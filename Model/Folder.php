@@ -4,25 +4,19 @@ namespace QBNK\QBank\API\Model;
 
 class Folder  implements \JsonSerializable
 {
-    /**
-     * An optional parent Folder identifier.
-     * @val int	 */
+    /** @var int An optional parent Folder identifier. */
     protected $parentId;
-    /**
-     * The Objects name.
-     * @val string	 */
+
+    /** @var string The Objects name. */
     protected $name;
-    /**
-     * Whether the object is deleted.
-     * @val bool	 */
+
+    /** @var bool Whether the object is deleted. */
     protected $deleted;
-    /**
-     * A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     * @val string[]	 */
+
+    /** @var string[] A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object. */
     protected $properties;
-    /**
-     * The identifier of the ObjectType describing the propertysets this object should use.
-     * @val int	 */
+
+    /** @var int The identifier of the ObjectType describing the propertysets this object should use. */
     protected $typeId;
 
     /**

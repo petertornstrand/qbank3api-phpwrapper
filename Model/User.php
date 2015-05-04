@@ -6,77 +6,58 @@ use DateTime;
 
 class User  implements \JsonSerializable
 {
-    /**
-     * The User identifier.
-     * @val int	 */
+    /** @var int The User identifier. */
     protected $id;
-    /**
-     * The full name of the User.
-     * @val string	 */
+
+    /** @var string The full name of the User. */
     protected $name;
-    /**
-     * Email-address of the User.
-     * @val string	 */
+
+    /** @var string Email-address of the User */
     protected $email;
-    /**
-     * Optional last date this User can log in.
-     * @val DateTime	 */
+
+    /** @var DateTime Optional last date this User can log in */
     protected $endDate;
-    /**
-     * Optional first date this user can start logging in.
-     * @val DateTime	 */
+
+    /** @var DateTime Optional first date this user can start logging in */
     protected $startDate;
-    /**
-     * First name of the User.
-     * @val string	 */
+
+    /** @var string First name of the User */
     protected $firstName;
-    /**
-     * Last name of the User.
-     * @val string	 */
+
+    /** @var string Last name of the User */
     protected $lastName;
-    /**
-     * Username for the User.
-     * @val string	 */
+
+    /** @var string Username for the User */
     protected $userName;
-    /**
-     * Last login time of the User.
-     * @val DateTime	 */
+
+    /** @var DateTime Last login time of the User */
     protected $lastLogin;
-    /**
-     * An array of Groups this User is a member of (Note: this will be left as null when listing Users.
-     * @val Group	 */
+
+    /** @var Group An array of Groups this User is a member of (Note: this will be left as null when listing Users. */
     protected $groups;
-    /**
-     * Whether the User has been modified since constructed.
-     * @val bool	 */
+
+    /** @var bool Whether the User has been modified since constructed. */
     protected $dirty;
-    /**
-     * Indicates if this User is deleted.
-     * @val bool	 */
+
+    /** @var bool Indicates if this User is deleted */
     protected $deleted;
-    /**
-     * When the User was created.
-     * @val DateTime	 */
+
+    /** @var DateTime When the User was created. */
     protected $created;
-    /**
-     * The User Id that created the User.
-     * @val int	 */
+
+    /** @var int The User Id that created the User */
     protected $createdBy;
-    /**
-     * When the User was updated.
-     * @val DateTime	 */
+
+    /** @var DateTime When the User was updated. */
     protected $updated;
-    /**
-     * User Id that updated the User.
-     * @val int	 */
+
+    /** @var int User Id that updated the User */
     protected $updatedBy;
-    /**
-     * An array of Functionalities connected to this User.
-     * @val Functionality[]	 */
+
+    /** @var Functionality[] An array of Functionalities connected to this User */
     protected $functionalities;
-    /**
-     * An array of ExtraData connected to this User.
-     * @val ExtraData[]	 */
+
+    /** @var ExtraData[] An array of ExtraData connected to this User. */
     protected $extraData;
 
     /**
@@ -669,13 +650,13 @@ class User  implements \JsonSerializable
             $json['deleted'] = $this->deleted;
         }
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->createdBy !== null) {
             $json['createdBy'] = $this->createdBy;
         }
         if ($this->updated !== null) {
-            $json['updated'] = $this->updated;
+            $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;

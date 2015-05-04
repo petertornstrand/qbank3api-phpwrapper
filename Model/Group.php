@@ -6,53 +6,40 @@ use DateTime;
 
 class Group  implements \JsonSerializable
 {
-    /**
-     * The Group identifier.
-     * @val int	 */
+    /** @var int The Group identifier. */
     protected $id;
-    /**
-     * The name of the Group.
-     * @val string	 */
+
+    /** @var string The name of the Group */
     protected $name;
-    /**
-     * Description of what this Group means.
-     * @val string	 */
+
+    /** @var string Description of what this Group means */
     protected $description;
-    /**
-     * Whether the object has been modified since constructed.
-     * @val bool	 */
+
+    /** @var bool Whether the object has been modified since constructed. */
     protected $dirty;
-    /**
-     * Indicates if this Group is deleted.
-     * @val bool	 */
+
+    /** @var bool Indicates if this Group is deleted */
     protected $deleted;
-    /**
-     * When the Group was created.
-     * @val DateTime	 */
+
+    /** @var DateTime When the Group was created. */
     protected $created;
-    /**
-     * The User Id that created the Group.
-     * @val int	 */
+
+    /** @var int The User Id that created the Group */
     protected $createdBy;
-    /**
-     * When the Group was updated.
-     * @val DateTime	 */
+
+    /** @var DateTime When the Group was updated. */
     protected $updated;
-    /**
-     * User Id that updated the Group.
-     * @val int	 */
+
+    /** @var int User Id that updated the Group */
     protected $updatedBy;
-    /**
-     * An array of Functionalities connected to this Group.
-     * @val Functionality[]	 */
+
+    /** @var Functionality[] An array of Functionalities connected to this Group */
     protected $functionalities;
-    /**
-     * An array of Roles connected to this Group.
-     * @val Role[]	 */
+
+    /** @var Role[] An array of Roles connected to this Group */
     protected $roles;
-    /**
-     * An array of ExtraData connected to this Group.
-     * @val ExtraData[]	 */
+
+    /** @var ExtraData[] An array of ExtraData connected to this Group. */
     protected $extraData;
 
     /**
@@ -461,13 +448,13 @@ class Group  implements \JsonSerializable
             $json['deleted'] = $this->deleted;
         }
         if ($this->created !== null) {
-            $json['created'] = $this->created;
+            $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->createdBy !== null) {
             $json['createdBy'] = $this->createdBy;
         }
         if ($this->updated !== null) {
-            $json['updated'] = $this->updated;
+            $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;

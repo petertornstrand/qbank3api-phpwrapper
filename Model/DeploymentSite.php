@@ -4,65 +4,49 @@ namespace QBNK\QBank\API\Model;
 
 class DeploymentSite  implements \JsonSerializable
 {
-    /**
-     * The human readable description of the DeploymentSite.
-     * @val string	 */
+    /** @var string The human readable description of the DeploymentSite. */
     protected $description;
-    /**
-     * The Protocol used to deploy to the DeploymentSite.
-     * @val Protocol	 */
+
+    /** @var Protocol The Protocol used to deploy to the DeploymentSite. */
     protected $protocol;
-    /**
-     * A key-value object with the Protocol specific values.
-     * @val object	 */
+
+    /** @var object A key-value object with the Protocol specific values. */
     protected $definition;
-    /**
-     * The domain name of the server for the DeploymentSite.
-     * @val string	 */
+
+    /** @var string The domain name of the server for the DeploymentSite. */
     protected $viewserver;
-    /**
-     * The url path to were files are accessible for the DeploymentSite.
-     * @val string	 */
+
+    /** @var string The url path to were files are accessible for the DeploymentSite. */
     protected $viewpath;
-    /**
-     * The pattern used for naming the files.
-     * @val string	 */
+
+    /** @var string The pattern used for naming the files. */
     protected $namingpattern;
-    /**
-     * Whether grouped Media should be deployed.
-     * @val bool	 */
+
+    /** @var bool Whether grouped Media should be deployed. */
     protected $children;
-    /**
-     * The color associated with the DeploymentSite as a #-prepended hexadecimal string.
-     * @val string	 */
+
+    /** @var string The color associated with the DeploymentSite as a #-prepended hexadecimal string. */
     protected $color;
-    /**
-     * The connected ImageTemplates.
-     * @val ImageTemplate[]	 */
+
+    /** @var ImageTemplate[] The connected ImageTemplates. */
     protected $imagetemplates;
-    /**
-     * The connected VideoTemplates.
-     * @val VideoTemplate[]	 */
+
+    /** @var VideoTemplate[] The connected VideoTemplates. */
     protected $videotemplates;
-    /**
-     * The connected Categories.
-     * @val Category[]	 */
+
+    /** @var Category[] The connected Categories. */
     protected $categories;
-    /**
-     * The Objects name.
-     * @val string	 */
+
+    /** @var string The Objects name. */
     protected $name;
-    /**
-     * Whether the object is deleted.
-     * @val bool	 */
+
+    /** @var bool Whether the object is deleted. */
     protected $deleted;
-    /**
-     * A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     * @val string[]	 */
+
+    /** @var string[] A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object. */
     protected $properties;
-    /**
-     * The identifier of the ObjectType describing the propertysets this object should use.
-     * @val int	 */
+
+    /** @var int The identifier of the ObjectType describing the propertysets this object should use. */
     protected $typeId;
 
     /**
