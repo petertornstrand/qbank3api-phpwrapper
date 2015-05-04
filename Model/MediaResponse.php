@@ -721,12 +721,16 @@ class MediaResponse extends Media implements \JsonSerializable
 
         foreach ($this->propertySets as $propertySet) {
             /** @var PropertySet $propertySet */
-    foreach ($propertySet->getProperties() as $property) {
-        /* @var Property $property */
-        if (!isset($json['properties'][$property->getPropertyType()->getSystemName()])) {
-            $json['properties'][$property->getPropertyType()->getSystemName()] = $property->getValue();
-        }
-    }
+            foreach ($propertySet->getProperties() as $property) {
+                /* @var Property $property */
+                if (!isset($json['properties'][$property->getPropertyType()->getSystemName()])) {
+                    if ($property->getValue() instanceof \DateTime) {
+                        $json['properties'][$property->getPropertyType()->getSystemName()] = $property->getValue()->format(\DateTime::ISO8601);
+                    } else {
+                        $json['properties'][$property->getPropertyType()->getSystemName()] = $property->getValue();
+                    }
+                }
+            }
         }
 
         return $json;
