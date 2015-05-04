@@ -32,7 +32,7 @@ class MediaResponse extends Media implements \JsonSerializable
     /** @var int The Media status identifier. */
     protected $statusId;
 
-    /** @var string When the Media was uploaded. A datetime string on the format ISO8601. */
+    /** @var DateTime When the Media was uploaded. A datetime string on the format ISO8601. */
     protected $uploaded;
 
     /** @var int The identifier of the User who uploaded the Media. */
@@ -311,7 +311,7 @@ class MediaResponse extends Media implements \JsonSerializable
     }
     /**
      * Gets the uploaded of the MediaResponse.
-     * @return string	 */
+     * @return DateTime	 */
     public function getUploaded()
     {
         return $this->uploaded;
@@ -320,13 +320,21 @@ class MediaResponse extends Media implements \JsonSerializable
     /**
      * Sets the "uploaded" of the MediaResponse.
      *
-     * @param string $uploaded
+     * @param DateTime $uploaded
      *
      * @return MediaResponse
      */
     public function setUploaded($uploaded)
     {
-        $this->uploaded =  $uploaded;
+        if ($uploaded instanceof DateTime) {
+            $this->uploaded = $uploaded;
+        } else {
+            try {
+                $this->uploaded = new DateTime($uploaded);
+            } catch (\Exception $e) {
+                $this->uploaded = null;
+            }
+        }
 
         return $this;
     }
