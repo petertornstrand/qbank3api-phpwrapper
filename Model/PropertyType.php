@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class PropertyType  implements \JsonSerializable
-{
+    class PropertyType  implements \JsonSerializable
+    {
     const DATATYPE_BOOLEAN  = 1;
     const DATATYPE_DATETIME = 2;
     const DATATYPE_DECIMAL  = 3;
@@ -138,7 +138,7 @@ class PropertyType  implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -188,7 +188,7 @@ class PropertyType  implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -209,7 +209,7 @@ class PropertyType  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -230,7 +230,7 @@ class PropertyType  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -251,7 +251,7 @@ class PropertyType  implements \JsonSerializable
      */
     public function setSystemName($systemName)
     {
-        $this->systemName =  $systemName;
+        $this->systemName = $systemName;
 
         return $this;
     }
@@ -272,7 +272,7 @@ class PropertyType  implements \JsonSerializable
      */
     public function setDescription($description)
     {
-        $this->description =  $description;
+        $this->description = $description;
 
         return $this;
     }
@@ -293,7 +293,7 @@ class PropertyType  implements \JsonSerializable
      */
     public function setDataTypeId($dataTypeId)
     {
-        $this->dataTypeId =  $dataTypeId;
+        $this->dataTypeId = $dataTypeId;
 
         return $this;
     }
@@ -369,4 +369,4 @@ class PropertyType  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

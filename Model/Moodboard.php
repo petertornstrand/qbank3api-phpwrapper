@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class Moodboard  implements \JsonSerializable
-{
+    class Moodboard  implements \JsonSerializable
+    {
     /** @var string The pincode used to access this Moodboard. */
     protected $pinCode;
 
@@ -90,7 +90,7 @@ class Moodboard  implements \JsonSerializable
      */
     public function setPinCode($pinCode)
     {
-        $this->pinCode =  $pinCode;
+        $this->pinCode = $pinCode;
 
         return $this;
     }
@@ -111,7 +111,7 @@ class Moodboard  implements \JsonSerializable
      */
     public function setTemplateId($templateId)
     {
-        $this->templateId =  $templateId;
+        $this->templateId = $templateId;
 
         return $this;
     }
@@ -190,7 +190,7 @@ class Moodboard  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -211,7 +211,7 @@ class Moodboard  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -232,7 +232,7 @@ class Moodboard  implements \JsonSerializable
      */
     public function setProperties(array $properties)
     {
-        $this->properties =  $properties;
+        $this->properties = $properties;
 
         return $this;
     }
@@ -253,7 +253,7 @@ class Moodboard  implements \JsonSerializable
      */
     public function setTypeId($typeId)
     {
-        $this->typeId =  $typeId;
+        $this->typeId = $typeId;
 
         return $this;
     }
@@ -294,4 +294,4 @@ class Moodboard  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

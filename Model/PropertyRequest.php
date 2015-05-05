@@ -41,7 +41,7 @@ class PropertyRequest extends PropertyCriteria implements \JsonSerializable
      */
     public function setForfetching($forfetching)
     {
-        $this->forfetching =  $forfetching;
+        $this->forfetching = $forfetching;
 
         return $this;
     }

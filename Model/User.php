@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class User  implements \JsonSerializable
-{
+    class User  implements \JsonSerializable
+    {
     /** @var int The User identifier. */
     protected $id;
 
@@ -161,7 +161,7 @@ class User  implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -182,7 +182,7 @@ class User  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -203,7 +203,7 @@ class User  implements \JsonSerializable
      */
     public function setEmail($email)
     {
-        $this->email =  $email;
+        $this->email = $email;
 
         return $this;
     }
@@ -282,7 +282,7 @@ class User  implements \JsonSerializable
      */
     public function setFirstName($firstName)
     {
-        $this->firstName =  $firstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
@@ -303,7 +303,7 @@ class User  implements \JsonSerializable
      */
     public function setLastName($lastName)
     {
-        $this->lastName =  $lastName;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -324,7 +324,7 @@ class User  implements \JsonSerializable
      */
     public function setUserName($userName)
     {
-        $this->userName =  $userName;
+        $this->userName = $userName;
 
         return $this;
     }
@@ -402,7 +402,7 @@ class User  implements \JsonSerializable
      */
     public function setDirty($dirty)
     {
-        $this->dirty =  $dirty;
+        $this->dirty = $dirty;
 
         return $this;
     }
@@ -423,7 +423,7 @@ class User  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -473,7 +473,7 @@ class User  implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -523,7 +523,7 @@ class User  implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -670,4 +670,4 @@ class User  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

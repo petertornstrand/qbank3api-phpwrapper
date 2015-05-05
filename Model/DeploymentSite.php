@@ -140,7 +140,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setDescription($description)
     {
-        $this->description =  $description;
+        $this->description = $description;
 
         return $this;
     }
@@ -218,7 +218,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setViewserver($viewserver)
     {
-        $this->viewserver =  $viewserver;
+        $this->viewserver = $viewserver;
 
         return $this;
     }
@@ -239,7 +239,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setViewpath($viewpath)
     {
-        $this->viewpath =  $viewpath;
+        $this->viewpath = $viewpath;
 
         return $this;
     }
@@ -260,7 +260,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setNamingpattern($namingpattern)
     {
-        $this->namingpattern =  $namingpattern;
+        $this->namingpattern = $namingpattern;
 
         return $this;
     }
@@ -281,7 +281,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setChildren($children)
     {
-        $this->children =  $children;
+        $this->children = $children;
 
         return $this;
     }
@@ -302,7 +302,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setColor($color)
     {
-        $this->color =  $color;
+        $this->color = $color;
 
         return $this;
     }
@@ -437,7 +437,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -458,7 +458,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -479,7 +479,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setProperties(array $properties)
     {
-        $this->properties =  $properties;
+        $this->properties = $properties;
 
         return $this;
     }
@@ -500,7 +500,7 @@ class DeploymentSite  implements \JsonSerializable
      */
     public function setTypeId($typeId)
     {
-        $this->typeId =  $typeId;
+        $this->typeId = $typeId;
 
         return $this;
     }

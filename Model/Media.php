@@ -88,7 +88,7 @@ class Media  implements \JsonSerializable
      */
     public function setCategoryId($categoryId)
     {
-        $this->categoryId =  $categoryId;
+        $this->categoryId = $categoryId;
 
         return $this;
     }
@@ -109,7 +109,7 @@ class Media  implements \JsonSerializable
      */
     public function setFilename($filename)
     {
-        $this->filename =  $filename;
+        $this->filename = $filename;
 
         return $this;
     }
@@ -130,7 +130,7 @@ class Media  implements \JsonSerializable
      */
     public function setParentId($parentId)
     {
-        $this->parentId =  $parentId;
+        $this->parentId = $parentId;
 
         return $this;
     }
@@ -151,7 +151,7 @@ class Media  implements \JsonSerializable
      */
     public function setReplacedBy($replacedBy)
     {
-        $this->replacedBy =  $replacedBy;
+        $this->replacedBy = $replacedBy;
 
         return $this;
     }
@@ -172,7 +172,7 @@ class Media  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -193,7 +193,7 @@ class Media  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -214,7 +214,7 @@ class Media  implements \JsonSerializable
      */
     public function setProperties(array $properties)
     {
-        $this->properties =  $properties;
+        $this->properties = $properties;
 
         return $this;
     }
@@ -235,7 +235,7 @@ class Media  implements \JsonSerializable
      */
     public function setTypeId($typeId)
     {
-        $this->typeId =  $typeId;
+        $this->typeId = $typeId;
 
         return $this;
     }

@@ -7,7 +7,7 @@ namespace QBNK\QBank\API;
  */
 class CachePolicy
 {
-    /** @var boolean */
+    /** @var bool */
     protected $enabled;
 
     /** @var int */

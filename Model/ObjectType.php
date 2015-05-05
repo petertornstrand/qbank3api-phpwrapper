@@ -3,10 +3,10 @@
 namespace QBNK\QBank\API\Model;
 
 use DateTime;
-use QBNK\QBank\API\Exception\PropertyNotFoundException;
+    use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-class ObjectType  implements \JsonSerializable
-{
+    class ObjectType  implements \JsonSerializable
+    {
     /** @var string The name of the ObjectType */
     protected $name;
 
@@ -105,7 +105,7 @@ class ObjectType  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -126,7 +126,7 @@ class ObjectType  implements \JsonSerializable
      */
     public function setDescription($description)
     {
-        $this->description =  $description;
+        $this->description = $description;
 
         return $this;
     }
@@ -147,7 +147,7 @@ class ObjectType  implements \JsonSerializable
      */
     public function setType($type)
     {
-        $this->type =  $type;
+        $this->type = $type;
 
         return $this;
     }
@@ -168,7 +168,7 @@ class ObjectType  implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -218,7 +218,7 @@ class ObjectType  implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -268,7 +268,7 @@ class ObjectType  implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -348,7 +348,7 @@ class ObjectType  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -395,4 +395,4 @@ class ObjectType  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

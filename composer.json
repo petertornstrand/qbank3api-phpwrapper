@@ -15,15 +15,9 @@
   "support": {
     "email": "support@qbank.se"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/QBNK/guzzle5-oauth2-subscriber"
-    }
-  ],
   "require": {
     "php": ">=5.4",
-    "nmrkt/guzzle5-oauth2-subscriber": "dev-master",
+    "qbnk/guzzle5-oauth2-subscriber": "~0.1.3",
     "doctrine/cache": "~1.3",
     "psr/log": "1.0.0"
   },

@@ -44,7 +44,7 @@ class DownloadItem  implements \JsonSerializable
      */
     public function setMediaId($mediaId)
     {
-        $this->mediaId =  $mediaId;
+        $this->mediaId = $mediaId;
 
         return $this;
     }
@@ -65,7 +65,7 @@ class DownloadItem  implements \JsonSerializable
      */
     public function setImageTemplateId($imageTemplateId)
     {
-        $this->imageTemplateId =  $imageTemplateId;
+        $this->imageTemplateId = $imageTemplateId;
 
         return $this;
     }

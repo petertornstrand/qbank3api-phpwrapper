@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class Role  implements \JsonSerializable
-{
+    class Role  implements \JsonSerializable
+    {
     /** @var int The Role identifier. */
     protected $id;
 
@@ -104,7 +104,7 @@ class Role  implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -125,7 +125,7 @@ class Role  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -146,7 +146,7 @@ class Role  implements \JsonSerializable
      */
     public function setDescription($description)
     {
-        $this->description =  $description;
+        $this->description = $description;
 
         return $this;
     }
@@ -167,7 +167,7 @@ class Role  implements \JsonSerializable
      */
     public function setDirty($dirty)
     {
-        $this->dirty =  $dirty;
+        $this->dirty = $dirty;
 
         return $this;
     }
@@ -188,7 +188,7 @@ class Role  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -238,7 +238,7 @@ class Role  implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -288,7 +288,7 @@ class Role  implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -373,4 +373,4 @@ class Role  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

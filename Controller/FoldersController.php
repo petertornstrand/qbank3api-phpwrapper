@@ -3,12 +3,12 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-use QBNK\QBank\API\Model\Folder;
-use QBNK\QBank\API\Model\FolderParent;
-use QBNK\QBank\API\Model\FolderResponse;
+    use QBNK\QBank\API\Model\Folder;
+    use QBNK\QBank\API\Model\FolderParent;
+    use QBNK\QBank\API\Model\FolderResponse;
 
-class FoldersController extends ControllerAbstract
-{
+    class FoldersController extends ControllerAbstract
+    {
     /**
      * Lists all Folders.
      *
@@ -188,4 +188,4 @@ class FoldersController extends ControllerAbstract
 
         return $result;
     }
-}
+    }

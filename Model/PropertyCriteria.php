@@ -51,7 +51,7 @@ class PropertyCriteria  implements \JsonSerializable
      */
     public function setSystemName($systemName)
     {
-        $this->systemName =  $systemName;
+        $this->systemName = $systemName;
 
         return $this;
     }
@@ -72,7 +72,7 @@ class PropertyCriteria  implements \JsonSerializable
      */
     public function setValue($value)
     {
-        $this->value =  $value;
+        $this->value = $value;
 
         return $this;
     }
@@ -93,7 +93,7 @@ class PropertyCriteria  implements \JsonSerializable
      */
     public function setOperator($operator)
     {
-        $this->operator =  $operator;
+        $this->operator = $operator;
 
         return $this;
     }

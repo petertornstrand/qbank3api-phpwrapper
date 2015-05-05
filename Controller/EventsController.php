@@ -3,10 +3,10 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\Model\DownloadItem;
-use QBNK\QBank\API\Model\Search;
+    use QBNK\QBank\API\Model\Search;
 
-class EventsController extends ControllerAbstract
-{
+    class EventsController extends ControllerAbstract
+    {
     /**
      * Track a Media download.
      *
@@ -80,4 +80,4 @@ class EventsController extends ControllerAbstract
 
         return $result;
     }
-}
+    }

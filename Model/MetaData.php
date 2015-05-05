@@ -44,7 +44,7 @@ class MetaData  implements \JsonSerializable
      */
     public function setSection($section)
     {
-        $this->section =  $section;
+        $this->section = $section;
 
         return $this;
     }

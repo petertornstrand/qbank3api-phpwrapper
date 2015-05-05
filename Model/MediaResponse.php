@@ -3,11 +3,11 @@
 namespace QBNK\QBank\API\Model;
 
 use DateTime;
-use QBNK\QBank\API\Exception\NotFoundException;
-use QBNK\QBank\API\Exception\PropertyNotFoundException;
+    use QBNK\QBank\API\Exception\NotFoundException;
+    use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-class MediaResponse extends Media implements \JsonSerializable
-{
+    class MediaResponse extends Media implements \JsonSerializable
+    {
     const TEMPLATE_IMAGE = 'image';
     const TEMPLATE_VIDEO = 'video';
 
@@ -162,7 +162,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setMediaId($mediaId)
     {
-        $this->mediaId =  $mediaId;
+        $this->mediaId = $mediaId;
 
         return $this;
     }
@@ -183,7 +183,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setThumbPreviewStatus($thumbPreviewStatus)
     {
-        $this->thumbPreviewStatus =  $thumbPreviewStatus;
+        $this->thumbPreviewStatus = $thumbPreviewStatus;
 
         return $this;
     }
@@ -204,7 +204,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setExtension($extension)
     {
-        $this->extension =  $extension;
+        $this->extension = $extension;
 
         return $this;
     }
@@ -284,7 +284,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setSize($size)
     {
-        $this->size =  $size;
+        $this->size = $size;
 
         return $this;
     }
@@ -305,7 +305,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setStatusId($statusId)
     {
-        $this->statusId =  $statusId;
+        $this->statusId = $statusId;
 
         return $this;
     }
@@ -355,7 +355,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setUploadedBy($uploadedBy)
     {
-        $this->uploadedBy =  $uploadedBy;
+        $this->uploadedBy = $uploadedBy;
 
         return $this;
     }
@@ -414,7 +414,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setObjectId($objectId)
     {
-        $this->objectId =  $objectId;
+        $this->objectId = $objectId;
 
         return $this;
     }
@@ -464,7 +464,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -514,7 +514,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -535,7 +535,7 @@ class MediaResponse extends Media implements \JsonSerializable
      */
     public function setDirty($dirty)
     {
-        $this->dirty =  $dirty;
+        $this->dirty = $dirty;
 
         return $this;
     }
@@ -613,7 +613,7 @@ class MediaResponse extends Media implements \JsonSerializable
     public function getDeployedFile($templateId, $templateType = self::TEMPLATE_IMAGE, $siteId = null)
     {
         foreach ($this->deployedFiles as $deployedFile) {
-            /* @var DeploymentFile $deployedFile */
+            /** @var DeploymentFile $deployedFile */
             if (($templateType == self::TEMPLATE_IMAGE && $templateId == $deployedFile->getImageTemplateId()) ||
                 ($templateType == self::TEMPLATE_VIDEO && $templateId == $deployedFile->getVideoTemplateId()) ||
                 ($templateId === null && $deployedFile->getImageTemplateId() === null && $deployedFile->getVideoTemplateId() === null)) {
@@ -641,7 +641,7 @@ class MediaResponse extends Media implements \JsonSerializable
             return $this->metadata;
         }
         foreach ($this->metadata as $md) {
-            /* @var MetaData $md */
+            /** @var MetaData $md */
             if ($section != $md->getSection()) {
                 continue;
             }
@@ -722,7 +722,7 @@ class MediaResponse extends Media implements \JsonSerializable
         foreach ($this->propertySets as $propertySet) {
             /** @var PropertySet $propertySet */
             foreach ($propertySet->getProperties() as $property) {
-                /* @var Property $property */
+                /** @var Property $property */
                 if (!isset($json['properties'][$property->getPropertyType()->getSystemName()])) {
                     if ($property->getValue() instanceof \DateTime) {
                         $json['properties'][$property->getPropertyType()->getSystemName()] = $property->getValue()->format(\DateTime::ISO8601);
@@ -735,4 +735,4 @@ class MediaResponse extends Media implements \JsonSerializable
 
         return $json;
     }
-}
+    }

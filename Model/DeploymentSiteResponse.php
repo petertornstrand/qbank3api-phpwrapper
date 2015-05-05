@@ -3,10 +3,10 @@
 namespace QBNK\QBank\API\Model;
 
 use DateTime;
-use QBNK\QBank\API\Exception\PropertyNotFoundException;
+    use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
-{
+    class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
+    {
     /** @var int The DeploymentSite identifier. */
     protected $id;
 
@@ -93,7 +93,7 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -114,7 +114,7 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
      */
     public function setObjectId($objectId)
     {
-        $this->objectId =  $objectId;
+        $this->objectId = $objectId;
 
         return $this;
     }
@@ -164,7 +164,7 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -214,7 +214,7 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -235,7 +235,7 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
      */
     public function setDirty($dirty)
     {
-        $this->dirty =  $dirty;
+        $this->dirty = $dirty;
 
         return $this;
     }
@@ -335,4 +335,4 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
 
         return $json;
     }
-}
+    }

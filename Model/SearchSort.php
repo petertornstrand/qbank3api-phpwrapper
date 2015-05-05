@@ -72,7 +72,7 @@ class SearchSort  implements \JsonSerializable
      */
     public function setSortField($sortField)
     {
-        $this->sortField =  $sortField;
+        $this->sortField = $sortField;
 
         return $this;
     }
@@ -93,7 +93,7 @@ class SearchSort  implements \JsonSerializable
      */
     public function setSortDirection($sortDirection)
     {
-        $this->sortDirection =  $sortDirection;
+        $this->sortDirection = $sortDirection;
 
         return $this;
     }
@@ -114,7 +114,7 @@ class SearchSort  implements \JsonSerializable
      */
     public function setSourceId($sourceId)
     {
-        $this->sourceId =  $sourceId;
+        $this->sourceId = $sourceId;
 
         return $this;
     }
@@ -163,7 +163,7 @@ class SearchSort  implements \JsonSerializable
      */
     public function setSystemName($systemName)
     {
-        $this->systemName =  $systemName;
+        $this->systemName = $systemName;
 
         return $this;
     }
@@ -184,7 +184,7 @@ class SearchSort  implements \JsonSerializable
      */
     public function setJsonKey($jsonKey)
     {
-        $this->jsonKey =  $jsonKey;
+        $this->jsonKey = $jsonKey;
 
         return $this;
     }

@@ -53,7 +53,7 @@ class FilterItem  implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -74,7 +74,7 @@ class FilterItem  implements \JsonSerializable
      */
     public function setTitle($title)
     {
-        $this->title =  $title;
+        $this->title = $title;
 
         return $this;
     }
@@ -95,7 +95,7 @@ class FilterItem  implements \JsonSerializable
      */
     public function setMediaIds(array $mediaIds)
     {
-        $this->mediaIds =  $mediaIds;
+        $this->mediaIds = $mediaIds;
 
         return $this;
     }

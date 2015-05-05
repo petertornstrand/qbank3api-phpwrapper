@@ -44,7 +44,7 @@ class FolderParent  implements \JsonSerializable
      */
     public function setFolderid($folderid)
     {
-        $this->folderid =  $folderid;
+        $this->folderid = $folderid;
 
         return $this;
     }
@@ -65,7 +65,7 @@ class FolderParent  implements \JsonSerializable
      */
     public function setDepth($depth)
     {
-        $this->depth =  $depth;
+        $this->depth = $depth;
 
         return $this;
     }

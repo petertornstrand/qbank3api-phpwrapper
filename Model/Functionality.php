@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class Functionality  implements \JsonSerializable
-{
+    class Functionality  implements \JsonSerializable
+    {
     /** @var int The Functionality identifier. */
     protected $id;
 
@@ -102,7 +102,7 @@ class Functionality  implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -123,7 +123,7 @@ class Functionality  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -144,7 +144,7 @@ class Functionality  implements \JsonSerializable
      */
     public function setDescription($description)
     {
-        $this->description =  $description;
+        $this->description = $description;
 
         return $this;
     }
@@ -165,7 +165,7 @@ class Functionality  implements \JsonSerializable
      */
     public function setDirty($dirty)
     {
-        $this->dirty =  $dirty;
+        $this->dirty = $dirty;
 
         return $this;
     }
@@ -186,7 +186,7 @@ class Functionality  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -236,7 +236,7 @@ class Functionality  implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -286,7 +286,7 @@ class Functionality  implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -307,7 +307,7 @@ class Functionality  implements \JsonSerializable
      */
     public function setTitle($title)
     {
-        $this->title =  $title;
+        $this->title = $title;
 
         return $this;
     }
@@ -354,4 +354,4 @@ class Functionality  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

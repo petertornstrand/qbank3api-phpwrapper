@@ -67,7 +67,7 @@ class Folder  implements \JsonSerializable
      */
     public function setParentId($parentId)
     {
-        $this->parentId =  $parentId;
+        $this->parentId = $parentId;
 
         return $this;
     }
@@ -88,7 +88,7 @@ class Folder  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -109,7 +109,7 @@ class Folder  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -130,7 +130,7 @@ class Folder  implements \JsonSerializable
      */
     public function setProperties(array $properties)
     {
-        $this->properties =  $properties;
+        $this->properties = $properties;
 
         return $this;
     }
@@ -151,7 +151,7 @@ class Folder  implements \JsonSerializable
      */
     public function setTypeId($typeId)
     {
-        $this->typeId =  $typeId;
+        $this->typeId = $typeId;
 
         return $this;
     }

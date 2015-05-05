@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class ExtraData  implements \JsonSerializable
-{
+    class ExtraData  implements \JsonSerializable
+    {
     /** @var int The ExtraData identifier. */
     protected $id;
 
@@ -102,7 +102,7 @@ class ExtraData  implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -123,7 +123,7 @@ class ExtraData  implements \JsonSerializable
      */
     public function setDirty($dirty)
     {
-        $this->dirty =  $dirty;
+        $this->dirty = $dirty;
 
         return $this;
     }
@@ -144,7 +144,7 @@ class ExtraData  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -194,7 +194,7 @@ class ExtraData  implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -244,7 +244,7 @@ class ExtraData  implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -265,7 +265,7 @@ class ExtraData  implements \JsonSerializable
      */
     public function setKey($key)
     {
-        $this->key =  $key;
+        $this->key = $key;
 
         return $this;
     }
@@ -286,7 +286,7 @@ class ExtraData  implements \JsonSerializable
      */
     public function setKeyId($keyId)
     {
-        $this->keyId =  $keyId;
+        $this->keyId = $keyId;
 
         return $this;
     }
@@ -307,7 +307,7 @@ class ExtraData  implements \JsonSerializable
      */
     public function setValue($value)
     {
-        $this->value =  $value;
+        $this->value = $value;
 
         return $this;
     }
@@ -354,4 +354,4 @@ class ExtraData  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

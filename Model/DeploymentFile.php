@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class DeploymentFile  implements \JsonSerializable
-{
+    class DeploymentFile  implements \JsonSerializable
+    {
     /** @var int The identifier of the DeploymentSite this file is deployed to. */
     protected $deploymentSiteId;
 
@@ -95,7 +95,7 @@ class DeploymentFile  implements \JsonSerializable
      */
     public function setDeploymentSiteId($deploymentSiteId)
     {
-        $this->deploymentSiteId =  $deploymentSiteId;
+        $this->deploymentSiteId = $deploymentSiteId;
 
         return $this;
     }
@@ -116,7 +116,7 @@ class DeploymentFile  implements \JsonSerializable
      */
     public function setRemoteFile($remoteFile)
     {
-        $this->remoteFile =  $remoteFile;
+        $this->remoteFile = $remoteFile;
 
         return $this;
     }
@@ -137,7 +137,7 @@ class DeploymentFile  implements \JsonSerializable
      */
     public function setImageTemplateId($imageTemplateId)
     {
-        $this->imageTemplateId =  $imageTemplateId;
+        $this->imageTemplateId = $imageTemplateId;
 
         return $this;
     }
@@ -158,7 +158,7 @@ class DeploymentFile  implements \JsonSerializable
      */
     public function setVideoTemplateId($videoTemplateId)
     {
-        $this->videoTemplateId =  $videoTemplateId;
+        $this->videoTemplateId = $videoTemplateId;
 
         return $this;
     }
@@ -179,7 +179,7 @@ class DeploymentFile  implements \JsonSerializable
      */
     public function setTemplateName($templateName)
     {
-        $this->templateName =  $templateName;
+        $this->templateName = $templateName;
 
         return $this;
     }
@@ -229,7 +229,7 @@ class DeploymentFile  implements \JsonSerializable
      */
     public function setFilename($filename)
     {
-        $this->filename =  $filename;
+        $this->filename = $filename;
 
         return $this;
     }
@@ -250,7 +250,7 @@ class DeploymentFile  implements \JsonSerializable
      */
     public function setFilesize($filesize)
     {
-        $this->filesize =  $filesize;
+        $this->filesize = $filesize;
 
         return $this;
     }
@@ -323,4 +323,4 @@ class DeploymentFile  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

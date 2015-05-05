@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class Property  implements \JsonSerializable
-{
+    class Property  implements \JsonSerializable
+    {
     const TEMPLATE_IMAGE = 'image';
     const TEMPLATE_VIDEO = 'video';
 
@@ -120,7 +120,7 @@ class Property  implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -170,7 +170,7 @@ class Property  implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -191,7 +191,7 @@ class Property  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -212,7 +212,7 @@ class Property  implements \JsonSerializable
      */
     public function setDirty($dirty)
     {
-        $this->dirty =  $dirty;
+        $this->dirty = $dirty;
 
         return $this;
     }
@@ -357,4 +357,4 @@ class Property  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use The;
 
-class Command  implements \JsonSerializable
-{
+    class Command  implements \JsonSerializable
+    {
     /** @var The name of the command */
     protected $class;
 
@@ -66,4 +66,4 @@ class Command  implements \JsonSerializable
 
         return $json;
     }
-}
+    }

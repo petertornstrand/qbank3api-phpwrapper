@@ -67,7 +67,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
      */
     public function setLimit($limit)
     {
-        $this->limit =  $limit;
+        $this->limit = $limit;
 
         return $this;
     }
@@ -88,7 +88,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
      */
     public function setOffset($offset)
     {
-        $this->offset =  $offset;
+        $this->offset = $offset;
 
         return $this;
     }
@@ -147,7 +147,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
      */
     public function setTimeSearching($timeSearching)
     {
-        $this->timeSearching =  $timeSearching;
+        $this->timeSearching = $timeSearching;
 
         return $this;
     }
@@ -168,7 +168,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
      */
     public function setTotalHits($totalHits)
     {
-        $this->totalHits =  $totalHits;
+        $this->totalHits = $totalHits;
 
         return $this;
     }

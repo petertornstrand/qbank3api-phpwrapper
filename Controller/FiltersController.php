@@ -3,10 +3,10 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-use QBNK\QBank\API\Model\FilterItem;
+    use QBNK\QBank\API\Model\FilterItem;
 
-class FiltersController extends ControllerAbstract
-{
+    class FiltersController extends ControllerAbstract
+    {
     /**
      * Returns a array of FilterItem for the chosen categories.
      *
@@ -91,4 +91,4 @@ class FiltersController extends ControllerAbstract
 
         return $result;
     }
-}
+    }

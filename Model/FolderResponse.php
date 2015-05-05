@@ -3,10 +3,10 @@
 namespace QBNK\QBank\API\Model;
 
 use DateTime;
-use QBNK\QBank\API\Exception\PropertyNotFoundException;
+    use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-class FolderResponse extends Folder implements \JsonSerializable
-{
+    class FolderResponse extends Folder implements \JsonSerializable
+    {
     /** @var int The Folder identifier. */
     protected $id;
 
@@ -101,7 +101,7 @@ class FolderResponse extends Folder implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -160,7 +160,7 @@ class FolderResponse extends Folder implements \JsonSerializable
      */
     public function setObjectId($objectId)
     {
-        $this->objectId =  $objectId;
+        $this->objectId = $objectId;
 
         return $this;
     }
@@ -210,7 +210,7 @@ class FolderResponse extends Folder implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -260,7 +260,7 @@ class FolderResponse extends Folder implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -281,7 +281,7 @@ class FolderResponse extends Folder implements \JsonSerializable
      */
     public function setDirty($dirty)
     {
-        $this->dirty =  $dirty;
+        $this->dirty = $dirty;
 
         return $this;
     }
@@ -384,4 +384,4 @@ class FolderResponse extends Folder implements \JsonSerializable
 
         return $json;
     }
-}
+    }

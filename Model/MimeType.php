@@ -79,7 +79,7 @@ class MimeType  implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -100,7 +100,7 @@ class MimeType  implements \JsonSerializable
      */
     public function setMimetype($mimetype)
     {
-        $this->mimetype =  $mimetype;
+        $this->mimetype = $mimetype;
 
         return $this;
     }
@@ -121,7 +121,7 @@ class MimeType  implements \JsonSerializable
      */
     public function setDescription($description)
     {
-        $this->description =  $description;
+        $this->description = $description;
 
         return $this;
     }
@@ -142,7 +142,7 @@ class MimeType  implements \JsonSerializable
      */
     public function setImagetemplate($imagetemplate)
     {
-        $this->imagetemplate =  $imagetemplate;
+        $this->imagetemplate = $imagetemplate;
 
         return $this;
     }
@@ -163,7 +163,7 @@ class MimeType  implements \JsonSerializable
      */
     public function setVideotemplate($videotemplate)
     {
-        $this->videotemplate =  $videotemplate;
+        $this->videotemplate = $videotemplate;
 
         return $this;
     }
@@ -184,7 +184,7 @@ class MimeType  implements \JsonSerializable
      */
     public function setDefaultextension($defaultextension)
     {
-        $this->defaultextension =  $defaultextension;
+        $this->defaultextension = $defaultextension;
 
         return $this;
     }
@@ -205,7 +205,7 @@ class MimeType  implements \JsonSerializable
      */
     public function setClassification($classification)
     {
-        $this->classification =  $classification;
+        $this->classification = $classification;
 
         return $this;
     }

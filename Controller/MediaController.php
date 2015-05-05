@@ -3,15 +3,15 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-use QBNK\QBank\API\Model\DeploymentFile;
-use QBNK\QBank\API\Model\DeploymentSite;
-use QBNK\QBank\API\Model\Folder;
-use QBNK\QBank\API\Model\Media;
-use QBNK\QBank\API\Model\MediaResponse;
-use QBNK\QBank\API\Model\Moodboard;
+    use QBNK\QBank\API\Model\DeploymentFile;
+    use QBNK\QBank\API\Model\DeploymentSite;
+    use QBNK\QBank\API\Model\Folder;
+    use QBNK\QBank\API\Model\Media;
+    use QBNK\QBank\API\Model\MediaResponse;
+    use QBNK\QBank\API\Model\Moodboard;
 
-class MediaController extends ControllerAbstract
-{
+    class MediaController extends ControllerAbstract
+    {
     /**
      * Fetches a specific Media.
      *
@@ -321,4 +321,4 @@ class MediaController extends ControllerAbstract
 
         return $result;
     }
-}
+    }

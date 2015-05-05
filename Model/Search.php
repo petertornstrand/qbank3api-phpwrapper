@@ -225,7 +225,7 @@ class Search  implements \JsonSerializable
      */
     public function setOffset($offset)
     {
-        $this->offset =  $offset;
+        $this->offset = $offset;
 
         return $this;
     }
@@ -246,7 +246,7 @@ class Search  implements \JsonSerializable
      */
     public function setLimit($limit)
     {
-        $this->limit =  $limit;
+        $this->limit = $limit;
 
         return $this;
     }
@@ -267,7 +267,7 @@ class Search  implements \JsonSerializable
      */
     public function setFreeText($freeText)
     {
-        $this->freeText =  $freeText;
+        $this->freeText = $freeText;
 
         return $this;
     }
@@ -288,7 +288,7 @@ class Search  implements \JsonSerializable
      */
     public function setObjectIds(array $objectIds)
     {
-        $this->objectIds =  $objectIds;
+        $this->objectIds = $objectIds;
 
         return $this;
     }
@@ -309,7 +309,7 @@ class Search  implements \JsonSerializable
      */
     public function setMediaIds(array $mediaIds)
     {
-        $this->mediaIds =  $mediaIds;
+        $this->mediaIds = $mediaIds;
 
         return $this;
     }
@@ -330,7 +330,7 @@ class Search  implements \JsonSerializable
      */
     public function setCreatedByIds(array $createdByIds)
     {
-        $this->createdByIds =  $createdByIds;
+        $this->createdByIds = $createdByIds;
 
         return $this;
     }
@@ -379,7 +379,7 @@ class Search  implements \JsonSerializable
      */
     public function setUpdatedByIds(array $updatedByIds)
     {
-        $this->updatedByIds =  $updatedByIds;
+        $this->updatedByIds = $updatedByIds;
 
         return $this;
     }
@@ -428,7 +428,7 @@ class Search  implements \JsonSerializable
      */
     public function setMediaStatusIds(array $mediaStatusIds)
     {
-        $this->mediaStatusIds =  $mediaStatusIds;
+        $this->mediaStatusIds = $mediaStatusIds;
 
         return $this;
     }
@@ -449,7 +449,7 @@ class Search  implements \JsonSerializable
      */
     public function setFolderIds(array $folderIds)
     {
-        $this->folderIds =  $folderIds;
+        $this->folderIds = $folderIds;
 
         return $this;
     }
@@ -470,7 +470,7 @@ class Search  implements \JsonSerializable
      */
     public function setFolderDepth($folderDepth)
     {
-        $this->folderDepth =  $folderDepth;
+        $this->folderDepth = $folderDepth;
 
         return $this;
     }
@@ -491,7 +491,7 @@ class Search  implements \JsonSerializable
      */
     public function setMoodboardIds(array $moodboardIds)
     {
-        $this->moodboardIds =  $moodboardIds;
+        $this->moodboardIds = $moodboardIds;
 
         return $this;
     }
@@ -512,7 +512,7 @@ class Search  implements \JsonSerializable
      */
     public function setCategoryIds(array $categoryIds)
     {
-        $this->categoryIds =  $categoryIds;
+        $this->categoryIds = $categoryIds;
 
         return $this;
     }
@@ -533,7 +533,7 @@ class Search  implements \JsonSerializable
      */
     public function setIgnoreGrouping($ignoreGrouping)
     {
-        $this->ignoreGrouping =  $ignoreGrouping;
+        $this->ignoreGrouping = $ignoreGrouping;
 
         return $this;
     }
@@ -554,7 +554,7 @@ class Search  implements \JsonSerializable
      */
     public function setParentId($parentId)
     {
-        $this->parentId =  $parentId;
+        $this->parentId = $parentId;
 
         return $this;
     }
@@ -575,7 +575,7 @@ class Search  implements \JsonSerializable
      */
     public function setDeploymentSiteIds(array $deploymentSiteIds)
     {
-        $this->deploymentSiteIds =  $deploymentSiteIds;
+        $this->deploymentSiteIds = $deploymentSiteIds;
 
         return $this;
     }
@@ -634,7 +634,7 @@ class Search  implements \JsonSerializable
      */
     public function setFileSizeCriteria(array $fileSizeCriteria)
     {
-        $this->fileSizeCriteria =  $fileSizeCriteria;
+        $this->fileSizeCriteria = $fileSizeCriteria;
 
         return $this;
     }
@@ -655,7 +655,7 @@ class Search  implements \JsonSerializable
      */
     public function setWidthCriteria(array $widthCriteria)
     {
-        $this->widthCriteria =  $widthCriteria;
+        $this->widthCriteria = $widthCriteria;
 
         return $this;
     }
@@ -676,7 +676,7 @@ class Search  implements \JsonSerializable
      */
     public function setHeightCriteria(array $heightCriteria)
     {
-        $this->heightCriteria =  $heightCriteria;
+        $this->heightCriteria = $heightCriteria;
 
         return $this;
     }
@@ -697,7 +697,7 @@ class Search  implements \JsonSerializable
      */
     public function setMimeTypes(array $mimeTypes)
     {
-        $this->mimeTypes =  $mimeTypes;
+        $this->mimeTypes = $mimeTypes;
 
         return $this;
     }
@@ -718,7 +718,7 @@ class Search  implements \JsonSerializable
      */
     public function setFileName($fileName)
     {
-        $this->fileName =  $fileName;
+        $this->fileName = $fileName;
 
         return $this;
     }

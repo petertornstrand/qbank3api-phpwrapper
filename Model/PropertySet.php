@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class PropertySet  implements \JsonSerializable
-{
+    class PropertySet  implements \JsonSerializable
+    {
     /** @var int The PropertySet identifier */
     protected $id;
 
@@ -104,7 +104,7 @@ class PropertySet  implements \JsonSerializable
      */
     public function setId($id)
     {
-        $this->id =  $id;
+        $this->id = $id;
 
         return $this;
     }
@@ -125,7 +125,7 @@ class PropertySet  implements \JsonSerializable
      */
     public function setName($name)
     {
-        $this->name =  $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -175,7 +175,7 @@ class PropertySet  implements \JsonSerializable
      */
     public function setCreatedBy($createdBy)
     {
-        $this->createdBy =  $createdBy;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -225,7 +225,7 @@ class PropertySet  implements \JsonSerializable
      */
     public function setUpdatedBy($updatedBy)
     {
-        $this->updatedBy =  $updatedBy;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
@@ -246,7 +246,7 @@ class PropertySet  implements \JsonSerializable
      */
     public function setDeleted($deleted)
     {
-        $this->deleted =  $deleted;
+        $this->deleted = $deleted;
 
         return $this;
     }
@@ -267,7 +267,7 @@ class PropertySet  implements \JsonSerializable
      */
     public function setDirty($dirty)
     {
-        $this->dirty =  $dirty;
+        $this->dirty = $dirty;
 
         return $this;
     }
@@ -288,7 +288,7 @@ class PropertySet  implements \JsonSerializable
      */
     public function setSystem($system)
     {
-        $this->system =  $system;
+        $this->system = $system;
 
         return $this;
     }
@@ -373,4 +373,4 @@ class PropertySet  implements \JsonSerializable
 
         return $json;
     }
-}
+    }
