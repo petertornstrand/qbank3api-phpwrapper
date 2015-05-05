@@ -46,6 +46,20 @@ abstract class ControllerAbstract implements LoggerAwareInterface
         $this->delayedRequests = [];
     }
 
+    /**
+     * Performs a request to the QBank API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param string $method The HTTP verb to use.
+     * @param CachePolicy $cachePolicy The custom caching policy to use.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
     protected function call($endpoint, array $parameters = [], $method = self::METHOD_GET, CachePolicy $cachePolicy = null, $delayed = false)
     {
         $cachePolicy = ($cachePolicy !== null) ? $cachePolicy : $this->cachePolicy;
@@ -144,24 +158,73 @@ abstract class ControllerAbstract implements LoggerAwareInterface
         }
     }
 
+    /**
+     * Shorthand for sending a GET request to the API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param CachePolicy $cachePolicy The custom caching policy to use.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
     protected function get($endpoint, array $parameters = [], CachePolicy $cachePolicy = null, $delayed = false)
     {
         return $this->call($endpoint, $parameters, self::METHOD_GET, $cachePolicy, $delayed);
     }
 
-    protected function post($endpoint, array $parameters = [], CachePolicy $cachePolicy = null, $delayed = false)
+    /**
+     * Shorthand for sending a POST request to the API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
+    protected function post($endpoint, array $parameters = [], $delayed = false)
     {
-        return $this->call($endpoint, $parameters, self::METHOD_POST, $cachePolicy, $delayed);
+        return $this->call($endpoint, $parameters, self::METHOD_POST, null, $delayed);
     }
 
-    protected function put($endpoint, array $parameters = [], CachePolicy $cachePolicy = null, $delayed = false)
+    /**
+     * Shorthand for sending a PUT request to the API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
+    protected function put($endpoint, array $parameters = [], $delayed = false)
     {
-        return $this->call($endpoint, $parameters, self::METHOD_PUT, $cachePolicy, $delayed);
+        return $this->call($endpoint, $parameters, self::METHOD_PUT, null, $delayed);
     }
 
-    protected function delete($endpoint, array $parameters = [], CachePolicy $cachePolicy = null, $delayed = false)
+    /**
+     * Shorthand for sending a DELETE request to the API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
+    protected function delete($endpoint, array $parameters = [], $delayed = false)
     {
-        return $this->call($endpoint, $parameters, self::METHOD_DELETE, $cachePolicy, $delayed);
+        return $this->call($endpoint, $parameters, self::METHOD_DELETE, null, $delayed);
     }
 
     public function setLogger(LoggerInterface $logger)

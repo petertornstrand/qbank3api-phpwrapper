@@ -2,6 +2,7 @@
 
 namespace QBNK\QBank\API\Controller;
 
+use QBNK\QBank\API\CachePolicy;
 use QBNK\QBank\API\Model\FilterItem;
 
 class FiltersController extends ControllerAbstract
@@ -13,17 +14,18 @@ class FiltersController extends ControllerAbstract
      *
      * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
      * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FilterItem[]
      */
-    public function categories($categoryIds, $deploymentSiteIds = null)
+    public function categories($categoryIds, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['deploymentSiteIds' => $deploymentSiteIds],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/filters/categories/'.$categoryIds.'', $parameters);
+        $result = $this->get('v1/filters/categories/'.$categoryIds.'', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FilterItem($entry);
         }
@@ -40,17 +42,18 @@ class FiltersController extends ControllerAbstract
      * @param int $parentFolderId The folder id..
      * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
      * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FilterItem[]
      */
-    public function folder($parentFolderId, $categoryIds = null, $deploymentSiteIds = null)
+    public function folder($parentFolderId, $categoryIds = null, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/filters/folder/'.$parentFolderId.'', $parameters);
+        $result = $this->get('v1/filters/folder/'.$parentFolderId.'', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FilterItem($entry);
         }
@@ -68,17 +71,18 @@ class FiltersController extends ControllerAbstract
      * @param bool $preloadNames If item names should be preloaded from property type.
      * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
      * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FilterItem[]
      */
-    public function property($systemName, $preloadNames = false, $categoryIds = null, $deploymentSiteIds = null)
+    public function property($systemName, $preloadNames = false, $categoryIds = null, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['preloadNames' => $preloadNames, 'categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/filters/property/'.$systemName.'', $parameters);
+        $result = $this->get('v1/filters/property/'.$systemName.'', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FilterItem($entry);
         }

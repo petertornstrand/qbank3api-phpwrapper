@@ -2,6 +2,7 @@
 
 namespace QBNK\QBank\API\Controller;
 
+use QBNK\QBank\API\CachePolicy;
 use QBNK\QBank\API\Model\DeploymentFile;
 use QBNK\QBank\API\Model\DeploymentSite;
 use QBNK\QBank\API\Model\Folder;
@@ -15,17 +16,18 @@ class MediaController extends ControllerAbstract
      * Fetches a specific Media.
      *
      * @param int $id The Media identifier.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return MediaResponse
      */
-    public function retrieveMedia($id)
+    public function retrieveMedia($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => [],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/media/'.$id.'', $parameters);
+        $result = $this->get('v1/media/'.$id.'', $parameters, $cachePolicy);
         $result = new MediaResponse($result);
 
         return $result;
@@ -46,15 +48,16 @@ class MediaController extends ControllerAbstract
      *
      * @param int $id The Media identifier..
      * @param mixed $template Optional template of Media..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      */
-    public function retrieveFileData($id, $template = null)
+    public function retrieveFileData($id, $template = null, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['template' => $template],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/media/'.$id.'/asset', $parameters);
+        $result = $this->get('v1/media/'.$id.'/asset', $parameters, $cachePolicy);
 
         return $result;
     }
@@ -62,17 +65,18 @@ class MediaController extends ControllerAbstract
      * Fetches all DeployedFiles a media has.
      *
      * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return DeploymentFile[]
      */
-    public function listDeployedFiles($id)
+    public function listDeployedFiles($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => [],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/media/'.$id.'/deployment/files', $parameters);
+        $result = $this->get('v1/media/'.$id.'/deployment/files', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new DeploymentFile($entry);
         }
@@ -85,17 +89,18 @@ class MediaController extends ControllerAbstract
      * Fetches all DeploymentSites a Media is deployed to.
      *
      * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return DeploymentSite[]
      */
-    public function listDeploymentSites($id)
+    public function listDeploymentSites($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => [],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/media/'.$id.'/deployment/sites', $parameters);
+        $result = $this->get('v1/media/'.$id.'/deployment/sites', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new DeploymentSite($entry);
         }
@@ -112,17 +117,18 @@ class MediaController extends ControllerAbstract
      * @param int $id The Media identifier.
      * @param string $template Optional template to download the media in.
      * @param string $templateType Indicates type of template, valid values are; image, video.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return array
      */
-    public function download($id, $template = null, $templateType = image)
+    public function download($id, $template = null, $templateType = image, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['template' => $template, 'templateType' => $templateType],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/media/'.$id.'/download', $parameters);
+        $result = $this->get('v1/media/'.$id.'/download', $parameters, $cachePolicy);
 
         return $result;
     }
@@ -131,17 +137,18 @@ class MediaController extends ControllerAbstract
      *
      * @param int $id The Media identifier..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all toghether..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Folder[]
      */
-    public function listFolders($id, $depth = 0)
+    public function listFolders($id, $depth = 0, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['depth' => $depth],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/media/'.$id.'/folders', $parameters);
+        $result = $this->get('v1/media/'.$id.'/folders', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new Folder($entry);
         }
@@ -154,17 +161,18 @@ class MediaController extends ControllerAbstract
      * Fetches all Moodboards a Media is a member of.
      *
      * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Moodboard[]
      */
-    public function listMoodboards($id)
+    public function listMoodboards($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => [],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/media/'.$id.'/moodboards', $parameters);
+        $result = $this->get('v1/media/'.$id.'/moodboards', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new Moodboard($entry);
         }
@@ -180,15 +188,16 @@ class MediaController extends ControllerAbstract
      *
      * @param int[] $ids Array of Media ID:s to download.
      * @param string $template Optional template to download all Media in..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      */
-    public function downloadArchive(array $ids, $template = null)
+    public function downloadArchive(array $ids, $template = null, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['ids' => $ids, 'template' => $template],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/media/download', $parameters);
+        $result = $this->get('v1/media/download', $parameters, $cachePolicy);
 
         return $result;
     }

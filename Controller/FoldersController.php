@@ -2,6 +2,7 @@
 
 namespace QBNK\QBank\API\Controller;
 
+use QBNK\QBank\API\CachePolicy;
 use QBNK\QBank\API\Model\Folder;
 use QBNK\QBank\API\Model\FolderParent;
 use QBNK\QBank\API\Model\FolderResponse;
@@ -15,17 +16,18 @@ class FoldersController extends ControllerAbstract
      *
      * @param int $root The identifier of a Folder to be treated as the root. Use zero for the absolute root. The root will not be included in the result..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all together..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FolderResponse[]
      */
-    public function listFolders($root = 0, $depth = 0)
+    public function listFolders($root = 0, $depth = 0, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['root' => $root, 'depth' => $depth],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/folders', $parameters);
+        $result = $this->get('v1/folders', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FolderResponse($entry);
         }
@@ -41,17 +43,18 @@ class FoldersController extends ControllerAbstract
      *
      * @param int $id The Folder identifier..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all together..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FolderResponse
      */
-    public function retrieveFolder($id, $depth = 0)
+    public function retrieveFolder($id, $depth = 0, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['depth' => $depth],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/folders/'.$id.'', $parameters);
+        $result = $this->get('v1/folders/'.$id.'', $parameters, $cachePolicy);
         $result = new FolderResponse($result);
 
         return $result;
@@ -62,17 +65,18 @@ class FoldersController extends ControllerAbstract
      * Lists all parent Folders from the specified to the absolute root, with distances.
      *
      * @param int $id The Folder identifier.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FolderParent[]
      */
-    public function retrieveParents($id)
+    public function retrieveParents($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => [],
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/folders/'.$id.'/parents', $parameters);
+        $result = $this->get('v1/folders/'.$id.'/parents', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FolderParent($entry);
         }
