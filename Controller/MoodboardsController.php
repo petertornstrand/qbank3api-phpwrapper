@@ -15,7 +15,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
-     * @return Moodboard[]
+     * @return MoodboardResponse[]
      */
     public function listMoodboards(CachePolicy $cachePolicy = null)
     {
@@ -26,7 +26,7 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->get('v1/moodboards', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
-            $entry = new Moodboard($entry);
+            $entry = new MoodboardResponse($entry);
         }
         unset($entry);
         reset($result);
@@ -102,11 +102,11 @@ use QBNK\QBank\API\CachePolicy;
      * Add Media to a Moodboard.
      *
      * @param int $moodboardId Moodboard ID to add media to.
-     * @param array $mediaIds Paste JSON array data here (required) . <br/>An array of media ids to add to the specified moodboard.
+     * @param int[] $mediaIds Paste JSON data here with an array of int values.
      *
      * @return array
      */
-    public function addMediaToMoodboard($moodboardId, $mediaIds)
+    public function addMediaToMoodboard($moodboardId, array $mediaIds)
     {
         $parameters = [
             'query'   => [],
