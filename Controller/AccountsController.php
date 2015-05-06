@@ -23,7 +23,7 @@ use QBNK\QBank\API\CachePolicy;
     public function listFunctionalities($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
+            'query'   => ['includeDeleted' => $includeDeleted],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -71,7 +71,7 @@ use QBNK\QBank\API\CachePolicy;
     public function listGroups($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
+            'query'   => ['includeDeleted' => $includeDeleted],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -119,7 +119,7 @@ use QBNK\QBank\API\CachePolicy;
     public function listRoles($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
+            'query'   => ['includeDeleted' => $includeDeleted],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -208,7 +208,7 @@ use QBNK\QBank\API\CachePolicy;
     public function listUsers($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
+            'query'   => ['includeDeleted' => $includeDeleted],
             'body'    => json_encode([]),
             'headers' => [],
         ];

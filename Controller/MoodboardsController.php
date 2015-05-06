@@ -99,6 +99,25 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * Add Media to a Moodboard.
+     *
+     * @param int $moodboardId Moodboard ID to add media to.
+     * @param array $mediaIds Paste JSON array data here (required) . <br/>An array of media ids to add to the specified moodboard.
+     *
+     * @return array
+     */
+    public function addMediaToMoodboard($moodboardId, $mediaIds)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['mediaIds' => $mediaIds]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/moodboards/'.$moodboardId.'/media', $parameters);
+
+        return $result;
+    }
+    /**
      * Delete a Moodboard.
      *
      * Will NOT delete Media attached to the Moodboard.
@@ -116,6 +135,25 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->delete('v1/moodboards/'.$id.'', $parameters);
         $result = new MoodboardResponse($result);
+
+        return $result;
+    }
+    /**
+     * Remove Media from a Moodboard.
+     *
+     * @param int $moodboardId Moodboard ID to remove media from.
+     * @param int $mediaId Media ID to remove from specified folder.
+     *
+     * @return array
+     */
+    public function removeMediaFromMoodboard($moodboardId, $mediaId)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->delete('v1/moodboards/'.$moodboardId.'/media/'.$mediaId.'', $parameters);
 
         return $result;
     }

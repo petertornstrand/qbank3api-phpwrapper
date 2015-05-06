@@ -112,7 +112,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $folderId Folder to add media to.
      * @param array $mediaIds Paste JSON array data here (required) . <br/>An array of media ids to add to the specified folder.
      *
-     * @return Folder
+     * @return array
      */
     public function addMediaToFolder($folderId, $mediaIds)
     {
@@ -122,7 +122,6 @@ use QBNK\QBank\API\CachePolicy;
             'headers' => [],
         ];
         $result = $this->post('v1/folders/'.$folderId.'/media', $parameters);
-        $result = new Folder($result);
 
         return $result;
     }

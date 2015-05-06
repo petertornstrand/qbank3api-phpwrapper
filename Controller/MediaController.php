@@ -312,7 +312,7 @@ use QBNK\QBank\API\CachePolicy;
     public function removeMedia($id, $hardDelete = false)
     {
         $parameters = [
-            'query'   => [],
+            'query'   => ['hardDelete' => $hardDelete],
             'body'    => json_encode([]),
             'headers' => [],
         ];

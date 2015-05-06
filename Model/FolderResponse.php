@@ -10,7 +10,7 @@ use DateTime;
     /** @var int The Folder identifier. */
     protected $id;
 
-    /** @var Folder[] The Folder's children, ie. subfolders. */
+    /** @var FolderResponse[] The Folder's children, ie. subfolders. */
     protected $subFolders;
 
     /** @var int The base Object identifier. */
@@ -107,7 +107,7 @@ use DateTime;
     }
     /**
      * Gets the subFolders of the FolderResponse.
-     * @return Folder[]	 */
+     * @return FolderResponse[]	 */
     public function getSubFolders()
     {
         return $this->subFolders;
@@ -116,7 +116,7 @@ use DateTime;
     /**
      * Sets the "subFolders" of the FolderResponse.
      *
-     * @param Folder[] $subFolders
+     * @param FolderResponse[] $subFolders
      *
      * @return FolderResponse
      */
@@ -125,15 +125,15 @@ use DateTime;
         if (is_array($subFolders)) {
             $this->subFolders = [];
             foreach ($subFolders as $item) {
-                if (!($item instanceof Folder)) {
+                if (!($item instanceof self)) {
                     if (is_array($item)) {
                         try {
-                            $item = new Folder($item);
+                            $item = new self($item);
                         } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate Folder. '.$e->getMessage(), E_USER_WARNING);
+                            trigger_error('Could not auto-instantiate FolderResponse. '.$e->getMessage(), E_USER_WARNING);
                         }
                     } else {
-                        trigger_error('Array parameter item is not of expected type "Folder"!', E_USER_WARNING);
+                        trigger_error('Array parameter item is not of expected type "FolderResponse"!', E_USER_WARNING);
                         continue;
                     }
                 }
