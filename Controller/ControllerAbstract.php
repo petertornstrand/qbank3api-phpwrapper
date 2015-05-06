@@ -96,6 +96,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface
         }
 
         try {
+            $start = microtime(true);
             /** @var ResponseInterface $response */
             $response = $this->client->{$method}($endpoint, $parameters);
             $this->logger->debug(
@@ -103,6 +104,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface
                 [
                     'endpoint'   => $endpoint,
                     'parameters' => $parameters,
+                    'time'       => number_format(round((microtime(true) - $start) * 1000), 0, '.', ' ').' ms',
                     'method'     => $method,
                     'response'   => substr($response->getBody(), 0, 4096),
                 ]
