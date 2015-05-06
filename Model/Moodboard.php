@@ -18,6 +18,9 @@ use DateTime;
     /** @var object A Key/Value Object containing specific template related settings. */
     protected $definition;
 
+    /** @var bool Whether this moodboard should notify owner on visits and uploads */
+    protected $visitNotification;
+
     /** @var string The Objects name. */
     protected $name;
 
@@ -38,6 +41,7 @@ use DateTime;
      * - <b>templateId</b> - The template used by the Moodboard.
      * - <b>expireDate</b> - The date and time this Moodboard expires.
      * - <b>definition</b> - A Key/Value Object containing specific template related settings.
+     * - <b>visitNotification</b> - Whether this moodboard should notify owner on visits and uploads
      * - <b>name</b> - The Objects name.
      * - <b>deleted</b> - Whether the object is deleted.
      * - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
@@ -58,6 +62,9 @@ use DateTime;
         }
         if (isset($parameters['definition'])) {
             $this->setDefinition($parameters['definition']);
+        }
+        if (isset($parameters['visitNotification'])) {
+            $this->setVisitNotification($parameters['visitNotification']);
         }
         if (isset($parameters['name'])) {
             $this->setName($parameters['name']);
@@ -174,6 +181,27 @@ use DateTime;
         return $this;
     }
     /**
+     * Tells whether the Moodboard is visitNotification.
+     * @return bool	 */
+    public function isVisitNotification()
+    {
+        return $this->visitNotification;
+    }
+
+    /**
+     * Sets the "visitNotification" of the Moodboard.
+     *
+     * @param bool $visitNotification
+     *
+     * @return Moodboard
+     */
+    public function setVisitNotification($visitNotification)
+    {
+        $this->visitNotification = $visitNotification;
+
+        return $this;
+    }
+    /**
      * Gets the name of the Moodboard.
      * @return string	 */
     public function getName()
@@ -278,6 +306,9 @@ use DateTime;
         }
         if ($this->definition !== null) {
             $json['definition'] = $this->definition;
+        }
+        if ($this->visitNotification !== null) {
+            $json['visitNotification'] = $this->visitNotification;
         }
         if ($this->name !== null) {
             $json['name'] = $this->name;
