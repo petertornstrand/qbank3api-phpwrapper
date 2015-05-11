@@ -20,7 +20,7 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sessionId' => $sessionId, 'downloads' => $downloads]),
             'headers' => [],
         ];
-        $result = $this->post('v1/events/download', $parameters);
+        $result = $this->post('v1/events/download', $parameters, true);
 
         return $result;
     }
@@ -38,7 +38,7 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sessionId' => $sessionId, 'search' => $search, 'hits' => $hits]),
             'headers' => [],
         ];
-        $result = $this->post('v1/events/search', $parameters);
+        $result = $this->post('v1/events/search', $parameters, true);
 
         return $result;
     }
@@ -77,7 +77,7 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId]),
             'headers' => [],
         ];
-        $result = $this->post('v1/events/view', $parameters);
+        $result = $this->post('v1/events/view', $parameters, true);
 
         return $result;
     }
