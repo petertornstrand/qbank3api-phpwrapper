@@ -51,12 +51,13 @@ use QBNK\QBank\API\Model\DownloadItem;
      * @param string $sessionHash Some sort of identifier for the user
      * @param string $remoteIp Ip-address of the user
      * @param string $userAgent the User Agent of the user
+     * @param int $userId Optional override value for the user id
      */
-    public function session($sourceId, $sessionHash, $remoteIp, $userAgent)
+    public function session($sourceId, $sessionHash, $remoteIp, $userAgent, $userId = null)
     {
         $parameters = [
             'query'   => [],
-            'body'    => json_encode(['sourceId' => $sourceId, 'sessionHash' => $sessionHash, 'remoteIp' => $remoteIp, 'userAgent' => $userAgent]),
+            'body'    => json_encode(['sourceId' => $sourceId, 'sessionHash' => $sessionHash, 'remoteIp' => $remoteIp, 'userAgent' => $userAgent, 'userId' => $userId]),
             'headers' => [],
         ];
         $result = $this->post('v1/events/session', $parameters);

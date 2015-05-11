@@ -94,7 +94,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @return FolderResponse
      */
-    public function createFolder($parentId = 0, Folder $folder, $inheritAccess)
+    public function createFolder($parentId = 0, Folder $folder, $inheritAccess = null)
     {
         $parameters = [
             'query'   => ['parentId'           => $parentId],
