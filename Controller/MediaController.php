@@ -257,6 +257,25 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * Groups one "main" Media with one or more "child" Media.
+     *
+     * The main medium will by default be the only medium shown when searching, child media can be fetched by issuing a search with parentId set to the main medium id.
+     *
+     * @param int $id The Media identifier.
+     * @param int[] $children An array of int values.
+     */
+    public function group($id, array $children)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['children' => $children]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media/'.$id.'/group', $parameters);
+
+        return $result;
+    }
+    /**
      * Restore a deleted Media.
      *
      * Can not restore a Media that has been hard deleted!

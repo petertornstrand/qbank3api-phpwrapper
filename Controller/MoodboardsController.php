@@ -102,7 +102,7 @@ use QBNK\QBank\API\CachePolicy;
      * Add Media to a Moodboard.
      *
      * @param int $moodboardId Moodboard ID to add media to.
-     * @param int[] $mediaIds Paste JSON data here with an array of int values.
+     * @param int[] $mediaIds An array of int values.
      *
      * @return array
      */
