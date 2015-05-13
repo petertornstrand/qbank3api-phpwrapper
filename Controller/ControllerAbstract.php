@@ -78,8 +78,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
             return [];
         }
 
-        if ($cachePolicy->isEnabled() && $method == self::METHOD_GET
-            && $this->cache->contains(md5($endpoint.json_encode($parameters)))) {
+        if (
+            $cachePolicy->isEnabled()
+            && ($method == self::METHOD_GET || $method == self::METHOD_POST && preg_match('/v\d+\/search/', $endpoint))
+            && $this->cache->contains(md5($endpoint.json_encode($parameters)))
+        ) {
             /** @var string $response */
             $response = $this->cache->fetch(md5($endpoint.json_encode($parameters)));
             $this->logger->info(
@@ -123,7 +126,10 @@ abstract class ControllerAbstract implements LoggerAwareInterface
                 throw new ResponseException('Error while receiving response from QBank: Response not in json format.');
             }
 
-            if ($cachePolicy->isEnabled() && $method == self::METHOD_GET) {
+            if (
+                $cachePolicy->isEnabled()
+                && ($method == self::METHOD_GET || $method == self::METHOD_POST && preg_match('/v\d+\/search/', $endpoint))
+            ) {
                 $this->cache->save(md5($endpoint.json_encode($parameters)), $response->json(), $cachePolicy->getLifetime());
             }
 
