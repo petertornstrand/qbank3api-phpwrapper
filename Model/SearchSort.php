@@ -4,6 +4,20 @@ namespace QBNK\QBank\API\Model;
 
 class SearchSort  implements \JsonSerializable
 {
+    const FIELD_ID         = 'id';
+    const FIELD_NAME       = 'name';
+    const FIELD_CREATED    = 'created';
+    const FIELD_UPDATED    = 'updated';
+    const FIELD_RELEVANCE  = 'relevance';
+    const FIELD_CATEGORY   = 'category';
+    const FIELD_SIZE       = 'size';
+    const FIELD_MIMETYPE   = 'mimetype';
+    const FIELD_POPULARITY = 'popularity';
+    const FIELD_PROPERTY   = 'property';
+
+    const DIRECTION_ASCENDING  = 'asc';
+    const DIRECTION_DESCENDING = 'desc';
+
     /** @var string Field to sort by */
     protected $sortField;
 
