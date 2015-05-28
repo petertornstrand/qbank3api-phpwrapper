@@ -307,25 +307,23 @@ use DateTime;
      *
      * @return Role
      */
-    public function setFunctionalities($functionalities)
+    public function setFunctionalities(array $functionalities)
     {
-        if (is_array($functionalities)) {
-            $this->functionalities = [];
-            foreach ($functionalities as $item) {
-                if (!($item instanceof Functionality)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new Functionality($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
-                        continue;
+        $this->functionalities = [];
+        foreach ($functionalities as $item) {
+            if (!($item instanceof Functionality)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new Functionality($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->functionalities[] = $item;
             }
+            $this->functionalities[] = $item;
         }
 
         return $this;

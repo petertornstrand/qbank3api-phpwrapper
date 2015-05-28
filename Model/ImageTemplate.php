@@ -128,25 +128,23 @@ class ImageTemplate  implements \JsonSerializable
      *
      * @return ImageTemplate
      */
-    public function setCommands($commands)
+    public function setCommands(array $commands)
     {
-        if (is_array($commands)) {
-            $this->commands = [];
-            foreach ($commands as $item) {
-                if (!($item instanceof Command)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new Command($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate Command. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "Command"!', E_USER_WARNING);
-                        continue;
+        $this->commands = [];
+        foreach ($commands as $item) {
+            if (!($item instanceof Command)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new Command($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate Command. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "Command"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->commands[] = $item;
             }
+            $this->commands[] = $item;
         }
 
         return $this;

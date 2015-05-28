@@ -275,25 +275,23 @@ use DateTime;
      *
      * @return CategoryResponse
      */
-    public function setPropertySets($propertySets)
+    public function setPropertySets(array $propertySets)
     {
-        if (is_array($propertySets)) {
-            $this->propertySets = [];
-            foreach ($propertySets as $item) {
-                if (!($item instanceof PropertySet)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new PropertySet($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
-                        continue;
+        $this->propertySets = [];
+        foreach ($propertySets as $item) {
+            if (!($item instanceof PropertySet)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new PropertySet($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->propertySets[] = $item;
             }
+            $this->propertySets[] = $item;
         }
 
         return $this;

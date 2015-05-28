@@ -594,25 +594,23 @@ class Search  implements \JsonSerializable
      *
      * @return Search
      */
-    public function setProperties($properties)
+    public function setProperties(array $properties)
     {
-        if (is_array($properties)) {
-            $this->properties = [];
-            foreach ($properties as $item) {
-                if (!($item instanceof PropertyCriteria)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new PropertyCriteria($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate PropertyCriteria. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "PropertyCriteria"!', E_USER_WARNING);
-                        continue;
+        $this->properties = [];
+        foreach ($properties as $item) {
+            if (!($item instanceof PropertyCriteria)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new PropertyCriteria($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate PropertyCriteria. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "PropertyCriteria"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->properties[] = $item;
             }
+            $this->properties[] = $item;
         }
 
         return $this;
@@ -765,25 +763,23 @@ class Search  implements \JsonSerializable
      *
      * @return Search
      */
-    public function setSortFields($sortFields)
+    public function setSortFields(array $sortFields)
     {
-        if (is_array($sortFields)) {
-            $this->sortFields = [];
-            foreach ($sortFields as $item) {
-                if (!($item instanceof SearchSort)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new SearchSort($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate SearchSort. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "SearchSort"!', E_USER_WARNING);
-                        continue;
+        $this->sortFields = [];
+        foreach ($sortFields as $item) {
+            if (!($item instanceof SearchSort)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new SearchSort($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate SearchSort. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "SearchSort"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->sortFields[] = $item;
             }
+            $this->sortFields[] = $item;
         }
 
         return $this;

@@ -216,25 +216,23 @@ use DateTime;
      *
      * @return MediaResponse
      */
-    public function setMetadata($metadata)
+    public function setMetadata(array $metadata)
     {
-        if (is_array($metadata)) {
-            $this->metadata = [];
-            foreach ($metadata as $item) {
-                if (!($item instanceof MetaData)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new MetaData($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate MetaData. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "MetaData"!', E_USER_WARNING);
-                        continue;
+        $this->metadata = [];
+        foreach ($metadata as $item) {
+            if (!($item instanceof MetaData)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new MetaData($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate MetaData. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "MetaData"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->metadata[] = $item;
             }
+            $this->metadata[] = $item;
         }
 
         return $this;
@@ -374,25 +372,23 @@ use DateTime;
      *
      * @return MediaResponse
      */
-    public function setDeployedFiles($deployedFiles)
+    public function setDeployedFiles(array $deployedFiles)
     {
-        if (is_array($deployedFiles)) {
-            $this->deployedFiles = [];
-            foreach ($deployedFiles as $item) {
-                if (!($item instanceof DeploymentFile)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new DeploymentFile($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate DeploymentFile. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "DeploymentFile"!', E_USER_WARNING);
-                        continue;
+        $this->deployedFiles = [];
+        foreach ($deployedFiles as $item) {
+            if (!($item instanceof DeploymentFile)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new DeploymentFile($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate DeploymentFile. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "DeploymentFile"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->deployedFiles[] = $item;
             }
+            $this->deployedFiles[] = $item;
         }
 
         return $this;
@@ -575,25 +571,23 @@ use DateTime;
      *
      * @return MediaResponse
      */
-    public function setPropertySets($propertySets)
+    public function setPropertySets(array $propertySets)
     {
-        if (is_array($propertySets)) {
-            $this->propertySets = [];
-            foreach ($propertySets as $item) {
-                if (!($item instanceof PropertySet)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new PropertySet($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
-                        continue;
+        $this->propertySets = [];
+        foreach ($propertySets as $item) {
+            if (!($item instanceof PropertySet)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new PropertySet($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->propertySets[] = $item;
             }
+            $this->propertySets[] = $item;
         }
 
         return $this;

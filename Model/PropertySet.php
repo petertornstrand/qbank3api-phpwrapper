@@ -307,25 +307,23 @@ use DateTime;
      *
      * @return PropertySet
      */
-    public function setProperties($properties)
+    public function setProperties(array $properties)
     {
-        if (is_array($properties)) {
-            $this->properties = [];
-            foreach ($properties as $item) {
-                if (!($item instanceof Property)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new Property($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate Property. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "Property"!', E_USER_WARNING);
-                        continue;
+        $this->properties = [];
+        foreach ($properties as $item) {
+            if (!($item instanceof Property)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new Property($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate Property. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "Property"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->properties[] = $item;
             }
+            $this->properties[] = $item;
         }
 
         return $this;

@@ -107,25 +107,23 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
      *
      * @return SearchResult
      */
-    public function setResults($results)
+    public function setResults(array $results)
     {
-        if (is_array($results)) {
-            $this->results = [];
-            foreach ($results as $item) {
-                if (!($item instanceof MediaResponse)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new MediaResponse($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate MediaResponse. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "MediaResponse"!', E_USER_WARNING);
-                        continue;
+        $this->results = [];
+        foreach ($results as $item) {
+            if (!($item instanceof MediaResponse)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new MediaResponse($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate MediaResponse. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "MediaResponse"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->results[] = $item;
             }
+            $this->results[] = $item;
         }
 
         return $this;

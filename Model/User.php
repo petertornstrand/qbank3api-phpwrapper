@@ -542,25 +542,23 @@ use DateTime;
      *
      * @return User
      */
-    public function setFunctionalities($functionalities)
+    public function setFunctionalities(array $functionalities)
     {
-        if (is_array($functionalities)) {
-            $this->functionalities = [];
-            foreach ($functionalities as $item) {
-                if (!($item instanceof Functionality)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new Functionality($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
-                        continue;
+        $this->functionalities = [];
+        foreach ($functionalities as $item) {
+            if (!($item instanceof Functionality)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new Functionality($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->functionalities[] = $item;
             }
+            $this->functionalities[] = $item;
         }
 
         return $this;
@@ -580,25 +578,23 @@ use DateTime;
      *
      * @return User
      */
-    public function setExtraData($extraData)
+    public function setExtraData(array $extraData)
     {
-        if (is_array($extraData)) {
-            $this->extraData = [];
-            foreach ($extraData as $item) {
-                if (!($item instanceof ExtraData)) {
-                    if (is_array($item)) {
-                        try {
-                            $item = new ExtraData($item);
-                        } catch (\Exception $e) {
-                            trigger_error('Could not auto-instantiate ExtraData. '.$e->getMessage(), E_USER_WARNING);
-                        }
-                    } else {
-                        trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
-                        continue;
+        $this->extraData = [];
+        foreach ($extraData as $item) {
+            if (!($item instanceof ExtraData)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new ExtraData($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate ExtraData. '.$e->getMessage(), E_USER_WARNING);
                     }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
+                    continue;
                 }
-                $this->extraData[] = $item;
             }
+            $this->extraData[] = $item;
         }
 
         return $this;
