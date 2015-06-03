@@ -121,7 +121,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @return array
      */
-    public function download($id, $template = null, $templateType = image, CachePolicy $cachePolicy = null)
+    public function download($id, $template = null, $templateType = 'image', CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => ['template' => $template, 'templateType' => $templateType],
