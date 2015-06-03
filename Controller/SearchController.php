@@ -31,14 +31,14 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @return SearchResult
      */
-    public function search(Search $search)
+    public function search(Search $search, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => [],
             'body'    => json_encode(['search' => $search]),
             'headers' => [],
         ];
-        $result = $this->post('v1/search', $parameters);
+        $result = $this->call('v1/search', $parameters, self::METHOD_POST, $cachePolicy);
         $result = new SearchResult($result);
 
         return $result;
