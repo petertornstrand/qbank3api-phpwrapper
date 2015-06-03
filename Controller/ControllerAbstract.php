@@ -112,6 +112,9 @@ abstract class ControllerAbstract implements LoggerAwareInterface
                     'response'   => substr($response->getBody(), 0, 4096),
                 ]
             );
+            if ($response->hasHeader('Content-disposition') && in_array('attachment', array_map('trim', explode(';', $response->getHeader('Content-disposition'))))) {
+                return $response->getBody()->__toString();
+            }
             if (!in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type'))))) {
                 $this->logger->error(
                     'Error while receiving response from QBank. '.strtoupper($method).' '.$endpoint,
