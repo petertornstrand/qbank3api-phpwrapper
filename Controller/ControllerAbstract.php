@@ -112,31 +112,36 @@ abstract class ControllerAbstract implements LoggerAwareInterface
                     'response'   => substr($response->getBody(), 0, 4096),
                 ]
             );
-            if ($response->hasHeader('Content-disposition') && in_array('attachment', array_map('trim', explode(';', $response->getHeader('Content-disposition'))))) {
+
+            $data = null;
+            if (in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type'))))) {
+                try {
+                    $data = $response->json();
+                } catch (\RuntimeException $re) {
+                    $this->logger->error(
+                        'Error while receiving response from QBank. '.strtoupper($method).' '.$endpoint,
+                        [
+                            'message'    => 'Response not in json format.',
+                            'endpoint'   => $endpoint,
+                            'parameters' => $parameters,
+                            'method'     => $method,
+                            'response'   => substr($response->getBody(), 0, 4096),
+                        ]
+                    );
+                    throw new ResponseException('Error while receiving response from QBank: Response not in json format.');
+                }
+            } else {
                 return $response->getBody()->__toString();
-            }
-            if (!in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type'))))) {
-                $this->logger->error(
-                    'Error while receiving response from QBank. '.strtoupper($method).' '.$endpoint,
-                    [
-                        'message'    => 'Response not in json format.',
-                        'endpoint'   => $endpoint,
-                        'parameters' => $parameters,
-                        'method'     => $method,
-                        'response'   => substr($response->getBody(), 0, 4096),
-                    ]
-                );
-                throw new ResponseException('Error while receiving response from QBank: Response not in json format.');
             }
 
             if (
                 $cachePolicy->isEnabled()
                 && ($method == self::METHOD_GET || $method == self::METHOD_POST && preg_match('/v\d+\/search/', $endpoint))
             ) {
-                $this->cache->save(md5($endpoint.json_encode($parameters)), $response->json(), $cachePolicy->getLifetime());
+                $this->cache->save(md5($endpoint.json_encode($parameters)), $data, $cachePolicy->getLifetime());
             }
 
-            return $response->json();
+            return $data;
         } catch (\GuzzleHttp\Exception\RequestException $re) {
             $this->logger->error(
                 'Error while sending request to QBank. '.strtoupper($method).' '.$endpoint,

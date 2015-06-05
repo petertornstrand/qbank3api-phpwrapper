@@ -16,6 +16,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return MoodboardResponse[]
+
      */
     public function listMoodboards(CachePolicy $cachePolicy = null)
     {
@@ -42,6 +43,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return MoodboardResponse
+
      */
     public function retrieveMoodboard($id, CachePolicy $cachePolicy = null)
     {
@@ -63,6 +65,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param Moodboard $moodboard A JSON encoded Moodboard to create
      *
      * @return MoodboardResponse
+
      */
     public function createMoodboard(Moodboard $moodboard)
     {
@@ -85,6 +88,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param Moodboard $moodboard A JSON encoded Moodboard representing the updates
      *
      * @return MoodboardResponse
+
      */
     public function updateMoodboard($id, Moodboard $moodboard)
     {
@@ -105,6 +109,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int[] $mediaIds An array of int values.
      *
      * @return array
+
      */
     public function addMediaToMoodboard($moodboardId, array $mediaIds)
     {
@@ -125,6 +130,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The Moodboard identifier.
      *
      * @return MoodboardResponse
+
      */
     public function removeMoodboard($id)
     {
@@ -145,6 +151,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $mediaId Media ID to remove from specified folder.
      *
      * @return array
+
      */
     public function removeMediaFromMoodboard($moodboardId, $mediaId)
     {

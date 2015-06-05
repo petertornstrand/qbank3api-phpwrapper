@@ -17,8 +17,9 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+
      * @return MediaResponse
+
      */
     public function retrieveMedia($id, CachePolicy $cachePolicy = null)
     {
@@ -49,6 +50,9 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The Media identifier..
      * @param mixed $template Optional template of Media..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+
+     * @return string The raw file data
+
      */
     public function retrieveFileData($id, $template = null, CachePolicy $cachePolicy = null)
     {
@@ -66,8 +70,9 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+
      * @return DeploymentFile[]
+
      */
     public function listDeployedFiles($id, CachePolicy $cachePolicy = null)
     {
@@ -90,8 +95,9 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+
      * @return DeploymentSite[]
+
      */
     public function listDeploymentSites($id, CachePolicy $cachePolicy = null)
     {
@@ -118,8 +124,9 @@ use QBNK\QBank\API\CachePolicy;
      * @param string $template Optional template to download the media in.
      * @param string $templateType Indicates type of template, valid values are; image, video.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return array
+
+     * @return resource A file pointer resource pointing to a temporary file.
+
      */
     public function download($id, $template = null, $templateType = 'image', CachePolicy $cachePolicy = null)
     {
@@ -130,6 +137,15 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->get('v1/media/'.$id.'/download', $parameters, $cachePolicy);
 
+        $tmpFile = tmpfile();
+        if (fwrite($tmpFile, $result) === false) {
+            throw new \RuntimeException('Could not write download data to temporary file!');
+        }
+        if (fseek($tmpFile, 0) === false) {
+            throw new \RuntimeException('Could not reset file pointer of temporary file!');
+        }
+        $result = $tmpFile;
+
         return $result;
     }
     /**
@@ -138,8 +154,9 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The Media identifier..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all toghether..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+
      * @return Folder[]
+
      */
     public function listFolders($id, $depth = 0, CachePolicy $cachePolicy = null)
     {
@@ -162,8 +179,9 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+
      * @return Moodboard[]
+
      */
     public function listMoodboards($id, CachePolicy $cachePolicy = null)
     {
@@ -189,6 +207,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int[] $ids Array of Media ID:s to download.
      * @param string $template Optional template to download all Media in..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+
      */
     public function downloadArchive(array $ids, $template = null, CachePolicy $cachePolicy = null)
     {
@@ -215,8 +234,9 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $chunks Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
      * @param string $fileId A unique fileId that will be used for this upload, if none is given one will be given to you
      * @param int $categoryId The category to place the file in
-     *
+
      * @return array
+
      */
     public function uploadFileChunked($name, $chunk, $chunks, $fileId, $categoryId)
     {
@@ -236,8 +256,9 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier.
      * @param Media $media A JSON encoded Media representing the updates
-     *
+
      * @return MediaResponse
+
      */
     public function updateMedia($id, Media $media)
     {
@@ -263,6 +284,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier.
      * @param int[] $children An array of int values.
+
      */
     public function group($id, array $children)
     {
@@ -281,8 +303,9 @@ use QBNK\QBank\API\CachePolicy;
      * Can not restore a Media that has been hard deleted!
      *
      * @param int $id The Media identifier.
-     *
+
      * @return MediaResponse
+
      */
     public function restoreMedia($id)
     {
@@ -304,8 +327,9 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier.
      * @param string $status The new status of the media
-     *
+
      * @return array
+
      */
     public function setStatus($id, $status)
     {
@@ -325,8 +349,9 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier.
      * @param bool $hardDelete Prevent restoration of the Media..
-     *
+
      * @return MediaResponse
+
      */
     public function removeMedia($id, $hardDelete = false)
     {

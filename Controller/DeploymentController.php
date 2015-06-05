@@ -15,6 +15,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Protocol[]
+
      */
     public function listProtocols(CachePolicy $cachePolicy = null)
     {
@@ -39,6 +40,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Protocol
+
      */
     public function retrieveProtocol($id, CachePolicy $cachePolicy = null)
     {
@@ -60,6 +62,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return DeploymentSite[]
+
      */
     public function listSites(CachePolicy $cachePolicy = null)
     {
@@ -84,6 +87,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return DeploymentSite
+
      */
     public function retrieveSite($id, CachePolicy $cachePolicy = null)
     {
@@ -103,6 +107,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite to create
      *
      * @return DeploymentSiteResponse
+
      */
     public function createSite(DeploymentSite $deploymentSite)
     {
@@ -123,6 +128,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite representing the updates
      *
      * @return DeploymentSiteResponse
+
      */
     public function updateSite($id, DeploymentSite $deploymentSite)
     {
@@ -144,6 +150,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The DeploymentSite identifier.
      *
      * @return DeploymentSiteResponse
+
      */
     public function removeSite($id)
     {

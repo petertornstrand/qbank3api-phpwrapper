@@ -30,6 +30,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param Search $search Search parameters
      *
      * @return SearchResult
+
      */
     public function search(Search $search, CachePolicy $cachePolicy = null)
     {
