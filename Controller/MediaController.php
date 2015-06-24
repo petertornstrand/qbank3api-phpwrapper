@@ -8,6 +8,7 @@ use QBNK\QBank\API\CachePolicy;
     use QBNK\QBank\API\Model\Folder;
     use QBNK\QBank\API\Model\Media;
     use QBNK\QBank\API\Model\MediaResponse;
+    use QBNK\QBank\API\Model\MediaVersion;
     use QBNK\QBank\API\Model\Moodboard;
 
     class MediaController extends ControllerAbstract
@@ -193,6 +194,33 @@ use QBNK\QBank\API\CachePolicy;
         $result = $this->get('v1/media/'.$id.'/moodboards', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new Moodboard($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
+     * Fetches the version list of a media.
+     *
+     * The id may be of any media version in the list; first, somewhere in between or last.
+     *
+     * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+
+     * @return MediaVersion[]
+
+     */
+    public function listVersions($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/versions', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new MediaVersion($entry);
         }
         unset($entry);
         reset($result);
