@@ -2,27 +2,29 @@
 
 namespace QBNK\QBank\API\Model;
 
-class MediaVersion  implements \JsonSerializable
-{
+use DateTime;
+
+    class MediaVersion  implements \JsonSerializable
+    {
     /** @var int The Media identifier. */
     protected $mediaId;
 
-    /** @var string  */
+    /** @var string The Media filename */
     protected $filename;
 
-    /** @var string  */
+    /** @var DateTime When the Media was uploaded. A datetime string on the format ISO8601. */
     protected $uploaded;
 
     /** @var int The Media replacement Media identifier. Only set when the Media has been replaced, ie. versioning. */
     protected $replacedBy;
 
-    /** @var string  */
+    /** @var string An optional comment about the version. */
     protected $comment;
 
-    /** @var string  */
+    /** @var int The User identifier of the user who created the new version. */
     protected $userId;
 
-    /** @var string  */
+    /** @var int The version number */
     protected $version;
 
     /**
@@ -30,12 +32,12 @@ class MediaVersion  implements \JsonSerializable
      *
      * @param array $parameters An array of parameters to initialize the { @link MediaVersion } with.
      * - <b>mediaId</b> - The Media identifier.
-     * - <b>filename</b> -
-     * - <b>uploaded</b> -
+     * - <b>filename</b> - The Media filename
+     * - <b>uploaded</b> - When the Media was uploaded. A datetime string on the format ISO8601.
      * - <b>replacedBy</b> - The Media replacement Media identifier. Only set when the Media has been replaced, ie. versioning.
-     * - <b>comment</b> -
-     * - <b>userId</b> -
-     * - <b>version</b> -
+     * - <b>comment</b> - An optional comment about the version.
+     * - <b>userId</b> - The User identifier of the user who created the new version.
+     * - <b>version</b> - The version number
      */
     public function __construct($parameters = [])
     {
@@ -106,7 +108,7 @@ class MediaVersion  implements \JsonSerializable
     }
     /**
      * Gets the uploaded of the MediaVersion.
-     * @return string	 */
+     * @return DateTime	 */
     public function getUploaded()
     {
         return $this->uploaded;
@@ -115,13 +117,21 @@ class MediaVersion  implements \JsonSerializable
     /**
      * Sets the "uploaded" of the MediaVersion.
      *
-     * @param string $uploaded
+     * @param DateTime $uploaded
      *
      * @return MediaVersion
      */
     public function setUploaded($uploaded)
     {
-        $this->uploaded = $uploaded;
+        if ($uploaded instanceof DateTime) {
+            $this->uploaded = $uploaded;
+        } else {
+            try {
+                $this->uploaded = new DateTime($uploaded);
+            } catch (\Exception $e) {
+                $this->uploaded = null;
+            }
+        }
 
         return $this;
     }
@@ -169,7 +179,7 @@ class MediaVersion  implements \JsonSerializable
     }
     /**
      * Gets the userId of the MediaVersion.
-     * @return string	 */
+     * @return int	 */
     public function getUserId()
     {
         return $this->userId;
@@ -178,7 +188,7 @@ class MediaVersion  implements \JsonSerializable
     /**
      * Sets the "userId" of the MediaVersion.
      *
-     * @param string $userId
+     * @param int $userId
      *
      * @return MediaVersion
      */
@@ -190,7 +200,7 @@ class MediaVersion  implements \JsonSerializable
     }
     /**
      * Gets the version of the MediaVersion.
-     * @return string	 */
+     * @return int	 */
     public function getVersion()
     {
         return $this->version;
@@ -199,7 +209,7 @@ class MediaVersion  implements \JsonSerializable
     /**
      * Sets the "version" of the MediaVersion.
      *
-     * @param string $version
+     * @param int $version
      *
      * @return MediaVersion
      */
@@ -243,4 +253,4 @@ class MediaVersion  implements \JsonSerializable
 
         return $json;
     }
-}
+    }
