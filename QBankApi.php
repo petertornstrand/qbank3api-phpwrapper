@@ -450,15 +450,24 @@ class QBankApi
     }
 
     /**
-     * Gets the cached token used for authentication.
+     * Gets the token used for authentication.
      *
      * @return TokenData|null Returns the token if it exists, null if not.
      */
     public function getToken()
     {
-        $token = $this->oauth2Subscriber->getTokenData();
+        $token = new TokenData();
+        if ($this->oauth2Subscriber instanceof OAuth2Subscriber) {
+            $token = $this->oauth2Subscriber->getTokenData();
+        }
         if (!$token->accessToken && $this->cache instanceof Cache && $this->cache->contains('oauth2token')) {
             $token = unserialize($this->cache->fetch('oauth2token'));
+        }
+        if (!$token->accessToken) {
+            $response = $this->getClient()->get('/');
+            if ($response->getStatusCode() == 200) {
+                $token = $this->oauth2Subscriber->getTokenData();
+            }
         }
 
         return $token->accessToken ? $token : null;
