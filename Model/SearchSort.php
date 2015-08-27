@@ -2,190 +2,235 @@
 
 namespace QBNK\QBank\API\Model;
 
+class SearchSort  implements \JsonSerializable
+{
+    const FIELD_ID         = 'id';
+    const FIELD_NAME       = 'name';
+    const FIELD_CREATED    = 'created';
+    const FIELD_UPDATED    = 'updated';
+    const FIELD_RELEVANCE  = 'relevance';
+    const FIELD_CATEGORY   = 'category';
+    const FIELD_SIZE       = 'size';
+    const FIELD_MIMETYPE   = 'mimetype';
+    const FIELD_POPULARITY = 'popularity';
+    const FIELD_PROPERTY   = 'property';
 
+    const DIRECTION_ASCENDING  = 'asc';
+    const DIRECTION_DESCENDING = 'desc';
 
-/**
- * 
- *
- * NOTE: This class is auto generated. Do not edit the class manually.
- *
- */
+    /** @var string Field to sort by */
+    protected $sortField;
 
-class SearchSort implements \JsonSerializable  {
+    /** @var string Sort Direction */
+    protected $sortDirection;
 
-	const SORT_ID = 'id';
-	const SORT_NAME = 'name';
-	const SORT_CREATED = 'created';
-	const SORT_UPDATED = 'updated';
-	const SORT_RELEVANCE = 'relevance';
-	const SORT_CATEGORY = 'category';
-	const SORT_SIZE = 'size';
-	const SORT_MIMETYPE = 'mimetype';
-	const SORT_POPULARITY = 'popularity';
-	const SORT_PROPERTY = 'property';
+    /** @var int When sorting on Media Popularity, the source to check (QBank Backend, frontend, etc) */
+    protected $sourceId;
 
-	const SORT_DIRECTION_ASCENDING = 'asc';
-	const SORT_DIRECTION_DESCENDING = 'desc';
+    /** @var DateTimeRange When sorting on Media Popularity, a optional dateRange to find popular media within */
+    protected $dateRange;
 
-	/**
-	 * Any of the SORT_* constants
-	 * @var string
-	 */
-	protected $sortField;
+    /** @var string When sorting on a property, the system name of the property to sort on */
+    protected $systemName;
 
-	/**
-	 * SORT_DIRECTION_ASCENDING or SORT_DIRECTION_DESCENDING (default)
-	 * @var string
-	 */
-	protected $sortDirection;
+    /** @var string When sorting on a Json Property, the Json key to sort by */
+    protected $jsonKey;
 
-	/**
-	 * When sorting on Media Popularity, the source to check (QBank Backend, frontend, etc)
-	 * @var int $sourceId
-	 */
-	protected $sourceId;
+    /**
+     * Constructs a SearchSort.
+     *
+     * @param array $parameters An array of parameters to initialize the { @link SearchSort } with.
+     * - <b>sortField</b> - Field to sort by
+     * - <b>sortDirection</b> - Sort Direction
+     * - <b>sourceId</b> - When sorting on Media Popularity, the source to check (QBank Backend, frontend, etc)
+     * - <b>dateRange</b> - When sorting on Media Popularity, a optional dateRange to find popular media within
+     * - <b>systemName</b> - When sorting on a property, the system name of the property to sort on
+     * - <b>jsonKey</b> - When sorting on a Json Property, the Json key to sort by
+     */
+    public function __construct($parameters = [])
+    {
+        if (isset($parameters['sortField'])) {
+            $this->setSortField($parameters['sortField']);
+        }
+        if (isset($parameters['sortDirection'])) {
+            $this->setSortDirection($parameters['sortDirection']);
+        }
+        if (isset($parameters['sourceId'])) {
+            $this->setSourceId($parameters['sourceId']);
+        }
+        if (isset($parameters['dateRange'])) {
+            $this->setDateRange($parameters['dateRange']);
+        }
+        if (isset($parameters['systemName'])) {
+            $this->setSystemName($parameters['systemName']);
+        }
+        if (isset($parameters['jsonKey'])) {
+            $this->setJsonKey($parameters['jsonKey']);
+        }
+    }
 
-	/**
-	 * When sorting on Media Popularity, a optional dateRange to find popular media within
-	 * @var DateTimeRange $dateRange
-	 */
-	protected $dateRange;
+    /**
+     * Gets the sortField of the SearchSort.
+     * @return string	 */
+    public function getSortField()
+    {
+        return $this->sortField;
+    }
 
-	/**
-	 * When sorting on a property, the system name of the property to sort on
-	 * @var string $systemName
-	 */
-	protected $systemName;
+    /**
+     * Sets the "sortField" of the SearchSort.
+     *
+     * @param string $sortField
+     *
+     * @return SearchSort
+     */
+    public function setSortField($sortField)
+    {
+        $this->sortField = $sortField;
 
-	/**
-	 * Constructs a {@link SearchSort }.
-	 * @param array $parameters An array of parameters to initialize the {@link SearchSort } with.
-	 * - <b>sortField</b> - Any of the SORT_* constants
-	 * - <b>sortDirection</b> - SORT_DIRECTION_ASCENDING or SORT_DIRECTION_DESCENDING (default)
-	 * 
-	 */
-	public function __construct($parameters) {
-		
-		
-		
-		if (isset($parameters['sortField'])) {
-			$this->setSortField($parameters['sortField']);
-		}
-	
-		if (isset($parameters['sortDirection'])) {
-			$this->setSortDirection($parameters['sortDirection']);
-		} else {
-			$this->sortDirection = self::SORT_DIRECTION_DESCENDING;
-		}
+        return $this;
+    }
+    /**
+     * Gets the sortDirection of the SearchSort.
+     * @return string	 */
+    public function getSortDirection()
+    {
+        return $this->sortDirection;
+    }
 
-		if (isset($parameters['sourceId'])) {
-			$this->setSourceId($parameters['sourceId']);
-		}
+    /**
+     * Sets the "sortDirection" of the SearchSort.
+     *
+     * @param string $sortDirection
+     *
+     * @return SearchSort
+     */
+    public function setSortDirection($sortDirection)
+    {
+        $this->sortDirection = $sortDirection;
 
-		if (isset($parameters['dateRange'])) {
-			$this->setDateRange($parameters['dateRange']);
-		}
+        return $this;
+    }
+    /**
+     * Gets the sourceId of the SearchSort.
+     * @return int	 */
+    public function getSourceId()
+    {
+        return $this->sourceId;
+    }
 
-		if (isset($parameters['systemName'])) {
-			$this->setSystemName($parameters['systemName']);
-		}
-	
-	}
+    /**
+     * Sets the "sourceId" of the SearchSort.
+     *
+     * @param int $sourceId
+     *
+     * @return SearchSort
+     */
+    public function setSourceId($sourceId)
+    {
+        $this->sourceId = $sourceId;
 
+        return $this;
+    }
+    /**
+     * Gets the dateRange of the SearchSort.
+     * @return DateTimeRange	 */
+    public function getDateRange()
+    {
+        return $this->dateRange;
+    }
 
-	/**
-	 * Gets the sortField of the SearchSort
-	 * @return string
-	 */
-	public function getSortField() {
-		return $this->sortField;
-	}
+    /**
+     * Sets the "dateRange" of the SearchSort.
+     *
+     * @param DateTimeRange $dateRange
+     *
+     * @return SearchSort
+     */
+    public function setDateRange($dateRange)
+    {
+        if ($dateRange instanceof DateTimeRange) {
+            $this->dateRange = $dateRange;
+        } elseif (is_array($dateRange)) {
+            $this->dateRange = new DateTimeRange($dateRange);
+        } else {
+            $this->dateRange = null;
+            trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
+        }
 
-	/**
-	 * Gets the sortDirection of the SearchSort
-	 * @return string
-	 */
-	public function getSortDirection() {
-		return $this->sortDirection;
-	}
+        return $this;
+    }
+    /**
+     * Gets the systemName of the SearchSort.
+     * @return string	 */
+    public function getSystemName()
+    {
+        return $this->systemName;
+    }
 
-	public function getSourceId() {
-		return $this->sourceId;
-	}
+    /**
+     * Sets the "systemName" of the SearchSort.
+     *
+     * @param string $systemName
+     *
+     * @return SearchSort
+     */
+    public function setSystemName($systemName)
+    {
+        $this->systemName = $systemName;
 
-	public function getDateRange() {
-		return $this->dateRange;
-	}
+        return $this;
+    }
+    /**
+     * Gets the jsonKey of the SearchSort.
+     * @return string	 */
+    public function getJsonKey()
+    {
+        return $this->jsonKey;
+    }
 
-	public function getSystemName() {
-		return $this->systemName;
-	}
+    /**
+     * Sets the "jsonKey" of the SearchSort.
+     *
+     * @param string $jsonKey
+     *
+     * @return SearchSort
+     */
+    public function setJsonKey($jsonKey)
+    {
+        $this->jsonKey = $jsonKey;
 
-	/**
-	 * Sets the "sortField" of the SearchSort
-	 * @param string $sortField
-	 * @return $this
-	 */
-	public function setSortField($sortField) {
-		$this->sortField = $sortField;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Sets the "sortDirection" of the SearchSort
-	 * @param string $sortDirection
-	 * @return $this
-	 */
-	public function setSortDirection($sortDirection) {
-		$this->sortDirection = $sortDirection;
-		return $this;
-	}
+    /**
+     * Gets all data that should be available in a json representation.
+     *
+     * @return array An associative array of the available variables.
+     */
+    public function jsonSerialize()
+    {
+        $json = [];
 
-	public function setSourceId($sourceId) {
-		$this->sourceId = (int)$sourceId;
-		return $this;
-	}
+        if ($this->sortField !== null) {
+            $json['sortField'] = $this->sortField;
+        }
+        if ($this->sortDirection !== null) {
+            $json['sortDirection'] = $this->sortDirection;
+        }
+        if ($this->sourceId !== null) {
+            $json['sourceId'] = $this->sourceId;
+        }
+        if ($this->dateRange !== null) {
+            $json['dateRange'] = $this->dateRange;
+        }
+        if ($this->systemName !== null) {
+            $json['systemName'] = $this->systemName;
+        }
+        if ($this->jsonKey !== null) {
+            $json['jsonKey'] = $this->jsonKey;
+        }
 
-	public function setDateRange($dateRange) {
-		if ($dateRange instanceof DateTimeRange) {
-			$this->dateRange = $dateRange;
-		} else if (is_array($dateRange)) {
-			$this->dateRange = new DateTimeRange($dateRange);
-		} else {
-			$this->dateRange = null;
-			trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
-		}
-		return $this;
-	}
-
-	public function setSystemName($systemName) {
-		$this->systemName = $systemName;
-		return $this;
-	}
-
-
-	/**
-	 * Gets all data that should be available in a json representation.
-	 * @return array An associative array of the available variables.
-	 */
-	public function jsonSerialize() {
-		$array = array();
-		
-		if ($this->sortField !== null) {
-			$array['sortField'] = $this->sortField;
-		}
-		if ($this->sortDirection !== null) {
-			$array['sortDirection'] = $this->sortDirection;
-		}
-		if ($this->sourceId !== null) {
-			$array['sourceId'] = $this->sourceId;
-		}
-		if ($this->dateRange !== null) {
-			$array['dateRange'] = $this->dateRange;
-		}
-		if ($this->systemName !== null) {
-			$array['systemName'] = $this->systemName;
-		}
-		return $array;
-	}
+        return $json;
+    }
 }

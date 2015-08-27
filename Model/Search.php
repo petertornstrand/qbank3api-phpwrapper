@@ -2,935 +2,874 @@
 
 namespace QBNK\QBank\API\Model;
 
-use \DateTime;
-use \Exception;
-
-
-/**
- * 
- *
- * NOTE: This class is auto generated. Do not edit the class manually.
- *
- */
-
-class Search implements \JsonSerializable  {
-
-
-
-	/**
-	 * Starting offset of the search
-	 * @var int
-	 */
-	protected $offset;
-
-	/**
-	 * The number of results to return
-	 * @var int
-	 */
-	protected $limit;
-
-	/**
-	 * A freetext string to search for, operators like and/or/not and grouping by parentheses is available
-	 * @var string
-	 */
-	protected $freeText;
-
-	/**
-	 * An array with ObjectIds to filter by
-	 * @var int[]
-	 */
-	protected $objectIds;
-
-	/**
-	 * An array with MediaIds to filter by
-	 * @var int[]
-	 */
-	protected $mediaIds;
-
-	/**
-	 * Filter by creators of Media
-	 * @var int[]
-	 */
-	protected $createdByIds;
-
-	/**
-	 * Filter by created date
-	 * @var DateTimeRange
-	 */
-	protected $createdRange;
-
-	/**
-	 * Filter by updaters of Media
-	 * @var int[]
-	 */
-	protected $updatedByIds;
-
-	/**
-	 * Filter by updated date
-	 * @var DateTimeRange
-	 */
-	protected $updatedRange;
-
-	/**
-	 * An array with MediaStatuses to filter by
-	 * @var int[]
-	 */
-	protected $mediaStatusIds;
-
-	/**
-	 * An array with FolderIds to search within
-	 * @var int[]
-	 */
-	protected $folderIds;
-
-	/**
-	 * The depth of folders to fetch objects from when doing folder searches
-	 * @var int
-	 */
-	protected $folderDepth;
-
-	/**
-	 * An array with MoodboardIds to search within
-	 * @var int[]
-	 */
-	protected $moodboardIds;
-
-	/**
-	 * An array with CategoryIds to search within
-	 * @var int[]
-	 */
-	protected $categoryIds;
-
-	/**
-	 * Search for media that have this media as parent
-	 * @var int
-	 */
-	protected $parentId;
-
-	/**
-	 * An array with DeploymentSiteIds to search within
-	 * @var int[]
-	 */
-	protected $deploymentSiteIds;
-
-	/**
-	 * An array of Properties to filter by
-	 * @var PropertyCriteria[]
-	 */
-	protected $properties;
-
-	/**
-	 * Filter by file size. An array with "min" and/or "max" values.
-	 * @var string[]
-	 */
-	protected $fileSizeCriteria;
-
-	/**
-	 * Filter by file width. An array with "min" and/or "max" values.
-	 * @var string[]
-	 */
-	protected $widthCriteria;
-
-	/**
-	 * Filter by file height. An array with "min" and/or "max" values.
-	 * @var string[]
-	 */
-	protected $heightCriteria;
-
-	/**
-	 * Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos.
-	 * @var string[]
-	 */
-	protected $mimeTypes;
-
-	/**
-	 * Filter by file name, uses normal LIKE database syntax
-	 * @var string
-	 */
-	protected $fileName;
-
-	/**
-	 * Filter by deployment date
-	 * @var DateTimeRange
-	 */
-	protected $deploymentDateRange;
-
-	/**
-	 * An array of SearchSort fields to order results by
-	 * @var SearchSort[]
-	 */
-	protected $sortFields;
-
-
-	/**
-	 * Constructs a {@link Search }.
-	 * @param array $parameters An array of parameters to initialize the {@link Search } with.
-	 * - <b>offset</b> - Starting offset of the search
-	 * - <b>limit</b> - The number of results to return
-	 * - <b>freeText</b> - A freetext string to search for, operators like and/or/not and grouping by parentheses is available
-	 * - <b>objectIds</b> - An array with ObjectIds to filter by
-	 * - <b>mediaIds</b> - An array with MediaIds to filter by
-	 * - <b>createdByIds</b> - Filter by creators of Media
-	 * - <b>createdRange</b> - Filter by created date
-	 * - <b>updatedByIds</b> - Filter by updaters of Media
-	 * - <b>updatedRange</b> - Filter by updated date
-	 * - <b>mediaStatusIds</b> - An array with MediaStatuses to filter by
-	 * - <b>folderIds</b> - An array with FolderIds to search within
-	 * - <b>folderDepth</b> - The depth of folders to fetch objects from when doing folder searches
-	 * - <b>moodboardIds</b> - An array with MoodboardIds to search within
-	 * - <b>categoryIds</b> - An array with CategoryIds to search within
-	 * - <b>parentId</b> - Search for media that have this media as parent
-	 * - <b>deploymentSiteIds</b> - An array with DeploymentSiteIds to search within
-	 * - <b>properties</b> - An array of Properties to filter by
-	 * - <b>fileSizeCriteria</b> - Filter by file size. An array with "min" and/or "max" values.
-	 * - <b>widthCriteria</b> - Filter by file width. An array with "min" and/or "max" values.
-	 * - <b>heightCriteria</b> - Filter by file height. An array with "min" and/or "max" values.
-	 * - <b>mimeTypes</b> - Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos.
-	 * - <b>fileName</b> - Filter by file name, uses normal LIKE database syntax
-	 * - <b>deploymentDateRange</b> - Filter by deployment date
-	 * - <b>sortFields</b> - An array of SearchSort fields to order results by
-	 * 
-	 */
-	public function __construct($parameters) {
-		
-		$this->offset = 0;
-		$this->limit = 50;
-		$this->mediaStatusIds = array(4);
-		
-		
-		if (isset($parameters['offset'])) {
-			$this->setOffset($parameters['offset']);
-		}
-	
-		if (isset($parameters['limit'])) {
-			$this->setLimit($parameters['limit']);
-		}
-	
-		if (isset($parameters['freeText'])) {
-			$this->setFreeText($parameters['freeText']);
-		}
-	
-		if (isset($parameters['objectIds'])) {
-			$this->setObjectIds($parameters['objectIds']);
-		}
-	
-		if (isset($parameters['mediaIds'])) {
-			$this->setMediaIds($parameters['mediaIds']);
-		}
-	
-		if (isset($parameters['createdByIds'])) {
-			$this->setCreatedByIds($parameters['createdByIds']);
-		}
-	
-		if (isset($parameters['createdRange'])) {
-			$this->setCreatedRange($parameters['createdRange']);
-		}
-	
-		if (isset($parameters['updatedByIds'])) {
-			$this->setUpdatedByIds($parameters['updatedByIds']);
-		}
-	
-		if (isset($parameters['updatedRange'])) {
-			$this->setUpdatedRange($parameters['updatedRange']);
-		}
-	
-		if (isset($parameters['mediaStatusIds'])) {
-			$this->setMediaStatusIds($parameters['mediaStatusIds']);
-		}
-	
-		if (isset($parameters['folderIds'])) {
-			$this->setFolderIds($parameters['folderIds']);
-		}
-	
-		if (isset($parameters['folderDepth'])) {
-			$this->setFolderDepth($parameters['folderDepth']);
-		}
-	
-		if (isset($parameters['moodboardIds'])) {
-			$this->setMoodboardIds($parameters['moodboardIds']);
-		}
-	
-		if (isset($parameters['categoryIds'])) {
-			$this->setCategoryIds($parameters['categoryIds']);
-		}
-	
-		if (isset($parameters['parentId'])) {
-			$this->setParentId($parameters['parentId']);
-		}
-	
-		if (isset($parameters['deploymentSiteIds'])) {
-			$this->setDeploymentSiteIds($parameters['deploymentSiteIds']);
-		}
-	
-		if (isset($parameters['properties'])) {
-			$this->setProperties($parameters['properties']);
-		}
-	
-		if (isset($parameters['fileSizeCriteria'])) {
-			$this->setFileSizeCriteria($parameters['fileSizeCriteria']);
-		}
-	
-		if (isset($parameters['widthCriteria'])) {
-			$this->setWidthCriteria($parameters['widthCriteria']);
-		}
-	
-		if (isset($parameters['heightCriteria'])) {
-			$this->setHeightCriteria($parameters['heightCriteria']);
-		}
-	
-		if (isset($parameters['mimeTypes'])) {
-			$this->setMimeTypes($parameters['mimeTypes']);
-		}
-	
-		if (isset($parameters['fileName'])) {
-			$this->setFileName($parameters['fileName']);
-		}
-	
-		if (isset($parameters['deploymentDateRange'])) {
-			$this->setDeploymentDateRange($parameters['deploymentDateRange']);
-		}
-	
-		if (isset($parameters['sortFields'])) {
-			$this->setSortFields($parameters['sortFields']);
-		}
-	
-	}
-
-
-	/**
-	 * Gets the offset of the Search
-	 * @return int
-	 */
-	public function getOffset() {
-		return $this->offset;
-	}
-
-	/**
-	 * Gets the limit of the Search
-	 * @return int
-	 */
-	public function getLimit() {
-		return $this->limit;
-	}
-
-	/**
-	 * Gets the freeText of the Search
-	 * @return string
-	 */
-	public function getFreeText() {
-		return $this->freeText;
-	}
-
-	/**
-	 * Gets the objectIds of the Search
-	 * @return int[]
-	 */
-	public function getObjectIds() {
-		return $this->objectIds;
-	}
-
-	/**
-	 * Gets the mediaIds of the Search
-	 * @return int[]
-	 */
-	public function getMediaIds() {
-		return $this->mediaIds;
-	}
-
-	/**
-	 * Gets the createdByIds of the Search
-	 * @return int[]
-	 */
-	public function getCreatedByIds() {
-		return $this->createdByIds;
-	}
-
-	/**
-	 * Gets the createdRange of the Search
-	 * @return DateTimeRange
-	 */
-	public function getCreatedRange() {
-		return $this->createdRange;
-	}
-
-	/**
-	 * Gets the updatedByIds of the Search
-	 * @return int[]
-	 */
-	public function getUpdatedByIds() {
-		return $this->updatedByIds;
-	}
-
-	/**
-	 * Gets the updatedRange of the Search
-	 * @return DateTimeRange
-	 */
-	public function getUpdatedRange() {
-		return $this->updatedRange;
-	}
-
-	/**
-	 * Gets the mediaStatusIds of the Search
-	 * @return int[]
-	 */
-	public function getMediaStatusIds() {
-		return $this->mediaStatusIds;
-	}
-
-	/**
-	 * Gets the folderIds of the Search
-	 * @return int[]
-	 */
-	public function getFolderIds() {
-		return $this->folderIds;
-	}
-
-	/**
-	 * Gets the folderDepth of the Search
-	 * @return int
-	 */
-	public function getFolderDepth() {
-		return $this->folderDepth;
-	}
-
-	/**
-	 * Gets the moodboardIds of the Search
-	 * @return int[]
-	 */
-	public function getMoodboardIds() {
-		return $this->moodboardIds;
-	}
-
-	/**
-	 * Gets the categoryIds of the Search
-	 * @return int[]
-	 */
-	public function getCategoryIds() {
-		return $this->categoryIds;
-	}
-
-	/**
-	 * Gets the parentId of the Search
-	 * @return int
-	 */
-	public function getParentId() {
-		return $this->parentId;
-	}
-
-	/**
-	 * Gets the deploymentSiteIds of the Search
-	 * @return int[]
-	 */
-	public function getDeploymentSiteIds() {
-		return $this->deploymentSiteIds;
-	}
-
-	/**
-	 * Gets the properties of the Search
-	 * @return PropertyCriteria[]
-	 */
-	public function getProperties() {
-		return $this->properties;
-	}
-
-	/**
-	 * Gets the fileSizeCriteria of the Search
-	 * @return string[]
-	 */
-	public function getFileSizeCriteria() {
-		return $this->fileSizeCriteria;
-	}
-
-	/**
-	 * Gets the widthCriteria of the Search
-	 * @return string[]
-	 */
-	public function getWidthCriteria() {
-		return $this->widthCriteria;
-	}
-
-	/**
-	 * Gets the heightCriteria of the Search
-	 * @return string[]
-	 */
-	public function getHeightCriteria() {
-		return $this->heightCriteria;
-	}
-
-	/**
-	 * Gets the mimeTypes of the Search
-	 * @return string[]
-	 */
-	public function getMimeTypes() {
-		return $this->mimeTypes;
-	}
-
-	/**
-	 * Gets the fileName of the Search
-	 * @return string
-	 */
-	public function getFileName() {
-		return $this->fileName;
-	}
-
-	/**
-	 * Gets the deploymentDateRange of the Search
-	 * @return DateTimeRange
-	 */
-	public function getDeploymentDateRange() {
-		return $this->deploymentDateRange;
-	}
-
-	/**
-	 * Gets the sortFields of the Search
-	 * @return SearchSort[]
-	 */
-	public function getSortFields() {
-		return $this->sortFields;
-	}
-
-
-
-	/**
-	 * Sets the "offset" of the Search
-	 * @param int $offset
-	 * @return $this
-	 */
-	public function setOffset($offset) {
-		$this->offset = $offset;
-		return $this;
-	}
-
-	/**
-	 * Sets the "limit" of the Search
-	 * @param int $limit
-	 * @return $this
-	 */
-	public function setLimit($limit) {
-		$this->limit = $limit;
-		return $this;
-	}
-
-	/**
-	 * Sets the "freeText" of the Search
-	 * @param string $freeText
-	 * @return $this
-	 */
-	public function setFreeText($freeText) {
-		$this->freeText = $freeText;
-		return $this;
-	}
-
-	/**
-	 * Sets the "objectIds" of the Search
-	 * @param int[] $objectIds
-	 * @return $this
-	 */
-	public function setObjectIds($objectIds) {
-		if (is_array($objectIds)) {
-			$this->objectIds = array();
-			foreach ($objectIds as $item) {
-				$this->objectIds[] = (int) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "mediaIds" of the Search
-	 * @param int[] $mediaIds
-	 * @return $this
-	 */
-	public function setMediaIds($mediaIds) {
-		if (is_array($mediaIds)) {
-			$this->mediaIds = array();
-			foreach ($mediaIds as $item) {
-				$this->mediaIds[] = (int) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "createdByIds" of the Search
-	 * @param int[] $createdByIds
-	 * @return $this
-	 */
-	public function setCreatedByIds($createdByIds) {
-		if (is_array($createdByIds)) {
-			$this->createdByIds = array();
-			foreach ($createdByIds as $item) {
-				$this->createdByIds[] = (int) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "createdRange" of the Search
-	 * @param DateTimeRange $createdRange
-	 * @return $this
-	 */
-	public function setCreatedRange($createdRange) {
-		if ($createdRange instanceof DateTimeRange) {
-			$this->createdRange = $createdRange;
-		} else if (is_array($createdRange)) {
-			$this->createdRange = new DateTimeRange($createdRange);
-		} else {
-			$this->createdRange = null;
-			trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "updatedByIds" of the Search
-	 * @param int[] $updatedByIds
-	 * @return $this
-	 */
-	public function setUpdatedByIds($updatedByIds) {
-		if (is_array($updatedByIds)) {
-			$this->updatedByIds = array();
-			foreach ($updatedByIds as $item) {
-				$this->updatedByIds[] = (int) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "updatedRange" of the Search
-	 * @param DateTimeRange $updatedRange
-	 * @return $this
-	 */
-	public function setUpdatedRange($updatedRange) {
-		if ($updatedRange instanceof DateTimeRange) {
-			$this->updatedRange = $updatedRange;
-		} else if (is_array($updatedRange)) {
-			$this->updatedRange = new DateTimeRange($updatedRange);
-		} else {
-			$this->updatedRange = null;
-			trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "mediaStatusIds" of the Search
-	 * @param int[] $mediaStatusIds
-	 * @return $this
-	 */
-	public function setMediaStatusIds($mediaStatusIds) {
-		if (is_array($mediaStatusIds)) {
-			$this->mediaStatusIds = array();
-			foreach ($mediaStatusIds as $item) {
-				$this->mediaStatusIds[] = (int) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "folderIds" of the Search
-	 * @param int[] $folderIds
-	 * @return $this
-	 */
-	public function setFolderIds($folderIds) {
-		if (is_array($folderIds)) {
-			$this->folderIds = array();
-			foreach ($folderIds as $item) {
-				$this->folderIds[] = (int) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "folderDepth" of the Search
-	 * @param int $folderDepth
-	 * @return $this
-	 */
-	public function setFolderDepth($folderDepth) {
-		$this->folderDepth = $folderDepth;
-		return $this;
-	}
-
-	/**
-	 * Sets the "moodboardIds" of the Search
-	 * @param int[] $moodboardIds
-	 * @return $this
-	 */
-	public function setMoodboardIds($moodboardIds) {
-		if (is_array($moodboardIds)) {
-			$this->moodboardIds = array();
-			foreach ($moodboardIds as $item) {
-				$this->moodboardIds[] = (int) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "categoryIds" of the Search
-	 * @param int[] $categoryIds
-	 * @return $this
-	 */
-	public function setCategoryIds($categoryIds) {
-		if (is_array($categoryIds)) {
-			$this->categoryIds = array();
-			foreach ($categoryIds as $item) {
-				$this->categoryIds[] = (int) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "parentId" of the Search
-	 * @param int $parentId
-	 * @return $this
-	 */
-	public function setParentId($parentId) {
-		$this->parentId = $parentId;
-		return $this;
-	}
-
-	/**
-	 * Sets the "deploymentSiteIds" of the Search
-	 * @param int[] $deploymentSiteIds
-	 * @return $this
-	 */
-	public function setDeploymentSiteIds($deploymentSiteIds) {
-		if (is_array($deploymentSiteIds)) {
-			$this->deploymentSiteIds = array();
-			foreach ($deploymentSiteIds as $item) {
-				$this->deploymentSiteIds[] = (int) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "properties" of the Search
-	 * @param PropertyCriteria[] $properties
-	 * @return $this
-	 */
-	public function setProperties($properties) {
-		if (is_array($properties)) {
-			$this->properties = array();
-			foreach ($properties as $item) {
-				if (!($item instanceof PropertyCriteria)) {
-					if (is_array($item)) {
-						try {
-							$item = new PropertyCriteria($item);
-						} catch (\Exception $e) {
-							trigger_error('Could not auto-instantiate PropertyCriteria. '.$e->getMessage(), E_USER_WARNING);
-						}
-					} else {
-						trigger_error('Array parameter item is not of expected type "PropertyCriteria"!', E_USER_WARNING);
-						continue;
-					}
-				}
-				$this->properties[] = $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "fileSizeCriteria" of the Search
-	 * @param string[] $fileSizeCriteria
-	 * @return $this
-	 */
-	public function setFileSizeCriteria($fileSizeCriteria) {
-		if (is_array($fileSizeCriteria)) {
-			$this->fileSizeCriteria = array();
-			foreach ($fileSizeCriteria as $item) {
-				$this->fileSizeCriteria[] = (string) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "widthCriteria" of the Search
-	 * @param string[] $widthCriteria
-	 * @return $this
-	 */
-	public function setWidthCriteria($widthCriteria) {
-		if (is_array($widthCriteria)) {
-			$this->widthCriteria = array();
-			foreach ($widthCriteria as $item) {
-				$this->widthCriteria[] = (string) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "heightCriteria" of the Search
-	 * @param string[] $heightCriteria
-	 * @return $this
-	 */
-	public function setHeightCriteria($heightCriteria) {
-		if (is_array($heightCriteria)) {
-			$this->heightCriteria = array();
-			foreach ($heightCriteria as $item) {
-				$this->heightCriteria[] = (string) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "mimeTypes" of the Search
-	 * @param string[] $mimeTypes
-	 * @return $this
-	 */
-	public function setMimeTypes($mimeTypes) {
-		if (is_array($mimeTypes)) {
-			$this->mimeTypes = array();
-			foreach ($mimeTypes as $item) {
-				$this->mimeTypes[] = (string) $item;
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "fileName" of the Search
-	 * @param string $fileName
-	 * @return $this
-	 */
-	public function setFileName($fileName) {
-		$this->fileName = $fileName;
-		return $this;
-	}
-
-	/**
-	 * Sets the "deploymentDateRange" of the Search
-	 * @param DateTimeRange $deploymentDateRange
-	 * @return $this
-	 */
-	public function setDeploymentDateRange($deploymentDateRange) {
-		if ($deploymentDateRange instanceof DateTimeRange) {
-			$this->deploymentDateRange = $deploymentDateRange;
-		} else if (is_array($deploymentDateRange)) {
-			$this->deploymentDateRange = new DateTimeRange($deploymentDateRange);
-		} else {
-			$this->deploymentDateRange = null;
-			trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
-		}
-		return $this;
-	}
-
-	/**
-	 * Sets the "sortFields" of the Search
-	 * @param SearchSort[] $sortFields
-	 * @return $this
-	 */
-	public function setSortFields($sortFields) {
-		if (is_array($sortFields)) {
-			$this->sortFields = array();
-			foreach ($sortFields as $item) {
-				if (!($item instanceof SearchSort)) {
-					if (is_array($item)) {
-						try {
-							$item = new SearchSort($item);
-						} catch (\Exception $e) {
-							trigger_error('Could not auto-instantiate SearchSort. '.$e->getMessage(), E_USER_WARNING);
-						}
-					} else {
-						trigger_error('Array parameter item is not of expected type "SearchSort"!', E_USER_WARNING);
-						continue;
-					}
-				}
-				$this->sortFields[] = $item;
-			}
-		}
-		return $this;
-	}
-
-
-	/**
-	 * Gets all data that should be available in a json representation.
-	 * @return array An associative array of the available variables.
-	 */
-	public function jsonSerialize() {
-		$array = array();
-		
-		if ($this->offset !== null) {
-			$array['offset'] = $this->offset;
-		}
-		if ($this->limit !== null) {
-			$array['limit'] = $this->limit;
-		}
-		if ($this->freeText !== null) {
-			$array['freeText'] = $this->freeText;
-		}
-		if ($this->objectIds !== null) {
-			$array['objectIds'] = $this->objectIds;
-		}
-		if ($this->mediaIds !== null) {
-			$array['mediaIds'] = $this->mediaIds;
-		}
-		if ($this->createdByIds !== null) {
-			$array['createdByIds'] = $this->createdByIds;
-		}
-		if ($this->createdRange !== null) {
-			$array['createdRange'] = $this->createdRange;
-		}
-		if ($this->updatedByIds !== null) {
-			$array['updatedByIds'] = $this->updatedByIds;
-		}
-		if ($this->updatedRange !== null) {
-			$array['updatedRange'] = $this->updatedRange;
-		}
-		if ($this->mediaStatusIds !== null) {
-			$array['mediaStatusIds'] = $this->mediaStatusIds;
-		}
-		if ($this->folderIds !== null) {
-			$array['folderIds'] = $this->folderIds;
-		}
-		if ($this->folderDepth !== null) {
-			$array['folderDepth'] = $this->folderDepth;
-		}
-		if ($this->moodboardIds !== null) {
-			$array['moodboardIds'] = $this->moodboardIds;
-		}
-		if ($this->categoryIds !== null) {
-			$array['categoryIds'] = $this->categoryIds;
-		}
-		if ($this->parentId !== null) {
-			$array['parentId'] = $this->parentId;
-		}
-		if ($this->deploymentSiteIds !== null) {
-			$array['deploymentSiteIds'] = $this->deploymentSiteIds;
-		}
-		if ($this->properties !== null) {
-			$array['properties'] = $this->properties;
-		}
-		if ($this->fileSizeCriteria !== null) {
-			$array['fileSizeCriteria'] = $this->fileSizeCriteria;
-		}
-		if ($this->widthCriteria !== null) {
-			$array['widthCriteria'] = $this->widthCriteria;
-		}
-		if ($this->heightCriteria !== null) {
-			$array['heightCriteria'] = $this->heightCriteria;
-		}
-		if ($this->mimeTypes !== null) {
-			$array['mimeTypes'] = $this->mimeTypes;
-		}
-		if ($this->fileName !== null) {
-			$array['fileName'] = $this->fileName;
-		}
-		if ($this->deploymentDateRange !== null) {
-			$array['deploymentDateRange'] = $this->deploymentDateRange;
-		}
-		if ($this->sortFields !== null) {
-			$array['sortFields'] = $this->sortFields;
-		}
-		return $array;
-	}
+class Search  implements \JsonSerializable
+{
+    /** @var int Starting offset of the search */
+    protected $offset;
+
+    /** @var int The number of results to return */
+    protected $limit;
+
+    /** @var string A freetext string to search for, operators like and/or/not and grouping by parentheses is available */
+    protected $freeText;
+
+    /** @var int[] An array with ObjectIds to filter by */
+    protected $objectIds;
+
+    /** @var int[] An array with MediaIds to filter by */
+    protected $mediaIds;
+
+    /** @var int[] Filter by creators of Media */
+    protected $createdByIds;
+
+    /** @var DateTimeRange Filter by created date */
+    protected $createdRange;
+
+    /** @var int[] Filter by updaters of Media */
+    protected $updatedByIds;
+
+    /** @var DateTimeRange Filter by updated date */
+    protected $updatedRange;
+
+    /** @var int[] An array with MediaStatuses to filter by */
+    protected $mediaStatusIds;
+
+    /** @var int[] An array with FolderIds to search within */
+    protected $folderIds;
+
+    /** @var int The depth of folders to fetch objects from when doing folder searches */
+    protected $folderDepth;
+
+    /** @var int[] An array with MoodboardIds to search within */
+    protected $moodboardIds;
+
+    /** @var int[] An array with CategoryIds to search within */
+    protected $categoryIds;
+
+    /** @var bool Indicates that we should ignore grouping and return child objects in the result */
+    protected $ignoreGrouping;
+
+    /** @var int Search for media that have this media as parent */
+    protected $parentId;
+
+    /** @var int[] An array with DeploymentSiteIds to search within */
+    protected $deploymentSiteIds;
+
+    /** @var PropertyCriteria[] An array of Properties to filter by */
+    protected $properties;
+
+    /** @var string[] Filter by file size. An array with "min" and/or "max" values. */
+    protected $fileSizeCriteria;
+
+    /** @var string[] Filter by file width. An array with "min" and/or "max" values. */
+    protected $widthCriteria;
+
+    /** @var string[] Filter by file height. An array with "min" and/or "max" values. */
+    protected $heightCriteria;
+
+    /** @var string[] Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos. */
+    protected $mimeTypes;
+
+    /** @var string Filter by file name, uses normal LIKE database syntax */
+    protected $fileName;
+
+    /** @var DateTimeRange Filter by deployment date */
+    protected $deploymentDateRange;
+
+    /** @var SearchSort[] An array of SearchSort fields to order results by */
+    protected $sortFields;
+
+    /**
+     * Constructs a Search.
+     *
+     * @param array $parameters An array of parameters to initialize the { @link Search } with.
+     * - <b>offset</b> - Starting offset of the search
+     * - <b>limit</b> - The number of results to return
+     * - <b>freeText</b> - A freetext string to search for, operators like and/or/not and grouping by parentheses is available
+     * - <b>objectIds</b> - An array with ObjectIds to filter by
+     * - <b>mediaIds</b> - An array with MediaIds to filter by
+     * - <b>createdByIds</b> - Filter by creators of Media
+     * - <b>createdRange</b> - Filter by created date
+     * - <b>updatedByIds</b> - Filter by updaters of Media
+     * - <b>updatedRange</b> - Filter by updated date
+     * - <b>mediaStatusIds</b> - An array with MediaStatuses to filter by
+     * - <b>folderIds</b> - An array with FolderIds to search within
+     * - <b>folderDepth</b> - The depth of folders to fetch objects from when doing folder searches
+     * - <b>moodboardIds</b> - An array with MoodboardIds to search within
+     * - <b>categoryIds</b> - An array with CategoryIds to search within
+     * - <b>ignoreGrouping</b> - Indicates that we should ignore grouping and return child objects in the result
+     * - <b>parentId</b> - Search for media that have this media as parent
+     * - <b>deploymentSiteIds</b> - An array with DeploymentSiteIds to search within
+     * - <b>properties</b> - An array of Properties to filter by
+     * - <b>fileSizeCriteria</b> - Filter by file size. An array with "min" and/or "max" values.
+     * - <b>widthCriteria</b> - Filter by file width. An array with "min" and/or "max" values.
+     * - <b>heightCriteria</b> - Filter by file height. An array with "min" and/or "max" values.
+     * - <b>mimeTypes</b> - Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos.
+     * - <b>fileName</b> - Filter by file name, uses normal LIKE database syntax
+     * - <b>deploymentDateRange</b> - Filter by deployment date
+     * - <b>sortFields</b> - An array of SearchSort fields to order results by
+     */
+    public function __construct($parameters = [])
+    {
+        $this->objectIds         = [];
+        $this->mediaIds          = [];
+        $this->createdByIds      = [];
+        $this->updatedByIds      = [];
+        $this->mediaStatusIds    = [];
+        $this->folderIds         = [];
+        $this->moodboardIds      = [];
+        $this->categoryIds       = [];
+        $this->deploymentSiteIds = [];
+        $this->properties        = [];
+        $this->fileSizeCriteria  = [];
+        $this->widthCriteria     = [];
+        $this->heightCriteria    = [];
+        $this->mimeTypes         = [];
+        $this->sortFields        = [];
+
+        $this->offset         = 0;
+        $this->limit          = 50;
+        $this->mediaStatusIds = [4];
+
+        if (isset($parameters['offset'])) {
+            $this->setOffset($parameters['offset']);
+        }
+        if (isset($parameters['limit'])) {
+            $this->setLimit($parameters['limit']);
+        }
+        if (isset($parameters['freeText'])) {
+            $this->setFreeText($parameters['freeText']);
+        }
+        if (isset($parameters['objectIds'])) {
+            $this->setObjectIds($parameters['objectIds']);
+        }
+        if (isset($parameters['mediaIds'])) {
+            $this->setMediaIds($parameters['mediaIds']);
+        }
+        if (isset($parameters['createdByIds'])) {
+            $this->setCreatedByIds($parameters['createdByIds']);
+        }
+        if (isset($parameters['createdRange'])) {
+            $this->setCreatedRange($parameters['createdRange']);
+        }
+        if (isset($parameters['updatedByIds'])) {
+            $this->setUpdatedByIds($parameters['updatedByIds']);
+        }
+        if (isset($parameters['updatedRange'])) {
+            $this->setUpdatedRange($parameters['updatedRange']);
+        }
+        if (isset($parameters['mediaStatusIds'])) {
+            $this->setMediaStatusIds($parameters['mediaStatusIds']);
+        }
+        if (isset($parameters['folderIds'])) {
+            $this->setFolderIds($parameters['folderIds']);
+        }
+        if (isset($parameters['folderDepth'])) {
+            $this->setFolderDepth($parameters['folderDepth']);
+        }
+        if (isset($parameters['moodboardIds'])) {
+            $this->setMoodboardIds($parameters['moodboardIds']);
+        }
+        if (isset($parameters['categoryIds'])) {
+            $this->setCategoryIds($parameters['categoryIds']);
+        }
+        if (isset($parameters['ignoreGrouping'])) {
+            $this->setIgnoreGrouping($parameters['ignoreGrouping']);
+        }
+        if (isset($parameters['parentId'])) {
+            $this->setParentId($parameters['parentId']);
+        }
+        if (isset($parameters['deploymentSiteIds'])) {
+            $this->setDeploymentSiteIds($parameters['deploymentSiteIds']);
+        }
+        if (isset($parameters['properties'])) {
+            $this->setProperties($parameters['properties']);
+        }
+        if (isset($parameters['fileSizeCriteria'])) {
+            $this->setFileSizeCriteria($parameters['fileSizeCriteria']);
+        }
+        if (isset($parameters['widthCriteria'])) {
+            $this->setWidthCriteria($parameters['widthCriteria']);
+        }
+        if (isset($parameters['heightCriteria'])) {
+            $this->setHeightCriteria($parameters['heightCriteria']);
+        }
+        if (isset($parameters['mimeTypes'])) {
+            $this->setMimeTypes($parameters['mimeTypes']);
+        }
+        if (isset($parameters['fileName'])) {
+            $this->setFileName($parameters['fileName']);
+        }
+        if (isset($parameters['deploymentDateRange'])) {
+            $this->setDeploymentDateRange($parameters['deploymentDateRange']);
+        }
+        if (isset($parameters['sortFields'])) {
+            $this->setSortFields($parameters['sortFields']);
+        }
+    }
+
+    /**
+     * Gets the offset of the Search.
+     * @return int	 */
+    public function getOffset()
+    {
+        return $this->offset;
+    }
+
+    /**
+     * Sets the "offset" of the Search.
+     *
+     * @param int $offset
+     *
+     * @return Search
+     */
+    public function setOffset($offset)
+    {
+        $this->offset = $offset;
+
+        return $this;
+    }
+    /**
+     * Gets the limit of the Search.
+     * @return int	 */
+    public function getLimit()
+    {
+        return $this->limit;
+    }
+
+    /**
+     * Sets the "limit" of the Search.
+     *
+     * @param int $limit
+     *
+     * @return Search
+     */
+    public function setLimit($limit)
+    {
+        $this->limit = $limit;
+
+        return $this;
+    }
+    /**
+     * Gets the freeText of the Search.
+     * @return string	 */
+    public function getFreeText()
+    {
+        return $this->freeText;
+    }
+
+    /**
+     * Sets the "freeText" of the Search.
+     *
+     * @param string $freeText
+     *
+     * @return Search
+     */
+    public function setFreeText($freeText)
+    {
+        $this->freeText = $freeText;
+
+        return $this;
+    }
+    /**
+     * Gets the objectIds of the Search.
+     * @return int[]	 */
+    public function getObjectIds()
+    {
+        return $this->objectIds;
+    }
+
+    /**
+     * Sets the "objectIds" of the Search.
+     *
+     * @param int[] $objectIds
+     *
+     * @return Search
+     */
+    public function setObjectIds(array $objectIds)
+    {
+        $this->objectIds = $objectIds;
+
+        return $this;
+    }
+    /**
+     * Gets the mediaIds of the Search.
+     * @return int[]	 */
+    public function getMediaIds()
+    {
+        return $this->mediaIds;
+    }
+
+    /**
+     * Sets the "mediaIds" of the Search.
+     *
+     * @param int[] $mediaIds
+     *
+     * @return Search
+     */
+    public function setMediaIds(array $mediaIds)
+    {
+        $this->mediaIds = $mediaIds;
+
+        return $this;
+    }
+    /**
+     * Gets the createdByIds of the Search.
+     * @return int[]	 */
+    public function getCreatedByIds()
+    {
+        return $this->createdByIds;
+    }
+
+    /**
+     * Sets the "createdByIds" of the Search.
+     *
+     * @param int[] $createdByIds
+     *
+     * @return Search
+     */
+    public function setCreatedByIds(array $createdByIds)
+    {
+        $this->createdByIds = $createdByIds;
+
+        return $this;
+    }
+    /**
+     * Gets the createdRange of the Search.
+     * @return DateTimeRange	 */
+    public function getCreatedRange()
+    {
+        return $this->createdRange;
+    }
+
+    /**
+     * Sets the "createdRange" of the Search.
+     *
+     * @param DateTimeRange $createdRange
+     *
+     * @return Search
+     */
+    public function setCreatedRange($createdRange)
+    {
+        if ($createdRange instanceof DateTimeRange) {
+            $this->createdRange = $createdRange;
+        } elseif (is_array($createdRange)) {
+            $this->createdRange = new DateTimeRange($createdRange);
+        } else {
+            $this->createdRange = null;
+            trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
+        }
+
+        return $this;
+    }
+    /**
+     * Gets the updatedByIds of the Search.
+     * @return int[]	 */
+    public function getUpdatedByIds()
+    {
+        return $this->updatedByIds;
+    }
+
+    /**
+     * Sets the "updatedByIds" of the Search.
+     *
+     * @param int[] $updatedByIds
+     *
+     * @return Search
+     */
+    public function setUpdatedByIds(array $updatedByIds)
+    {
+        $this->updatedByIds = $updatedByIds;
+
+        return $this;
+    }
+    /**
+     * Gets the updatedRange of the Search.
+     * @return DateTimeRange	 */
+    public function getUpdatedRange()
+    {
+        return $this->updatedRange;
+    }
+
+    /**
+     * Sets the "updatedRange" of the Search.
+     *
+     * @param DateTimeRange $updatedRange
+     *
+     * @return Search
+     */
+    public function setUpdatedRange($updatedRange)
+    {
+        if ($updatedRange instanceof DateTimeRange) {
+            $this->updatedRange = $updatedRange;
+        } elseif (is_array($updatedRange)) {
+            $this->updatedRange = new DateTimeRange($updatedRange);
+        } else {
+            $this->updatedRange = null;
+            trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
+        }
+
+        return $this;
+    }
+    /**
+     * Gets the mediaStatusIds of the Search.
+     * @return int[]	 */
+    public function getMediaStatusIds()
+    {
+        return $this->mediaStatusIds;
+    }
+
+    /**
+     * Sets the "mediaStatusIds" of the Search.
+     *
+     * @param int[] $mediaStatusIds
+     *
+     * @return Search
+     */
+    public function setMediaStatusIds(array $mediaStatusIds)
+    {
+        $this->mediaStatusIds = $mediaStatusIds;
+
+        return $this;
+    }
+    /**
+     * Gets the folderIds of the Search.
+     * @return int[]	 */
+    public function getFolderIds()
+    {
+        return $this->folderIds;
+    }
+
+    /**
+     * Sets the "folderIds" of the Search.
+     *
+     * @param int[] $folderIds
+     *
+     * @return Search
+     */
+    public function setFolderIds(array $folderIds)
+    {
+        $this->folderIds = $folderIds;
+
+        return $this;
+    }
+    /**
+     * Gets the folderDepth of the Search.
+     * @return int	 */
+    public function getFolderDepth()
+    {
+        return $this->folderDepth;
+    }
+
+    /**
+     * Sets the "folderDepth" of the Search.
+     *
+     * @param int $folderDepth
+     *
+     * @return Search
+     */
+    public function setFolderDepth($folderDepth)
+    {
+        $this->folderDepth = $folderDepth;
+
+        return $this;
+    }
+    /**
+     * Gets the moodboardIds of the Search.
+     * @return int[]	 */
+    public function getMoodboardIds()
+    {
+        return $this->moodboardIds;
+    }
+
+    /**
+     * Sets the "moodboardIds" of the Search.
+     *
+     * @param int[] $moodboardIds
+     *
+     * @return Search
+     */
+    public function setMoodboardIds(array $moodboardIds)
+    {
+        $this->moodboardIds = $moodboardIds;
+
+        return $this;
+    }
+    /**
+     * Gets the categoryIds of the Search.
+     * @return int[]	 */
+    public function getCategoryIds()
+    {
+        return $this->categoryIds;
+    }
+
+    /**
+     * Sets the "categoryIds" of the Search.
+     *
+     * @param int[] $categoryIds
+     *
+     * @return Search
+     */
+    public function setCategoryIds(array $categoryIds)
+    {
+        $this->categoryIds = $categoryIds;
+
+        return $this;
+    }
+    /**
+     * Tells whether the Search is ignoreGrouping.
+     * @return bool	 */
+    public function isIgnoreGrouping()
+    {
+        return $this->ignoreGrouping;
+    }
+
+    /**
+     * Sets the "ignoreGrouping" of the Search.
+     *
+     * @param bool $ignoreGrouping
+     *
+     * @return Search
+     */
+    public function setIgnoreGrouping($ignoreGrouping)
+    {
+        $this->ignoreGrouping = $ignoreGrouping;
+
+        return $this;
+    }
+    /**
+     * Gets the parentId of the Search.
+     * @return int	 */
+    public function getParentId()
+    {
+        return $this->parentId;
+    }
+
+    /**
+     * Sets the "parentId" of the Search.
+     *
+     * @param int $parentId
+     *
+     * @return Search
+     */
+    public function setParentId($parentId)
+    {
+        $this->parentId = $parentId;
+
+        return $this;
+    }
+    /**
+     * Gets the deploymentSiteIds of the Search.
+     * @return int[]	 */
+    public function getDeploymentSiteIds()
+    {
+        return $this->deploymentSiteIds;
+    }
+
+    /**
+     * Sets the "deploymentSiteIds" of the Search.
+     *
+     * @param int[] $deploymentSiteIds
+     *
+     * @return Search
+     */
+    public function setDeploymentSiteIds(array $deploymentSiteIds)
+    {
+        $this->deploymentSiteIds = $deploymentSiteIds;
+
+        return $this;
+    }
+    /**
+     * Gets the properties of the Search.
+     * @return PropertyCriteria[]	 */
+    public function getProperties()
+    {
+        return $this->properties;
+    }
+
+    /**
+     * Sets the "properties" of the Search.
+     *
+     * @param PropertyCriteria[] $properties
+     *
+     * @return Search
+     */
+    public function setProperties(array $properties)
+    {
+        $this->properties = [];
+        foreach ($properties as $item) {
+            if (!($item instanceof PropertyCriteria)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new PropertyCriteria($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate PropertyCriteria. '.$e->getMessage(), E_USER_WARNING);
+                    }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "PropertyCriteria"!', E_USER_WARNING);
+                    continue;
+                }
+            }
+            $this->properties[] = $item;
+        }
+
+        return $this;
+    }
+    /**
+     * Gets the fileSizeCriteria of the Search.
+     * @return string[]	 */
+    public function getFileSizeCriteria()
+    {
+        return $this->fileSizeCriteria;
+    }
+
+    /**
+     * Sets the "fileSizeCriteria" of the Search.
+     *
+     * @param string[] $fileSizeCriteria
+     *
+     * @return Search
+     */
+    public function setFileSizeCriteria(array $fileSizeCriteria)
+    {
+        $this->fileSizeCriteria = $fileSizeCriteria;
+
+        return $this;
+    }
+    /**
+     * Gets the widthCriteria of the Search.
+     * @return string[]	 */
+    public function getWidthCriteria()
+    {
+        return $this->widthCriteria;
+    }
+
+    /**
+     * Sets the "widthCriteria" of the Search.
+     *
+     * @param string[] $widthCriteria
+     *
+     * @return Search
+     */
+    public function setWidthCriteria(array $widthCriteria)
+    {
+        $this->widthCriteria = $widthCriteria;
+
+        return $this;
+    }
+    /**
+     * Gets the heightCriteria of the Search.
+     * @return string[]	 */
+    public function getHeightCriteria()
+    {
+        return $this->heightCriteria;
+    }
+
+    /**
+     * Sets the "heightCriteria" of the Search.
+     *
+     * @param string[] $heightCriteria
+     *
+     * @return Search
+     */
+    public function setHeightCriteria(array $heightCriteria)
+    {
+        $this->heightCriteria = $heightCriteria;
+
+        return $this;
+    }
+    /**
+     * Gets the mimeTypes of the Search.
+     * @return string[]	 */
+    public function getMimeTypes()
+    {
+        return $this->mimeTypes;
+    }
+
+    /**
+     * Sets the "mimeTypes" of the Search.
+     *
+     * @param string[] $mimeTypes
+     *
+     * @return Search
+     */
+    public function setMimeTypes(array $mimeTypes)
+    {
+        $this->mimeTypes = $mimeTypes;
+
+        return $this;
+    }
+    /**
+     * Gets the fileName of the Search.
+     * @return string	 */
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
+
+    /**
+     * Sets the "fileName" of the Search.
+     *
+     * @param string $fileName
+     *
+     * @return Search
+     */
+    public function setFileName($fileName)
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+    /**
+     * Gets the deploymentDateRange of the Search.
+     * @return DateTimeRange	 */
+    public function getDeploymentDateRange()
+    {
+        return $this->deploymentDateRange;
+    }
+
+    /**
+     * Sets the "deploymentDateRange" of the Search.
+     *
+     * @param DateTimeRange $deploymentDateRange
+     *
+     * @return Search
+     */
+    public function setDeploymentDateRange($deploymentDateRange)
+    {
+        if ($deploymentDateRange instanceof DateTimeRange) {
+            $this->deploymentDateRange = $deploymentDateRange;
+        } elseif (is_array($deploymentDateRange)) {
+            $this->deploymentDateRange = new DateTimeRange($deploymentDateRange);
+        } else {
+            $this->deploymentDateRange = null;
+            trigger_error('Argument must be an object of class DateTimeRange. Data loss!', E_USER_WARNING);
+        }
+
+        return $this;
+    }
+    /**
+     * Gets the sortFields of the Search.
+     * @return SearchSort[]	 */
+    public function getSortFields()
+    {
+        return $this->sortFields;
+    }
+
+    /**
+     * Sets the "sortFields" of the Search.
+     *
+     * @param SearchSort[] $sortFields
+     *
+     * @return Search
+     */
+    public function setSortFields(array $sortFields)
+    {
+        $this->sortFields = [];
+        foreach ($sortFields as $item) {
+            if (!($item instanceof SearchSort)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new SearchSort($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate SearchSort. '.$e->getMessage(), E_USER_WARNING);
+                    }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "SearchSort"!', E_USER_WARNING);
+                    continue;
+                }
+            }
+            $this->sortFields[] = $item;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Gets all data that should be available in a json representation.
+     *
+     * @return array An associative array of the available variables.
+     */
+    public function jsonSerialize()
+    {
+        $json = [];
+
+        if ($this->offset !== null) {
+            $json['offset'] = $this->offset;
+        }
+        if ($this->limit !== null) {
+            $json['limit'] = $this->limit;
+        }
+        if ($this->freeText !== null) {
+            $json['freeText'] = $this->freeText;
+        }
+        if ($this->objectIds !== null && !empty($this->objectIds)) {
+            $json['objectIds'] = $this->objectIds;
+        }
+        if ($this->mediaIds !== null && !empty($this->mediaIds)) {
+            $json['mediaIds'] = $this->mediaIds;
+        }
+        if ($this->createdByIds !== null && !empty($this->createdByIds)) {
+            $json['createdByIds'] = $this->createdByIds;
+        }
+        if ($this->createdRange !== null) {
+            $json['createdRange'] = $this->createdRange;
+        }
+        if ($this->updatedByIds !== null && !empty($this->updatedByIds)) {
+            $json['updatedByIds'] = $this->updatedByIds;
+        }
+        if ($this->updatedRange !== null) {
+            $json['updatedRange'] = $this->updatedRange;
+        }
+        if ($this->mediaStatusIds !== null && !empty($this->mediaStatusIds)) {
+            $json['mediaStatusIds'] = $this->mediaStatusIds;
+        }
+        if ($this->folderIds !== null && !empty($this->folderIds)) {
+            $json['folderIds'] = $this->folderIds;
+        }
+        if ($this->folderDepth !== null) {
+            $json['folderDepth'] = $this->folderDepth;
+        }
+        if ($this->moodboardIds !== null && !empty($this->moodboardIds)) {
+            $json['moodboardIds'] = $this->moodboardIds;
+        }
+        if ($this->categoryIds !== null && !empty($this->categoryIds)) {
+            $json['categoryIds'] = $this->categoryIds;
+        }
+        if ($this->ignoreGrouping !== null) {
+            $json['ignoreGrouping'] = $this->ignoreGrouping;
+        }
+        if ($this->parentId !== null) {
+            $json['parentId'] = $this->parentId;
+        }
+        if ($this->deploymentSiteIds !== null && !empty($this->deploymentSiteIds)) {
+            $json['deploymentSiteIds'] = $this->deploymentSiteIds;
+        }
+        if ($this->properties !== null && !empty($this->properties)) {
+            $json['properties'] = $this->properties;
+        }
+        if ($this->fileSizeCriteria !== null && !empty($this->fileSizeCriteria)) {
+            $json['fileSizeCriteria'] = $this->fileSizeCriteria;
+        }
+        if ($this->widthCriteria !== null && !empty($this->widthCriteria)) {
+            $json['widthCriteria'] = $this->widthCriteria;
+        }
+        if ($this->heightCriteria !== null && !empty($this->heightCriteria)) {
+            $json['heightCriteria'] = $this->heightCriteria;
+        }
+        if ($this->mimeTypes !== null && !empty($this->mimeTypes)) {
+            $json['mimeTypes'] = $this->mimeTypes;
+        }
+        if ($this->fileName !== null) {
+            $json['fileName'] = $this->fileName;
+        }
+        if ($this->deploymentDateRange !== null) {
+            $json['deploymentDateRange'] = $this->deploymentDateRange;
+        }
+        if ($this->sortFields !== null && !empty($this->sortFields)) {
+            $json['sortFields'] = $this->sortFields;
+        }
+
+        return $json;
+    }
 }

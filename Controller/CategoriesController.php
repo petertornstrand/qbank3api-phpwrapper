@@ -2,43 +2,122 @@
 
 namespace QBNK\QBank\API\Controller;
 
-use QBNK\QBank\API\QBankCachePolicy;
-use QBNK\QBank\API\Model\Category;
+use QBNK\QBank\API\CachePolicy;
+    use QBNK\QBank\API\Model\Category;
+    use QBNK\QBank\API\Model\CategoryResponse;
 
+    class CategoriesController extends ControllerAbstract
+    {
+    /**
+     * Lists all Categories.
+     *
+     * Lists all categories that the current user has access to.
+     *
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     *
+     * @return CategoryResponse[]
 
-/**
- * Categories defines which PropertySets should be available for Media. All Media belongs to exactly one Category.
- *
- * NOTE: This class is auto generated. Do not edit the class manually.
- *
- */
+     */
+    public function listCategories(CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/categories', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new CategoryResponse($entry);
+        }
+        unset($entry);
+        reset($result);
 
-class CategoriesController extends ControllerAbstract {
-	
-	/**
-	 * Lists all categories that the current user has access to.
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return Category[]
-	 */
-	public function listCategories(QBankCachePolicy $cachePolicy = null) {
-		$category = array();
-		foreach ($this->get('v1/categories', [], $cachePolicy) as $item ) {
-			$category[] = new Category($item);
-		}
+        return $result;
+    }
+    /**
+     * Fetches a specific Category.
+     *
+     * Fetches a Category by the specified identifier.
+     *
+     * @param int $id The Category identifier.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     *
+     * @return CategoryResponse
 
-		return $category;
-	}
+     */
+    public function retrieveCategory($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/categories/'.$id.'', $parameters, $cachePolicy);
+        $result = new CategoryResponse($result);
 
-	/**
-	 * Fetches a Category by the specified identifier.
-	 * @param int $id The Category identifier.
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return Category
-	 */
-	public function retrieveCategory($id, QBankCachePolicy $cachePolicy = null) {
-		return new Category($this->get('v1/categories/' . $id . '', [], $cachePolicy));
-	}
+        return $result;
+    }
+    /**
+     * Create a Category.
+     *
+     * @param Category $category A JSON encoded Category to create
+     *
+     * @return CategoryResponse
 
-}
+     */
+    public function createCategory(Category $category)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['category' => $category]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/categories', $parameters);
+        $result = new CategoryResponse($result);
+
+        return $result;
+    }
+    /**
+     * Update a Category.
+     *
+     * @param int $id The Category identifier.
+     * @param Category $category A JSON encoded Category representing the updates
+     *
+     * @return CategoryResponse
+
+     */
+    public function updateCategory($id, Category $category)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['category' => $category]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/categories/'.$id.'', $parameters);
+        $result = new CategoryResponse($result);
+
+        return $result;
+    }
+    /**
+     * Delete a Category.
+     *
+     * You can not delete a category that has Media attached to it.
+     *
+     * @param int $id The Category identifier.
+     *
+     * @return CategoryResponse
+
+     */
+    public function removeCategory($id)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->delete('v1/categories/'.$id.'', $parameters);
+        $result = new CategoryResponse($result);
+
+        return $result;
+    }
+    }

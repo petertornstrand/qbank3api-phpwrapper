@@ -1,30 +1,33 @@
 {
-	"name": "qbnk/qbank3api-phpwrapper",
-	"description": "A PHP-Wrapper for QBank 3's API. Provides a simple way to communicate with QBank 3 from PHP.",
-	"keywords": ["qbank", "api"],
-	"authors": [
-		{
-			"name": "QBNK Dev-team",
-			"email": "support@qbank.se",
-			"homepage": "http://qbank.se"
-		}
-	],
-	"support": {
-		"email": "support@qbank.se"
-	},
-	"require": {
-		"php": ">=5.4",
-		"commerceguys/guzzle-oauth2-plugin": "~1.0",
-		"doctrine/cache": "~1.3",
-		"psr/log": "1.0.0"
-	},
-	"suggest": {
-		"monolog/monolog": "Great logging alternative."
-	},
-	"autoload": {
-		"psr-4": {
-			"QBNK\\QBank\\API\\": "."
-		}
-	},
-	"license": "MIT"
+  "name": "qbnk/qbank3api-phpwrapper",
+  "description": "A PHP-Wrapper for QBank 3's API. Provides a simple way to communicate with QBank 3 from PHP.",
+  "keywords": [
+    "qbank",
+    "api"
+  ],
+  "authors": [
+    {
+      "name": "QBNK Dev-team",
+      "email": "support@qbank.se",
+      "homepage": "http://qbank.se"
+    }
+  ],
+  "support": {
+    "email": "support@qbank.se"
+  },
+  "require": {
+    "php": ">=5.4",
+    "qbnk/guzzle5-oauth2-subscriber": "~0.1.4",
+    "doctrine/cache": "~1.3",
+    "psr/log": "1.0.0"
+  },
+  "suggest": {
+    "monolog/monolog": "Great logging alternative."
+  },
+  "autoload": {
+    "psr-4": {
+      "QBNK\\QBank\\API\\": "."
+    }
+  },
+  "license": "MIT"
 }

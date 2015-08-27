@@ -2,142 +2,395 @@
 
 namespace QBNK\QBank\API\Controller;
 
-use QBNK\QBank\API\QBankCachePolicy;
-use QBNK\QBank\API\Model\Media;
-use QBNK\QBank\API\Model\DeploymentFile;
-use QBNK\QBank\API\Model\DeploymentSite;
-use QBNK\QBank\API\Model\Folder;
-use QBNK\QBank\API\Model\Moodboard;
+use QBNK\QBank\API\CachePolicy;
+    use QBNK\QBank\API\Model\DeploymentFile;
+    use QBNK\QBank\API\Model\DeploymentSite;
+    use QBNK\QBank\API\Model\Folder;
+    use QBNK\QBank\API\Model\Media;
+    use QBNK\QBank\API\Model\MediaResponse;
+    use QBNK\QBank\API\Model\MediaVersion;
+    use QBNK\QBank\API\Model\Moodboard;
 
+    class MediaController extends ControllerAbstract
+    {
+    /**
+     * Fetches a specific Media.
+     *
+     * @param int $id The Media identifier.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
 
-/**
- * A Media is any uploaded file in QBank. A Media belongs to a Category and mey have customer defined Properties.
- *
- * NOTE: This class is auto generated. Do not edit the class manually.
- *
- */
+     * @return MediaResponse
 
-class MediaController extends ControllerAbstract {
-	
-	/**
-	 * Fetches a specific Media.
-	 * @param int $id The Media identifier.
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return Media
-	 */
-	public function retrieveMedia($id, QBankCachePolicy $cachePolicy = null) {
-		return new Media($this->get('v1/media/' . $id . '', [], $cachePolicy));
-	}
+     */
+    public function retrieveMedia($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'', $parameters, $cachePolicy);
+        $result = new MediaResponse($result);
 
-	/**
-	 * Gets the raw file data of a Media. You may append an optional template parameter to the query. Omitting the template parameter will return the medium thumbnail. <br><br> Existing templates are:<br> <b>original</b> - The original file<br> <b>preview</b> - A preview image, sized 1000px on the long side<br> <b>thumb_small</b> - A thumbnail image, sized 100px on the long side<br> <b>thumb_medium</b> - A thumbnail image, sized 200px on the long side<br> <b>thumb_large</b> - A thumbnail image, sized 300px on the long side<br> <b>videopreview</b> - A preview video, sized 360p and maximum 2min<br> <b>{integer}</b> - An image template identifier
-	 * @param int $id The Media identifier..
-	 * @param mixed $template Optional template of Media..
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return void
-	 */
-	public function retrieveFileData($id, $template = null, QBankCachePolicy $cachePolicy = null) {
-		$query = array();
-		$query[ 'template'] = $template;
-		$this->get('v1/media/' . $id . '/asset', $query, $cachePolicy);
-	}
+        return $result;
+    }
+    /**
+     * Gets the raw file data of a Media.
+     *
+     * You may append an optional template parameter to the query. Omitting the template parameter will return the medium thumbnail.
+     *
+     *  Existing templates are:
+     *  <b>original</b> - The original file
+     *  <b>preview</b> - A preview image, sized 1000px on the long side
+     *  <b>thumb_small</b> - A thumbnail image, sized 100px on the long side
+     *  <b>thumb_medium</b> - A thumbnail image, sized 200px on the long side
+     *  <b>thumb_large</b> - A thumbnail image, sized 300px on the long side
+     *  <b>videopreview</b> - A preview video, sized 360p and maximum 2min
+     *  <b>{integer}</b> - An image template identifier
+     *
+     * @param int $id The Media identifier..
+     * @param mixed $template Optional template of Media..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
 
-	/**
-	 * Fetches all DeployedFiles a media has.
-	 * @param int $id The Media identifier..
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return DeploymentFile[]
-	 */
-	public function listDeployedFiles($id, QBankCachePolicy $cachePolicy = null) {
-		$deploymentFile = array();
-		foreach ($this->get('v1/media/' . $id . '/deployment/files', [], $cachePolicy) as $item ) {
-			$deploymentFile[] = new DeploymentFile($item);
-		}
+     * @return string The raw file data
 
-		return $deploymentFile;
-	}
+     */
+    public function retrieveFileData($id, $template = null, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => ['template' => $template],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/asset', $parameters, $cachePolicy);
 
-	/**
-	 * Fetches all DeploymentSites a Media is deployed to.
-	 * @param int $id The Media identifier..
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return DeploymentSite[]
-	 */
-	public function listDeploymentSites($id, QBankCachePolicy $cachePolicy = null) {
-		$deploymentSite = array();
-		foreach ($this->get('v1/media/' . $id . '/deployment/sites', [], $cachePolicy) as $item ) {
-			$deploymentSite[] = new DeploymentSite($item);
-		}
+        return $result;
+    }
+    /**
+     * Fetches all DeployedFiles a media has.
+     *
+     * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
 
-		return $deploymentSite;
-	}
+     * @return DeploymentFile[]
 
-	/**
-	 * Downloads a specific Media. You may append an optional template parameter to the query. Omitting the template parameter will return the original file.
-	 * @param int $id The Media identifier.
-	 * @param string $template Optional template to download the media in.
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return void
-	 */
-	public function download($id, $template = null, QBankCachePolicy $cachePolicy = null) {
-		$query = array();
-		$query[ 'template'] = $template;
-		$this->get('v1/media/' . $id . '/download', $query, $cachePolicy);
-	}
+     */
+    public function listDeployedFiles($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/deployment/files', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new DeploymentFile($entry);
+        }
+        unset($entry);
+        reset($result);
 
-	/**
-	 * Fetches all Folders a Media resides in.
-	 * @param int $id The Media identifier..
-	 * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all toghether..
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return Folder[]
-	 */
-	public function listFolders($id, $depth = 0, QBankCachePolicy $cachePolicy = null) {
-		$query = array();
-		$query[ 'depth'] = $depth;
-		$folder = array();
-		foreach ($this->get('v1/media/' . $id . '/folders', $query, $cachePolicy) as $item ) {
-			$folder[] = new Folder($item);
-		}
+        return $result;
+    }
+    /**
+     * Fetches all DeploymentSites a Media is deployed to.
+     *
+     * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
 
-		return $folder;
-	}
+     * @return DeploymentSite[]
 
-	/**
-	 * Fetches all Moodboards a Media is a member of.
-	 * @param int $id The Media identifier..
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return Moodboard[]
-	 */
-	public function listMoodboards($id, QBankCachePolicy $cachePolicy = null) {
-		$moodboard = array();
-		foreach ($this->get('v1/media/' . $id . '/moodboards', [], $cachePolicy) as $item ) {
-			$moodboard[] = new Moodboard($item);
-		}
+     */
+    public function listDeploymentSites($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/deployment/sites', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new DeploymentSite($entry);
+        }
+        unset($entry);
+        reset($result);
 
-		return $moodboard;
-	}
+        return $result;
+    }
+    /**
+     * Downloads a specific Media.
+     *
+     * You may append an optional template parameter to the query. Omitting the template parameter will return the original file.
+     *
+     * @param int $id The Media identifier.
+     * @param string $template Optional template to download the media in.
+     * @param string $templateType Indicates type of template, valid values are; image, video.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
 
-	/**
-	 * Downloads an archive of several Media. You may append an optional template parameter to the query. Omitting the template parameter will return the original files.
-	 * @param int[] $ids Array of Media ID:s to download.
-	 * @param string $template Optional template to download all Media in..
-	 * @param QBankCachePolicy $cachePolicy Leaving cachePolicy null will use the default cache policy
-	 * 
-	 * @return void
-	 */
-	public function downloadArchive($ids, $template = null, QBankCachePolicy $cachePolicy = null) {
-		$query = array();
-		$query[ 'ids'] = $ids;
-		$query[ 'template'] = $template;
-		$this->get('v1/media/download', $query, $cachePolicy);
-	}
+     * @return resource A file pointer resource pointing to a temporary file.
 
-}
+     */
+    public function download($id, $template = null, $templateType = 'image', CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => ['template' => $template, 'templateType' => $templateType],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/download', $parameters, $cachePolicy);
+
+        $tmpFile = tmpfile();
+        if (fwrite($tmpFile, $result) === false) {
+            throw new \RuntimeException('Could not write download data to temporary file!');
+        }
+        if (fseek($tmpFile, 0) === false) {
+            throw new \RuntimeException('Could not reset file pointer of temporary file!');
+        }
+        $result = $tmpFile;
+
+        return $result;
+    }
+    /**
+     * Fetches all Folders a Media resides in.
+     *
+     * @param int $id The Media identifier..
+     * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all toghether..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+
+     * @return Folder[]
+
+     */
+    public function listFolders($id, $depth = 0, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => ['depth' => $depth],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/folders', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new Folder($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
+     * Fetches all Moodboards a Media is a member of.
+     *
+     * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+
+     * @return Moodboard[]
+
+     */
+    public function listMoodboards($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/moodboards', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new Moodboard($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
+     * Fetches the version list of a media.
+     *
+     * The id may be of any media version in the list; first, somewhere in between or last.
+     *
+     * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+
+     * @return MediaVersion[]
+
+     */
+    public function listVersions($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/versions', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new MediaVersion($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
+     * Downloads an archive of several Media.
+     *
+     * . You may append an optional template parameter to the query. Omitting the template parameter will return the original files.
+     *
+     * @param int[] $ids Array of Media ID:s to download.
+     * @param string $template Optional template to download all Media in..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+
+     */
+    public function downloadArchive(array $ids, $template = null, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => ['ids' => $ids, 'template' => $template],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/download', $parameters, $cachePolicy);
+
+        return $result;
+    }
+    /**
+     * Upload a new media to QBank.
+     *
+     * This upload endpoint has been specifically tailored to fit chunked uploading (works well with Plupload2 for example). Max chunk size is about 10mb, if your files are larger then this, split it up and set correct chunk and chunks argument in the call.
+     *  For example a 26mb file might be split in 3 chunks, so the following 3 calls should be made
+     *  POST /media.json?chunks=3&chunk=0&filename=largefile.txt&categoryId=1 (file data is sent in body)
+     *  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
+     *  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
+     *
+     * @param string $name Filename of the file being uploaded
+     * @param int $chunk The chunk we are currently uploading, starts at 0
+     * @param int $chunks Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
+     * @param string $fileId A unique fileId that will be used for this upload, if none is given one will be given to you
+     * @param int $categoryId The category to place the file in
+
+     * @return array
+
+     */
+    public function uploadFileChunked($name, $chunk, $chunks, $fileId, $categoryId)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['name' => $name, 'chunk' => $chunk, 'chunks' => $chunks, 'fileId' => $fileId, 'categoryId' => $categoryId]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media', $parameters);
+
+        return $result;
+    }
+    /**
+     * Update a specific Media.
+     *
+     * Note that type_id cannot be set directly, but must be decided by the category. The properties parameter of the media
+     *
+     * @param int $id The Media identifier.
+     * @param Media $media A JSON encoded Media representing the updates
+
+     * @return MediaResponse
+
+     */
+    public function updateMedia($id, Media $media)
+    {
+        if ($media instanceof MediaResponse) {
+            // Downcast to skip unnecessary params.
+        $media = new Media(json_decode(json_encode($media), true));
+        }
+
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['media' => $media]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media/'.$id.'', $parameters);
+        $result = new MediaResponse($result);
+
+        return $result;
+    }
+    /**
+     * Groups one "main" Media with one or more "child" Media.
+     *
+     * The main medium will by default be the only medium shown when searching, child media can be fetched by issuing a search with parentId set to the main medium id.
+     *
+     * @param int $id The Media identifier.
+     * @param int[] $children An array of int values.
+
+     */
+    public function group($id, array $children)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['children' => $children]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media/'.$id.'/group', $parameters);
+
+        return $result;
+    }
+    /**
+     * Restore a deleted Media.
+     *
+     * Can not restore a Media that has been hard deleted!
+     *
+     * @param int $id The Media identifier.
+
+     * @return MediaResponse
+
+     */
+    public function restoreMedia($id)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media/'.$id.'/restore', $parameters);
+        $result = new MediaResponse($result);
+
+        return $result;
+    }
+    /**
+     * Change status of a Media.
+     *
+     * This is used to move media from the uploaded tab into the library.
+     *  Possible statuses are: <ul> <li>approved</li> </ul>
+     *
+     * @param int $id The Media identifier.
+     * @param string $status The new status of the media
+
+     * @return array
+
+     */
+    public function setStatus($id, $status)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['status' => $status]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media/'.$id.'/status', $parameters);
+
+        return $result;
+    }
+    /**
+     * Delete a Media.
+     *
+     * Deleting a Media will set it's status to removed but will retain all data and enable restoration of the Media, much like the trash bin of your operating system. To permanetly remove a Media, use the "hardDelete" flag.
+     *
+     * @param int $id The Media identifier.
+     * @param bool $hardDelete Prevent restoration of the Media..
+
+     * @return MediaResponse
+
+     */
+    public function removeMedia($id, $hardDelete = false)
+    {
+        $parameters = [
+            'query'   => ['hardDelete' => $hardDelete],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->delete('v1/media/'.$id.'', $parameters);
+        $result = new MediaResponse($result);
+
+        return $result;
+    }
+    }

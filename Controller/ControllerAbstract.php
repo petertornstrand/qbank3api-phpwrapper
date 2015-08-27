@@ -1,224 +1,296 @@
 <?php
+
 namespace QBNK\QBank\API\Controller;
 
-use CommerceGuys\Guzzle\Plugin\Oauth2\Oauth2Plugin;
-use Guzzle\Common\Exception\RuntimeException;
-use Guzzle\Http\Client;
-use Guzzle\Http\Message\Response;
-use Guzzle\Http\Message\EntityEnclosingRequest;
-use Guzzle\Http\Message\Request;
-use Guzzle\Http\Exception\RequestException;
+use Doctrine\Common\Cache\Cache;
+use GuzzleHttp\Client;
+use GuzzleHttp\Event\CompleteEvent;
+use GuzzleHttp\Event\ErrorEvent;
+use GuzzleHttp\Message\RequestInterface;
+use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Pool;
+use GuzzleHttp\Post\PostBodyInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
-use QBNK\QBank\API\QBankApiException;
-use QBNK\QBank\API\QBankCachePolicy;
-use Doctrine\Common\Cache\Cache;
+use QBNK\QBank\API\CachePolicy;
+use QBNK\QBank\API\Exception\RequestException;
+use QBNK\QBank\API\Exception\ResponseException;
 
+abstract class ControllerAbstract implements LoggerAwareInterface
+{
+    const METHOD_GET    = 'get';
+    const METHOD_POST   = 'post';
+    const METHOD_PUT    = 'put';
+    const METHOD_DELETE = 'delete';
 
-abstract class ControllerAbstract implements LoggerAwareInterface {
-	const METHOD_GET = 'get';
-	const METHOD_POST = 'post';
-	const METHOD_PUT = 'put';
+    /** @var Client $client */
+    protected $client;
 
-	/** @var \Guzzle\Http\Client $client */
-	protected $client;
+    /** @var LoggerInterface $logger */
+    protected $logger;
 
-	/** @var \Psr\Log\LoggerInterface $logger */
-	protected $logger;
-
-    /** @var QBankCachePolicy */
+    /** @var CachePolicy */
     protected $cachePolicy;
 
-	/** @var \Doctrine\Common\Cache\Cache */
-	protected $cache;
+    /** @var Cache */
+    protected $cache;
 
-	/** @var Request[] */
-	protected $delayedRequests;
+    /** @var RequestInterface[]  */
+    protected $delayedRequests;
 
-	public function __construct(Client $client, QBankCachePolicy $cachePolicy, Cache $cache = null) {
-		$this->client = $client;
-        $this->cachePolicy = $cachePolicy;
-        $this->cache = $cache;
-		$this->delayedRequests = array();
-	}
+    public function __construct(Client $client, CachePolicy $cachePolicy, Cache $cache = null)
+    {
+        $this->client          = $client;
+        $this->cachePolicy     = $cachePolicy;
+        $this->cache           = $cache;
+        $this->delayedRequests = [];
+    }
 
-	/**
-	 * @param string $endpoint
-	 * @param array $params
-	 * @param string $method
-	 * @param QBankCachePolicy $cachePolicy
-	 * @param bool $delayed
-	 * @throws QBankApiException
-	 * @return mixed
-	 */
-	protected function call($endpoint, array $params = array(), $method = self::METHOD_GET, QBankCachePolicy $cachePolicy = null, $delayed = false) {
+    /**
+     * Performs a request to the QBank API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param string $method The HTTP verb to use.
+     * @param CachePolicy $cachePolicy The custom caching policy to use.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
+    protected function call($endpoint, array $parameters = [], $method = self::METHOD_GET, CachePolicy $cachePolicy = null, $delayed = false)
+    {
         $cachePolicy = ($cachePolicy !== null) ? $cachePolicy : $this->cachePolicy;
-		try {
-			switch ($method) {
-				case self::METHOD_POST:
-					$request = $this->client->post($endpoint, null, json_encode($params));
-					break;
-				case self::METHOD_PUT:
-					$request = $this->client->put($endpoint, null, json_encode($params));
-					break;
-				case self::METHOD_GET:
-				default:
-                    if ($cachePolicy->isEnabled() && $this->cache->contains(md5($endpoint . json_encode($params)))) {
-                        $this->logger->info(
-                            'Using cached response. '.strtoupper($method).' '.$endpoint,
-                            array(
-                                'endpoint' => $endpoint,
-                                'parameters' => $params,
-                                'method' => $method
-                            )
-                        );
-                        return $this->cache->fetch(md5($endpoint . json_encode($params)));
-                    } else {
-    					$request = $this->client->get($endpoint, null, array('query' => $params));
-    				}
-					break;
-			}
-			if ($delayed) {	// Place in a queue to be processed on destruct
-				$this->delayedRequests[] = $request;
-				$this->logger->debug(
-					'Request to QBank added to delayed queue. ' . strtoupper($method) . ' ' . $endpoint,
-					array(
-						'endpoint' => $endpoint,
-						'parameters' => $params,
-						'method' => $method
-					)
-				);
-				return [];
-			}
-			$response = $request->send();
-			$this->logger->debug(
-				'Request to QBank sent. '.strtoupper($method).' '.$endpoint,
-				array(
-					'endpoint' => $endpoint,
-					'parameters' => $params,
-					'method' => $method,
-					'response' => ($response instanceof Response) ? substr($response->getBody(), 0, 4096) : ''
-				)
-			);
-			if ($cachePolicy->isEnabled()) {
-			    $this->cache->save(md5($endpoint . json_encode($params)), $response->json(), $cachePolicy->getLifetime());
-			}
-			return $response->json();
-		} catch (RequestException $re) {
-			$response = $re->getRequest()->getResponse();
-			$this->logger->error(
-				'Error while sending request to QBank. '.strtoupper($method).' '.$endpoint,
-				array(
-					'exception' => $re,
-					'message' => $re->getMessage(),
-					'endpoint' => $endpoint,
-					'parameters' => $params,
-					'method' => $method,
-					'response' => ($response instanceof Response) ? substr($response->getBody(), 0, 4096) : ''
-				)
-			);
-			throw new QBankApiException('Error while sending request to QBank: '.$re->getMessage(), $response instanceof Response ? $response->getStatusCode() : 0, $re);
-		} catch (RuntimeException $re) {
-			$this->logger->critical(
-				'Error while decoding response from QBank.  '.strtoupper($method).' '.$endpoint,
-				array(
-					'exception' => $re,
-					'message' => $re->getMessage(),
-					'endpoint' => $endpoint,
-					'parameters' => $params,
-					'method' => $method,
-					'response' => ($response instanceof Response) ? substr($response->getBody(), 0, 4096) : ''
-				)
-			);
-			throw new QBankApiException('Error while decoding response from QBank: '.$re->getMessage(), $re->getCode(), $re);
-		}
-	}
 
-	/**
-	 * @param string $endpoint
-	 * @param array $parameters
-	 * @param QBankCachePolicy $cachePolicy
-	 * @async bool $delayed
-	 * @return mixed
-	 */
-	protected function get($endpoint, array $parameters = array(), QBankCachePolicy $cachePolicy = null, $delayed = false) {
-		return $this->call($endpoint, $parameters, self::METHOD_GET, $cachePolicy, $delayed);
-	}
+        if ($delayed) {
+            $this->delayedRequests[] = $this->client->createRequest(strtoupper($method), $endpoint, $parameters);
+            $this->logger->debug(
+                'Request to QBank added to delayed queue. '.strtoupper($method).' '.$endpoint,
+                [
+                    'endpoint'   => $endpoint,
+                    'parameters' => $parameters,
+                    'method'     => $method,
+                ]
+            );
 
-	/**
-	* @param string $endpoint
-	* @param array $parameters
-	* @param bool $delayed
-	* @return mixed
-	*/
-	protected function post($endpoint, array $parameters = array(), $delayed = false)  {
-		return $this->call($endpoint, $parameters, self::METHOD_POST, null, $delayed);
-	}
+            return [];
+        }
 
-	/**
-	* @param string $endpoint
-	* @param array $parameters
-	* @param bool $delayed
-	* @return mixed
-	*/
-	protected function put($endpoint, array $parameters = array(), $delayed = false) {
-		return $this->call($endpoint, $parameters, self::METHOD_PUT, null, $delayed);
-	}
+        if (
+            $cachePolicy->isEnabled()
+            && ($method == self::METHOD_GET || $method == self::METHOD_POST && preg_match('/v\d+\/search/', $endpoint))
+            && $this->cache->contains(md5($endpoint.json_encode($parameters)))
+        ) {
+            /** @var string $response */
+            $response = $this->cache->fetch(md5($endpoint.json_encode($parameters)));
+            $this->logger->info(
+                'Using cached response. '.strtoupper($method).' '.$endpoint,
+                [
+                    'endpoint'   => $endpoint,
+                    'parameters' => $parameters,
+                    'method'     => $method,
+                    'response'   => substr(print_r($response, true), 0, 4096),
+                ]
+            );
 
-	public function setLogger(LoggerInterface $logger) {
-		$this->logger = $logger;
-	}
+            return $response;
+        }
 
-	public function __destruct() {
-		flush();
-		if (is_array($this->delayedRequests)) {
-			foreach ($this->delayedRequests as $request) {
-				if ($request instanceof Request) {
-					try {
-						$path = str_replace(parse_url($this->client->getBaseUrl(), PHP_URL_PATH), '', $request->getPath());
-						$circumstances = [
-							'endpoint' => $path,
-							'parameters' => ($request instanceof EntityEnclosingRequest) ? $request->getPostFields() : '',
-							'method' => $request->getMethod()
-						];
-						$socket = fsockopen(parse_url($this->client->getBaseUrl(), PHP_URL_HOST), 80, $errno, $errstr);
-						if ($socket === false) {
-							throw new \Exception('Could not open socket for delayed request: '.$errstr, $errno);
-						}
-						stream_set_blocking($socket, 0);
-						$listeners = $request->getEventDispatcher()->getListeners('request.before_send');
-						$accessToken = null;
-						foreach ($listeners as $listener) {
-							if ($listener[0] instanceof Oauth2Plugin) {
-								$accessToken = $listener[0]->getAccessToken();
-								break;
-							}
-						}
-						if (!$accessToken) {
-							throw new \Exception('Could not get access token for delayed request');
-						}
-						$request->addHeader('Authorization', 'Bearer ' . $accessToken['access_token']);
-						$bytesWritten = 0;
-						$bytesTotal = strlen($request->__toString());
-						$closed = false;
-						while (!$closed && $bytesWritten < $bytesTotal) {
-							$written = @fwrite($socket, substr($request->__toString(), $bytesWritten));
-							if ($written == false) {
-								fclose($socket);
-								throw new \Exception(
-									'Error while writing to socket for delayed request: '.socket_strerror(socket_last_error($socket)),
-									socket_last_error($socket)
-								);
-							}
-							$bytesWritten += $written;
-						}
-						fclose($socket);
-						$this->logger->debug('Delayed request to QBank sent. ' . strtoupper($request->getMethod()) . ' ' . $path, $circumstances);
-					} catch (\Exception $e) {
-						$this->logger->warning('Error while sending delayed request to QBank: ' . $e->getMessage(), isset($circumstances) ? $circumstances : []);
-					}
-				}
-			}
-		}
-	}
+        try {
+            $start = microtime(true);
+            /** @var ResponseInterface $response */
+            $response = $this->client->{$method}($endpoint, $parameters);
+            $this->logger->debug(
+                'Request to QBank sent. '.strtoupper($method).' '.$endpoint,
+                [
+                    'endpoint'   => $endpoint,
+                    'parameters' => $parameters,
+                    'time'       => number_format(round((microtime(true) - $start) * 1000), 0, '.', ' ').' ms',
+                    'method'     => $method,
+                    'response'   => substr($response->getBody(), 0, 4096),
+                ]
+            );
+
+            $data = null;
+            if (in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type'))))) {
+                try {
+                    $data = $response->json();
+                } catch (\RuntimeException $re) {
+                    $this->logger->error(
+                        'Error while receiving response from QBank. '.strtoupper($method).' '.$endpoint,
+                        [
+                            'message'    => 'Response not in json format.',
+                            'endpoint'   => $endpoint,
+                            'parameters' => $parameters,
+                            'method'     => $method,
+                            'response'   => substr($response->getBody(), 0, 4096),
+                        ]
+                    );
+                    throw new ResponseException('Error while receiving response from QBank: Response not in json format.');
+                }
+            } else {
+                return $response->getBody()->__toString();
+            }
+
+            if (
+                $cachePolicy->isEnabled()
+                && ($method == self::METHOD_GET || $method == self::METHOD_POST && preg_match('/v\d+\/search/', $endpoint))
+            ) {
+                $this->cache->save(md5($endpoint.json_encode($parameters)), $data, $cachePolicy->getLifetime());
+            }
+
+            return $data;
+        } catch (\GuzzleHttp\Exception\RequestException $re) {
+            $this->logger->error(
+                'Error while sending request to QBank. '.strtoupper($method).' '.$endpoint,
+                [
+                    'exception'  => $re,
+                    'message'    => $re->getMessage(),
+                    'endpoint'   => $endpoint,
+                    'parameters' => $parameters,
+                    'method'     => $method,
+                    'response'   => $re->hasResponse() ? substr($re->getResponse()->getBody(), 0, 4096) : '',
+                ]
+            );
+            $message = null;
+            if ($re->hasResponse() && strpos($re->getResponse()->getHeader('content-type'), 'application/json') === 0) {
+                $content = $re->getResponse()->json();
+                if (isset($content['error']['message'])) {
+                    $message = ' [info]'.$content['error']['message'];
+                }
+                if (isset($content['error']['errors']) && is_array($content['error']['errors'])) {
+                    foreach ($content['error']['errors'] as $key => $error) {
+                        $message .= "\n\t$key: $error";
+                    }
+                }
+            }
+            throw new RequestException(
+                'Error while sending request to QBank: '.$re->getMessage().$message,
+                $re->hasResponse() ? $re->getResponse()->getStatusCode() : 0,
+                $re
+            );
+        }
+    }
+
+    /**
+     * Shorthand for sending a GET request to the API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param CachePolicy $cachePolicy The custom caching policy to use.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
+    protected function get($endpoint, array $parameters = [], CachePolicy $cachePolicy = null, $delayed = false)
+    {
+        return $this->call($endpoint, $parameters, self::METHOD_GET, $cachePolicy, $delayed);
+    }
+
+    /**
+     * Shorthand for sending a POST request to the API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
+    protected function post($endpoint, array $parameters = [], $delayed = false)
+    {
+        return $this->call($endpoint, $parameters, self::METHOD_POST, null, $delayed);
+    }
+
+    /**
+     * Shorthand for sending a PUT request to the API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
+    protected function put($endpoint, array $parameters = [], $delayed = false)
+    {
+        return $this->call($endpoint, $parameters, self::METHOD_PUT, null, $delayed);
+    }
+
+    /**
+     * Shorthand for sending a DELETE request to the API.
+     *
+     * @param string $endpoint The API endpoint URL to request.
+     * @param array $parameters The parameters to send.
+     * @param bool $delayed If the request should be delayed until destruction.
+     *
+     * @return array The response result.
+     *
+     * @throws RequestException
+     * @throws ResponseException
+     */
+    protected function delete($endpoint, array $parameters = [], $delayed = false)
+    {
+        return $this->call($endpoint, $parameters, self::METHOD_DELETE, null, $delayed);
+    }
+
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
+    public function __destruct()
+    {
+        flush();
+        if (!empty($this->delayedRequests)) {
+            $pool = new Pool(
+                $this->client,
+                $this->delayedRequests,
+                [
+                    'pool_size' => count($this->delayedRequests),
+                    'complete'  => [
+                        'fn' => function (CompleteEvent $event) {
+                            $this->logger->debug(
+                                'Delayed request to QBank sent. '
+                                    .strtoupper($event->getRequest()->getMethod()).' '.$event->getRequest()->getPath(),
+                                [
+                                    'endpoint'   => $event->getRequest()->getPath(),
+                                    'parameters' => ($event->getRequest()->getBody() instanceof PostBodyInterface)
+                                        ? $event->getRequest()->getBody()->getFields() : [],
+                                    'method'   => $event->getRequest()->getMethod(),
+                                    'response' => $event->hasResponse() ? substr($event->getResponse()->getBody(), 0, 4096) : '',
+                                ]
+                            );
+                        },
+                        'once' => true,
+                    ],
+                    'error' => [
+                        'fn' => function (ErrorEvent $event) {
+                            $this->logger->warning(
+                                'Error while sending delayed request to QBank: '.$event->getException()->getMessage(),
+                                [
+                                    'endpoint'   => $event->getRequest()->getPath(),
+                                    'parameters' => ($event->getRequest()->getBody() instanceof PostBodyInterface)
+                                        ? $event->getRequest()->getBody()->getFields() : [],
+                                    'method'   => $event->getRequest()->getMethod(),
+                                    'response' => $event->hasResponse() ? substr($event->getResponse()->getBody(), 0, 4096) : '',
+                                ]
+                            );
+                        },
+                        'once' => true,
+                    ],
+                ]
+            );
+            $pool->wait();
+        }
+    }
 }

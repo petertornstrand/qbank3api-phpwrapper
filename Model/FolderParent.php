@@ -2,106 +2,90 @@
 
 namespace QBNK\QBank\API\Model;
 
+class FolderParent  implements \JsonSerializable
+{
+    /** @var int The Folder identifier. */
+    protected $folderid;
 
+    /** @var int The distance from the specified Folder identifer, ie. the reverse depth. */
+    protected $depth;
 
-/**
- * 
- *
- * NOTE: This class is auto generated. Do not edit the class manually.
- *
- */
+    /**
+     * Constructs a FolderParent.
+     *
+     * @param array $parameters An array of parameters to initialize the { @link FolderParent } with.
+     * - <b>folderid</b> - The Folder identifier.
+     * - <b>depth</b> - The distance from the specified Folder identifer, ie. the reverse depth.
+     */
+    public function __construct($parameters = [])
+    {
+        if (isset($parameters['folderid'])) {
+            $this->setFolderid($parameters['folderid']);
+        }
+        if (isset($parameters['depth'])) {
+            $this->setDepth($parameters['depth']);
+        }
+    }
 
-class FolderParent implements \JsonSerializable  {
+    /**
+     * Gets the folderid of the FolderParent.
+     * @return int	 */
+    public function getFolderid()
+    {
+        return $this->folderid;
+    }
 
+    /**
+     * Sets the "folderid" of the FolderParent.
+     *
+     * @param int $folderid
+     *
+     * @return FolderParent
+     */
+    public function setFolderid($folderid)
+    {
+        $this->folderid = $folderid;
 
+        return $this;
+    }
+    /**
+     * Gets the depth of the FolderParent.
+     * @return int	 */
+    public function getDepth()
+    {
+        return $this->depth;
+    }
 
-	/**
-	 * The Folder identifier.
-	 * @var int
-	 */
-	protected $folderid;
+    /**
+     * Sets the "depth" of the FolderParent.
+     *
+     * @param int $depth
+     *
+     * @return FolderParent
+     */
+    public function setDepth($depth)
+    {
+        $this->depth = $depth;
 
-	/**
-	 * The distance from the specified Folder identifer, ie. the reverse depth.
-	 * @var int
-	 */
-	protected $depth;
+        return $this;
+    }
 
+    /**
+     * Gets all data that should be available in a json representation.
+     *
+     * @return array An associative array of the available variables.
+     */
+    public function jsonSerialize()
+    {
+        $json = [];
 
-	/**
-	 * Constructs a {@link FolderParent }.
-	 * @param array $parameters An array of parameters to initialize the {@link FolderParent } with.
-	 * - <b>folderid</b> - The Folder identifier.
-	 * - <b>depth</b> - The distance from the specified Folder identifer, ie. the reverse depth.
-	 * 
-	 */
-	public function __construct($parameters) {
-		
-		
-		
-		if (isset($parameters['folderid'])) {
-			$this->setFolderid($parameters['folderid']);
-		}
-	
-		if (isset($parameters['depth'])) {
-			$this->setDepth($parameters['depth']);
-		}
-	
-	}
+        if ($this->folderid !== null) {
+            $json['folderid'] = $this->folderid;
+        }
+        if ($this->depth !== null) {
+            $json['depth'] = $this->depth;
+        }
 
-
-	/**
-	 * Gets the folderid of the FolderParent
-	 * @return int
-	 */
-	public function getFolderid() {
-		return $this->folderid;
-	}
-
-	/**
-	 * Gets the depth of the FolderParent
-	 * @return int
-	 */
-	public function getDepth() {
-		return $this->depth;
-	}
-
-
-
-	/**
-	 * Sets the "folderid" of the FolderParent
-	 * @param int $folderid
-	 * @return $this
-	 */
-	protected function setFolderid($folderid) {
-		$this->folderid = $folderid;
-		return $this;
-	}
-
-	/**
-	 * Sets the "depth" of the FolderParent
-	 * @param int $depth
-	 * @return $this
-	 */
-	protected function setDepth($depth) {
-		$this->depth = $depth;
-		return $this;
-	}
-
-
-	/**
-	 * Gets all data that should be available in a json representation.
-	 * @return array An associative array of the available variables.
-	 */
-	public function jsonSerialize() {
-		$array = array();
-		
-		if ($this->folderid !== null) {
-			$array['folderid'] = $this->folderid;
-		}
-		if ($this->depth !== null) {
-			$array['depth'] = $this->depth;
-		}
-		return $array;
-	}
+        return $json;
+    }
 }

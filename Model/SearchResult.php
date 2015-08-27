@@ -2,308 +2,281 @@
 
 namespace QBNK\QBank\API\Model;
 
-use \Exception;
+class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \ArrayAccess
+{
+    /** @var int Number of hits per page in the SearchResult */
+    protected $limit;
 
+    /** @var int Starting position of SearchResult */
+    protected $offset;
 
-/**
- * 
- *
- * NOTE: This class is auto generated. Do not edit the class manually.
- *
- */
+    /** @var MediaResponse[] An array of Media matching the search */
+    protected $results;
 
-class SearchResult implements \JsonSerializable , \Iterator, \ArrayAccess, \Countable {
+    /** @var float Time spent searching */
+    protected $timeSearching;
 
+    /** @var int Total number of hits */
+    protected $totalHits;
 
+    /**
+     * Constructs a SearchResult.
+     *
+     * @param array $parameters An array of parameters to initialize the { @link SearchResult } with.
+     * - <b>limit</b> - Number of hits per page in the SearchResult
+     * - <b>offset</b> - Starting position of SearchResult
+     * - <b>results</b> - An array of Media matching the search
+     * - <b>timeSearching</b> - Time spent searching
+     * - <b>totalHits</b> - Total number of hits
+     */
+    public function __construct($parameters = [])
+    {
+        $this->results = [];
 
-	/**
-	 * Number of hits per page in the SearchResult
-	 * @var int
-	 */
-	protected $limit;
+        if (isset($parameters['limit'])) {
+            $this->setLimit($parameters['limit']);
+        }
+        if (isset($parameters['offset'])) {
+            $this->setOffset($parameters['offset']);
+        }
+        if (isset($parameters['results'])) {
+            $this->setResults($parameters['results']);
+        }
+        if (isset($parameters['timeSearching'])) {
+            $this->setTimeSearching($parameters['timeSearching']);
+        }
+        if (isset($parameters['totalHits'])) {
+            $this->setTotalHits($parameters['totalHits']);
+        }
+    }
 
-	/**
-	 * Starting position of SearchResult
-	 * @var int
-	 */
-	protected $offset;
+    /**
+     * Gets the limit of the SearchResult.
+     * @return int	 */
+    public function getLimit()
+    {
+        return $this->limit;
+    }
 
-	/**
-	 * An array of Media matching the search
-	 * @var Media[]
-	 */
-	protected $results;
+    /**
+     * Sets the "limit" of the SearchResult.
+     *
+     * @param int $limit
+     *
+     * @return SearchResult
+     */
+    public function setLimit($limit)
+    {
+        $this->limit = $limit;
 
-	/**
-	 * Time spent searching
-	 * @var float
-	 */
-	protected $timeSearching;
+        return $this;
+    }
+    /**
+     * Gets the offset of the SearchResult.
+     * @return int	 */
+    public function getOffset()
+    {
+        return $this->offset;
+    }
 
-	/**
-	 * Total number of hits
-	 * @var int
-	 */
-	protected $totalHits;
+    /**
+     * Sets the "offset" of the SearchResult.
+     *
+     * @param int $offset
+     *
+     * @return SearchResult
+     */
+    public function setOffset($offset)
+    {
+        $this->offset = $offset;
 
+        return $this;
+    }
+    /**
+     * Gets the results of the SearchResult.
+     * @return MediaResponse[]	 */
+    public function getResults()
+    {
+        return $this->results;
+    }
 
-	/**
-	 * Constructs a {@link SearchResult }.
-	 * @param array $parameters An array of parameters to initialize the {@link SearchResult } with.
-	 * - <b>limit</b> - Number of hits per page in the SearchResult
-	 * - <b>offset</b> - Starting position of SearchResult
-	 * - <b>results</b> - An array of Media matching the search
-	 * - <b>timeSearching</b> - Time spent searching
-	 * - <b>totalHits</b> - Total number of hits
-	 * 
-	 */
-	public function __construct($parameters) {
-		
-		
-		
-		if (isset($parameters['limit'])) {
-			$this->setLimit($parameters['limit']);
-		}
-	
-		if (isset($parameters['offset'])) {
-			$this->setOffset($parameters['offset']);
-		}
-	
-		if (isset($parameters['results'])) {
-			$this->setResults($parameters['results']);
-		}
-	
-		if (isset($parameters['timeSearching'])) {
-			$this->setTimeSearching($parameters['timeSearching']);
-		}
-	
-		if (isset($parameters['totalHits'])) {
-			$this->setTotalHits($parameters['totalHits']);
-		}
-	
-	}
+    /**
+     * Sets the "results" of the SearchResult.
+     *
+     * @param MediaResponse[] $results
+     *
+     * @return SearchResult
+     */
+    public function setResults(array $results)
+    {
+        $this->results = [];
+        foreach ($results as $item) {
+            if (!($item instanceof MediaResponse)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new MediaResponse($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate MediaResponse. '.$e->getMessage(), E_USER_WARNING);
+                    }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "MediaResponse"!', E_USER_WARNING);
+                    continue;
+                }
+            }
+            $this->results[] = $item;
+        }
 
+        return $this;
+    }
+    /**
+     * Gets the timeSearching of the SearchResult.
+     * @return float	 */
+    public function getTimeSearching()
+    {
+        return $this->timeSearching;
+    }
 
-	/**
-	 * Gets the limit of the SearchResult
-	 * @return int
-	 */
-	public function getLimit() {
-		return $this->limit;
-	}
+    /**
+     * Sets the "timeSearching" of the SearchResult.
+     *
+     * @param float $timeSearching
+     *
+     * @return SearchResult
+     */
+    public function setTimeSearching($timeSearching)
+    {
+        $this->timeSearching = $timeSearching;
 
-	/**
-	 * Gets the offset of the SearchResult
-	 * @return int
-	 */
-	public function getOffset() {
-		return $this->offset;
-	}
+        return $this;
+    }
+    /**
+     * Gets the totalHits of the SearchResult.
+     * @return int	 */
+    public function getTotalHits()
+    {
+        return $this->totalHits;
+    }
 
-	/**
-	 * Gets the results of the SearchResult
-	 * @return Media[]
-	 */
-	public function getResults() {
-		return $this->results;
-	}
+    /**
+     * Sets the "totalHits" of the SearchResult.
+     *
+     * @param int $totalHits
+     *
+     * @return SearchResult
+     */
+    public function setTotalHits($totalHits)
+    {
+        $this->totalHits = $totalHits;
 
-	/**
-	 * Gets the timeSearching of the SearchResult
-	 * @return float
-	 */
-	public function getTimeSearching() {
-		return $this->timeSearching;
-	}
+        return $this;
+    }
 
-	/**
-	 * Gets the totalHits of the SearchResult
-	 * @return int
-	 */
-	public function getTotalHits() {
-		return $this->totalHits;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function count()
+    {
+        return count($this->results);
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function current()
+    {
+        return current($this->results);
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function key()
+    {
+        return key($this->results);
+    }
 
-	/**
-	 * Sets the "limit" of the SearchResult
-	 * @param int $limit
-	 * @return $this
-	 */
-	protected function setLimit($limit) {
-		$this->limit = $limit;
-		return $this;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function next()
+    {
+        next($this->results);
+    }
 
-	/**
-	 * Sets the "offset" of the SearchResult
-	 * @param int $offset
-	 * @return $this
-	 */
-	protected function setOffset($offset) {
-		$this->offset = $offset;
-		return $this;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function rewind()
+    {
+        reset($this->results);
+    }
 
-	/**
-	 * Sets the "results" of the SearchResult
-	 * @param Media[] $results
-	 * @return $this
-	 */
-	protected function setResults($results) {
-		if (is_array($results)) {
-			$this->results = array();
-			foreach ($results as $item) {
-				if (!($item instanceof Media)) {
-					if (is_array($item)) {
-						try {
-							$item = new Media($item);
-						} catch (\Exception $e) {
-							trigger_error('Could not auto-instantiate Media. '.$e->getMessage(), E_USER_WARNING);
-						}
-					} else {
-						trigger_error('Array parameter item is not of expected type "Media"!', E_USER_WARNING);
-						continue;
-					}
-				}
-				$this->results[] = $item;
-			}
-		}
-		return $this;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function valid()
+    {
+        return $this->key() !== null;
+    }
 
-	/**
-	 * Sets the "timeSearching" of the SearchResult
-	 * @param float $timeSearching
-	 * @return $this
-	 */
-	protected function setTimeSearching($timeSearching) {
-		$this->timeSearching = $timeSearching;
-		return $this;
-	}
+    /**
+     * @inheritdoc
+     */
+    public function offsetExists($offset)
+    {
+        return isset($this->results[$offset]);
+    }
 
-	/**
-	 * Sets the "totalHits" of the SearchResult
-	 * @param int $totalHits
-	 * @return $this
-	 */
-	protected function setTotalHits($totalHits) {
-		$this->totalHits = $totalHits;
-		return $this;
-	}
+    public function offsetGet($offset)
+    {
+        return $this->offsetExists($offset) ? $this->results[$offset] : null;
+    }
 
-	/**
-	 * Gets the current element.
-	 * @return mixed
-	 */
-	public function current() {
-		return current($this->results);
-	}
+    /**
+     * @inheritdoc
+     */
+    public function offsetSet($offset, $value)
+    {
+        if ($offset === null) {
+            $this->results[] = $value;
+        } else {
+            $this->results[$offset] = $value;
+        }
+    }
 
-	/**
-	 * Gets the key of the current element.
-	 * @return mixed
-	 */
-	public function key() {
-		return key($this->results);
-	}
+    /**
+     * @inheritdoc
+     */
+    public function offsetUnset($offset)
+    {
+        unset($this->results[$offset]);
+    }
 
-	/**
-	 * Moves the internal pointer to the next element.
-	 * @return void
-	 */
-	public function next() {
-		next($this->results);
-	}
+    /**
+     * Gets all data that should be available in a json representation.
+     *
+     * @return array An associative array of the available variables.
+     */
+    public function jsonSerialize()
+    {
+        $json = [];
 
-	/**
-	 * Resets the internal pointer.
-	 * @return void
-	 */
-	public function rewind() {
-		reset($this->results);
-	}
+        if ($this->limit !== null) {
+            $json['limit'] = $this->limit;
+        }
+        if ($this->offset !== null) {
+            $json['offset'] = $this->offset;
+        }
+        if ($this->results !== null && !empty($this->results)) {
+            $json['results'] = $this->results;
+        }
+        if ($this->timeSearching !== null) {
+            $json['timeSearching'] = $this->timeSearching;
+        }
+        if ($this->totalHits !== null) {
+            $json['totalHits'] = $this->totalHits;
+        }
 
-	/**
-	 * Checks if the current internal pointer position is valid.
-	 * @return bool
-	 */
-	public function valid() {
-		return $this->key() !== null;
-	}
-
-	/**
-	 * Whether an offset exists.
-	 * @param int $offset
-	 * @return bool
-	 */
-	public function offsetExists($offset) {
-		return isset($this->results[$offset]);
-	}
-
-	/**
-	 * Gets the element at the specified offset.
-	 * @param int $offset
-	 * @return mixed
-	 */
-	public function offsetGet($offset) {
-		return $this->offsetExists($offset) ? $this->results[$offset] : null;
-	}
-
-	/**
-	 * Assigns an element to the specified offset.
-	 * @param int|null $offset
-	 * @param mixed $value
-	 * @return void
-	 */
-	public function offsetSet($offset, $value) {
-		if ($offset === null) {
-			$this->results[] = $value;
-		} else {
-			$this->results[$offset] = $value;
-		}
-	}
-
-	/**
-	 * Unsets an element at the specified offset.
-	 * @param int $offset
-	 * @return void
-	 */
-	public function offsetUnset($offset) {
-		unset($this->results[$offset]);
-	}
-
-	/**
-	 * Counts the number of search results
-	 * @return int
-	 */
-	public function count() {
-		return count($this->results);
-	}
-
-	/**
-	 * Gets all data that should be available in a json representation.
-	 * @return array An associative array of the available variables.
-	 */
-	public function jsonSerialize() {
-		$array = array();
-		
-		if ($this->limit !== null) {
-			$array['limit'] = $this->limit;
-		}
-		if ($this->offset !== null) {
-			$array['offset'] = $this->offset;
-		}
-		if ($this->results !== null) {
-			$array['results'] = $this->results;
-		}
-		if ($this->timeSearching !== null) {
-			$array['timeSearching'] = $this->timeSearching;
-		}
-		if ($this->totalHits !== null) {
-			$array['totalHits'] = $this->totalHits;
-		}
-		return $array;
-	}
+        return $json;
+    }
 }
