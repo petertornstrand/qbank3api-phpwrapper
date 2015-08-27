@@ -111,6 +111,28 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * Fetches the currently logged in User.
+     *
+     * Effectively a whoami call.
+     *
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     *
+     * @return User
+
+     */
+    public function retrieveCurrentUser(CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/accounts/me', $parameters, $cachePolicy);
+        $result = new User($result);
+
+        return $result;
+    }
+    /**
      * Lists Roles available.
      *
      * Lists all Roles available
