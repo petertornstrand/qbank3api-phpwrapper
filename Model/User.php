@@ -33,7 +33,7 @@ use DateTime;
     /** @var DateTime Last login time of the User */
     protected $lastLogin;
 
-    /** @var Group An array of Groups this User is a member of (Note: this will be left as null when listing Users. */
+    /** @var Group[] An array of Groups this User is a member of (Note: this will be left as null when listing Users. */
     protected $groups;
 
     /** @var bool Whether the User has been modified since constructed. */
@@ -85,6 +85,7 @@ use DateTime;
      */
     public function __construct($parameters = [])
     {
+        $this->groups          = [];
         $this->functionalities = [];
         $this->extraData       = [];
 
@@ -359,7 +360,7 @@ use DateTime;
     }
     /**
      * Gets the groups of the User.
-     * @return Group	 */
+     * @return Group[]	 */
     public function getGroups()
     {
         return $this->groups;
@@ -368,19 +369,27 @@ use DateTime;
     /**
      * Sets the "groups" of the User.
      *
-     * @param Group $groups
+     * @param Group[] $groups
      *
      * @return User
      */
-    public function setGroups($groups)
+    public function setGroups(array $groups)
     {
-        if ($groups instanceof Group) {
-            $this->groups = $groups;
-        } elseif (is_array($groups)) {
-            $this->groups = new Group($groups);
-        } else {
-            $this->groups = null;
-            trigger_error('Argument must be an object of class Group. Data loss!', E_USER_WARNING);
+        $this->groups = [];
+        foreach ($groups as $item) {
+            if (!($item instanceof Group)) {
+                if (is_array($item)) {
+                    try {
+                        $item = new Group($item);
+                    } catch (\Exception $e) {
+                        trigger_error('Could not auto-instantiate Group. '.$e->getMessage(), E_USER_WARNING);
+                    }
+                } else {
+                    trigger_error('Array parameter item is not of expected type "Group"!', E_USER_WARNING);
+                    continue;
+                }
+            }
+            $this->groups[] = $item;
         }
 
         return $this;
@@ -636,7 +645,7 @@ use DateTime;
         if ($this->lastLogin !== null) {
             $json['lastLogin'] = $this->lastLogin;
         }
-        if ($this->groups !== null) {
+        if ($this->groups !== null && !empty($this->groups)) {
             $json['groups'] = $this->groups;
         }
         if ($this->dirty !== null) {
