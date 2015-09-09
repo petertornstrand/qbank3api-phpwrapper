@@ -608,10 +608,13 @@ use DateTime;
     {
         foreach ($this->deployedFiles as $deployedFile) {
             /** @var DeploymentFile $deployedFile */
-            if (($templateType == self::TEMPLATE_IMAGE && $templateId == $deployedFile->getImageTemplateId()) ||
-                ($templateType == self::TEMPLATE_VIDEO && $templateId == $deployedFile->getVideoTemplateId()) ||
-                ($templateId === null && $deployedFile->getImageTemplateId() === null && $deployedFile->getVideoTemplateId() === null)) {
-                if ($siteId === null || $siteId == $deployedFile->getDeployMentSiteId()) {
+            if ($siteId === null || $siteId == $deployedFile->getDeployMentSiteId()) {
+                if ($templateType == self::TEMPLATE_VIDEO) {
+                    if ($templateId == $deployedFile->getVideoTemplateId() && $deployedFile->getImageTemplateId() === null) {
+                        return $deployedFile;
+                    }
+                } elseif ($templateType == self::TEMPLATE_IMAGE && $templateId == $deployedFile->getImageTemplateId() ||
+                    ($templateId === null && $deployedFile->getImageTemplateId() === null && $deployedFile->getVideoTemplateId() === null)) {
                     return $deployedFile;
                 }
             }
