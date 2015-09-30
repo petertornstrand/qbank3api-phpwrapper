@@ -594,9 +594,12 @@ class Search  implements \JsonSerializable
      *
      * @return Search
      */
-    public function setProperties(array $properties)
+    public function setProperties(array $properties, $append = false)
     {
-        $this->properties = [];
+        if (!$append || empty($this->properties)) {
+            $this->properties = [];
+        }
+
         foreach ($properties as $item) {
             if (!($item instanceof PropertyCriteria)) {
                 if (is_array($item)) {
@@ -763,9 +766,12 @@ class Search  implements \JsonSerializable
      *
      * @return Search
      */
-    public function setSortFields(array $sortFields)
+    public function setSortFields(array $sortFields, $append = false)
     {
-        $this->sortFields = [];
+        if (!$append || empty($this->sortFields)) {
+            $this->sortFields = [];
+        }
+
         foreach ($sortFields as $item) {
             if (!($item instanceof SearchSort)) {
                 if (is_array($item)) {
