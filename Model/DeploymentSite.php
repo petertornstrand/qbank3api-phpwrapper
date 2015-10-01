@@ -324,21 +324,35 @@ class DeploymentSite  implements \JsonSerializable
     public function setImagetemplates(array $imagetemplates)
     {
         $this->imagetemplates = [];
+
         foreach ($imagetemplates as $item) {
-            if (!($item instanceof ImageTemplate)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new ImageTemplate($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate ImageTemplate. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "ImageTemplate"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->imagetemplates[] = $item;
+            $this->addImageTemplate($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "imagetemplates" of the DeploymentSite.
+     *
+     * @param ImageTemplate|array $imagetemplates
+     *
+     * @return DeploymentSite
+     */
+    public function addImageTemplate($item)
+    {
+        if (!($item instanceof ImageTemplate)) {
+            if (is_array($item)) {
+                try {
+                    $item = new ImageTemplate($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate ImageTemplate. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "ImageTemplate"!', E_USER_WARNING);
+            }
+        }
+        $this->imagetemplates[] = $item;
 
         return $this;
     }
@@ -360,21 +374,35 @@ class DeploymentSite  implements \JsonSerializable
     public function setVideotemplates(array $videotemplates)
     {
         $this->videotemplates = [];
+
         foreach ($videotemplates as $item) {
-            if (!($item instanceof VideoTemplate)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new VideoTemplate($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate VideoTemplate. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "VideoTemplate"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->videotemplates[] = $item;
+            $this->addVideoTemplate($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "videotemplates" of the DeploymentSite.
+     *
+     * @param VideoTemplate|array $videotemplates
+     *
+     * @return DeploymentSite
+     */
+    public function addVideoTemplate($item)
+    {
+        if (!($item instanceof VideoTemplate)) {
+            if (is_array($item)) {
+                try {
+                    $item = new VideoTemplate($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate VideoTemplate. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "VideoTemplate"!', E_USER_WARNING);
+            }
+        }
+        $this->videotemplates[] = $item;
 
         return $this;
     }
@@ -396,21 +424,35 @@ class DeploymentSite  implements \JsonSerializable
     public function setCategories(array $categories)
     {
         $this->categories = [];
+
         foreach ($categories as $item) {
-            if (!($item instanceof Category)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new Category($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate Category. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "Category"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->categories[] = $item;
+            $this->addCategory($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "categories" of the DeploymentSite.
+     *
+     * @param Category|array $categories
+     *
+     * @return DeploymentSite
+     */
+    public function addCategory($item)
+    {
+        if (!($item instanceof Category)) {
+            if (is_array($item)) {
+                try {
+                    $item = new Category($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate Category. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "Category"!', E_USER_WARNING);
+            }
+        }
+        $this->categories[] = $item;
 
         return $this;
     }

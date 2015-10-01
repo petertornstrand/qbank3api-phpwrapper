@@ -131,21 +131,35 @@ class VideoTemplate  implements \JsonSerializable
     public function setCommands(array $commands)
     {
         $this->commands = [];
+
         foreach ($commands as $item) {
-            if (!($item instanceof Command)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new Command($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate Command. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "Command"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->commands[] = $item;
+            $this->addCommand($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "commands" of the VideoTemplate.
+     *
+     * @param Command|array $commands
+     *
+     * @return VideoTemplate
+     */
+    public function addCommand($item)
+    {
+        if (!($item instanceof Command)) {
+            if (is_array($item)) {
+                try {
+                    $item = new Command($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate Command. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "Command"!', E_USER_WARNING);
+            }
+        }
+        $this->commands[] = $item;
 
         return $this;
     }

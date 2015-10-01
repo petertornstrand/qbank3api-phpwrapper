@@ -376,21 +376,35 @@ use DateTime;
     public function setGroups(array $groups)
     {
         $this->groups = [];
+
         foreach ($groups as $item) {
-            if (!($item instanceof Group)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new Group($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate Group. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "Group"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->groups[] = $item;
+            $this->addGroup($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "groups" of the User.
+     *
+     * @param Group|array $groups
+     *
+     * @return User
+     */
+    public function addGroup($item)
+    {
+        if (!($item instanceof Group)) {
+            if (is_array($item)) {
+                try {
+                    $item = new Group($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate Group. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "Group"!', E_USER_WARNING);
+            }
+        }
+        $this->groups[] = $item;
 
         return $this;
     }
@@ -554,21 +568,35 @@ use DateTime;
     public function setFunctionalities(array $functionalities)
     {
         $this->functionalities = [];
+
         foreach ($functionalities as $item) {
-            if (!($item instanceof Functionality)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new Functionality($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->functionalities[] = $item;
+            $this->addFunctionality($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "functionalities" of the User.
+     *
+     * @param Functionality|array $functionalities
+     *
+     * @return User
+     */
+    public function addFunctionality($item)
+    {
+        if (!($item instanceof Functionality)) {
+            if (is_array($item)) {
+                try {
+                    $item = new Functionality($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
+            }
+        }
+        $this->functionalities[] = $item;
 
         return $this;
     }
@@ -590,21 +618,35 @@ use DateTime;
     public function setExtraData(array $extraData)
     {
         $this->extraData = [];
+
         foreach ($extraData as $item) {
-            if (!($item instanceof ExtraData)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new ExtraData($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate ExtraData. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->extraData[] = $item;
+            $this->addExtraData($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "extraData" of the User.
+     *
+     * @param ExtraData|array $extraData
+     *
+     * @return User
+     */
+    public function addExtraData($item)
+    {
+        if (!($item instanceof ExtraData)) {
+            if (is_array($item)) {
+                try {
+                    $item = new ExtraData($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate ExtraData. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
+            }
+        }
+        $this->extraData[] = $item;
 
         return $this;
     }

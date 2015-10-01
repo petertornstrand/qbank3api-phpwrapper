@@ -306,21 +306,35 @@ use DateTime;
     public function setPropertySets(array $propertySets)
     {
         $this->propertySets = [];
+
         foreach ($propertySets as $item) {
-            if (!($item instanceof PropertySet)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new PropertySet($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->propertySets[] = $item;
+            $this->addPropertySet($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "propertySets" of the MoodboardResponse.
+     *
+     * @param PropertySet|array $propertySets
+     *
+     * @return MoodboardResponse
+     */
+    public function addPropertySet($item)
+    {
+        if (!($item instanceof PropertySet)) {
+            if (is_array($item)) {
+                try {
+                    $item = new PropertySet($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+            }
+        }
+        $this->propertySets[] = $item;
 
         return $this;
     }

@@ -123,21 +123,35 @@ use DateTime;
     public function setSubFolders(array $subFolders)
     {
         $this->subFolders = [];
+
         foreach ($subFolders as $item) {
-            if (!($item instanceof self)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new self($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate FolderResponse. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "FolderResponse"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->subFolders[] = $item;
+            $this->addFolderResponse($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "subFolders" of the FolderResponse.
+     *
+     * @param FolderResponse|array $subFolders
+     *
+     * @return FolderResponse
+     */
+    public function addFolderResponse($item)
+    {
+        if (!($item instanceof self)) {
+            if (is_array($item)) {
+                try {
+                    $item = new self($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate FolderResponse. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "FolderResponse"!', E_USER_WARNING);
+            }
+        }
+        $this->subFolders[] = $item;
 
         return $this;
     }
@@ -322,21 +336,35 @@ use DateTime;
     public function setPropertySets(array $propertySets)
     {
         $this->propertySets = [];
+
         foreach ($propertySets as $item) {
-            if (!($item instanceof PropertySet)) {
-                if (is_array($item)) {
-                    try {
-                        $item = new PropertySet($item);
-                    } catch (\Exception $e) {
-                        trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
-                    }
-                } else {
-                    trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
-                    continue;
-                }
-            }
-            $this->propertySets[] = $item;
+            $this->addPropertySet($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds the "propertySets" of the FolderResponse.
+     *
+     * @param PropertySet|array $propertySets
+     *
+     * @return FolderResponse
+     */
+    public function addPropertySet($item)
+    {
+        if (!($item instanceof PropertySet)) {
+            if (is_array($item)) {
+                try {
+                    $item = new PropertySet($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
+            }
+        }
+        $this->propertySets[] = $item;
 
         return $this;
     }
