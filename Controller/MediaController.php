@@ -4,12 +4,12 @@ namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
     use QBNK\QBank\API\Model\DeploymentFile;
-    use QBNK\QBank\API\Model\DeploymentSite;
-    use QBNK\QBank\API\Model\Folder;
+    use QBNK\QBank\API\Model\DeploymentSiteResponse;
+    use QBNK\QBank\API\Model\FolderResponse;
     use QBNK\QBank\API\Model\Media;
     use QBNK\QBank\API\Model\MediaResponse;
     use QBNK\QBank\API\Model\MediaVersion;
-    use QBNK\QBank\API\Model\Moodboard;
+    use QBNK\QBank\API\Model\MoodboardResponse;
 
     class MediaController extends ControllerAbstract
     {
@@ -97,7 +97,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
 
-     * @return DeploymentSite[]
+     * @return DeploymentSiteResponse[]
 
      */
     public function listDeploymentSites($id, CachePolicy $cachePolicy = null)
@@ -109,7 +109,7 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->get('v1/media/'.$id.'/deployment/sites', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
-            $entry = new DeploymentSite($entry);
+            $entry = new DeploymentSiteResponse($entry);
         }
         unset($entry);
         reset($result);
@@ -156,7 +156,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all toghether..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
 
-     * @return Folder[]
+     * @return FolderResponse[]
 
      */
     public function listFolders($id, $depth = 0, CachePolicy $cachePolicy = null)
@@ -168,7 +168,7 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->get('v1/media/'.$id.'/folders', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
-            $entry = new Folder($entry);
+            $entry = new FolderResponse($entry);
         }
         unset($entry);
         reset($result);
@@ -181,7 +181,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
 
-     * @return Moodboard[]
+     * @return MoodboardResponse[]
 
      */
     public function listMoodboards($id, CachePolicy $cachePolicy = null)
@@ -193,7 +193,7 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->get('v1/media/'.$id.'/moodboards', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
-            $entry = new Moodboard($entry);
+            $entry = new MoodboardResponse($entry);
         }
         unset($entry);
         reset($result);
