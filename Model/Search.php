@@ -73,6 +73,9 @@ class Search  implements \JsonSerializable
     /** @var string Filter by file name, uses normal LIKE database syntax */
     protected $fileName;
 
+    /** @var string Filter by object name, uses normal LIKE database syntax */
+    protected $name;
+
     /** @var DateTimeRange Filter by deployment date */
     protected $deploymentDateRange;
 
@@ -106,6 +109,7 @@ class Search  implements \JsonSerializable
      * - <b>heightCriteria</b> - Filter by file height. An array with "min" and/or "max" values.
      * - <b>mimeTypes</b> - Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos.
      * - <b>fileName</b> - Filter by file name, uses normal LIKE database syntax
+     * - <b>name</b> - Filter by object name, uses normal LIKE database syntax
      * - <b>deploymentDateRange</b> - Filter by deployment date
      * - <b>sortFields</b> - An array of SearchSort fields to order results by
      */
@@ -199,6 +203,9 @@ class Search  implements \JsonSerializable
         }
         if (isset($parameters['fileName'])) {
             $this->setFileName($parameters['fileName']);
+        }
+        if (isset($parameters['name'])) {
+            $this->setName($parameters['name']);
         }
         if (isset($parameters['deploymentDateRange'])) {
             $this->setDeploymentDateRange($parameters['deploymentDateRange']);
@@ -735,6 +742,27 @@ class Search  implements \JsonSerializable
         return $this;
     }
     /**
+     * Gets the name of the Search.
+     * @return string	 */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Sets the "name" of the Search.
+     *
+     * @param string $name
+     *
+     * @return Search
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+    /**
      * Gets the deploymentDateRange of the Search.
      * @return DateTimeRange	 */
     public function getDeploymentDateRange()
@@ -890,6 +918,9 @@ class Search  implements \JsonSerializable
         }
         if ($this->fileName !== null) {
             $json['fileName'] = $this->fileName;
+        }
+        if ($this->name !== null) {
+            $json['name'] = $this->name;
         }
         if ($this->deploymentDateRange !== null) {
             $json['deploymentDateRange'] = $this->deploymentDateRange;
