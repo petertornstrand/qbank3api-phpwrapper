@@ -636,6 +636,36 @@ use DateTime;
     }
 
     /**
+     * Checks if media is grouped.
+     *
+     * @return bool
+     */
+    public function isGrouped()
+    {
+        return !is_null($this->parentId);
+    }
+
+    /**
+     * Checks if media is a parent to another media.
+     *
+     * @return bool
+     */
+    public function isParent()
+    {
+        return $this->parentId === $this->mediaId;
+    }
+
+    /**
+     * Checks if media is child to another media.
+     *
+     * @return bool
+     */
+    public function isChild()
+    {
+        return !is_null($this->parentId) &&  $this->parentId !== $this->mediaId;
+    }
+
+    /**
      * Gets a DeployedFile.
      *
      * @param int|null $templateId The id of the template to get. Null for the original file.
