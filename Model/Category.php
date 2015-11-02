@@ -7,6 +7,9 @@ class Category  implements \JsonSerializable
     /** @var int The ObjectType identifier Media belonging to this Category should have. */
     protected $mediaTypeId;
 
+    /** @var string An optional description for the category */
+    protected $description;
+
     /** @var string The Objects name. */
     protected $name;
 
@@ -24,6 +27,7 @@ class Category  implements \JsonSerializable
      *
      * @param array $parameters An array of parameters to initialize the { @link Category } with.
      * - <b>mediaTypeId</b> - The ObjectType identifier Media belonging to this Category should have.
+     * - <b>description</b> - An optional description for the category
      * - <b>name</b> - The Objects name.
      * - <b>deleted</b> - Whether the object is deleted.
      * - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
@@ -35,6 +39,9 @@ class Category  implements \JsonSerializable
 
         if (isset($parameters['mediaTypeId'])) {
             $this->setMediaTypeId($parameters['mediaTypeId']);
+        }
+        if (isset($parameters['description'])) {
+            $this->setDescription($parameters['description']);
         }
         if (isset($parameters['name'])) {
             $this->setName($parameters['name']);
@@ -68,6 +75,27 @@ class Category  implements \JsonSerializable
     public function setMediaTypeId($mediaTypeId)
     {
         $this->mediaTypeId = $mediaTypeId;
+
+        return $this;
+    }
+    /**
+     * Gets the description of the Category.
+     * @return string	 */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Sets the "description" of the Category.
+     *
+     * @param string $description
+     *
+     * @return Category
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -167,6 +195,9 @@ class Category  implements \JsonSerializable
 
         if ($this->mediaTypeId !== null) {
             $json['mediaTypeId'] = $this->mediaTypeId;
+        }
+        if ($this->description !== null) {
+            $json['description'] = $this->description;
         }
         if ($this->name !== null) {
             $json['name'] = $this->name;
