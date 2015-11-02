@@ -82,6 +82,9 @@ class Search  implements \JsonSerializable
     /** @var SearchSort[] An array of SearchSort fields to order results by */
     protected $sortFields;
 
+    /** @var bool Search only for duplicates */
+    protected $duplicates;
+
     /**
      * Constructs a Search.
      *
@@ -112,6 +115,7 @@ class Search  implements \JsonSerializable
      * - <b>name</b> - Filter by object name, uses normal LIKE database syntax
      * - <b>deploymentDateRange</b> - Filter by deployment date
      * - <b>sortFields</b> - An array of SearchSort fields to order results by
+     * - <b>duplicates</b> - Search only for duplicates
      */
     public function __construct($parameters = [])
     {
@@ -212,6 +216,9 @@ class Search  implements \JsonSerializable
         }
         if (isset($parameters['sortFields'])) {
             $this->setSortFields($parameters['sortFields']);
+        }
+        if (isset($parameters['duplicates'])) {
+            $this->setDuplicates($parameters['duplicates']);
         }
     }
 
@@ -840,6 +847,27 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+    /**
+     * Tells whether the Search is duplicates.
+     * @return bool	 */
+    public function isDuplicates()
+    {
+        return $this->duplicates;
+    }
+
+    /**
+     * Sets the "duplicates" of the Search.
+     *
+     * @param bool $duplicates
+     *
+     * @return Search
+     */
+    public function setDuplicates($duplicates)
+    {
+        $this->duplicates = $duplicates;
+
+        return $this;
+    }
 
     /**
      * Gets all data that should be available in a json representation.
@@ -927,6 +955,9 @@ class Search  implements \JsonSerializable
         }
         if ($this->sortFields !== null && !empty($this->sortFields)) {
             $json['sortFields'] = $this->sortFields;
+        }
+        if ($this->duplicates !== null) {
+            $json['duplicates'] = $this->duplicates;
         }
 
         return $json;
