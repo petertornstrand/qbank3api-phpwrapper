@@ -37,6 +37,9 @@ class SearchSort  implements \JsonSerializable
     /** @var string When sorting on a Json Property, the Json key to sort by */
     protected $jsonKey;
 
+    /** @var int When sorting on deploymentdate, the optional site id to sort by */
+    protected $deploymentSiteId;
+
     /**
      * Constructs a SearchSort.
      *
@@ -47,6 +50,7 @@ class SearchSort  implements \JsonSerializable
      * - <b>dateRange</b> - When sorting on Media Popularity, a optional dateRange to find popular media within
      * - <b>systemName</b> - When sorting on a property, the system name of the property to sort on
      * - <b>jsonKey</b> - When sorting on a Json Property, the Json key to sort by
+     * - <b>deploymentSiteId</b> - When sorting on deploymentdate, the optional site id to sort by
      */
     public function __construct($parameters = [])
     {
@@ -67,6 +71,9 @@ class SearchSort  implements \JsonSerializable
         }
         if (isset($parameters['jsonKey'])) {
             $this->setJsonKey($parameters['jsonKey']);
+        }
+        if (isset($parameters['deploymentSiteId'])) {
+            $this->setDeploymentSiteId($parameters['deploymentSiteId']);
         }
     }
 
@@ -203,6 +210,27 @@ class SearchSort  implements \JsonSerializable
 
         return $this;
     }
+    /**
+     * Gets the deploymentSiteId of the SearchSort.
+     * @return int	 */
+    public function getDeploymentSiteId()
+    {
+        return $this->deploymentSiteId;
+    }
+
+    /**
+     * Sets the "deploymentSiteId" of the SearchSort.
+     *
+     * @param int $deploymentSiteId
+     *
+     * @return SearchSort
+     */
+    public function setDeploymentSiteId($deploymentSiteId)
+    {
+        $this->deploymentSiteId = $deploymentSiteId;
+
+        return $this;
+    }
 
     /**
      * Gets all data that should be available in a json representation.
@@ -230,6 +258,9 @@ class SearchSort  implements \JsonSerializable
         }
         if ($this->jsonKey !== null) {
             $json['jsonKey'] = $this->jsonKey;
+        }
+        if ($this->deploymentSiteId !== null) {
+            $json['deploymentSiteId'] = $this->deploymentSiteId;
         }
 
         return $json;
