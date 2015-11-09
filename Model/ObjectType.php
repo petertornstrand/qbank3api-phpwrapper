@@ -320,9 +320,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "propertySets" of the ObjectType.
+     * Adds an object of "PropertySets" of the ObjectType.
      *
-     * @param PropertySet|array $propertySets
+     * @param PropertySet|array $item
      *
      * @return ObjectType
      */

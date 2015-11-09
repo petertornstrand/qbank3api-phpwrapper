@@ -132,9 +132,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "subFolders" of the FolderResponse.
+     * Adds an object of "SubFolders" of the FolderResponse.
      *
-     * @param FolderResponse|array $subFolders
+     * @param FolderResponse|array $item
      *
      * @return FolderResponse
      */
@@ -345,9 +345,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "propertySets" of the FolderResponse.
+     * Adds an object of "PropertySets" of the FolderResponse.
      *
-     * @param PropertySet|array $propertySets
+     * @param PropertySet|array $item
      *
      * @return FolderResponse
      */

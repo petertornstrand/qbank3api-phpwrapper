@@ -620,9 +620,9 @@ class Search  implements \JsonSerializable
     }
 
     /**
-     * Adds the "properties" of the Search.
+     * Adds an object of "Properties" of the Search.
      *
-     * @param PropertyCriteria|array $properties
+     * @param PropertyCriteria|array $item
      *
      * @return Search
      */
@@ -824,9 +824,9 @@ class Search  implements \JsonSerializable
     }
 
     /**
-     * Adds the "sortFields" of the Search.
+     * Adds an object of "SortFields" of the Search.
      *
-     * @param SearchSort|array $sortFields
+     * @param SearchSort|array $item
      *
      * @return Search
      */

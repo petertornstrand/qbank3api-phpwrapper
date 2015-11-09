@@ -119,9 +119,9 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * Adds the "results" of the SearchResult.
+     * Adds an object of "Results" of the SearchResult.
      *
-     * @param MediaResponse|array $results
+     * @param MediaResponse|array $item
      *
      * @return SearchResult
      */

@@ -287,9 +287,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "propertySets" of the CategoryResponse.
+     * Adds an object of "PropertySets" of the CategoryResponse.
      *
-     * @param PropertySet|array $propertySets
+     * @param PropertySet|array $item
      *
      * @return CategoryResponse
      */

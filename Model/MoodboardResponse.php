@@ -315,9 +315,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "propertySets" of the MoodboardResponse.
+     * Adds an object of "PropertySets" of the MoodboardResponse.
      *
-     * @param PropertySet|array $propertySets
+     * @param PropertySet|array $item
      *
      * @return MoodboardResponse
      */

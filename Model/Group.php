@@ -335,9 +335,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "functionalities" of the Group.
+     * Adds an object of "Functionalities" of the Group.
      *
-     * @param Functionality|array $functionalities
+     * @param Functionality|array $item
      *
      * @return Group
      */
@@ -385,9 +385,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "roles" of the Group.
+     * Adds an object of "Roles" of the Group.
      *
-     * @param Role|array $roles
+     * @param Role|array $item
      *
      * @return Group
      */
@@ -435,9 +435,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "extraData" of the Group.
+     * Adds an object of "ExtraData" of the Group.
      *
-     * @param ExtraData|array $extraData
+     * @param ExtraData|array $item
      *
      * @return Group
      */

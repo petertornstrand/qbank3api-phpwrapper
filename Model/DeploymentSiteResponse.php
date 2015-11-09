@@ -287,9 +287,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "propertySets" of the DeploymentSiteResponse.
+     * Adds an object of "PropertySets" of the DeploymentSiteResponse.
      *
-     * @param PropertySet|array $propertySets
+     * @param PropertySet|array $item
      *
      * @return DeploymentSiteResponse
      */

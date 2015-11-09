@@ -228,9 +228,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "metadata" of the MediaResponse.
+     * Adds an object of "Metadata" of the MediaResponse.
      *
-     * @param MetaData|array $metadata
+     * @param MetaData|array $item
      *
      * @return MediaResponse
      */
@@ -398,9 +398,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "deployedFiles" of the MediaResponse.
+     * Adds an object of "DeployedFiles" of the MediaResponse.
      *
-     * @param DeploymentFile|array $deployedFiles
+     * @param DeploymentFile|array $item
      *
      * @return MediaResponse
      */
@@ -611,9 +611,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "propertySets" of the MediaResponse.
+     * Adds an object of "PropertySets" of the MediaResponse.
      *
-     * @param PropertySet|array $propertySets
+     * @param PropertySet|array $item
      *
      * @return MediaResponse
      */

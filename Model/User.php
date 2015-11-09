@@ -385,9 +385,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "groups" of the User.
+     * Adds an object of "Groups" of the User.
      *
-     * @param Group|array $groups
+     * @param Group|array $item
      *
      * @return User
      */
@@ -577,9 +577,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "functionalities" of the User.
+     * Adds an object of "Functionalities" of the User.
      *
-     * @param Functionality|array $functionalities
+     * @param Functionality|array $item
      *
      * @return User
      */
@@ -627,9 +627,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "extraData" of the User.
+     * Adds an object of "ExtraData" of the User.
      *
-     * @param ExtraData|array $extraData
+     * @param ExtraData|array $item
      *
      * @return User
      */

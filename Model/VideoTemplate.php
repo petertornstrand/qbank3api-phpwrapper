@@ -140,9 +140,9 @@ class VideoTemplate  implements \JsonSerializable
     }
 
     /**
-     * Adds the "commands" of the VideoTemplate.
+     * Adds an object of "Commands" of the VideoTemplate.
      *
-     * @param Command|array $commands
+     * @param Command|array $item
      *
      * @return VideoTemplate
      */

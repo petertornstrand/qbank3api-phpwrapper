@@ -140,9 +140,9 @@ class ImageTemplate  implements \JsonSerializable
     }
 
     /**
-     * Adds the "commands" of the ImageTemplate.
+     * Adds an object of "Commands" of the ImageTemplate.
      *
-     * @param Command|array $commands
+     * @param Command|array $item
      *
      * @return ImageTemplate
      */

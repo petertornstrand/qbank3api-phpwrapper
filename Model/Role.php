@@ -319,9 +319,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "functionalities" of the Role.
+     * Adds an object of "Functionalities" of the Role.
      *
-     * @param Functionality|array $functionalities
+     * @param Functionality|array $item
      *
      * @return Role
      */

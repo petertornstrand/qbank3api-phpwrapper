@@ -333,9 +333,9 @@ class DeploymentSite  implements \JsonSerializable
     }
 
     /**
-     * Adds the "imagetemplates" of the DeploymentSite.
+     * Adds an object of "Imagetemplates" of the DeploymentSite.
      *
-     * @param ImageTemplate|array $imagetemplates
+     * @param ImageTemplate|array $item
      *
      * @return DeploymentSite
      */
@@ -383,9 +383,9 @@ class DeploymentSite  implements \JsonSerializable
     }
 
     /**
-     * Adds the "videotemplates" of the DeploymentSite.
+     * Adds an object of "Videotemplates" of the DeploymentSite.
      *
-     * @param VideoTemplate|array $videotemplates
+     * @param VideoTemplate|array $item
      *
      * @return DeploymentSite
      */
@@ -433,9 +433,9 @@ class DeploymentSite  implements \JsonSerializable
     }
 
     /**
-     * Adds the "categories" of the DeploymentSite.
+     * Adds an object of "Categories" of the DeploymentSite.
      *
-     * @param Category|array $categories
+     * @param Category|array $item
      *
      * @return DeploymentSite
      */

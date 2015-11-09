@@ -319,9 +319,9 @@ use DateTime;
     }
 
     /**
-     * Adds the "properties" of the PropertySet.
+     * Adds an object of "Properties" of the PropertySet.
      *
-     * @param Property|array $properties
+     * @param Property|array $item
      *
      * @return PropertySet
      */
