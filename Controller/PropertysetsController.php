@@ -14,7 +14,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return PropertySet[]
-
      */
     public function listPropertySets(CachePolicy $cachePolicy = null)
     {
@@ -35,12 +34,12 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * Lists all PropertyTypes in QBank.
      *
+     * @param null $systemName Returns the specified propertytype
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
-     * @return PropertyType[]
-
+     * @return PropertyType[]|PropertyType|null
      */
-    public function listPropertyTypes(CachePolicy $cachePolicy = null)
+    public function listPropertyTypes($systemName = null, CachePolicy $cachePolicy = null)
     {
         $parameters = [
             'query'   => [],
@@ -53,6 +52,16 @@ use QBNK\QBank\API\CachePolicy;
         }
         unset($entry);
         reset($result);
+
+        if ($systemName !== null) {
+            foreach ($result as $entry) {
+                if ($entry->getSystemName() === $systemName) {
+                    return $entry;
+                }
+            }
+
+            return;
+        }
 
         return $result;
     }
