@@ -18,7 +18,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-
+     *
      * @return MediaResponse
 
      */
@@ -51,7 +51,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The Media identifier..
      * @param mixed $template Optional template of Media..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-
+     *
      * @return string The raw file data
 
      */
@@ -71,7 +71,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-
+     *
      * @return DeploymentFile[]
 
      */
@@ -96,7 +96,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-
+     *
      * @return DeploymentSiteResponse[]
 
      */
@@ -125,7 +125,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param string $template Optional template to download the media in.
      * @param string $templateType Indicates type of template, valid values are; image, video.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-
+     *
      * @return resource A file pointer resource pointing to a temporary file.
 
      */
@@ -155,7 +155,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The Media identifier..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all toghether..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-
+     *
      * @return FolderResponse[]
 
      */
@@ -180,7 +180,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-
+     *
      * @return MoodboardResponse[]
 
      */
@@ -207,7 +207,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-
+     *
      * @return MediaVersion[]
 
      */
@@ -235,7 +235,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param int[] $ids Array of Media ID:s to download.
      * @param string $template Optional template to download all Media in..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-
      */
     public function downloadArchive(array $ids, $template = null, CachePolicy $cachePolicy = null)
     {
@@ -257,12 +256,13 @@ use QBNK\QBank\API\CachePolicy;
      *  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
      *  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
      *
+     *
      * @param string $name Filename of the file being uploaded
      * @param int $chunk The chunk we are currently uploading, starts at 0
      * @param int $chunks Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
      * @param string $fileId A unique fileId that will be used for this upload, if none is given one will be given to you
      * @param int $categoryId The category to place the file in
-
+     *
      * @return array
 
      */
@@ -284,7 +284,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier.
      * @param Media $media A JSON encoded Media representing the updates
-
+     *
      * @return MediaResponse
 
      */
@@ -312,7 +312,6 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier.
      * @param int[] $children An array of int values.
-
      */
     public function group($id, array $children)
     {
@@ -331,7 +330,7 @@ use QBNK\QBank\API\CachePolicy;
      * Can not restore a Media that has been hard deleted!
      *
      * @param int $id The Media identifier.
-
+     *
      * @return MediaResponse
 
      */
@@ -353,9 +352,10 @@ use QBNK\QBank\API\CachePolicy;
      * This is used to move media from the uploaded tab into the library.
      *  Possible statuses are: <ul> <li>approved</li> </ul>
      *
+     *
      * @param int $id The Media identifier.
      * @param string $status The new status of the media
-
+     *
      * @return array
 
      */
@@ -377,7 +377,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param int $id The Media identifier.
      * @param bool $hardDelete Prevent restoration of the Media..
-
+     *
      * @return MediaResponse
 
      */

@@ -19,7 +19,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Functionality[]
-
      */
     public function listFunctionalities($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
@@ -46,7 +45,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Functionality
-
      */
     public function retrieveFunctionality($id, CachePolicy $cachePolicy = null)
     {
@@ -69,7 +67,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Group[]
-
      */
     public function listGroups($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
@@ -96,7 +93,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Group
-
      */
     public function retrieveGroup($id, CachePolicy $cachePolicy = null)
     {
@@ -118,7 +114,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return User
-
      */
     public function retrieveCurrentUser(CachePolicy $cachePolicy = null)
     {
@@ -141,7 +136,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Role[]
-
      */
     public function listRoles($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
@@ -168,7 +162,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return Role
-
      */
     public function retrieveRole($id, CachePolicy $cachePolicy = null)
     {
@@ -190,7 +183,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return array
-
      */
     public function listSettings(CachePolicy $cachePolicy = null)
     {
@@ -212,7 +204,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return array
-
      */
     public function retrieveSetting($key, CachePolicy $cachePolicy = null)
     {
@@ -234,7 +225,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return User[]
-
      */
     public function listUsers($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
@@ -261,7 +251,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return User
-
      */
     public function retrieveUser($id, CachePolicy $cachePolicy = null)
     {

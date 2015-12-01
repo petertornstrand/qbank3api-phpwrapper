@@ -16,7 +16,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return CategoryResponse[]
-
      */
     public function listCategories(CachePolicy $cachePolicy = null)
     {
@@ -43,7 +42,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return CategoryResponse
-
      */
     public function retrieveCategory($id, CachePolicy $cachePolicy = null)
     {
@@ -63,7 +61,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param Category $category A JSON encoded Category to create
      *
      * @return CategoryResponse
-
      */
     public function createCategory(Category $category)
     {
@@ -84,7 +81,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param Category $category A JSON encoded Category representing the updates
      *
      * @return CategoryResponse
-
      */
     public function updateCategory($id, Category $category)
     {
@@ -106,7 +102,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The Category identifier.
      *
      * @return CategoryResponse
-
      */
     public function removeCategory($id)
     {

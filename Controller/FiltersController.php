@@ -17,7 +17,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FilterItem[]
-
      */
     public function categories($categoryIds, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
     {
@@ -46,7 +45,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FilterItem[]
-
      */
     public function folder($parentFolderId, $categoryIds = null, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
     {
@@ -76,7 +74,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FilterItem[]
-
      */
     public function property($systemName, $preloadNames = false, $categoryIds = null, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
     {

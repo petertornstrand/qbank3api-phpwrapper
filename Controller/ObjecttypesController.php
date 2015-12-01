@@ -13,7 +13,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return ObjectType[]
-
      */
     public function listObjectTypes(CachePolicy $cachePolicy = null)
     {
@@ -40,7 +39,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return ObjectType
-
      */
     public function retrieveObjectType($id, CachePolicy $cachePolicy = null)
     {

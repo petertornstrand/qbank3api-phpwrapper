@@ -104,6 +104,10 @@ use DateTime;
             $json['max'] = $this->max;
         }
 
+        foreach ($json as &$value) {
+            $value = $value->format(\DateTime::ISO8601);
+        }
+
         return $json;
     }
     }

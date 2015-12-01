@@ -19,7 +19,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FolderResponse[]
-
      */
     public function listFolders($root = 0, $depth = 0, CachePolicy $cachePolicy = null)
     {
@@ -47,7 +46,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FolderResponse
-
      */
     public function retrieveFolder($id, $depth = 0, CachePolicy $cachePolicy = null)
     {
@@ -70,7 +68,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return FolderParent[]
-
      */
     public function retrieveParents($id, CachePolicy $cachePolicy = null)
     {
@@ -96,7 +93,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param bool $inheritAccess Decides whether this Folder will inherit access from its parent folder
      *
      * @return FolderResponse
-
      */
     public function createFolder($parentId = 0, Folder $folder, $inheritAccess = null)
     {
@@ -117,7 +113,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param int[] $mediaIds An array of int values.
      *
      * @return array
-
      */
     public function addMediaToFolder($folderId, array $mediaIds)
     {
@@ -139,7 +134,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param Folder $folder A JSON encoded Folder representing the updates
      *
      * @return FolderResponse
-
      */
     public function updateFolder($id, Folder $folder)
     {
@@ -160,7 +154,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $mediaId Media to remove from specified folder.
      *
      * @return array
-
      */
     public function removeMediaFromFolder($folderId, $mediaId)
     {
@@ -181,7 +174,6 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The Folder identifier.
      *
      * @return FolderResponse
-
      */
     public function removeFolder($id)
     {
