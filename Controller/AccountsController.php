@@ -284,6 +284,46 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * Create a user Create a user in QBank.
+     *
+     * @param User $user <hr/>password : <tag>string</tag>  - Password for the new user, leave blank to let QBank send a password-reset link to the user
+     * @param string $redirectTo Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
+     *
+     * @return User
+     */
+    public function createUser(User $user, $redirectTo = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['user' => $user, 'redirectTo' => $redirectTo]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/accounts/users', $parameters);
+        $result = new User($result);
+
+        return $result;
+    }
+    /**
+     * Add the user to one or more groups.
+     *
+     * @param int $userId
+     * @param int[] $groupIds An array of int values.
+     *
+     * @return User
+     */
+    public function addUserToGroup($userId, array $groupIds)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['groupIds' => $groupIds]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/accounts/users/'.$userId.'/groups', $parameters);
+        $result = new User($result);
+
+        return $result;
+    }
+    /**
      * Updates an existing setting.
      *
      * Updates a previously created setting.
