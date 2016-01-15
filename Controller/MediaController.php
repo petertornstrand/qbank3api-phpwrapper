@@ -2,7 +2,8 @@
 
 namespace QBNK\QBank\API\Controller;
 
-use QBNK\QBank\API\CachePolicy;
+use GuzzleHttp\Post\PostFile;
+    use QBNK\QBank\API\CachePolicy;
     use QBNK\QBank\API\Model\DeploymentFile;
     use QBNK\QBank\API\Model\DeploymentSiteResponse;
     use QBNK\QBank\API\Model\FolderResponse;
@@ -256,7 +257,7 @@ use QBNK\QBank\API\CachePolicy;
      *  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
      *  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
      *
-     *
+     * @param mixed $fileData The file's data content.
      * @param string $name Filename of the file being uploaded
      * @param int $chunk The chunk we are currently uploading, starts at 0
      * @param int $chunks Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
@@ -266,12 +267,18 @@ use QBNK\QBank\API\CachePolicy;
      * @return array
 
      */
-    public function uploadFileChunked($name, $chunk, $chunks, $fileId, $categoryId)
+    public function uploadFileChunked($fileData, $name, $chunk, $chunks, $fileId, $categoryId)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['name' => $name, 'chunk' => $chunk, 'chunks' => $chunks, 'fileId' => $fileId, 'categoryId' => $categoryId]),
-            'headers' => [],
+            'query' => [
+                'name'       => $name,
+                'chunk'      => $chunk,
+                'chunks'     => $chunks,
+                'fileId'     => $fileId,
+                'categoryId' => $categoryId,
+            ],
+            'body'    => ['file'         => new PostFile('file', $fileData)],
+            'headers' => ['Content-type' => 'multipart/form-data'],
         ];
         $result = $this->post('v1/media', $parameters);
 
