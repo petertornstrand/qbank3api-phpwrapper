@@ -286,16 +286,17 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * Create a user Create a user in QBank.
      *
-     * @param User $user <hr/>password : <tag>string</tag>  - Password for the new user, leave blank to let QBank send a password-reset link to the user
+     * @param User $user The user to create
+     * @param string $password Password for the new user, leave blank to let QBank send a password-reset link to the user
      * @param string $redirectTo Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
      *
      * @return User
      */
-    public function createUser(User $user, $redirectTo = null)
+    public function createUser(User $user, $password = null, $redirectTo = null)
     {
         $parameters = [
             'query'   => [],
-            'body'    => json_encode(['user' => $user, 'redirectTo' => $redirectTo]),
+            'body'    => json_encode(['user' => $user, 'password' => $password, 'redirectTo' => $redirectTo]),
             'headers' => [],
         ];
         $result = $this->post('v1/accounts/users', $parameters);
