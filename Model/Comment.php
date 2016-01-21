@@ -2,173 +2,70 @@
 
 namespace QBNK\QBank\API\Model;
 
-use DateTime;
-
-    class Comment  implements \JsonSerializable
-    {
-    /** @var int Id of the comment */
-    protected $id;
-
+class Comment  implements \JsonSerializable
+{
     /** @var int Object that this comment is made on */
-    protected $object_id;
-
-    /** @var int The QBank user that wrote this comment */
-    protected $created_by;
-
-    /** @var DateTime Time this comment was made */
-    protected $created;
+    protected $objectId;
 
     /** @var string The actual comment */
     protected $comment;
 
     /** @var int If a reply, indicates this comments parent */
-    protected $parent_id;
+    protected $parentId;
 
-    /** @var string Set only if a anonymoous user wrote this comment, see created_by otherwise */
-    protected $user_name;
+    /** @var string Set only if a anonymous user wrote this comment, see createdBy otherwise */
+    protected $userName;
 
-    /** @var string Set only if a anonymoous user wrote this comment, see created_by otherwise */
-    protected $user_email;
-
-    /** @var Comment[] A array of eventual replies to this comment */
-    protected $replies;
+    /** @var string Set only if a anonymous user wrote this comment, see createdBy otherwise */
+    protected $userEmail;
 
     /**
      * Constructs a Comment.
      *
      * @param array $parameters An array of parameters to initialize the { @link Comment } with.
-     * - <b>id</b> - Id of the comment
-     * - <b>object_id</b> - Object that this comment is made on
-     * - <b>created_by</b> - The QBank user that wrote this comment
-     * - <b>created</b> - Time this comment was made
+     * - <b>objectId</b> - Object that this comment is made on
      * - <b>comment</b> - The actual comment
-     * - <b>parent_id</b> - If a reply, indicates this comments parent
-     * - <b>user_name</b> - Set only if a anonymoous user wrote this comment, see created_by otherwise
-     * - <b>user_email</b> - Set only if a anonymoous user wrote this comment, see created_by otherwise
-     * - <b>replies</b> - A array of eventual replies to this comment
+     * - <b>parentId</b> - If a reply, indicates this comments parent
+     * - <b>userName</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
+     * - <b>userEmail</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
      */
     public function __construct($parameters = [])
     {
-        $this->replies = [];
-
-        if (isset($parameters['id'])) {
-            $this->setId($parameters['id']);
-        }
-        if (isset($parameters['object_id'])) {
-            $this->setObject_id($parameters['object_id']);
-        }
-        if (isset($parameters['created_by'])) {
-            $this->setCreated_by($parameters['created_by']);
-        }
-        if (isset($parameters['created'])) {
-            $this->setCreated($parameters['created']);
+        if (isset($parameters['objectId'])) {
+            $this->setObjectId($parameters['objectId']);
         }
         if (isset($parameters['comment'])) {
             $this->setComment($parameters['comment']);
         }
-        if (isset($parameters['parent_id'])) {
-            $this->setParent_id($parameters['parent_id']);
+        if (isset($parameters['parentId'])) {
+            $this->setParentId($parameters['parentId']);
         }
-        if (isset($parameters['user_name'])) {
-            $this->setUser_name($parameters['user_name']);
+        if (isset($parameters['userName'])) {
+            $this->setUserName($parameters['userName']);
         }
-        if (isset($parameters['user_email'])) {
-            $this->setUser_email($parameters['user_email']);
-        }
-        if (isset($parameters['replies'])) {
-            $this->setReplies($parameters['replies']);
+        if (isset($parameters['userEmail'])) {
+            $this->setUserEmail($parameters['userEmail']);
         }
     }
 
     /**
-     * Gets the id of the Comment.
+     * Gets the objectId of the Comment.
      * @return int	 */
-    public function getId()
+    public function getObjectId()
     {
-        return $this->id;
+        return $this->objectId;
     }
 
     /**
-     * Sets the "id" of the Comment.
+     * Sets the "objectId" of the Comment.
      *
-     * @param int $id
+     * @param int $objectId
      *
      * @return Comment
      */
-    public function setId($id)
+    public function setObjectId($objectId)
     {
-        $this->id = $id;
-
-        return $this;
-    }
-    /**
-     * Gets the object_id of the Comment.
-     * @return int	 */
-    public function getObject_id()
-    {
-        return $this->object_id;
-    }
-
-    /**
-     * Sets the "object_id" of the Comment.
-     *
-     * @param int $object_id
-     *
-     * @return Comment
-     */
-    public function setObject_id($object_id)
-    {
-        $this->object_id = $object_id;
-
-        return $this;
-    }
-    /**
-     * Gets the created_by of the Comment.
-     * @return int	 */
-    public function getCreated_by()
-    {
-        return $this->created_by;
-    }
-
-    /**
-     * Sets the "created_by" of the Comment.
-     *
-     * @param int $created_by
-     *
-     * @return Comment
-     */
-    public function setCreated_by($created_by)
-    {
-        $this->created_by = $created_by;
-
-        return $this;
-    }
-    /**
-     * Gets the created of the Comment.
-     * @return DateTime	 */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Sets the "created" of the Comment.
-     *
-     * @param DateTime $created
-     *
-     * @return Comment
-     */
-    public function setCreated($created)
-    {
-        if ($created instanceof DateTime) {
-            $this->created = $created;
-        } else {
-            try {
-                $this->created = new DateTime($created);
-            } catch (\Exception $e) {
-                $this->created = null;
-            }
-        }
+        $this->objectId = $objectId;
 
         return $this;
     }
@@ -194,115 +91,65 @@ use DateTime;
         return $this;
     }
     /**
-     * Gets the parent_id of the Comment.
+     * Gets the parentId of the Comment.
      * @return int	 */
-    public function getParent_id()
+    public function getParentId()
     {
-        return $this->parent_id;
+        return $this->parentId;
     }
 
     /**
-     * Sets the "parent_id" of the Comment.
+     * Sets the "parentId" of the Comment.
      *
-     * @param int $parent_id
+     * @param int $parentId
      *
      * @return Comment
      */
-    public function setParent_id($parent_id)
+    public function setParentId($parentId)
     {
-        $this->parent_id = $parent_id;
+        $this->parentId = $parentId;
 
         return $this;
     }
     /**
-     * Gets the user_name of the Comment.
+     * Gets the userName of the Comment.
      * @return string	 */
-    public function getUser_name()
+    public function getUserName()
     {
-        return $this->user_name;
+        return $this->userName;
     }
 
     /**
-     * Sets the "user_name" of the Comment.
+     * Sets the "userName" of the Comment.
      *
-     * @param string $user_name
+     * @param string $userName
      *
      * @return Comment
      */
-    public function setUser_name($user_name)
+    public function setUserName($userName)
     {
-        $this->user_name = $user_name;
+        $this->userName = $userName;
 
         return $this;
     }
     /**
-     * Gets the user_email of the Comment.
+     * Gets the userEmail of the Comment.
      * @return string	 */
-    public function getUser_email()
+    public function getUserEmail()
     {
-        return $this->user_email;
+        return $this->userEmail;
     }
 
     /**
-     * Sets the "user_email" of the Comment.
+     * Sets the "userEmail" of the Comment.
      *
-     * @param string $user_email
+     * @param string $userEmail
      *
      * @return Comment
      */
-    public function setUser_email($user_email)
+    public function setUserEmail($userEmail)
     {
-        $this->user_email = $user_email;
-
-        return $this;
-    }
-    /**
-     * Gets the replies of the Comment.
-     * @return Comment[]	 */
-    public function getReplies()
-    {
-        return $this->replies;
-    }
-
-    /**
-     * Sets the "replies" of the Comment.
-     *
-     * @param Comment[] $replies
-     *
-     * @return Comment
-     */
-    public function setReplies(array $replies)
-    {
-        $this->replies = [];
-
-        foreach ($replies as $item) {
-            $this->addComment($item);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Adds an object of "Replies" of the Comment.
-     *
-     * @param Comment|array $item
-     *
-     * @return Comment
-     */
-    public function addComment($item)
-    {
-        if (!($item instanceof self)) {
-            if (is_array($item)) {
-                try {
-                    $item = new self($item);
-                } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate Comment. '.$e->getMessage(), E_USER_WARNING);
-                }
-            } else {
-                trigger_error('Array parameter item is not of expected type "Comment"!', E_USER_WARNING);
-            }
-        }
-        $this->replies[] = $item;
+        $this->userEmail = $userEmail;
 
         return $this;
     }
@@ -316,34 +163,22 @@ use DateTime;
     {
         $json = [];
 
-        if ($this->id !== null) {
-            $json['id'] = $this->id;
-        }
-        if ($this->object_id !== null) {
-            $json['object_id'] = $this->object_id;
-        }
-        if ($this->created_by !== null) {
-            $json['created_by'] = $this->created_by;
-        }
-        if ($this->created !== null) {
-            $json['created'] = $this->created->format(\DateTime::ISO8601);
+        if ($this->objectId !== null) {
+            $json['objectId'] = $this->objectId;
         }
         if ($this->comment !== null) {
             $json['comment'] = $this->comment;
         }
-        if ($this->parent_id !== null) {
-            $json['parent_id'] = $this->parent_id;
+        if ($this->parentId !== null) {
+            $json['parentId'] = $this->parentId;
         }
-        if ($this->user_name !== null) {
-            $json['user_name'] = $this->user_name;
+        if ($this->userName !== null) {
+            $json['userName'] = $this->userName;
         }
-        if ($this->user_email !== null) {
-            $json['user_email'] = $this->user_email;
-        }
-        if ($this->replies !== null && !empty($this->replies)) {
-            $json['replies'] = $this->replies;
+        if ($this->userEmail !== null) {
+            $json['userEmail'] = $this->userEmail;
         }
 
         return $json;
     }
-    }
+}

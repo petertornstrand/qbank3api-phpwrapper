@@ -5,6 +5,7 @@ namespace QBNK\QBank\API\Controller;
 use GuzzleHttp\Post\PostFile;
     use QBNK\QBank\API\CachePolicy;
     use QBNK\QBank\API\Model\Comment;
+    use QBNK\QBank\API\Model\CommentResponse;
     use QBNK\QBank\API\Model\DeploymentFile;
     use QBNK\QBank\API\Model\DeploymentSiteResponse;
     use QBNK\QBank\API\Model\FolderResponse;
@@ -65,31 +66,6 @@ use GuzzleHttp\Post\PostFile;
             'headers' => [],
         ];
         $result = $this->get('v1/media/'.$id.'/asset', $parameters, $cachePolicy);
-
-        return $result;
-    }
-    /**
-     * Fetches eventual comments made on this media.
-     *
-     * @param int $id The Media identifier..
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return Comment[]
-
-     */
-    public function listComments($id, CachePolicy $cachePolicy = null)
-    {
-        $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
-            'headers' => [],
-        ];
-        $result = $this->get('v1/media/'.$id.'/comments', $parameters, $cachePolicy);
-        foreach ($result as &$entry) {
-            $entry = new Comment($entry);
-        }
-        unset($entry);
-        reset($result);
 
         return $result;
     }
@@ -255,6 +231,31 @@ use GuzzleHttp\Post\PostFile;
         return $result;
     }
     /**
+     * Fetches eventual comments made on this media.
+     *
+     * @param int $mediaId The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     *
+     * @return CommentResponse[]
+
+     */
+    public function listComments($mediaId, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$mediaId.'/comments', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new CommentResponse($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
      * Downloads an archive of several Media.
      *
      * . You may append an optional template parameter to the query. Omitting the template parameter will return the original files.
@@ -404,6 +405,29 @@ use GuzzleHttp\Post\PostFile;
         return $result;
     }
     /**
+     * Post a comment on a media.
+     *
+     * , leave username and useremail empty to post as the user that is logged on to the API.
+     *
+     * @param int $mediaId the media to post the comment on.
+     * @param Comment $comment The comment to post
+     *
+     * @return Comment
+
+     */
+    public function createComment($mediaId, Comment $comment)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['comment' => $comment]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media/'.$mediaId.'/comments', $parameters);
+        $result = new Comment($result);
+
+        return $result;
+    }
+    /**
      * Delete a Media.
      *
      * Deleting a Media will set it's status to removed but will retain all data and enable restoration of the Media, much like the trash bin of your operating system. To permanetly remove a Media, use the "hardDelete" flag.
@@ -423,6 +447,29 @@ use GuzzleHttp\Post\PostFile;
         ];
         $result = $this->delete('v1/media/'.$id.'', $parameters);
         $result = new MediaResponse($result);
+
+        return $result;
+    }
+    /**
+     * Delete a comment.
+     *
+     * on a media
+     *
+     * @param int $mediaId the media to delete the comment from.
+     * @param int $commentId the comment to delete.
+     *
+     * @return Comment
+
+     */
+    public function removeComment($mediaId, $commentId)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->delete('v1/media/'.$mediaId.'/comments/'.$commentId.'', $parameters);
+        $result = new Comment($result);
 
         return $result;
     }
