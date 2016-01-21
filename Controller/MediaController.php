@@ -412,7 +412,7 @@ use GuzzleHttp\Post\PostFile;
      * @param int $mediaId the media to post the comment on.
      * @param Comment $comment The comment to post
      *
-     * @return Comment
+     * @return CommentResponse
 
      */
     public function createComment($mediaId, Comment $comment)
@@ -423,7 +423,7 @@ use GuzzleHttp\Post\PostFile;
             'headers' => [],
         ];
         $result = $this->post('v1/media/'.$mediaId.'/comments', $parameters);
-        $result = new Comment($result);
+        $result = new CommentResponse($result);
 
         return $result;
     }
