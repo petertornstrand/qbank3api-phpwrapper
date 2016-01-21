@@ -4,6 +4,7 @@ namespace QBNK\QBank\API\Controller;
 
 use GuzzleHttp\Post\PostFile;
     use QBNK\QBank\API\CachePolicy;
+    use QBNK\QBank\API\Model\Comment;
     use QBNK\QBank\API\Model\DeploymentFile;
     use QBNK\QBank\API\Model\DeploymentSiteResponse;
     use QBNK\QBank\API\Model\FolderResponse;
@@ -64,6 +65,31 @@ use GuzzleHttp\Post\PostFile;
             'headers' => [],
         ];
         $result = $this->get('v1/media/'.$id.'/asset', $parameters, $cachePolicy);
+
+        return $result;
+    }
+    /**
+     * Fetches eventual comments made on this media.
+     *
+     * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     *
+     * @return Comment[]
+
+     */
+    public function listComments($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/comments', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new Comment($entry);
+        }
+        unset($entry);
+        reset($result);
 
         return $result;
     }
