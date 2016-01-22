@@ -6,7 +6,7 @@ use DateTime;
 
     class DeploymentFile  implements \JsonSerializable
     {
-    /** @var int The identifier of the DeploymentSite this file is deployed to. */
+        /** @var int The identifier of the DeploymentSite this file is deployed to. */
     protected $deploymentSiteId;
 
     /** @var string The filename of the deployed file. */
@@ -36,7 +36,7 @@ use DateTime;
     /**
      * Constructs a DeploymentFile.
      *
-     * @param array $parameters An array of parameters to initialize the { @link DeploymentFile } with.
+     * @param array $parameters An array of parameters to initialize the {@link DeploymentFile} with.
      * - <b>deploymentSiteId</b> - The identifier of the DeploymentSite this file is deployed to.
      * - <b>remoteFile</b> - The filename of the deployed file.
      * - <b>imageTemplateId</b> - The identifier of the Image template used.

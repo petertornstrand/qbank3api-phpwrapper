@@ -7,7 +7,7 @@ use DateTime;
 
     class MoodboardResponse extends Moodboard implements \JsonSerializable
     {
-    /** @var int The Moodboard identifier */
+        /** @var int The Moodboard identifier */
     protected $id;
 
     /** @var string Enduser hash used to identify this moodboard. */
@@ -37,7 +37,7 @@ use DateTime;
     /**
      * Constructs a MoodboardResponse.
      *
-     * @param array $parameters An array of parameters to initialize the { @link MoodboardResponse } with.
+     * @param array $parameters An array of parameters to initialize the {@link MoodboardResponse} with.
      * - <b>id</b> - The Moodboard identifier
      * - <b>hash</b> - Enduser hash used to identify this moodboard.
      * - <b>objectId</b> - The base Object identifier.

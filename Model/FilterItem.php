@@ -16,7 +16,7 @@ class FilterItem  implements \JsonSerializable
     /**
      * Constructs a FilterItem.
      *
-     * @param array $parameters An array of parameters to initialize the { @link FilterItem } with.
+     * @param array $parameters An array of parameters to initialize the {@link FilterItem} with.
      * - <b>id</b> - ID of the Filter (only applicable if Category or Folder FilterItem)
      * - <b>title</b> - Title
      * - <b>mediaIds</b> - An array of mediaIds that are tagged with this title

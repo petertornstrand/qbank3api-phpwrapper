@@ -7,9 +7,9 @@ use QBNK\QBank\API\Model\DownloadItem;
 
     class EventsController extends ControllerAbstract
     {
-    /**
+        /**
      * Track a Media download.
-     *
+     * 
      * @param int $sessionId The session id to log the download on
      * @param DownloadItem[] $downloads An array of DownloadItem (media & template) that was downloaded
      */
@@ -26,7 +26,7 @@ use QBNK\QBank\API\Model\DownloadItem;
     }
     /**
      * Track a Search.
-     *
+     * 
      * @param int $sessionId The session id to log the search on
      * @param Search $search The Search that was made
      * @param int $hits Number of hits for this search
@@ -44,9 +44,9 @@ use QBNK\QBank\API\Model\DownloadItem;
     }
     /**
      * Creates a sessionId.
-     *
+     * 
      * SessionId must be sent along with all subsequent requests to track events.
-     *
+     * 
      * @param int $sourceId the source we should log things on
      * @param string $sessionHash Some sort of identifier for the user
      * @param string $remoteIp Ip-address of the user
@@ -66,7 +66,7 @@ use QBNK\QBank\API\Model\DownloadItem;
     }
     /**
      * Track a Media view.
-     *
+     * 
      * @param int $sessionId The session id to log the search on
      * @param int $mediaId The ID of the media that was viewed
      */

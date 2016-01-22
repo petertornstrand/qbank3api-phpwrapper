@@ -13,7 +13,7 @@ class MetaData  implements \JsonSerializable
     /**
      * Constructs a MetaData.
      *
-     * @param array $parameters An array of parameters to initialize the { @link MetaData } with.
+     * @param array $parameters An array of parameters to initialize the {@link MetaData} with.
      * - <b>section</b> - The MetaData section name.
      * - <b>data</b> - The MetaData data as a key-value object.
      */

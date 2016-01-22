@@ -28,7 +28,7 @@ class MimeType  implements \JsonSerializable
     /**
      * Constructs a MimeType.
      *
-     * @param array $parameters An array of parameters to initialize the { @link MimeType } with.
+     * @param array $parameters An array of parameters to initialize the {@link MimeType} with.
      * - <b>id</b> - The MimeType identifier.
      * - <b>mimetype</b> - The MimeType string representation.
      * - <b>description</b> - The MimeType human readable description.

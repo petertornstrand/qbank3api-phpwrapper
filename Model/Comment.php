@@ -22,7 +22,7 @@ class Comment  implements \JsonSerializable
     /**
      * Constructs a Comment.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Comment } with.
+     * @param array $parameters An array of parameters to initialize the {@link Comment} with.
      * - <b>objectId</b> - Object that this comment is made on
      * - <b>comment</b> - The actual comment
      * - <b>parentId</b> - If a reply, indicates this comments parent

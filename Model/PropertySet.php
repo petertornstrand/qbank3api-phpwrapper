@@ -6,7 +6,7 @@ use DateTime;
 
     class PropertySet  implements \JsonSerializable
     {
-    /** @var int The PropertySet identifier */
+        /** @var int The PropertySet identifier */
     protected $id;
 
     /** @var string The PropertySet name. */
@@ -39,7 +39,7 @@ use DateTime;
     /**
      * Constructs a PropertySet.
      *
-     * @param array $parameters An array of parameters to initialize the { @link PropertySet } with.
+     * @param array $parameters An array of parameters to initialize the {@link PropertySet} with.
      * - <b>id</b> - The PropertySet identifier
      * - <b>name</b> - The PropertySet name.
      * - <b>created</b> - When the PropertySet was created.

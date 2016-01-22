@@ -6,7 +6,7 @@ use DateTime;
 
     class User  implements \JsonSerializable
     {
-    /** @var int The User identifier. */
+        /** @var int The User identifier. */
     protected $id;
 
     /** @var string The full name of the User. */
@@ -63,7 +63,7 @@ use DateTime;
     /**
      * Constructs a User.
      *
-     * @param array $parameters An array of parameters to initialize the { @link User } with.
+     * @param array $parameters An array of parameters to initialize the {@link User} with.
      * - <b>id</b> - The User identifier.
      * - <b>name</b> - The full name of the User.
      * - <b>email</b> - Email-address of the User

@@ -7,7 +7,7 @@ use DateTime;
 
     class FolderResponse extends Folder implements \JsonSerializable
     {
-    /** @var int The Folder identifier. */
+        /** @var int The Folder identifier. */
     protected $id;
 
     /** @var FolderResponse[] The Folder's children, ie. subfolders. */
@@ -37,7 +37,7 @@ use DateTime;
     /**
      * Constructs a FolderResponse.
      *
-     * @param array $parameters An array of parameters to initialize the { @link FolderResponse } with.
+     * @param array $parameters An array of parameters to initialize the {@link FolderResponse} with.
      * - <b>id</b> - The Folder identifier.
      * - <b>subFolders</b> - The Folder's children, ie. subfolders.
      * - <b>objectId</b> - The base Object identifier.

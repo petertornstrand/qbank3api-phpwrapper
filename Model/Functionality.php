@@ -6,7 +6,7 @@ use DateTime;
 
     class Functionality  implements \JsonSerializable
     {
-    /** @var int The Functionality identifier. */
+        /** @var int The Functionality identifier. */
     protected $id;
 
     /** @var string The name of the functionality (used programmatically) */
@@ -39,7 +39,7 @@ use DateTime;
     /**
      * Constructs a Functionality.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Functionality } with.
+     * @param array $parameters An array of parameters to initialize the {@link Functionality} with.
      * - <b>id</b> - The Functionality identifier.
      * - <b>name</b> - The name of the functionality (used programmatically)
      * - <b>description</b> - Description of what this functionality means

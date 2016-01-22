@@ -7,12 +7,12 @@ use QBNK\QBank\API\CachePolicy;
 
     class ObjecttypesController extends ControllerAbstract
     {
-    /**
+        /**
      * Lists all Object Types.
-     *
+     * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return ObjectType[]
+     
+     * @return ObjectType[]	 
      */
     public function listObjectTypes(CachePolicy $cachePolicy = null)
     {
@@ -32,13 +32,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific ObjectType.
-     *
+     * 
      * Fetches an ObjectType by the specified identifier.
-     *
+     * 
      * @param int $id The ObjectType identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return ObjectType
+     
+     * @return ObjectType	 
      */
     public function retrieveObjectType($id, CachePolicy $cachePolicy = null)
     {

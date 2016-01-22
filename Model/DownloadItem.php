@@ -13,7 +13,7 @@ class DownloadItem  implements \JsonSerializable
     /**
      * Constructs a DownloadItem.
      *
-     * @param array $parameters An array of parameters to initialize the { @link DownloadItem } with.
+     * @param array $parameters An array of parameters to initialize the {@link DownloadItem} with.
      * - <b>mediaId</b> - Media ID
      * - <b>imageTemplateId</b> - ImageTemplate ID
      */

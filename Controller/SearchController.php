@@ -8,7 +8,7 @@ use QBNK\QBank\API\CachePolicy;
 
     class SearchController extends ControllerAbstract
     {
-    /**
+        /**
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      */
     public function metadata(CachePolicy $cachePolicy = null)
@@ -24,12 +24,12 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Search for Media.
-     *
+     * 
      * in QBank
-     *
+     * 
      * @param Search $search Search parameters
-     *
-     * @return SearchResult
+     
+     * @return SearchResult	 
      */
     public function search(Search $search, CachePolicy $cachePolicy = null)
     {

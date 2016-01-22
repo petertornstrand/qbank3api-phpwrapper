@@ -7,7 +7,7 @@ use DateTime;
 
     class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
     {
-    /** @var int The DeploymentSite identifier. */
+        /** @var int The DeploymentSite identifier. */
     protected $id;
 
     /** @var int The base Object identifier. */
@@ -34,7 +34,7 @@ use DateTime;
     /**
      * Constructs a DeploymentSiteResponse.
      *
-     * @param array $parameters An array of parameters to initialize the { @link DeploymentSiteResponse } with.
+     * @param array $parameters An array of parameters to initialize the {@link DeploymentSiteResponse} with.
      * - <b>id</b> - The DeploymentSite identifier.
      * - <b>objectId</b> - The base Object identifier.
      * - <b>created</b> - When the Object was created.

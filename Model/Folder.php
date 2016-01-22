@@ -22,7 +22,7 @@ class Folder  implements \JsonSerializable
     /**
      * Constructs a Folder.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Folder } with.
+     * @param array $parameters An array of parameters to initialize the {@link Folder} with.
      * - <b>parentId</b> - An optional parent Folder identifier.
      * - <b>name</b> - The Objects name.
      * - <b>deleted</b> - Whether the object is deleted.

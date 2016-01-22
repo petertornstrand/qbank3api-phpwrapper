@@ -6,7 +6,7 @@ use DateTime;
 
     class CommentResponse extends Comment implements \JsonSerializable
     {
-    /** @var int Id of the comment */
+        /** @var int Id of the comment */
     protected $id;
 
     /** @var int The QBank user that wrote this comment */
@@ -21,7 +21,7 @@ use DateTime;
     /**
      * Constructs a CommentResponse.
      *
-     * @param array $parameters An array of parameters to initialize the { @link CommentResponse } with.
+     * @param array $parameters An array of parameters to initialize the {@link CommentResponse} with.
      * - <b>id</b> - Id of the comment
      * - <b>createdBy</b> - The QBank user that wrote this comment
      * - <b>created</b> - Time this comment was made

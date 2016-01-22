@@ -6,12 +6,12 @@ use DateTime;
 
     class PropertyType  implements \JsonSerializable
     {
-    const DATATYPE_BOOLEAN  = 1;
-    const DATATYPE_DATETIME = 2;
-    const DATATYPE_DECIMAL  = 3;
-    const DATATYPE_FLOAT    = 4;
-    const DATATYPE_INTEGER  = 5;
-    const DATATYPE_STRING   = 6;
+        const DATATYPE_BOOLEAN  = 1;
+        const DATATYPE_DATETIME = 2;
+        const DATATYPE_DECIMAL  = 3;
+        const DATATYPE_FLOAT    = 4;
+        const DATATYPE_INTEGER  = 5;
+        const DATATYPE_STRING   = 6;
 
     /** @var DateTime When the Property was created. */
     protected $created;
@@ -46,7 +46,7 @@ use DateTime;
     /**
      * Constructs a PropertyType.
      *
-     * @param array $parameters An array of parameters to initialize the { @link PropertyType } with.
+     * @param array $parameters An array of parameters to initialize the {@link PropertyType} with.
      * - <b>created</b> - When the Property was created.
      * - <b>createdBy</b> - The identifier of the User who created the Property.
      * - <b>updated</b> - When the Property was updated.

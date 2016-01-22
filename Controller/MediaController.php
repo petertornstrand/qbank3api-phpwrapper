@@ -16,14 +16,13 @@ use GuzzleHttp\Post\PostFile;
 
     class MediaController extends ControllerAbstract
     {
-    /**
+        /**
      * Fetches a specific Media.
-     *
+     * 
      * @param int $id The Media identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return MediaResponse
-
      */
     public function retrieveMedia($id, CachePolicy $cachePolicy = null)
     {
@@ -39,9 +38,9 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Gets the raw file data of a Media.
-     *
-     * You may append an optional template parameter to the query. Omitting the template parameter will return the medium thumbnail.
-     *
+     * 
+     * You may append an optional template parameter to the query. Omitting the template parameter will return the medium thumbnail. 
+     * 
      *  Existing templates are:
      *  <b>original</b> - The original file
      *  <b>preview</b> - A preview image, sized 1000px on the long side
@@ -50,13 +49,12 @@ use GuzzleHttp\Post\PostFile;
      *  <b>thumb_large</b> - A thumbnail image, sized 300px on the long side
      *  <b>videopreview</b> - A preview video, sized 360p and maximum 2min
      *  <b>{integer}</b> - An image template identifier
-     *
+     * 
      * @param int $id The Media identifier..
      * @param mixed $template Optional template of Media..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return string The raw file data
-
      */
     public function retrieveFileData($id, $template = null, CachePolicy $cachePolicy = null)
     {
@@ -71,12 +69,11 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Fetches all DeployedFiles a media has.
-     *
+     * 
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return DeploymentFile[]
-
      */
     public function listDeployedFiles($id, CachePolicy $cachePolicy = null)
     {
@@ -96,12 +93,11 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Fetches all DeploymentSites a Media is deployed to.
-     *
+     * 
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return DeploymentSiteResponse[]
-
      */
     public function listDeploymentSites($id, CachePolicy $cachePolicy = null)
     {
@@ -121,16 +117,15 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Downloads a specific Media.
-     *
+     * 
      * You may append an optional template parameter to the query. Omitting the template parameter will return the original file.
-     *
+     * 
      * @param int $id The Media identifier.
      * @param string $template Optional template to download the media in.
      * @param string $templateType Indicates type of template, valid values are; image, video.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return resource A file pointer resource pointing to a temporary file.
-
      */
     public function download($id, $template = null, $templateType = 'image', CachePolicy $cachePolicy = null)
     {
@@ -154,13 +149,12 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Fetches all Folders a Media resides in.
-     *
+     * 
      * @param int $id The Media identifier..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all toghether..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return FolderResponse[]
-
      */
     public function listFolders($id, $depth = 0, CachePolicy $cachePolicy = null)
     {
@@ -180,12 +174,11 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Fetches all Moodboards a Media is a member of.
-     *
+     * 
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return MoodboardResponse[]
-
      */
     public function listMoodboards($id, CachePolicy $cachePolicy = null)
     {
@@ -205,14 +198,13 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Fetches the version list of a media.
-     *
+     * 
      * The id may be of any media version in the list; first, somewhere in between or last.
-     *
+     * 
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return MediaVersion[]
-
      */
     public function listVersions($id, CachePolicy $cachePolicy = null)
     {
@@ -232,12 +224,11 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Fetches eventual comments made on this media.
-     *
+     * 
      * @param int $mediaId The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return CommentResponse[]
-
      */
     public function listComments($mediaId, CachePolicy $cachePolicy = null)
     {
@@ -257,9 +248,9 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Downloads an archive of several Media.
-     *
+     * 
      * . You may append an optional template parameter to the query. Omitting the template parameter will return the original files.
-     *
+     * 
      * @param int[] $ids Array of Media ID:s to download.
      * @param string $template Optional template to download all Media in..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
@@ -277,7 +268,7 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Upload a new media to QBank.
-     *
+     * 
      * This upload endpoint has been specifically tailored to fit chunked uploading (works well with Plupload2 for example). Max chunk size is about 10mb, if your files are larger then this, split it up and set correct chunk and chunks argument in the call.
      *  For example a 26mb file might be split in 3 chunks, so the following 3 calls should be made
      *  POST /media.json?chunks=3&chunk=0&filename=largefile.txt&categoryId=1 (file data is sent in body)
@@ -290,9 +281,8 @@ use GuzzleHttp\Post\PostFile;
      * @param int $chunks Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
      * @param string $fileId A unique fileId that will be used for this upload, if none is given one will be given to you
      * @param int $categoryId The category to place the file in
-     *
+     
      * @return array
-
      */
     public function uploadFileChunked($fileData, $name, $chunk, $chunks, $fileId, $categoryId)
     {
@@ -304,7 +294,7 @@ use GuzzleHttp\Post\PostFile;
                 'fileId'     => $fileId,
                 'categoryId' => $categoryId,
             ],
-            'body'    => ['file'         => new PostFile('file', $fileData)],
+            'body'    => ['file' => new PostFile('file', $fileData)],
             'headers' => ['Content-type' => 'multipart/form-data'],
         ];
         $result = $this->post('v1/media', $parameters);
@@ -313,14 +303,13 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Update a specific Media.
-     *
+     * 
      * Note that type_id cannot be set directly, but must be decided by the category. The properties parameter of the media
-     *
+     * 
      * @param int $id The Media identifier.
      * @param Media $media A JSON encoded Media representing the updates
-     *
+     
      * @return MediaResponse
-
      */
     public function updateMedia($id, Media $media)
     {
@@ -341,9 +330,9 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Groups one "main" Media with one or more "child" Media.
-     *
+     * 
      * The main medium will by default be the only medium shown when searching, child media can be fetched by issuing a search with parentId set to the main medium id.
-     *
+     * 
      * @param int $id The Media identifier.
      * @param int[] $children An array of int values.
      */
@@ -360,13 +349,12 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Restore a deleted Media.
-     *
+     * 
      * Can not restore a Media that has been hard deleted!
-     *
+     * 
      * @param int $id The Media identifier.
-     *
+     
      * @return MediaResponse
-
      */
     public function restoreMedia($id)
     {
@@ -382,16 +370,15 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Change status of a Media.
-     *
+     * 
      * This is used to move media from the uploaded tab into the library.
-     *  Possible statuses are: <ul> <li>approved</li> </ul>
+     *  Possible statuses are: <ul> <li>approved</li> </ul> 
      *
-     *
+     * 
      * @param int $id The Media identifier.
      * @param string $status The new status of the media
-     *
+     
      * @return array
-
      */
     public function setStatus($id, $status)
     {
@@ -406,14 +393,13 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Post a comment on a media.
-     *
+     * 
      * , leave username and useremail empty to post as the user that is logged on to the API.
-     *
+     * 
      * @param int $mediaId the media to post the comment on.
      * @param Comment $comment The comment to post
-     *
+     
      * @return CommentResponse
-
      */
     public function createComment($mediaId, Comment $comment)
     {
@@ -429,14 +415,13 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Delete a Media.
-     *
+     * 
      * Deleting a Media will set it's status to removed but will retain all data and enable restoration of the Media, much like the trash bin of your operating system. To permanetly remove a Media, use the "hardDelete" flag.
-     *
+     * 
      * @param int $id The Media identifier.
      * @param bool $hardDelete Prevent restoration of the Media..
-     *
+     
      * @return MediaResponse
-
      */
     public function removeMedia($id, $hardDelete = false)
     {
@@ -452,14 +437,13 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * Delete a comment.
-     *
+     * 
      * on a media
-     *
+     * 
      * @param int $mediaId the media to delete the comment from.
      * @param int $commentId the comment to delete.
-     *
+     
      * @return Comment
-
      */
     public function removeComment($mediaId, $commentId)
     {

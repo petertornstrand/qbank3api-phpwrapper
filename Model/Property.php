@@ -6,8 +6,8 @@ use DateTime;
 
     class Property  implements \JsonSerializable
     {
-    const TEMPLATE_IMAGE = 'image';
-    const TEMPLATE_VIDEO = 'video';
+        const TEMPLATE_IMAGE = 'image';
+        const TEMPLATE_VIDEO = 'video';
 
     /** @var DateTime When the Property was created. */
     protected $created;
@@ -36,7 +36,7 @@ use DateTime;
     /**
      * Constructs a Property.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Property } with.
+     * @param array $parameters An array of parameters to initialize the {@link Property} with.
      * - <b>created</b> - When the Property was created.
      * - <b>createdBy</b> - The identifier of the User who created the Property.
      * - <b>updated</b> - When the Property was updated.

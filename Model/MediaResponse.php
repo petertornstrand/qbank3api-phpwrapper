@@ -8,8 +8,8 @@ use DateTime;
 
     class MediaResponse extends Media implements \JsonSerializable
     {
-    const TEMPLATE_IMAGE = 'image';
-    const TEMPLATE_VIDEO = 'video';
+        const TEMPLATE_IMAGE = 'image';
+        const TEMPLATE_VIDEO = 'video';
 
     /** @var int The Media identifier. */
     protected $mediaId;
@@ -68,7 +68,7 @@ use DateTime;
     /**
      * Constructs a MediaResponse.
      *
-     * @param array $parameters An array of parameters to initialize the { @link MediaResponse } with.
+     * @param array $parameters An array of parameters to initialize the {@link MediaResponse} with.
      * - <b>mediaId</b> - The Media identifier.
      * - <b>thumbPreviewStatus</b> - Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000;
      * - <b>extension</b> - The Media's filename extension.
