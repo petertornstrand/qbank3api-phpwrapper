@@ -4,6 +4,7 @@ namespace QBNK\QBank\API\Controller;
 
 use GuzzleHttp\Post\PostFile;
     use QBNK\QBank\API\CachePolicy;
+    use QBNK\QBank\API\Exception\UploadException;
     use QBNK\QBank\API\Model\Comment;
     use QBNK\QBank\API\Model\CommentResponse;
     use QBNK\QBank\API\Model\DeploymentFile;
@@ -456,5 +457,61 @@ use GuzzleHttp\Post\PostFile;
         $result = new Comment($result);
 
         return $result;
+    }
+
+    /**
+     * Upload a new Media to QBank.
+     *
+     * Will automatically divide files into chunks if neccessary. The specific breakpoint when chunking occurs is
+     * customizable, but defaults to the recommended maximum. It is also possible to monitor uploading via callbacks.
+     *
+     * @param string $pathname The pathname of the file to upload.
+     * @param string $name The name of the new Media.
+     * @param int $categoryId The ID of the Category the new Media should belong to.
+     * @param callable $progress Provides progress monitoring. Callback should have the signature function($chunk, $chunkTotal).
+     * @param int $chunkSize The size of chunk during upload. Defaults to the recommended maximum of 10MB.
+     *
+     * @throws UploadException Thrown if something went wrong during the upload.
+     *
+     * @return MediaResponse The newly created Media.
+     */
+    public function uploadFile($pathname, $name, $categoryId, $progress = null, $chunkSize = 10485760)
+    {
+        $chunk       = 0;
+        $chunksTotal = ceil(filesize($pathname) / $chunkSize);
+        $fileId      = sha1(uniqid('upload', true));
+        $fp          = fopen($pathname, 'r');
+        if ($fp === false) {
+            throw new UploadException('Could not open file "'.$pathname.'" for reading.');
+        }
+        if ($chunkSize > 10485760) {
+            $this->logger->warning('Using a chunk size larger then 10MB is not recommended. Uploading is not guaranteed to work properly.');
+        }
+        while ($chunkData = fread($fp, $chunkSize)) {
+            $result = $this->uploadFileChunked($chunkData, $name, $chunk, $chunksTotal, $fileId, $categoryId);
+            if (is_callable($progress)) {
+                try {
+                    call_user_func($progress, $chunk + 1, $chunksTotal);
+                } catch (\Exception $e) {
+                    $this->logger->warning('Could not report progress due to callback error.', ['message' => $e->getMessage()]);
+                }
+            }
+            $this->logger->info('Upload progress!', ['part' => $chunk + 1, 'total' => $chunksTotal]);
+            if (isset($result['mediaId'])) {
+                return new MediaResponse($result);
+            }
+            if (isset($result['success']) && $result['success'] == false) {
+                throw new UploadException($result['error']['message'], $result['error']['code']);
+            }
+            $fileId = $result['fileId'];
+            ++$chunk;
+        }
+        if ($chunk == $chunksTotal - 1) {
+            throw new UploadException('Uploaded all chunks, but something went wrong.');
+        }
+        if ($chunkData === false) {
+            throw new UploadException('Could not read chunk '.$chunk.' from file "'.$pathname.'".');
+        }
+        throw new UploadException('Unknown upload error!');
     }
     }
