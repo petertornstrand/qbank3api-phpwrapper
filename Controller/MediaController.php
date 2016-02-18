@@ -49,7 +49,7 @@ use GuzzleHttp\Post\PostFile;
      *  <b>thumb_medium</b> - A thumbnail image, sized 200px on the long side
      *  <b>thumb_large</b> - A thumbnail image, sized 300px on the long side
      *  <b>videopreview</b> - A preview video, sized 360p and maximum 2min
-     *  <b>{integer}</b> - An image template identifier
+     *  <b>{integer}</b> - An image template identifier (NOTE: You can only request templates that are available on the server, eg. a media that have been published using COPY or SYMLINK-protocols)
      * 
      * @param int $id The Media identifier..
      * @param mixed $template Optional template of Media..
@@ -122,7 +122,7 @@ use GuzzleHttp\Post\PostFile;
      * You may append an optional template parameter to the query. Omitting the template parameter will return the original file.
      * 
      * @param int $id The Media identifier.
-     * @param string $template Optional template to download the media in.
+     * @param string $template Optional template to download the media in (NOTE: This should not be used for fetching images often, use very sparingly and consider using publish-sites and templates instead).
      * @param string $templateType Indicates type of template, valid values are; image, video.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
