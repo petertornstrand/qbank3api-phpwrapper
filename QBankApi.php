@@ -319,7 +319,7 @@ class QBankApi
         $urlParts = parse_url($url);
 
         if ($urlParts === false) {
-            throw new InvalidArgumentException('Could not parse QBank URL.');
+            throw new \InvalidArgumentException('Could not parse QBank URL.');
         }
 
         // Default to HTTP

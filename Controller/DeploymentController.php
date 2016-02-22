@@ -59,7 +59,7 @@ use QBNK\QBank\API\CachePolicy;
      *
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
-     * @return DeploymentSite[]
+     * @return DeploymentSiteResponse[]
      */
     public function listSites(CachePolicy $cachePolicy = null)
     {
@@ -70,7 +70,7 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->get('v1/deployment/sites', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
-            $entry = new DeploymentSite($entry);
+            $entry = new DeploymentSiteResponse($entry);
         }
         unset($entry);
         reset($result);
@@ -83,7 +83,7 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $id The DeploymentSite identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
-     * @return DeploymentSite
+     * @return DeploymentSiteResponse
      */
     public function retrieveSite($id, CachePolicy $cachePolicy = null)
     {
@@ -93,7 +93,7 @@ use QBNK\QBank\API\CachePolicy;
             'headers' => [],
         ];
         $result = $this->get('v1/deployment/sites/'.$id.'', $parameters, $cachePolicy);
-        $result = new DeploymentSite($result);
+        $result = new DeploymentSiteResponse($result);
 
         return $result;
     }
