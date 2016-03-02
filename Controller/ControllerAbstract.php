@@ -135,7 +135,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface
             }
 
             if (
-                $cachePolicy->isEnabled()
+                $cachePolicy->isEnabled() && $cachePolicy->getCacheType() == CachePolicy::EVERYTHING
                 && ($method == self::METHOD_GET || $method == self::METHOD_POST && preg_match('/v\d+\/search/', $endpoint))
             ) {
                 $this->cache->save(md5($endpoint.json_encode($parameters)), $data, $cachePolicy->getLifetime());

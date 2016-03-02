@@ -19,10 +19,10 @@ class VideoTemplate  implements \JsonSerializable
     /**
      * Constructs a VideoTemplate.
      *
-     * @param array $parameters An array of parameters to initialize the { @link VideoTemplate } with.
+     * @param array $parameters An array of parameters to initialize the {@link VideoTemplate} with.
      * - <b>id</b> - The Video Template identifier
      * - <b>name</b> - The name of the Video Template
-     * - <b>mimeType</b> -
+     * - <b>mimeType</b> - 
      * - <b>commands</b> - An array of commands for this template
      */
     public function __construct($parameters = [])

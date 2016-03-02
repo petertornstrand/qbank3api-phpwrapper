@@ -10,15 +10,15 @@ use QBNK\QBank\API\CachePolicy;
 
     class AccountsController extends ControllerAbstract
     {
-    /**
+        /**
      * Lists Functionalities available.
-     *
+     * 
      * Lists all Functionalities available
-     *
+     * 
      * @param bool $includeDeleted Indicates if we should include removed Functionalities in the result.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return Functionality[]
+     
+     * @return Functionality[]	 
      */
     public function listFunctionalities($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
@@ -38,13 +38,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific Functionality.
-     *
+     * 
      * Fetches a Functionality by the specified identifier.
-     *
+     * 
      * @param int $id The Functionality identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return Functionality
+     
+     * @return Functionality	 
      */
     public function retrieveFunctionality($id, CachePolicy $cachePolicy = null)
     {
@@ -60,13 +60,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Lists Groups available.
-     *
+     * 
      * Lists all Groups available
-     *
+     * 
      * @param bool $includeDeleted Indicates if we should include removed Groups in the result.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return Group[]
+     
+     * @return Group[]	 
      */
     public function listGroups($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
@@ -86,13 +86,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific Group.
-     *
+     * 
      * Fetches a Group by the specified identifier.
-     *
+     * 
      * @param int $id The Group identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return Group
+     
+     * @return Group	 
      */
     public function retrieveGroup($id, CachePolicy $cachePolicy = null)
     {
@@ -108,12 +108,12 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches the currently logged in User.
-     *
+     * 
      * Effectively a whoami call.
-     *
+     * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return User
+     
+     * @return User	 
      */
     public function retrieveCurrentUser(CachePolicy $cachePolicy = null)
     {
@@ -129,13 +129,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Lists Roles available.
-     *
+     * 
      * Lists all Roles available
-     *
+     * 
      * @param bool $includeDeleted Indicates if we should include removed Roles in the result.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return Role[]
+     
+     * @return Role[]	 
      */
     public function listRoles($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
@@ -155,13 +155,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific Role.
-     *
+     * 
      * Fetches a Role by the specified identifier.
-     *
+     * 
      * @param int $id The Role identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return Role
+     
+     * @return Role	 
      */
     public function retrieveRole($id, CachePolicy $cachePolicy = null)
     {
@@ -177,12 +177,12 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches all settings.
-     *
+     * 
      * Fetches all settings currently available for the current user.
-     *
+     * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return array
+     
+     * @return array	 
      */
     public function listSettings(CachePolicy $cachePolicy = null)
     {
@@ -197,13 +197,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a setting.
-     *
+     * 
      * Fetches a setting for the current user.
-     *
+     * 
      * @param string $key The key of the setting to fetch..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return array
+     
+     * @return array	 
      */
     public function retrieveSetting($key, CachePolicy $cachePolicy = null)
     {
@@ -218,13 +218,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Lists Users available.
-     *
+     * 
      * Lists all Users available
-     *
+     * 
      * @param bool $includeDeleted Indicates if we should include removed Users in the result.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return User[]
+     
+     * @return User[]	 
      */
     public function listUsers($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
@@ -244,13 +244,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific User.
-     *
+     * 
      * Fetches a User by the specified identifier.
-     *
+     * 
      * @param int $id The User identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return User
+     
+     * @return User	 
      */
     public function retrieveUser($id, CachePolicy $cachePolicy = null)
     {
@@ -266,9 +266,9 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Creates a new setting.
-     *
+     * 
      * Creates a new, previously not existing setting.
-     *
+     * 
      * @param string $key The key (identifier) of the setting
      * @param string $value The value of the setting
      */
@@ -285,12 +285,12 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Create a user Create a user in QBank.
-     *
+     * 
      * @param User $user The user to create
      * @param string $password Password for the new user, leave blank to let QBank send a password-reset link to the user
      * @param string $redirectTo Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
-     *
-     * @return User
+     
+     * @return User	 
      */
     public function createUser(User $user, $password = null, $redirectTo = null)
     {
@@ -306,11 +306,11 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Add the user to one or more groups.
-     *
-     * @param int $userId
+     * 
+     * @param int $userId 
      * @param int[] $groupIds An array of int values.
-     *
-     * @return User
+     
+     * @return User	 
      */
     public function addUserToGroup($userId, array $groupIds)
     {
@@ -326,9 +326,9 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Updates an existing setting.
-     *
+     * 
      * Updates a previously created setting.
-     *
+     * 
      * @param string $key The key (identifier) of the setting..
      * @param string $value The value of the setting
      */

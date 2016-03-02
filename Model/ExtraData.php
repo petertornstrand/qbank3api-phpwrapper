@@ -6,7 +6,7 @@ use DateTime;
 
     class ExtraData  implements \JsonSerializable
     {
-    /** @var int The ExtraData identifier. */
+        /** @var int The ExtraData identifier. */
     protected $id;
 
     /** @var bool Whether the object has been modified since constructed. */
@@ -39,7 +39,7 @@ use DateTime;
     /**
      * Constructs a ExtraData.
      *
-     * @param array $parameters An array of parameters to initialize the { @link ExtraData } with.
+     * @param array $parameters An array of parameters to initialize the {@link ExtraData} with.
      * - <b>id</b> - The ExtraData identifier.
      * - <b>dirty</b> - Whether the object has been modified since constructed.
      * - <b>deleted</b> - Indicates if this ExtraData is deleted

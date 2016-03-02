@@ -31,7 +31,7 @@ class Media  implements \JsonSerializable
     /**
      * Constructs a Media.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Media } with.
+     * @param array $parameters An array of parameters to initialize the {@link Media} with.
      * - <b>categoryId</b> - The Category identifier of the Category the Media belongs to.
      * - <b>filename</b> - The Media's filename.
      * - <b>parentId</b> - The Media parent Media identifier. Only set when the Media is grouped.

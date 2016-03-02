@@ -7,7 +7,7 @@ use DateTime;
 
     class CategoryResponse extends Category implements \JsonSerializable
     {
-    /** @var int The Category identifier. */
+        /** @var int The Category identifier. */
     protected $id;
 
     /** @var int The base Object identifier. */
@@ -34,7 +34,7 @@ use DateTime;
     /**
      * Constructs a CategoryResponse.
      *
-     * @param array $parameters An array of parameters to initialize the { @link CategoryResponse } with.
+     * @param array $parameters An array of parameters to initialize the {@link CategoryResponse} with.
      * - <b>id</b> - The Category identifier.
      * - <b>objectId</b> - The base Object identifier.
      * - <b>created</b> - When the Object was created.

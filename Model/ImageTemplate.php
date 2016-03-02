@@ -19,10 +19,10 @@ class ImageTemplate  implements \JsonSerializable
     /**
      * Constructs a ImageTemplate.
      *
-     * @param array $parameters An array of parameters to initialize the { @link ImageTemplate } with.
+     * @param array $parameters An array of parameters to initialize the {@link ImageTemplate} with.
      * - <b>id</b> - The Image Template identifier
      * - <b>name</b> - The name of the Image Template
-     * - <b>mimeType</b> -
+     * - <b>mimeType</b> - 
      * - <b>commands</b> - An array of commands for this template
      */
     public function __construct($parameters = [])

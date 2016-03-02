@@ -33,7 +33,7 @@ class PropertyCriteria  implements \JsonSerializable
     /**
      * Constructs a PropertyCriteria.
      *
-     * @param array $parameters An array of parameters to initialize the { @link PropertyCriteria } with.
+     * @param array $parameters An array of parameters to initialize the {@link PropertyCriteria} with.
      * - <b>systemName</b> - The system name of the Property we filter on
      * - <b>value</b> - The value we filter by
      * - <b>operator</b> - Comparison operator for the criteria

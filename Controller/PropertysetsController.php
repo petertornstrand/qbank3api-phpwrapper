@@ -8,12 +8,13 @@ use QBNK\QBank\API\CachePolicy;
 
     class PropertysetsController extends ControllerAbstract
     {
-    /**
+        /**
      * Lists all PropertySets.
-     *
+     * 
+     
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return PropertySet[]
+     
+     * @return PropertySet[]	
      */
     public function listPropertySets(CachePolicy $cachePolicy = null)
     {
@@ -33,10 +34,10 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Lists all PropertyTypes in QBank.
-     *
+     * 
      * @param null $systemName Returns the specified propertytype
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
+     
      * @return PropertyType[]|PropertyType|null
      */
     public function listPropertyTypes($systemName = null, CachePolicy $cachePolicy = null)

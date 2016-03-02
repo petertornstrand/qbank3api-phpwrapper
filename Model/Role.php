@@ -6,7 +6,7 @@ use DateTime;
 
     class Role  implements \JsonSerializable
     {
-    /** @var int The Role identifier. */
+        /** @var int The Role identifier. */
     protected $id;
 
     /** @var string The name of the Role */
@@ -39,7 +39,7 @@ use DateTime;
     /**
      * Constructs a Role.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Role } with.
+     * @param array $parameters An array of parameters to initialize the {@link Role} with.
      * - <b>id</b> - The Role identifier.
      * - <b>name</b> - The name of the Role
      * - <b>description</b> - Description of what this Role means

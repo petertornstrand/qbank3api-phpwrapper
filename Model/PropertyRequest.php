@@ -10,7 +10,7 @@ class PropertyRequest extends PropertyCriteria implements \JsonSerializable
     /**
      * Constructs a PropertyRequest.
      *
-     * @param array $parameters An array of parameters to initialize the { @link PropertyRequest } with.
+     * @param array $parameters An array of parameters to initialize the {@link PropertyRequest} with.
      * - <b>forfetching</b> - Whether this property should be included in the SearchResult.
      */
     public function __construct($parameters = [])

@@ -19,7 +19,7 @@ class Protocol  implements \JsonSerializable
     /**
      * Constructs a Protocol.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Protocol } with.
+     * @param array $parameters An array of parameters to initialize the {@link Protocol} with.
      * - <b>id</b> - The Protocol identifier.
      * - <b>description</b> - The human readable description of the Protocol.
      * - <b>name</b> - The Protocol name.

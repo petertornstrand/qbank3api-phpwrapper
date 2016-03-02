@@ -7,7 +7,7 @@ use DateTime;
 
     class ObjectType  implements \JsonSerializable
     {
-    /** @var string The name of the ObjectType */
+        /** @var string The name of the ObjectType */
     protected $name;
 
     /** @var string A description of the ObjectType */
@@ -40,7 +40,7 @@ use DateTime;
     /**
      * Constructs a ObjectType.
      *
-     * @param array $parameters An array of parameters to initialize the { @link ObjectType } with.
+     * @param array $parameters An array of parameters to initialize the {@link ObjectType} with.
      * - <b>name</b> - The name of the ObjectType
      * - <b>description</b> - A description of the ObjectType
      * - <b>type</b> - The type of Object Type.

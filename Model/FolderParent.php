@@ -13,7 +13,7 @@ class FolderParent  implements \JsonSerializable
     /**
      * Constructs a FolderParent.
      *
-     * @param array $parameters An array of parameters to initialize the { @link FolderParent } with.
+     * @param array $parameters An array of parameters to initialize the {@link FolderParent} with.
      * - <b>folderid</b> - The Folder identifier.
      * - <b>depth</b> - The distance from the specified Folder identifer, ie. the reverse depth.
      */

@@ -6,7 +6,7 @@ use DateTime;
 
     class MediaVersion  implements \JsonSerializable
     {
-    /** @var int The Media identifier. */
+        /** @var int The Media identifier. */
     protected $mediaId;
 
     /** @var string The Media filename */
@@ -30,7 +30,7 @@ use DateTime;
     /**
      * Constructs a MediaVersion.
      *
-     * @param array $parameters An array of parameters to initialize the { @link MediaVersion } with.
+     * @param array $parameters An array of parameters to initialize the {@link MediaVersion} with.
      * - <b>mediaId</b> - The Media identifier.
      * - <b>filename</b> - The Media filename
      * - <b>uploaded</b> - When the Media was uploaded. A datetime string on the format ISO8601.

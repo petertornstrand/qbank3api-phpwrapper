@@ -88,7 +88,7 @@ class Search  implements \JsonSerializable
     /**
      * Constructs a Search.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Search } with.
+     * @param array $parameters An array of parameters to initialize the {@link Search} with.
      * - <b>offset</b> - Starting offset of the search
      * - <b>limit</b> - The number of results to return
      * - <b>freeText</b> - A freetext string to search for, operators like and/or/not and grouping by parentheses is available

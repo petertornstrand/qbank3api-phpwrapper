@@ -6,7 +6,7 @@ use DateTime;
 
     class DateTimeRange  implements \JsonSerializable
     {
-    /** @var DateTime Minimum date in this range, leave empty for none. */
+        /** @var DateTime Minimum date in this range, leave empty for none. */
     protected $min;
 
     /** @var DateTime Maximum date in this range, leave empty for none. */
@@ -15,7 +15,7 @@ use DateTime;
     /**
      * Constructs a DateTimeRange.
      *
-     * @param array $parameters An array of parameters to initialize the { @link DateTimeRange } with.
+     * @param array $parameters An array of parameters to initialize the {@link DateTimeRange} with.
      * - <b>min</b> - Minimum date in this range, leave empty for none.
      * - <b>max</b> - Maximum date in this range, leave empty for none.
      */

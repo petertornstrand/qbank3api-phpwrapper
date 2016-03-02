@@ -43,7 +43,7 @@ class SearchSort  implements \JsonSerializable
     /**
      * Constructs a SearchSort.
      *
-     * @param array $parameters An array of parameters to initialize the { @link SearchSort } with.
+     * @param array $parameters An array of parameters to initialize the {@link SearchSort} with.
      * - <b>sortField</b> - Field to sort by
      * - <b>sortDirection</b> - Sort Direction
      * - <b>sourceId</b> - When sorting on Media Popularity, the source to check (QBank Backend, frontend, etc)

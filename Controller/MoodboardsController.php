@@ -8,14 +8,14 @@ use QBNK\QBank\API\CachePolicy;
 
     class MoodboardsController extends ControllerAbstract
     {
-    /**
+        /**
      * Lists all Moodboards.
-     *
+     * 
      * that the current user has access to.
-     *
+     * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return MoodboardResponse[]
+     
+     * @return MoodboardResponse[]	 
      */
     public function listMoodboards(CachePolicy $cachePolicy = null)
     {
@@ -35,13 +35,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific Moodboard.
-     *
+     * 
      * Fetches a Moodboard by the specified identifier.
-     *
+     * 
      * @param int $id The Moodboard identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return MoodboardResponse
+     
+     * @return MoodboardResponse	 
      */
     public function retrieveMoodboard($id, CachePolicy $cachePolicy = null)
     {
@@ -57,12 +57,12 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Create a moodboard.
-     *
+     * 
      * Create a Moodboard
-     *
+     * 
      * @param Moodboard $moodboard A JSON encoded Moodboard to create
-     *
-     * @return MoodboardResponse
+     
+     * @return MoodboardResponse	 
      */
     public function createMoodboard(Moodboard $moodboard)
     {
@@ -78,13 +78,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Update a moodboard.
-     *
+     * 
      * Update a Moodboard.
-     *
+     * 
      * @param int $id The Moodboard identifier.
      * @param Moodboard $moodboard A JSON encoded Moodboard representing the updates
-     *
-     * @return MoodboardResponse
+     
+     * @return MoodboardResponse	 
      */
     public function updateMoodboard($id, Moodboard $moodboard)
     {
@@ -100,11 +100,11 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Add Media to a Moodboard.
-     *
+     * 
      * @param int $moodboardId Moodboard ID to add media to.
      * @param int[] $mediaIds An array of int values.
-     *
-     * @return array
+     
+     * @return array	 
      */
     public function addMediaToMoodboard($moodboardId, array $mediaIds)
     {
@@ -119,12 +119,12 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Delete a Moodboard.
-     *
+     * 
      * Will NOT delete Media attached to the Moodboard.
-     *
+     * 
      * @param int $id The Moodboard identifier.
-     *
-     * @return MoodboardResponse
+     
+     * @return MoodboardResponse	 
      */
     public function removeMoodboard($id)
     {
@@ -140,11 +140,11 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Remove Media from a Moodboard.
-     *
+     * 
      * @param int $moodboardId Moodboard ID to remove media from.
      * @param int $mediaId Media ID to remove from specified folder.
-     *
-     * @return array
+     
+     * @return array	 
      */
     public function removeMediaFromMoodboard($moodboardId, $mediaId)
     {

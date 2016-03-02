@@ -22,7 +22,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     /**
      * Constructs a SearchResult.
      *
-     * @param array $parameters An array of parameters to initialize the { @link SearchResult } with.
+     * @param array $parameters An array of parameters to initialize the {@link SearchResult} with.
      * - <b>limit</b> - Number of hits per page in the SearchResult
      * - <b>offset</b> - Starting position of SearchResult
      * - <b>results</b> - An array of Media matching the search
@@ -186,7 +186,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function count()
     {
@@ -194,7 +194,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function current()
     {
@@ -202,7 +202,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function key()
     {
@@ -210,7 +210,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function next()
     {
@@ -218,7 +218,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rewind()
     {
@@ -226,7 +226,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function valid()
     {
@@ -234,7 +234,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function offsetExists($offset)
     {
@@ -247,7 +247,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function offsetSet($offset, $value)
     {
@@ -259,7 +259,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function offsetUnset($offset)
     {

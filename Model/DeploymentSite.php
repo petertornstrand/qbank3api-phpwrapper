@@ -52,7 +52,7 @@ class DeploymentSite  implements \JsonSerializable
     /**
      * Constructs a DeploymentSite.
      *
-     * @param array $parameters An array of parameters to initialize the { @link DeploymentSite } with.
+     * @param array $parameters An array of parameters to initialize the {@link DeploymentSite} with.
      * - <b>description</b> - The human readable description of the DeploymentSite.
      * - <b>protocol</b> - The Protocol used to deploy to the DeploymentSite.
      * - <b>definition</b> - A key-value object with the Protocol specific values.

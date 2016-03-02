@@ -8,8 +8,8 @@ use DateTime;
 
     class MediaResponse extends Media implements \JsonSerializable
     {
-    const TEMPLATE_IMAGE = 'image';
-    const TEMPLATE_VIDEO = 'video';
+        const TEMPLATE_IMAGE = 'image';
+        const TEMPLATE_VIDEO = 'video';
 
     /** @var int The Media identifier. */
     protected $mediaId;
@@ -41,6 +41,9 @@ use DateTime;
     /** @var DeploymentFile[] An array of deployed files */
     protected $deployedFiles;
 
+    /** @var int Number of comments made on this media */
+    protected $commentCount;
+
     /** @var int The base Object identifier. */
     protected $objectId;
 
@@ -65,7 +68,7 @@ use DateTime;
     /**
      * Constructs a MediaResponse.
      *
-     * @param array $parameters An array of parameters to initialize the { @link MediaResponse } with.
+     * @param array $parameters An array of parameters to initialize the {@link MediaResponse} with.
      * - <b>mediaId</b> - The Media identifier.
      * - <b>thumbPreviewStatus</b> - Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000;
      * - <b>extension</b> - The Media's filename extension.
@@ -76,6 +79,7 @@ use DateTime;
      * - <b>uploaded</b> - When the Media was uploaded. A datetime string on the format ISO8601.
      * - <b>uploadedBy</b> - The identifier of the User who uploaded the Media.
      * - <b>deployedFiles</b> - An array of deployed files
+     * - <b>commentCount</b> - Number of comments made on this media
      * - <b>objectId</b> - The base Object identifier.
      * - <b>created</b> - When the Object was created.
      * - <b>createdBy</b> - The identifier of the User who created the Object.
@@ -121,6 +125,9 @@ use DateTime;
         }
         if (isset($parameters['deployedFiles'])) {
             $this->setDeployedFiles($parameters['deployedFiles']);
+        }
+        if (isset($parameters['commentCount'])) {
+            $this->setCommentCount($parameters['commentCount']);
         }
         if (isset($parameters['objectId'])) {
             $this->setObjectId($parameters['objectId']);
@@ -418,6 +425,27 @@ use DateTime;
             }
         }
         $this->deployedFiles[] = $item;
+
+        return $this;
+    }
+    /**
+     * Gets the commentCount of the MediaResponse.
+     * @return int	 */
+    public function getCommentCount()
+    {
+        return $this->commentCount;
+    }
+
+    /**
+     * Sets the "commentCount" of the MediaResponse.
+     *
+     * @param int $commentCount
+     *
+     * @return MediaResponse
+     */
+    public function setCommentCount($commentCount)
+    {
+        $this->commentCount = $commentCount;
 
         return $this;
     }
@@ -765,6 +793,9 @@ use DateTime;
         }
         if ($this->deployedFiles !== null && !empty($this->deployedFiles)) {
             $json['deployedFiles'] = $this->deployedFiles;
+        }
+        if ($this->commentCount !== null) {
+            $json['commentCount'] = $this->commentCount;
         }
         if ($this->objectId !== null) {
             $json['objectId'] = $this->objectId;

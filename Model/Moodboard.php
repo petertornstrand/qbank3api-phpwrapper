@@ -6,7 +6,7 @@ use DateTime;
 
     class Moodboard  implements \JsonSerializable
     {
-    /** @var string The pincode used to access this Moodboard. */
+        /** @var string The pincode used to access this Moodboard. */
     protected $pinCode;
 
     /** @var int The template used by the Moodboard. */
@@ -36,7 +36,7 @@ use DateTime;
     /**
      * Constructs a Moodboard.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Moodboard } with.
+     * @param array $parameters An array of parameters to initialize the {@link Moodboard} with.
      * - <b>pinCode</b> - The pincode used to access this Moodboard.
      * - <b>templateId</b> - The template used by the Moodboard.
      * - <b>expireDate</b> - The date and time this Moodboard expires.

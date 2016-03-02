@@ -9,12 +9,12 @@ use QBNK\QBank\API\CachePolicy;
 
     class DeploymentController extends ControllerAbstract
     {
-    /**
+        /**
      * Lists all Protocols.
-     *
+     * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return Protocol[]
+     
+     * @return Protocol[]	 
      */
     public function listProtocols(CachePolicy $cachePolicy = null)
     {
@@ -34,11 +34,11 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific Protocol.
-     *
+     * 
      * @param int $id The Protocol identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return Protocol
+     
+     * @return Protocol	 
      */
     public function retrieveProtocol($id, CachePolicy $cachePolicy = null)
     {
@@ -54,9 +54,9 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Lists all DeploymentSites.
-     *
+     * 
      * Lists all DeploymentSites the current User has access to.
-     *
+     * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
      * @return DeploymentSiteResponse[]
@@ -79,7 +79,7 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific DeploymentSite.
-     *
+     * 
      * @param int $id The DeploymentSite identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      *
@@ -99,10 +99,10 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Create a DeploymentSite.
-     *
+     * 
      * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite to create
-     *
-     * @return DeploymentSiteResponse
+     
+     * @return DeploymentSiteResponse	 
      */
     public function createSite(DeploymentSite $deploymentSite)
     {
@@ -118,11 +118,11 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Update a DeploymentSite.
-     *
+     * 
      * @param int $id The DeploymentSite identifier.
      * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite representing the updates
-     *
-     * @return DeploymentSiteResponse
+     
+     * @return DeploymentSiteResponse	 
      */
     public function updateSite($id, DeploymentSite $deploymentSite)
     {
@@ -138,12 +138,12 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Delete a DeploymentSite.
-     *
+     * 
      * You can not delete a DeploymentSite while there are still media deployed there!
-     *
+     * 
      * @param int $id The DeploymentSite identifier.
-     *
-     * @return DeploymentSiteResponse
+     
+     * @return DeploymentSiteResponse	 
      */
     public function removeSite($id)
     {

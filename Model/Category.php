@@ -25,7 +25,7 @@ class Category  implements \JsonSerializable
     /**
      * Constructs a Category.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Category } with.
+     * @param array $parameters An array of parameters to initialize the {@link Category} with.
      * - <b>mediaTypeId</b> - The ObjectType identifier Media belonging to this Category should have.
      * - <b>description</b> - An optional description for the category
      * - <b>name</b> - The Objects name.

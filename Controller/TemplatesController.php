@@ -8,12 +8,12 @@ use QBNK\QBank\API\CachePolicy;
 
     class TemplatesController extends ControllerAbstract
     {
-    /**
+        /**
      * Lists Image Templates available.
-     *
+     * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return ImageTemplate[]
+     
+     * @return ImageTemplate[]	 
      */
     public function listImageTemplates(CachePolicy $cachePolicy = null)
     {
@@ -33,13 +33,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific Image Template.
-     *
+     * 
      * Fetches a Image Template by the specified identifier.
-     *
+     * 
      * @param int $id The Image Template identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return ImageTemplate
+     
+     * @return ImageTemplate	 
      */
     public function retrieveImageTemplate($id, CachePolicy $cachePolicy = null)
     {
@@ -55,10 +55,10 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Lists Video Templates available.
-     *
+     * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return VideoTemplate[]
+     
+     * @return VideoTemplate[]	 
      */
     public function listVideoTemplates(CachePolicy $cachePolicy = null)
     {
@@ -78,13 +78,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific Video Template.
-     *
+     * 
      * Fetches a Video Template by the specified identifier.
-     *
+     * 
      * @param int $id The Video Template identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return VideoTemplate
+     
+     * @return VideoTemplate	 
      */
     public function retrieveVideoTemplate($id, CachePolicy $cachePolicy = null)
     {

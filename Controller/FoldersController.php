@@ -9,16 +9,16 @@ use QBNK\QBank\API\CachePolicy;
 
     class FoldersController extends ControllerAbstract
     {
-    /**
+        /**
      * Lists all Folders.
-     *
+     * 
      * Lists all the Folders that the current user has access to.
-     *
+     * 
      * @param int $root The identifier of a Folder to be treated as the root. Use zero for the absolute root. The root will not be included in the result..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all together..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return FolderResponse[]
+     
+     * @return FolderResponse[]	 
      */
     public function listFolders($root = 0, $depth = 0, CachePolicy $cachePolicy = null)
     {
@@ -38,14 +38,14 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Fetches a specific Folder.
-     *
+     * 
      * Fetches a Folder by the specified identifier.
-     *
+     * 
      * @param int $id The Folder identifier..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all together..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return FolderResponse
+     
+     * @return FolderResponse	 
      */
     public function retrieveFolder($id, $depth = 0, CachePolicy $cachePolicy = null)
     {
@@ -61,13 +61,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Lists all parent Folders until the absolute root.
-     *
+     * 
      * Lists all parent Folders from the specified to the absolute root, with distances.
-     *
+     * 
      * @param int $id The Folder identifier.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return FolderParent[]
+     
+     * @return FolderParent[]	 
      */
     public function retrieveParents($id, CachePolicy $cachePolicy = null)
     {
@@ -87,17 +87,17 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Create a Folder.
-     *
+     * 
      * @param int $parentId An optional parent folder ID. Will otherwise be created in the root level. Note that root level creation requires additional access!.
      * @param Folder $folder A JSON encoded Folder to create
      * @param bool $inheritAccess Decides whether this Folder will inherit access from its parent folder
-     *
-     * @return FolderResponse
+     
+     * @return FolderResponse	 
      */
     public function createFolder($parentId = 0, Folder $folder, $inheritAccess = null)
     {
         $parameters = [
-            'query'   => ['parentId'           => $parentId],
+            'query'   => ['parentId' => $parentId],
             'body'    => json_encode(['folder' => $folder, 'inheritAccess' => $inheritAccess]),
             'headers' => [],
         ];
@@ -108,11 +108,11 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Add Media to Folder.
-     *
+     * 
      * @param int $folderId Folder to add media to.
      * @param int[] $mediaIds An array of int values.
-     *
-     * @return array
+     
+     * @return array	 
      */
     public function addMediaToFolder($folderId, array $mediaIds)
     {
@@ -127,13 +127,13 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Update a Folder. Move a folder by updating the parent folder id.
-     *
+     * 
      * Update a Folder.
-     *
+     * 
      * @param int $id The Folder identifier.
      * @param Folder $folder A JSON encoded Folder representing the updates
-     *
-     * @return FolderResponse
+     
+     * @return FolderResponse	 
      */
     public function updateFolder($id, Folder $folder)
     {
@@ -149,11 +149,11 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Remove Media from Folder.
-     *
+     * 
      * @param int $folderId Folder to remove media from.
      * @param int $mediaId Media to remove from specified folder.
-     *
-     * @return array
+     
+     * @return array	 
      */
     public function removeMediaFromFolder($folderId, $mediaId)
     {
@@ -168,12 +168,12 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Delete a Folder.
-     *
+     * 
      * Delete a Folder and all subfolders. Will NOT delete Media attached to the Folder.
-     *
+     * 
      * @param int $id The Folder identifier.
-     *
-     * @return FolderResponse
+     
+     * @return FolderResponse	 
      */
     public function removeFolder($id)
     {

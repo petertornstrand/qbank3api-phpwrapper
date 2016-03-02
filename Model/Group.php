@@ -6,7 +6,7 @@ use DateTime;
 
     class Group  implements \JsonSerializable
     {
-    /** @var int The Group identifier. */
+        /** @var int The Group identifier. */
     protected $id;
 
     /** @var string The name of the Group */
@@ -45,7 +45,7 @@ use DateTime;
     /**
      * Constructs a Group.
      *
-     * @param array $parameters An array of parameters to initialize the { @link Group } with.
+     * @param array $parameters An array of parameters to initialize the {@link Group} with.
      * - <b>id</b> - The Group identifier.
      * - <b>name</b> - The name of the Group
      * - <b>description</b> - Description of what this Group means
