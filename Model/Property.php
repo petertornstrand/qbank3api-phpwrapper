@@ -262,7 +262,14 @@ use DateTime;
     public function setValue($value)
     {
         $definition = $this->propertyType->getDefinition();
-        if (!empty($definition['array'])) {
+        if (isset($definition['hierarchical']) && $definition['hierarchical']) {
+            $this->value = [];
+            foreach ($value as $v) {
+                foreach ($v['value'] as $itemValue) {
+                    $this->value[] = $this->convertValue($itemValue['value']);
+                }
+            }
+        } elseif (!empty($definition['array'])) {
             if (empty($definition['multiplechoice']) && isset($definition['options']) && is_array($definition['options'])) {
                 $this->value = $this->convertValue(current($value)['value']);
             } else {
