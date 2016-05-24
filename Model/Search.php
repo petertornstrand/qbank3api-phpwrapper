@@ -119,24 +119,24 @@ class Search  implements \JsonSerializable
      */
     public function __construct($parameters = [])
     {
-        $this->objectIds         = [];
-        $this->mediaIds          = [];
-        $this->createdByIds      = [];
-        $this->updatedByIds      = [];
-        $this->mediaStatusIds    = [];
-        $this->folderIds         = [];
-        $this->moodboardIds      = [];
-        $this->categoryIds       = [];
+        $this->objectIds = [];
+        $this->mediaIds = [];
+        $this->createdByIds = [];
+        $this->updatedByIds = [];
+        $this->mediaStatusIds = [];
+        $this->folderIds = [];
+        $this->moodboardIds = [];
+        $this->categoryIds = [];
         $this->deploymentSiteIds = [];
-        $this->properties        = [];
-        $this->fileSizeCriteria  = [];
-        $this->widthCriteria     = [];
-        $this->heightCriteria    = [];
-        $this->mimeTypes         = [];
-        $this->sortFields        = [];
+        $this->properties = [];
+        $this->fileSizeCriteria = [];
+        $this->widthCriteria = [];
+        $this->heightCriteria = [];
+        $this->mimeTypes = [];
+        $this->sortFields = [];
 
-        $this->offset         = 0;
-        $this->limit          = 50;
+        $this->offset = 0;
+        $this->limit = 50;
         $this->mediaStatusIds = [4];
 
         if (isset($parameters['offset'])) {

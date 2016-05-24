@@ -14,6 +14,7 @@ use GuzzleHttp\Post\PostFile;
     use QBNK\QBank\API\Model\MediaResponse;
     use QBNK\QBank\API\Model\MediaVersion;
     use QBNK\QBank\API\Model\MoodboardResponse;
+    use QBNK\QBank\API\Model\SocialMedia;
 
     class MediaController extends ControllerAbstract
     {
@@ -69,7 +70,7 @@ use GuzzleHttp\Post\PostFile;
         return $result;
     }
     /**
-     * Fetches all DeployedFiles a media has.
+     * Fetches all DeployedFiles a Media has.
      * 
      * @param int $id The Media identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
@@ -198,6 +199,56 @@ use GuzzleHttp\Post\PostFile;
         return $result;
     }
     /**
+     * Fetches all links to SocialMedia that a Media has.
+     * 
+     * Fetches all DeployedFiles a Media has.
+     * 
+     * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return DeploymentFile[]
+     */
+    public function listSocialMediaFiles($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/socialmedia/files', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new DeploymentFile($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
+     * Fetches all SocialMedia sites a Media is published to.
+     * 
+     * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return SocialMedia[]
+     */
+    public function listSocialMedia($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/socialmedia/sites', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new SocialMedia($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
      * Fetches the version list of a media.
      * 
      * The id may be of any media version in the list; first, somewhere in between or last.
@@ -270,7 +321,7 @@ use GuzzleHttp\Post\PostFile;
     /**
      * Upload a new media to QBank.
      * 
-     * This upload endpoint has been specifically tailored to fit chunked uploading (works well with Plupload2 for example). Max chunk size is about 10mb, if your files are larger then this, split it up and set correct chunk and chunks argument in the call.
+     * This upload endpoint has been specifically tailored to fit chunked uploading (works well with Plupload2 for example). Max chunk size is about 10mb, if your files are larger than this, split it up and set correct chunk and chunks argument in the call.
      *  For example a 26mb file might be split in 3 chunks, so the following 3 calls should be made
      *  POST /media.json?chunks=3&chunk=0&filename=largefile.txt&categoryId=1 (file data is sent in body)
      *  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
@@ -393,6 +444,36 @@ use GuzzleHttp\Post\PostFile;
         return $result;
     }
     /**
+     * Upload a new version of a media.
+     * 
+     * This upload endpoint has been specifically tailored to fit chunked uploading (works well with Plupload2 for example). Max chunk size is about 10mb, if your files are larger than this, split it up and set correct chunk and chunks argument in the call.
+     *  For example a 26mb file might be split in 3 chunks, so the following 3 calls should be made
+     *  POST /media.json?chunks=3&chunk=0&filename=largefile.txt&categoryId=1 (file data is sent in body)
+     *  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
+     *  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
+     *
+     * 
+     * @param int $id The Media identifier.
+     * @param string $revisionComment The revision comment
+     * @param string $name Filename of the file being uploaded
+     * @param int $chunk The chunk we are currently uploading, starts at 0
+     * @param int $chunks Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
+     * @param string $fileId A unique fileId that will be used for this upload, if none is given one will be given to you
+     
+     * @return array
+     */
+    public function uploadNewVersionChunked($id, $revisionComment, $name, $chunk, $chunks, $fileId)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['revisionComment' => $revisionComment, 'name' => $name, 'chunk' => $chunk, 'chunks' => $chunks, 'fileId' => $fileId]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media/'.$id.'/version', $parameters);
+
+        return $result;
+    }
+    /**
      * Post a comment on a media.
      * 
      * , leave username and useremail empty to post as the user that is logged on to the API.
@@ -477,10 +558,10 @@ use GuzzleHttp\Post\PostFile;
      */
     public function uploadFile($pathname, $name, $categoryId, $progress = null, $chunkSize = 10485760)
     {
-        $chunk       = 0;
+        $chunk = 0;
         $chunksTotal = ceil(filesize($pathname) / $chunkSize);
-        $fileId      = sha1(uniqid('upload', true));
-        $fp          = fopen($pathname, 'r');
+        $fileId = sha1(uniqid('upload', true));
+        $fp = fopen($pathname, 'r');
         if ($fp === false) {
             throw new UploadException('Could not open file "'.$pathname.'" for reading.');
         }

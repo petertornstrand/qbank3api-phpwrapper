@@ -6,12 +6,12 @@ use DateTime;
 
     class PropertyType  implements \JsonSerializable
     {
-        const DATATYPE_BOOLEAN  = 1;
+        const DATATYPE_BOOLEAN = 1;
         const DATATYPE_DATETIME = 2;
-        const DATATYPE_DECIMAL  = 3;
-        const DATATYPE_FLOAT    = 4;
-        const DATATYPE_INTEGER  = 5;
-        const DATATYPE_STRING   = 6;
+        const DATATYPE_DECIMAL = 3;
+        const DATATYPE_FLOAT = 4;
+        const DATATYPE_INTEGER = 5;
+        const DATATYPE_STRING = 6;
 
     /** @var DateTime When the Property was created. */
     protected $created;

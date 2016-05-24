@@ -92,9 +92,9 @@ use DateTime;
     {
         parent::__construct($parameters);
 
-        $this->metadata      = [];
+        $this->metadata = [];
         $this->deployedFiles = [];
-        $this->propertySets  = [];
+        $this->propertySets = [];
 
         if (isset($parameters['mediaId'])) {
             $this->setMediaId($parameters['mediaId']);

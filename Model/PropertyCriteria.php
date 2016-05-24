@@ -4,22 +4,22 @@ namespace QBNK\QBank\API\Model;
 
 class PropertyCriteria  implements \JsonSerializable
 {
-    const OPERATOR_EQUAL                     = '=';
-    const OPERATOR_NOT_EQUAL                 = '!=';
-    const OPERATOR_LIKE                      = '~~*';
-    const OPERATOR_NOT_LIKE                  = '!~~*';
-    const OPERATOR_LESS                      = 'lt';
-    const OPERATOR_LESS_OR_EMPTY             = 'lt0';
-    const OPERATOR_LESS_OR_EQUAL             = 'lte';
-    const OPERATOR_LESS_OR_EQUAL_OR_EMPTY    = 'lte0';
-    const OPERATOR_GREATER                   = 'gt';
-    const OPERATOR_GREATER_OR_EMPTY          = 'gt0';
-    const OPERATOR_GREATER_OR_EQUAL          = 'gte';
+    const OPERATOR_EQUAL = '=';
+    const OPERATOR_NOT_EQUAL = '!=';
+    const OPERATOR_LIKE = '~~*';
+    const OPERATOR_NOT_LIKE = '!~~*';
+    const OPERATOR_LESS = 'lt';
+    const OPERATOR_LESS_OR_EMPTY = 'lt0';
+    const OPERATOR_LESS_OR_EQUAL = 'lte';
+    const OPERATOR_LESS_OR_EQUAL_OR_EMPTY = 'lte0';
+    const OPERATOR_GREATER = 'gt';
+    const OPERATOR_GREATER_OR_EMPTY = 'gt0';
+    const OPERATOR_GREATER_OR_EQUAL = 'gte';
     const OPERATOR_GREATER_OR_EQUAL_OR_EMPTY = 'gte0';
-    const OPERATOR_BETWEEN                   = 'BETWEEN';
-    const OPERATOR_CONTAINS_ANY              = '&&';
-    const OPERATOR_NOT_CONTAINS_ANY          = '!&&';
-    const OPERATOR_CONTAINS_ALL              = '@>';
+    const OPERATOR_BETWEEN = 'BETWEEN';
+    const OPERATOR_CONTAINS_ANY = '&&';
+    const OPERATOR_NOT_CONTAINS_ANY = '!&&';
+    const OPERATOR_CONTAINS_ALL = '@>';
 
     /** @var string The system name of the Property we filter on */
     protected $systemName;

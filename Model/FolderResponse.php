@@ -52,7 +52,7 @@ use DateTime;
     {
         parent::__construct($parameters);
 
-        $this->subFolders   = [];
+        $this->subFolders = [];
         $this->propertySets = [];
 
         if (isset($parameters['id'])) {

@@ -7,7 +7,7 @@ namespace QBNK\QBank\API;
  */
 class CachePolicy
 {
-    const OFF        = 0;
+    const OFF = 0;
     const EVERYTHING = 1;
     const TOKEN_ONLY = 2;
 

@@ -18,9 +18,9 @@ use QBNK\QBank\API\Exception\ResponseException;
 
 abstract class ControllerAbstract implements LoggerAwareInterface
 {
-    const METHOD_GET    = 'get';
-    const METHOD_POST   = 'post';
-    const METHOD_PUT    = 'put';
+    const METHOD_GET = 'get';
+    const METHOD_POST = 'post';
+    const METHOD_PUT = 'put';
     const METHOD_DELETE = 'delete';
 
     /** @var Client $client */
@@ -40,9 +40,9 @@ abstract class ControllerAbstract implements LoggerAwareInterface
 
     public function __construct(Client $client, CachePolicy $cachePolicy, Cache $cache = null)
     {
-        $this->client          = $client;
-        $this->cachePolicy     = $cachePolicy;
-        $this->cache           = $cache;
+        $this->client = $client;
+        $this->cachePolicy = $cachePolicy;
+        $this->cache = $cache;
         $this->delayedRequests = [];
     }
 

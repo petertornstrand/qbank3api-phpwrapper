@@ -71,14 +71,15 @@ use QBNK\QBank\API\CachePolicy;
      * @param bool $preloadNames If item names should be preloaded from property type.
      * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
      * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
+     * @param bool $isHierarchical 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return FilterItem[]	 
      */
-    public function property($systemName, $preloadNames = false, $categoryIds = null, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
+    public function property($systemName, $preloadNames = false, $categoryIds = null, $deploymentSiteIds = null, $isHierarchical = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['preloadNames' => $preloadNames, 'categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds],
+            'query'   => ['preloadNames' => $preloadNames, 'categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds, 'isHierarchical' => $isHierarchical],
             'body'    => json_encode([]),
             'headers' => [],
         ];

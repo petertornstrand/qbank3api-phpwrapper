@@ -13,6 +13,9 @@ class FilterItem  implements \JsonSerializable
     /** @var string[] An array of mediaIds that are tagged with this title */
     protected $mediaIds;
 
+    /** @var FilterItem[]  */
+    protected $filterItems;
+
     /**
      * Constructs a FilterItem.
      *
@@ -20,10 +23,12 @@ class FilterItem  implements \JsonSerializable
      * - <b>id</b> - ID of the Filter (only applicable if Category or Folder FilterItem)
      * - <b>title</b> - Title
      * - <b>mediaIds</b> - An array of mediaIds that are tagged with this title
+     * - <b>filterItems</b> - 
      */
     public function __construct($parameters = [])
     {
         $this->mediaIds = [];
+        $this->filterItems = [];
 
         if (isset($parameters['id'])) {
             $this->setId($parameters['id']);
@@ -33,6 +38,9 @@ class FilterItem  implements \JsonSerializable
         }
         if (isset($parameters['mediaIds'])) {
             $this->setMediaIds($parameters['mediaIds']);
+        }
+        if (isset($parameters['filterItems'])) {
+            $this->setFilterItems($parameters['filterItems']);
         }
     }
 
@@ -99,6 +107,56 @@ class FilterItem  implements \JsonSerializable
 
         return $this;
     }
+    /**
+     * Gets the filterItems of the FilterItem.
+     * @return FilterItem[]	 */
+    public function getFilterItems()
+    {
+        return $this->filterItems;
+    }
+
+    /**
+     * Sets the "filterItems" of the FilterItem.
+     *
+     * @param FilterItem[] $filterItems
+     *
+     * @return FilterItem
+     */
+    public function setFilterItems(array $filterItems)
+    {
+        $this->filterItems = [];
+
+        foreach ($filterItems as $item) {
+            $this->addFilterItem($item);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Adds an object of "FilterItems" of the FilterItem.
+     *
+     * @param FilterItem|array $item
+     *
+     * @return FilterItem
+     */
+    public function addFilterItem($item)
+    {
+        if (!($item instanceof self)) {
+            if (is_array($item)) {
+                try {
+                    $item = new self($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate FilterItem. '.$e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "FilterItem"!', E_USER_WARNING);
+            }
+        }
+        $this->filterItems[] = $item;
+
+        return $this;
+    }
 
     /**
      * Gets all data that should be available in a json representation.
@@ -117,6 +175,9 @@ class FilterItem  implements \JsonSerializable
         }
         if ($this->mediaIds !== null && !empty($this->mediaIds)) {
             $json['mediaIds'] = $this->mediaIds;
+        }
+        if ($this->filterItems !== null && !empty($this->filterItems)) {
+            $json['filterItems'] = $this->filterItems;
         }
 
         return $json;

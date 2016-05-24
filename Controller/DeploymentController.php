@@ -58,8 +58,8 @@ use QBNK\QBank\API\CachePolicy;
      * Lists all DeploymentSites the current User has access to.
      * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return DeploymentSiteResponse[]
+     
+     * @return DeploymentSiteResponse[]	 
      */
     public function listSites(CachePolicy $cachePolicy = null)
     {
@@ -82,8 +82,8 @@ use QBNK\QBank\API\CachePolicy;
      * 
      * @param int $id The DeploymentSite identifier..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return DeploymentSiteResponse
+     
+     * @return DeploymentSiteResponse	 
      */
     public function retrieveSite($id, CachePolicy $cachePolicy = null)
     {
@@ -137,6 +137,27 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * Deploy Media to a DeploymentSite.
+     * 
+     * Deploy Media to a DeploymentSite, this is an asynchronous method.
+     * 
+     * @param int $id DeploymentSite to deploy to.
+     * @param int[] $mediaIds An array of int values.
+     
+     * @return array	 
+     */
+    public function addMediaToDeploymentSite($id, array $mediaIds)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['mediaIds' => $mediaIds]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/deployment/'.$id.'/media', $parameters);
+
+        return $result;
+    }
+    /**
      * Delete a DeploymentSite.
      * 
      * You can not delete a DeploymentSite while there are still media deployed there!
@@ -154,6 +175,27 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->delete('v1/deployment/'.$id.'', $parameters);
         $result = new DeploymentSiteResponse($result);
+
+        return $result;
+    }
+    /**
+     * Undeploy Media from a DeploymentSite.
+     * 
+     * Undeploy Media from a DeploymentSite, this is an asynchronous method.
+     * 
+     * @param int $id DeploymentSite to undeploy from.
+     * @param string $mediaIds A comma separated string of media ids we should undeploy.
+     
+     * @return array	 
+     */
+    public function removeMediaFromDeploymentSite($id, $mediaIds)
+    {
+        $parameters = [
+            'query'   => ['mediaIds' => $mediaIds],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->delete('v1/deployment/'.$id.'/media', $parameters);
 
         return $result;
     }

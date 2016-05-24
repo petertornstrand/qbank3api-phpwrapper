@@ -22,6 +22,7 @@ use QBNK\QBank\API\Controller\MoodboardsController;
 use QBNK\QBank\API\Controller\ObjecttypesController;
 use QBNK\QBank\API\Controller\PropertysetsController;
 use QBNK\QBank\API\Controller\SearchController;
+use QBNK\QBank\API\Controller\SocialmediaController;
 use QBNK\QBank\API\Controller\TemplatesController;
 
 /**
@@ -86,6 +87,9 @@ class QBankApi
 
     /** @var SearchController */
     protected $search;
+
+    /** @var SocialmediaController */
+    protected $socialmedia;
 
     /** @var TemplatesController */
     protected $templates;
@@ -291,6 +295,20 @@ class QBankApi
         return $this->search;
     }
     /**
+     * SocialMedia are places where Media from QBank may be published to, to allow public access. Protocols define the way the publishing executes.
+     *
+     * @return SocialmediaController
+     */
+    public function socialmedia()
+    {
+        if (!$this->socialmedia instanceof SocialmediaController) {
+            $this->socialmedia = new SocialmediaController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->socialmedia->setLogger($this->logger);
+        }
+
+        return $this->socialmedia;
+    }
+    /**
      * @return TemplatesController
      */
     public function templates()
@@ -374,7 +392,7 @@ class QBankApi
     protected function getOAuth2Subscriber()
     {
         if (!($this->oauth2Subscriber instanceof OAuth2Subscriber)) {
-            $client                 = new Client(['base_url' => $this->basepath.'oauth2/token']);
+            $client = new Client(['base_url' => $this->basepath.'oauth2/token']);
             $this->oauth2Subscriber = new OAuth2Subscriber(
                 new PasswordCredentials(
                     $client,
@@ -419,7 +437,7 @@ class QBankApi
      */
     public function updateCredentials($user, $password)
     {
-        $oldUser           = $this->credentials->getUsername();
+        $oldUser = $this->credentials->getUsername();
         $this->credentials = new Credentials($this->credentials->getClientId(), $user, $password);
         unset($password);
         if ($this->client instanceof Client) {

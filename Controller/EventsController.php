@@ -3,11 +3,31 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\Model\DownloadItem;
+    use QBNK\QBank\API\Model\MediaUsage;
+    use QBNK\QBank\API\Model\MediaUsageResponse;
     use QBNK\QBank\API\Model\Search;
 
     class EventsController extends ControllerAbstract
     {
         /**
+     * Track a Media custom event.
+     * 
+     * @param int $sessionId The session id to log the event on
+     * @param int $mediaId The ID of the media in the event
+     * @param string $event The event
+     */
+    public function custom($sessionId, $mediaId, $event)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId, 'event' => $event]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/events/custom', $parameters, true);
+
+        return $result;
+    }
+    /**
      * Track a Media download.
      * 
      * @param int $sessionId The session id to log the download on
@@ -65,9 +85,29 @@ use QBNK\QBank\API\Model\DownloadItem;
         return $result;
     }
     /**
+     * Register a usage of a Media.
+     * 
+     * @param int $sessionId The session id to log the event on
+     * @param MediaUsage $mediaUsage The MediaUsage to register
+     
+     * @return MediaUsageResponse	 
+     */
+    public function addUsage($sessionId, MediaUsage $mediaUsage)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['sessionId' => $sessionId, 'mediaUsage' => $mediaUsage]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/events/usage', $parameters, true);
+        $result = new MediaUsageResponse($result);
+
+        return $result;
+    }
+    /**
      * Track a Media view.
      * 
-     * @param int $sessionId The session id to log the search on
+     * @param int $sessionId The session id to log the view on
      * @param int $mediaId The ID of the media that was viewed
      */
     public function view($sessionId, $mediaId)
@@ -78,6 +118,25 @@ use QBNK\QBank\API\Model\DownloadItem;
             'headers' => [],
         ];
         $result = $this->post('v1/events/view', $parameters, true);
+
+        return $result;
+    }
+    /**
+     * Unregister (remove) a Media usage.
+     * 
+     * @param int $id The ID of the usage to remove.
+     
+     * @return MediaUsageResponse	 
+     */
+    public function removeUsage($id)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->delete('v1/events/usage/'.$id.'', $parameters, true);
+        $result = new MediaUsageResponse($result);
 
         return $result;
     }

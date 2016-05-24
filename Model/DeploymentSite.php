@@ -34,7 +34,7 @@ class DeploymentSite  implements \JsonSerializable
     /** @var VideoTemplate[] The connected VideoTemplates. */
     protected $videotemplates;
 
-    /** @var Category[] The connected Categories. */
+    /** @var CategoryResponse[] The connected Categories. */
     protected $categories;
 
     /** @var string The Objects name. */
@@ -73,8 +73,8 @@ class DeploymentSite  implements \JsonSerializable
     {
         $this->imagetemplates = [];
         $this->videotemplates = [];
-        $this->categories     = [];
-        $this->properties     = [];
+        $this->categories = [];
+        $this->properties = [];
 
         if (isset($parameters['description'])) {
             $this->setDescription($parameters['description']);
@@ -408,7 +408,7 @@ class DeploymentSite  implements \JsonSerializable
     }
     /**
      * Gets the categories of the DeploymentSite.
-     * @return Category[]	 */
+     * @return CategoryResponse[]	 */
     public function getCategories()
     {
         return $this->categories;
@@ -417,7 +417,7 @@ class DeploymentSite  implements \JsonSerializable
     /**
      * Sets the "categories" of the DeploymentSite.
      *
-     * @param Category[] $categories
+     * @param CategoryResponse[] $categories
      *
      * @return DeploymentSite
      */
@@ -426,7 +426,7 @@ class DeploymentSite  implements \JsonSerializable
         $this->categories = [];
 
         foreach ($categories as $item) {
-            $this->addCategory($item);
+            $this->addCategoryResponse($item);
         }
 
         return $this;
@@ -435,21 +435,21 @@ class DeploymentSite  implements \JsonSerializable
     /**
      * Adds an object of "Categories" of the DeploymentSite.
      *
-     * @param Category|array $item
+     * @param CategoryResponse|array $item
      *
      * @return DeploymentSite
      */
-    public function addCategory($item)
+    public function addCategoryResponse($item)
     {
-        if (!($item instanceof Category)) {
+        if (!($item instanceof CategoryResponse)) {
             if (is_array($item)) {
                 try {
-                    $item = new Category($item);
+                    $item = new CategoryResponse($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate Category. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate CategoryResponse. '.$e->getMessage(), E_USER_WARNING);
                 }
             } else {
-                trigger_error('Array parameter item is not of expected type "Category"!', E_USER_WARNING);
+                trigger_error('Array parameter item is not of expected type "CategoryResponse"!', E_USER_WARNING);
             }
         }
         $this->categories[] = $item;
