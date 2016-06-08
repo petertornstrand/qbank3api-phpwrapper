@@ -85,9 +85,9 @@ use DateTime;
      */
     public function __construct($parameters = [])
     {
-        $this->groups = [];
+        $this->groups          = [];
         $this->functionalities = [];
-        $this->extraData = [];
+        $this->extraData       = [];
 
         if (isset($parameters['id'])) {
             $this->setId($parameters['id']);
@@ -670,10 +670,10 @@ use DateTime;
             $json['email'] = $this->email;
         }
         if ($this->endDate !== null) {
-            $json['endDate'] = $this->endDate;
+            $json['endDate'] = $this->endDate->format(\DateTime::ISO8601);
         }
         if ($this->startDate !== null) {
-            $json['startDate'] = $this->startDate;
+            $json['startDate'] = $this->startDate->format(\DateTime::ISO8601);
         }
         if ($this->firstName !== null) {
             $json['firstName'] = $this->firstName;
