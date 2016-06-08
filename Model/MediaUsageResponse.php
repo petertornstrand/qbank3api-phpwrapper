@@ -162,7 +162,7 @@ use DateTime;
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
         if ($this->deleted !== null) {
-            $json['deleted'] = $this->deleted;
+            $json['deleted'] = $this->deleted->format(\DateTime::ISO8601);
         }
         if ($this->updatedBy !== null) {
             $json['updatedBy'] = $this->updatedBy;

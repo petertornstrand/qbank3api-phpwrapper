@@ -98,14 +98,10 @@ use DateTime;
         $json = [];
 
         if ($this->min !== null) {
-            $json['min'] = $this->min;
+            $json['min'] = $this->min->format(\DateTime::ISO8601);
         }
         if ($this->max !== null) {
-            $json['max'] = $this->max;
-        }
-
-        foreach ($json as &$value) {
-            $value = $value->format(\DateTime::ISO8601);
+            $json['max'] = $this->max->format(\DateTime::ISO8601);
         }
 
         return $json;

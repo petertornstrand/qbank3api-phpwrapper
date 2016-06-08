@@ -685,7 +685,7 @@ use DateTime;
             $json['userName'] = $this->userName;
         }
         if ($this->lastLogin !== null) {
-            $json['lastLogin'] = $this->lastLogin;
+            $json['lastLogin'] = $this->lastLogin->format(\DateTime::ISO8601);
         }
         if ($this->groups !== null && !empty($this->groups)) {
             $json['groups'] = $this->groups;

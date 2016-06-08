@@ -302,7 +302,7 @@ use DateTime;
             $json['templateId'] = $this->templateId;
         }
         if ($this->expireDate !== null) {
-            $json['expireDate'] = $this->expireDate;
+            $json['expireDate'] = $this->expireDate->format(\DateTime::ISO8601);
         }
         if ($this->definition !== null) {
             $json['definition'] = $this->definition;
