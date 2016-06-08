@@ -27,7 +27,7 @@ class FilterItem  implements \JsonSerializable
      */
     public function __construct($parameters = [])
     {
-        $this->mediaIds = [];
+        $this->mediaIds    = [];
         $this->filterItems = [];
 
         if (isset($parameters['id'])) {

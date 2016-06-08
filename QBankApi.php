@@ -392,7 +392,7 @@ class QBankApi
     protected function getOAuth2Subscriber()
     {
         if (!($this->oauth2Subscriber instanceof OAuth2Subscriber)) {
-            $client = new Client(['base_url' => $this->basepath.'oauth2/token']);
+            $client                 = new Client(['base_url' => $this->basepath.'oauth2/token']);
             $this->oauth2Subscriber = new OAuth2Subscriber(
                 new PasswordCredentials(
                     $client,
@@ -437,7 +437,7 @@ class QBankApi
      */
     public function updateCredentials($user, $password)
     {
-        $oldUser = $this->credentials->getUsername();
+        $oldUser           = $this->credentials->getUsername();
         $this->credentials = new Credentials($this->credentials->getClientId(), $user, $password);
         unset($password);
         if ($this->client instanceof Client) {

@@ -33,7 +33,7 @@ use DateTime;
     /** @var bool Wheater the PropertySet is a system propertyset or not. (System propertysets are hidden from the enduser) */
     protected $system;
 
-    /** @var Property[] The Properties associated with the PropertySet. */
+    /** @var PropertyResponse[] The Properties associated with the PropertySet. */
     protected $properties;
 
     /**
@@ -294,7 +294,7 @@ use DateTime;
     }
     /**
      * Gets the properties of the PropertySet.
-     * @return Property[]	 */
+     * @return PropertyResponse[]	 */
     public function getProperties()
     {
         return $this->properties;
@@ -303,7 +303,7 @@ use DateTime;
     /**
      * Sets the "properties" of the PropertySet.
      *
-     * @param Property[] $properties
+     * @param PropertyResponse[] $properties
      *
      * @return PropertySet
      */
@@ -312,7 +312,7 @@ use DateTime;
         $this->properties = [];
 
         foreach ($properties as $item) {
-            $this->addProperty($item);
+            $this->addPropertyResponse($item);
         }
 
         return $this;
@@ -321,21 +321,21 @@ use DateTime;
     /**
      * Adds an object of "Properties" of the PropertySet.
      *
-     * @param Property|array $item
+     * @param PropertyResponse|array $item
      *
      * @return PropertySet
      */
-    public function addProperty($item)
+    public function addPropertyResponse($item)
     {
-        if (!($item instanceof Property)) {
+        if (!($item instanceof PropertyResponse)) {
             if (is_array($item)) {
                 try {
-                    $item = new Property($item);
+                    $item = new PropertyResponse($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate Property. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate PropertyResponse. '.$e->getMessage(), E_USER_WARNING);
                 }
             } else {
-                trigger_error('Array parameter item is not of expected type "Property"!', E_USER_WARNING);
+                trigger_error('Array parameter item is not of expected type "PropertyResponse"!', E_USER_WARNING);
             }
         }
         $this->properties[] = $item;

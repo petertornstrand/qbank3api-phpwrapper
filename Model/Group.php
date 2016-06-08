@@ -62,8 +62,8 @@ use DateTime;
     public function __construct($parameters = [])
     {
         $this->functionalities = [];
-        $this->roles = [];
-        $this->extraData = [];
+        $this->roles           = [];
+        $this->extraData       = [];
 
         if (isset($parameters['id'])) {
             $this->setId($parameters['id']);

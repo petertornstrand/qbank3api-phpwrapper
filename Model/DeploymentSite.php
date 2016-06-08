@@ -73,8 +73,8 @@ class DeploymentSite  implements \JsonSerializable
     {
         $this->imagetemplates = [];
         $this->videotemplates = [];
-        $this->categories = [];
-        $this->properties = [];
+        $this->categories     = [];
+        $this->properties     = [];
 
         if (isset($parameters['description'])) {
             $this->setDescription($parameters['description']);

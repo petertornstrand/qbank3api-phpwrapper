@@ -14,6 +14,7 @@ use GuzzleHttp\Post\PostFile;
     use QBNK\QBank\API\Model\MediaResponse;
     use QBNK\QBank\API\Model\MediaVersion;
     use QBNK\QBank\API\Model\MoodboardResponse;
+    use QBNK\QBank\API\Model\Property;
     use QBNK\QBank\API\Model\SocialMedia;
 
     class MediaController extends ControllerAbstract
@@ -496,6 +497,27 @@ use GuzzleHttp\Post\PostFile;
         return $result;
     }
     /**
+     * Update some properties for a Media.
+     * 
+     * Update the provided properties for the specified Media. Will not update any other properties then those provided. It is preferable to use this method over updating a whole media to change a few properties as the side effects are fewer.
+     * 
+     * @param int $id The Media identifier.
+     * @param Property[] $properties An array of QBNK\QBank\Api\v1\Model\Property values.
+     
+     * @return array
+     */
+    public function updateProperties($id, array $properties)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['properties' => $properties]),
+            'headers' => [],
+        ];
+        $result = $this->put('v1/media/'.$id.'/properties', $parameters);
+
+        return $result;
+    }
+    /**
      * Delete a Media.
      * 
      * Deleting a Media will set it's status to removed but will retain all data and enable restoration of the Media, much like the trash bin of your operating system. To permanetly remove a Media, use the "hardDelete" flag.
@@ -558,10 +580,10 @@ use GuzzleHttp\Post\PostFile;
      */
     public function uploadFile($pathname, $name, $categoryId, $progress = null, $chunkSize = 10485760)
     {
-        $chunk = 0;
+        $chunk       = 0;
         $chunksTotal = ceil(filesize($pathname) / $chunkSize);
-        $fileId = sha1(uniqid('upload', true));
-        $fp = fopen($pathname, 'r');
+        $fileId      = sha1(uniqid('upload', true));
+        $fp          = fopen($pathname, 'r');
         if ($fp === false) {
             throw new UploadException('Could not open file "'.$pathname.'" for reading.');
         }
