@@ -4,9 +4,12 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class PropertyResponse extends Property implements \JsonSerializable
+    class PropertyResponse  implements \JsonSerializable
     {
-        /** @var DateTime When the Property was created. */
+        const TEMPLATE_IMAGE = 'image';
+        const TEMPLATE_VIDEO = 'video';
+
+    /** @var DateTime When the Property was created. */
     protected $created;
 
     /** @var int The identifier of the User who created the Property. */
@@ -27,6 +30,9 @@ use DateTime;
     /** @var PropertyType The PropertyType describing this Property. */
     protected $propertyType;
 
+    /** @var string The value of the Property. */
+    protected $value;
+
     /**
      * Constructs a PropertyResponse.
      *
@@ -38,11 +44,10 @@ use DateTime;
      * - <b>deleted</b> - Whether the Property is deleted.
      * - <b>dirty</b> - Whether the Property has been modified since constructed.
      * - <b>propertyType</b> - The PropertyType describing this Property.
+     * - <b>value</b> - The value of the Property.
      */
     public function __construct($parameters = [])
     {
-        parent::__construct($parameters);
-
         if (isset($parameters['created'])) {
             $this->setCreated($parameters['created']);
         }
@@ -63,6 +68,9 @@ use DateTime;
         }
         if (isset($parameters['propertyType'])) {
             $this->setPropertyType($parameters['propertyType']);
+        }
+        if (isset($parameters['value'])) {
+            $this->setValue($parameters['value']);
         }
     }
 
@@ -236,6 +244,85 @@ use DateTime;
 
         return $this;
     }
+    /**
+     * Gets the value of the PropertyResponse.
+     * @return string	 */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Sets the "value" of the Property.
+     *
+     * @param mixed $value
+     *
+     * @return Property
+     */
+    public function setValue($value)
+    {
+        $definition = $this->propertyType->getDefinition();
+        if (isset($definition['hierarchical']) && $definition['hierarchical']) {
+            $this->value = [];
+            foreach ($value as $v) {
+                foreach ($v['value'] as $itemValue) {
+                    $this->value[] = $this->convertValue($itemValue['value']);
+                }
+            }
+        } elseif (!empty($definition['array'])) {
+            if (empty($definition['multiplechoice']) && isset($definition['options']) && is_array($definition['options'])) {
+                $this->value = $this->convertValue(current($value)['value']);
+            } else {
+                $this->value = [];
+                foreach ($value as $v) {
+                    $this->value[] = $this->convertValue($v['value']);
+                }
+            }
+        } else {
+            $this->value = $this->convertValue($value);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Converts a value to the corresponding PHP type.
+     *
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    protected function convertValue($value)
+    {
+        switch ($this->propertyType->getDataTypeId()) {
+            case PropertyType::DATATYPE_BOOLEAN:
+                return (bool) $value;
+                break;
+            case PropertyType::DATATYPE_DATETIME:
+                if ($value instanceof \DateTime) {
+                    return $value;
+                } else {
+                    try {
+                        return new \DateTime($value);
+                    } catch (\Exception $e) {
+                        return;
+                    }
+                }
+                break;
+            case PropertyType::DATATYPE_FLOAT:
+                return (float) $value;
+                break;
+            case PropertyType::DATATYPE_INTEGER:
+                return (int) $value;
+                break;
+            case PropertyType::DATATYPE_STRING:
+                return (string) $value;
+                break;
+            default:
+                return $value;
+                break;
+        }
+    }
 
     /**
      * Gets all data that should be available in a json representation.
@@ -244,7 +331,7 @@ use DateTime;
      */
     public function jsonSerialize()
     {
-        $json = parent::jsonSerialize();
+        $json = [];
 
         if ($this->created !== null) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
@@ -266,6 +353,9 @@ use DateTime;
         }
         if ($this->propertyType !== null) {
             $json['propertyType'] = $this->propertyType;
+        }
+        if ($this->value !== null) {
+            $json['value'] = $this->value;
         }
 
         return $json;

@@ -4,9 +4,6 @@ namespace QBNK\QBank\API\Model;
 
 class Property  implements \JsonSerializable
 {
-    const TEMPLATE_IMAGE = 'image';
-    const TEMPLATE_VIDEO = 'video';
-
     /** @var string The system name of the Property we filter on */
     protected $systemName;
 
@@ -62,73 +59,15 @@ class Property  implements \JsonSerializable
     /**
      * Sets the "value" of the Property.
      *
-     * @param mixed $value
+     * @param string $value
      *
      * @return Property
      */
     public function setValue($value)
     {
-        $definition = $this->propertyType->getDefinition();
-        if (isset($definition['hierarchical']) && $definition['hierarchical']) {
-            $this->value = [];
-            foreach ($value as $v) {
-                foreach ($v['value'] as $itemValue) {
-                    $this->value[] = $this->convertValue($itemValue['value']);
-                }
-            }
-        } elseif (!empty($definition['array'])) {
-            if (empty($definition['multiplechoice']) && isset($definition['options']) && is_array($definition['options'])) {
-                $this->value = $this->convertValue(current($value)['value']);
-            } else {
-                $this->value = [];
-                foreach ($value as $v) {
-                    $this->value[] = $this->convertValue($v['value']);
-                }
-            }
-        } else {
-            $this->value = $this->convertValue($value);
-        }
+        $this->value = $value;
 
         return $this;
-    }
-
-    /**
-     * Converts a value to the corresponding PHP type.
-     *
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    protected function convertValue($value)
-    {
-        switch ($this->propertyType->getDataTypeId()) {
-            case PropertyType::DATATYPE_BOOLEAN:
-                return (bool) $value;
-                break;
-            case PropertyType::DATATYPE_DATETIME:
-                if ($value instanceof \DateTime) {
-                    return $value;
-                } else {
-                    try {
-                        return new \DateTime($value);
-                    } catch (\Exception $e) {
-                        return;
-                    }
-                }
-                break;
-            case PropertyType::DATATYPE_FLOAT:
-                return (float) $value;
-                break;
-            case PropertyType::DATATYPE_INTEGER:
-                return (int) $value;
-                break;
-            case PropertyType::DATATYPE_STRING:
-                return (string) $value;
-                break;
-            default:
-                return $value;
-                break;
-        }
     }
 
     /**
