@@ -289,17 +289,39 @@ use QBNK\QBank\API\CachePolicy;
      * @param User $user The user to create
      * @param string $password Password for the new user, leave blank to let QBank send a password-reset link to the user
      * @param string $redirectTo Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
+     * @param bool $sendNotificationEmail Send a notification email to the new user, as specified through the QBank backend
      
      * @return User	 
      */
-    public function createUser(User $user, $password = null, $redirectTo = null)
+    public function createUser(User $user, $password = null, $redirectTo = null, $sendNotificationEmail = null)
     {
         $parameters = [
             'query'   => [],
-            'body'    => json_encode(['user' => $user, 'password' => $password, 'redirectTo' => $redirectTo]),
+            'body'    => json_encode(['user' => $user, 'password' => $password, 'redirectTo' => $redirectTo, 'sendNotificationEmail' => $sendNotificationEmail]),
             'headers' => [],
         ];
         $result = $this->post('v1/accounts/users', $parameters);
+        $result = new User($result);
+
+        return $result;
+    }
+    /**
+     * Update a user Update a user in QBank.
+     * 
+     * @param int $userId 
+     * @param User $user The user to update
+     * @param string $password Set a new password for the user, leave blank to leave unchanged
+     
+     * @return User	 
+     */
+    public function updateUser($userId, User $user, $password = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['user' => $user, 'password' => $password]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/accounts/users/'.$userId.'', $parameters);
         $result = new User($result);
 
         return $result;
