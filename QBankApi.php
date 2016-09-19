@@ -55,6 +55,9 @@ class QBankApi
     /** @var OAuth2Subscriber */
     protected $oauth2Subscriber;
 
+    /** @var bool */
+    protected $verifyCertificates;
+
     /** @var AccountsController */
     protected $accounts;
 
@@ -102,6 +105,7 @@ class QBankApi
      * <li>Cache $options[cache] A cache implementation to store tokens and responses in. Highly recommended.</li>
      * <li>QBankCachePolicy $options[cachePolicy] A policy on how to use caching for API queries, if not provided cache will not be available for API queries.</li>
      * <li>LoggerInterface $options[log] A PSR-3 log implementation.</li>
+     * <li>bool $options[verifyCertificates] Whether to verify certificates for https connections. Defaults to true.</li>
      * </ul>
      */
     public function __construct($qbankURL, Credentials $credentials, array $options = [])
@@ -139,6 +143,12 @@ class QBankApi
         } else {
             $this->cachePolicy = new CachePolicy(false, 0);
             $this->logger->warning('No cache policy supplied! Without a cache policy no API queries will be cached.');
+        }
+
+        if (isset($options['verifyCertificates'])) {
+            $this->verifyCertificates = (bool) $options['verifyCertificates'];
+        } else {
+            $this->verifyCertificates = true;
         }
     }
 
@@ -376,6 +386,7 @@ class QBankApi
                         'User-Agent'   => 'qbank3api-phpwrapper/1 (qbankapi: 1; swagger: 1.1)',
                     ],
                 ],
+                'verify' => $this->verifyCertificates,
             ]);
             $this->client->getEmitter()->attach($this->getOAuth2Subscriber());
             $this->logger->debug('Guzzle client instantiated.', ['basepath' => $this->basepath]);
