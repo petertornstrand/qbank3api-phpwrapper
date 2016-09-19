@@ -12,6 +12,7 @@ use GuzzleHttp\Post\PostFile;
     use QBNK\QBank\API\Model\FolderResponse;
     use QBNK\QBank\API\Model\Media;
     use QBNK\QBank\API\Model\MediaResponse;
+    use QBNK\QBank\API\Model\MediaUsageResponse;
     use QBNK\QBank\API\Model\MediaVersion;
     use QBNK\QBank\API\Model\MoodboardResponse;
     use QBNK\QBank\API\Model\Property;
@@ -243,6 +244,30 @@ use GuzzleHttp\Post\PostFile;
         $result = $this->get('v1/media/'.$id.'/socialmedia/sites', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new SocialMedia($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
+     * Fetches all External Usages for a Media.
+     * 
+     * @param int $id The Media identifier..
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return MediaUsageResponse[]
+     */
+    public function listUsages($id, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/media/'.$id.'/usages', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new MediaUsageResponse($entry);
         }
         unset($entry);
         reset($result);
