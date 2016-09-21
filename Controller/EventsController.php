@@ -11,6 +11,9 @@ use QBNK\QBank\API\Model\DownloadItem;
     {
         /**
      * Track a Media custom event.
+     *
+     * NOTICE!
+     * Execution of this call will be delayed until destruct!
      * 
      * @param int $sessionId The session id to log the event on
      * @param int $mediaId The ID of the media in the event
@@ -29,6 +32,9 @@ use QBNK\QBank\API\Model\DownloadItem;
     }
     /**
      * Track a Media download.
+     *
+     * NOTICE!
+     * Execution of this call will be delayed until destruct!
      * 
      * @param int $sessionId The session id to log the download on
      * @param DownloadItem[] $downloads An array of DownloadItem (media & template) that was downloaded
@@ -46,6 +52,9 @@ use QBNK\QBank\API\Model\DownloadItem;
     }
     /**
      * Track a Search.
+     *
+     * NOTICE!
+     * Execution of this call will be delayed until destruct!
      * 
      * @param int $sessionId The session id to log the search on
      * @param Search $search The Search that was made
@@ -99,13 +108,16 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sessionId' => $sessionId, 'mediaUsage' => $mediaUsage]),
             'headers' => [],
         ];
-        $result = $this->post('v1/events/usage', $parameters, true);
+        $result = $this->post('v1/events/usage', $parameters);
         $result = new MediaUsageResponse($result);
 
         return $result;
     }
     /**
      * Track a Media view.
+     *
+     * NOTICE!
+     * Execution of this call will be delayed until destruct!
      * 
      * @param int $sessionId The session id to log the view on
      * @param int $mediaId The ID of the media that was viewed
@@ -135,7 +147,7 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->delete('v1/events/usage/'.$id.'', $parameters, true);
+        $result = $this->delete('v1/events/usage/'.$id.'', $parameters);
         $result = new MediaUsageResponse($result);
 
         return $result;
