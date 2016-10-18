@@ -306,6 +306,25 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * Dispatch a password reset mail to a user.
+     * 
+     * . The supplied link will be included in the mail and appended with a "hash=" parameter containing the password reset hash needed to set the new password in step 2.
+     * 
+     * @param int $id The User identifier.
+     * @param string $link Optional link to override redirect to in the password reset mail
+     */
+    public function sendPasswordReset($id, $link = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['link' => $link]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/accounts/users/'.$id.'/resetpassword', $parameters);
+
+        return $result;
+    }
+    /**
      * Update a user Update a user in QBank.
      * 
      * @param int $userId 
@@ -343,6 +362,27 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->post('v1/accounts/users/'.$userId.'/groups', $parameters);
         $result = new User($result);
+
+        return $result;
+    }
+    /**
+     * Reset a password for a user with password reset hash.
+     * 
+     * Resets a password for a user with a valid password reset hash. Hash should be obtained through "/users/{id}/sendpasswordreset".
+     * 
+     * @param string $hash Valid password reset hash
+     * @param string $password New password
+     
+     * @return array	 
+     */
+    public function resetPassword($hash, $password)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['hash' => $hash, 'password' => $password]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/accounts/users/resetpassword', $parameters);
 
         return $result;
     }

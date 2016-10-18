@@ -155,8 +155,12 @@ abstract class ControllerAbstract implements LoggerAwareInterface
                 ]
             );
             $message = null;
+            $details = null;
             if ($re->hasResponse() && strpos($re->getResponse()->getHeader('content-type'), 'application/json') === 0) {
                 $content = $re->getResponse()->json();
+                if (!empty($content['error'])) {
+                    $details = $content['error'];
+                }
                 if (isset($content['error']['message'])) {
                     $message = ' [info]'.$content['error']['message'];
                 }
@@ -169,7 +173,8 @@ abstract class ControllerAbstract implements LoggerAwareInterface
             throw new RequestException(
                 'Error while sending request to QBank: '.$re->getMessage().$message,
                 $re->hasResponse() ? $re->getResponse()->getStatusCode() : 0,
-                $re
+                $re,
+                $details
             );
         }
     }
