@@ -493,10 +493,8 @@ class QBankApi
             $token = unserialize($this->cache->fetch('oauth2token'));
         }
         if (!$token->accessToken) {
-            $response = $this->getClient()->get('/');
-            if ($response->getStatusCode() == 200) {
-                $token = $this->oauth2Subscriber->getTokenData();
-            }
+            $response = $this->getClient()->get();      // Trigger call to get a token. Don't care about the result.
+            $token    = $this->oauth2Subscriber->getTokenData();
         }
 
         return $token->accessToken ? $token : null;
