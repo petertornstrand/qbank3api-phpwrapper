@@ -16,14 +16,15 @@ use QBNK\QBank\API\CachePolicy;
      * 
      * @param int $root The identifier of a Folder to be treated as the root. Use zero for the absolute root. The root will not be included in the result..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all together..
+     * @param bool $includeProperties Whether to return the properties for each folder..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return FolderResponse[]	 
      */
-    public function listFolders($root = 0, $depth = 0, CachePolicy $cachePolicy = null)
+    public function listFolders($root = 0, $depth = 0, $includeProperties = true, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['root' => $root, 'depth' => $depth],
+            'query'   => ['root' => $root, 'depth' => $depth, 'includeProperties' => $includeProperties],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -43,14 +44,15 @@ use QBNK\QBank\API\CachePolicy;
      * 
      * @param int $id The Folder identifier..
      * @param int $depth The depth for which to include existing subfolders. Use zero to exclude them all together..
+     * @param bool $includeProperties Whether ti return the properties for each folder..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return FolderResponse	 
      */
-    public function retrieveFolder($id, $depth = 0, CachePolicy $cachePolicy = null)
+    public function retrieveFolder($id, $depth = 0, $includeProperties = true, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['depth' => $depth],
+            'query'   => ['depth' => $depth, 'includeProperties' => $includeProperties],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -86,6 +88,25 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * routes to <mark>QBNK\QBank\Api\v1\Folders::stripProperties();</mark>.
+     * 
+     * Add PHPDoc long description to <mark>Folders::stripProperties();</mark>  (the api method) to write here
+     * 
+     * @param array $folders add <mark>@param {type} $folders {comment}</mark> to describe here
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     */
+    public function stripProperties($folders, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => ['folders' => $folders],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/folders/stripproperties', $parameters, $cachePolicy);
+
+        return $result;
+    }
+    /**
      * Create a Folder.
      * 
      * @param int $parentId An optional parent folder ID. Will otherwise be created in the root level. Note that root level creation requires additional access!.
@@ -108,6 +129,8 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Add Media to Folder.
+     * 
+     * Add PHPDoc long description to <mark>Folders::addMediaToFolder();</mark>  (the api method) to write here
      * 
      * @param int $folderId Folder to add media to.
      * @param int[] $mediaIds An array of int values.
@@ -149,6 +172,8 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Remove Media from Folder.
+     * 
+     * Add PHPDoc long description to <mark>Folders::removeMediaFromFolder();</mark>  (the api method) to write here
      * 
      * @param int $folderId Folder to remove media from.
      * @param int $mediaId Media to remove from specified folder.

@@ -522,6 +522,26 @@ use GuzzleHttp\Post\PostFile;
         return $result;
     }
     /**
+     * routes to <mark>QBNK\QBank\Api\v1\Slides::combineSlides();</mark>.
+     * 
+     * Add PHPDoc long description to <mark>Slides::combineSlides();</mark>  (the api method) to write here
+     * 
+     * @param Slides\SlideStructure[] $structure An array of QBNK\QBank\Api\v1\Model\Slides\SlideStructure values.
+     
+     * @return array
+     */
+    public function combineSlides(array $structure)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['structure' => $structure]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/media/slides/combine', $parameters);
+
+        return $result;
+    }
+    /**
      * Update some properties for a Media.
      * 
      * Update the provided properties for the specified Media. Will not update any other properties then those provided. It is preferable to use this method over updating a whole media to change a few properties as the side effects are fewer.

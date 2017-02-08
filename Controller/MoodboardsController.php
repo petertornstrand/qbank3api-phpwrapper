@@ -5,6 +5,7 @@ namespace QBNK\QBank\API\Controller;
 use QBNK\QBank\API\CachePolicy;
     use QBNK\QBank\API\Model\Moodboard;
     use QBNK\QBank\API\Model\MoodboardResponse;
+    use QBNK\QBank\API\Model\MoodboardTemplateResponse;
 
     class MoodboardsController extends ControllerAbstract
     {
@@ -56,6 +57,74 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * routes to <mark>QBNK\QBank\Api\v1\Moodboards::formatTemplate();</mark>.
+     * 
+     * Add PHPDoc long description to <mark>Moodboards::formatTemplate();</mark>  (the api method) to write here
+     * 
+     * @param array $template add <mark>@param {type} $template {comment}</mark> to describe here
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return array	 
+     */
+    public function formatTemplate($template, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => ['template' => $template],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/moodboards/formattemplate', $parameters, $cachePolicy);
+
+        return $result;
+    }
+    /**
+     * Lists all Moodboard templates.
+     * 
+     * Lists all Moodboard templates that the user has access to.
+     * 
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return MoodboardTemplateResponse[]	 
+     */
+    public function listTemplates(CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/moodboards/templates', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new MoodboardTemplateResponse($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
+     * Fetches a specific Moodboard template.
+     * 
+     * Fetches a specific Moodboard template by id.
+     * 
+     * @param int $templateId add <mark>@param {type} $templateId {comment}</mark> to describe here
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return MoodboardTemplateResponse	 
+     */
+    public function retrieveTemplate($templateId, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/moodboards/templates/'.$templateId.'', $parameters, $cachePolicy);
+        $result = new MoodboardTemplateResponse($result);
+
+        return $result;
+    }
+    /**
      * Create a moodboard.
      * 
      * Create a Moodboard
@@ -101,6 +170,8 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * Add Media to a Moodboard.
      * 
+     * Add PHPDoc long description to <mark>Moodboards::addMediaToMoodboard();</mark>  (the api method) to write here
+     * 
      * @param int $moodboardId Moodboard ID to add media to.
      * @param int[] $mediaIds An array of int values.
      
@@ -140,6 +211,8 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Remove Media from a Moodboard.
+     * 
+     * Add PHPDoc long description to <mark>Moodboards::removeMediaFromMoodboard();</mark>  (the api method) to write here
      * 
      * @param int $moodboardId Moodboard ID to remove media from.
      * @param int $mediaId Media ID to remove from specified folder.
