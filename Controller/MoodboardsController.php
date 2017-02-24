@@ -57,11 +57,7 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
-     * routes to <mark>QBNK\QBank\Api\v1\Moodboards::formatTemplate();</mark>.
-     * 
-     * Add PHPDoc long description to <mark>Moodboards::formatTemplate();</mark>  (the api method) to write here
-     * 
-     * @param array $template add <mark>@param {type} $template {comment}</mark> to describe here
+     * @param array $template 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return array	 
@@ -107,7 +103,7 @@ use QBNK\QBank\API\CachePolicy;
      * 
      * Fetches a specific Moodboard template by id.
      * 
-     * @param int $templateId add <mark>@param {type} $templateId {comment}</mark> to describe here
+     * @param int $templateId 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return MoodboardTemplateResponse	 
@@ -170,8 +166,6 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * Add Media to a Moodboard.
      * 
-     * Add PHPDoc long description to <mark>Moodboards::addMediaToMoodboard();</mark>  (the api method) to write here
-     * 
      * @param int $moodboardId Moodboard ID to add media to.
      * @param int[] $mediaIds An array of int values.
      
@@ -211,8 +205,6 @@ use QBNK\QBank\API\CachePolicy;
     }
     /**
      * Remove Media from a Moodboard.
-     * 
-     * Add PHPDoc long description to <mark>Moodboards::removeMediaFromMoodboard();</mark>  (the api method) to write here
      * 
      * @param int $moodboardId Moodboard ID to remove media from.
      * @param int $mediaId Media ID to remove from specified folder.

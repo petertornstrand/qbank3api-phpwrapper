@@ -286,8 +286,6 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * Create a user Create a user in QBank.
      * 
-     * Add PHPDoc long description to <mark>Accounts::createUser();</mark>  (the api method) to write here
-     * 
      * @param User $user The user to create
      * @param string $password Password for the new user, leave blank to let QBank send a password-reset link to the user
      * @param string $redirectTo Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
@@ -310,9 +308,7 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * Update a user Update a user in QBank.
      * 
-     * Add PHPDoc long description to <mark>Accounts::updateUser();</mark>  (the api method) to write here
-     * 
-     * @param int $id add <mark>@param {type} $id {comment}</mark> to describe here
+     * @param int $id 
      * @param User $user The user to update
      * @param string $password Set a new password for the user, leave blank to leave unchanged
      
@@ -333,9 +329,7 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * Add the user to one or more groups.
      * 
-     * Add PHPDoc long description to <mark>Accounts::addUserToGroup();</mark>  (the api method) to write here
-     * 
-     * @param int $id add <mark>@param {type} $id {comment}</mark> to describe here
+     * @param int $id 
      * @param int[] $groupIds An array of int values.
      
      * @return User	 
@@ -355,9 +349,7 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * Update the last login time for a user Update the last login time for a user.
      * 
-     * Add PHPDoc long description to <mark>Accounts::updateLastLogin();</mark>  (the api method) to write here
-     * 
-     * @param int $id add <mark>@param {type} $id {comment}</mark> to describe here
+     * @param int $id 
      * @param bool $successful Login attempt successful or not
      
      * @return User	 

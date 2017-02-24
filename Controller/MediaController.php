@@ -522,10 +522,6 @@ use GuzzleHttp\Post\PostFile;
         return $result;
     }
     /**
-     * routes to <mark>QBNK\QBank\Api\v1\Slides::combineSlides();</mark>.
-     * 
-     * Add PHPDoc long description to <mark>Slides::combineSlides();</mark>  (the api method) to write here
-     * 
      * @param Slides\SlideStructure[] $structure An array of QBNK\QBank\Api\v1\Model\Slides\SlideStructure values.
      
      * @return array
