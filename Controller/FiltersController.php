@@ -63,6 +63,32 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * Returns a array of FilterItem for a specific freetext,
+     * optionally filtered by DeploymentSites.
+     * 
+     * @param string $freetext String to filter by.
+     * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return FilterItem[]	 
+     */
+    public function freetext($freetext, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => ['deploymentSiteIds' => $deploymentSiteIds],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/filters/freetext/'.$freetext.'', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new FilterItem($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
      * Returns a array of FilterItem for the chosen property.
      * 
      * , optionally filtered by specific CategoryIds and/or DeploymentSites.
