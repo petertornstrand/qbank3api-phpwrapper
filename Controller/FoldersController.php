@@ -95,13 +95,13 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * Create a Folder.
      * 
-     * @param int $parentId An optional parent folder ID. Will otherwise be created in the root level. Note that root level creation requires additional access!.
      * @param Folder $folder A JSON encoded Folder to create
+     * @param int $parentId An optional parent folder ID. Will otherwise be created in the root level. Note that root level creation requires additional access!.
      * @param bool $inheritAccess Decides whether this Folder will inherit access from its parent folder
      
      * @return FolderResponse	 
      */
-    public function createFolder($parentId = 0, Folder $folder, $inheritAccess = null)
+    public function createFolder(Folder $folder, $parentId = 0, $inheritAccess = null)
     {
         $parameters = [
             'query'   => ['parentId' => $parentId],
