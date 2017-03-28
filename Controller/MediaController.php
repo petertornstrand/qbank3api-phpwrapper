@@ -16,6 +16,7 @@ use GuzzleHttp\Post\PostFile;
     use QBNK\QBank\API\Model\MediaVersion;
     use QBNK\QBank\API\Model\MoodboardResponse;
     use QBNK\QBank\API\Model\Property;
+    use QBNK\QBank\API\Model\SlideStructure;
     use QBNK\QBank\API\Model\SocialMedia;
 
     class MediaController extends ControllerAbstract
@@ -537,10 +538,13 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
-    /**
-     * @param Slides\SlideStructure[] $structure An array of QBNK\QBank\Api\v1\Model\Slides\SlideStructure values.
 
-     * @return array
+    /**
+     * Combines slides.
+     * 
+     * Combines several slides into one presentation.
+     * 
+     * @param SlideStructure[] $structure An array of QBNK\QBank\Api\v1\Model\Slides\SlideStructure values.
      */
     public function combineSlides(array $structure)
     {
