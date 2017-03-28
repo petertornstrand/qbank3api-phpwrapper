@@ -408,6 +408,7 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the User is dirty.
      * @return bool	 */
@@ -600,6 +601,7 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the extraData of the User.
      * @return ExtraData[]	 */

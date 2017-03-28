@@ -28,6 +28,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Lists all SocialMedia sites.
      * 

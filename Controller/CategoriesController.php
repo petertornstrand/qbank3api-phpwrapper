@@ -33,6 +33,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Category.
      * 
@@ -55,6 +56,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Create a Category.
      * 
@@ -74,6 +76,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Update a Category.
      * 
@@ -94,6 +97,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Delete a Category.
      * 

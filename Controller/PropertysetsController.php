@@ -32,6 +32,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Lists all PropertyTypes in QBank.
      * 

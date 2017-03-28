@@ -32,6 +32,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Protocol.
      * 
@@ -52,6 +53,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Lists all DeploymentSites.
      * 
@@ -77,6 +79,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific DeploymentSite.
      * 
@@ -97,6 +100,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Create a DeploymentSite.
      * 
@@ -116,6 +120,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Update a DeploymentSite.
      * 
@@ -136,6 +141,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Deploy Media to a DeploymentSite.
      * 
@@ -157,6 +163,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Delete a DeploymentSite.
      * 
@@ -178,6 +185,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Undeploy Media from a DeploymentSite.
      * 

@@ -358,6 +358,7 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the roles of the Group.
      * @return Role[]	 */
@@ -408,6 +409,7 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the extraData of the Group.
      * @return ExtraData[]	 */

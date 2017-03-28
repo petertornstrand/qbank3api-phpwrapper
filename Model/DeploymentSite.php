@@ -356,6 +356,7 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the videotemplates of the DeploymentSite.
      * @return VideoTemplate[]	 */
@@ -406,6 +407,7 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the categories of the DeploymentSite.
      * @return CategoryResponse[]	 */
@@ -456,6 +458,7 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the DeploymentSite.
      * @return string	 */

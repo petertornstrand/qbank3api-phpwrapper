@@ -25,6 +25,7 @@ class SearchController extends ControllerAbstract
 
 		return $result;
 	}
+
 	/**
 	 * Search for Media.
 	 *
@@ -47,6 +48,7 @@ class SearchController extends ControllerAbstract
 
 		return $result;
 	}
+
 	/**
 	 * Get total hit count for media search.
 	 *

@@ -31,6 +31,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Image Template.
      * 
@@ -53,6 +54,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Lists Video Templates available.
      * 
@@ -76,6 +78,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Video Template.
      * 

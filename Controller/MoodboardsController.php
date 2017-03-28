@@ -34,6 +34,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Moodboard.
      * 
@@ -59,7 +60,7 @@ use QBNK\QBank\API\CachePolicy;
     /**
      * @param array $template 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
+
      * @return array	 
      */
     public function formatTemplate($template, CachePolicy $cachePolicy = null)
@@ -98,6 +99,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Moodboard template.
      * 
@@ -120,6 +122,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Create a moodboard.
      * 
@@ -141,6 +144,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Update a moodboard.
      * 
@@ -163,6 +167,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Add Media to a Moodboard.
      * 
@@ -182,6 +187,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Delete a Moodboard.
      * 
@@ -203,6 +209,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Remove Media from a Moodboard.
      * 

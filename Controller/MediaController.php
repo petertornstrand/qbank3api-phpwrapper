@@ -40,6 +40,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Gets the raw file data of a Media.
      * 
@@ -95,6 +96,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Fetches all DeploymentSites a Media is deployed to.
      * 
@@ -119,6 +121,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Downloads a specific Media.
      * 
@@ -151,6 +154,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Fetches all Folders a Media resides in.
      * 
@@ -176,6 +180,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Fetches all Moodboards a Media is a member of.
      * 
@@ -200,6 +205,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Fetches all links to SocialMedia that a Media has.
      * 
@@ -226,6 +232,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Fetches all SocialMedia sites a Media is published to.
      * 
@@ -250,6 +257,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Fetches all External Usages for a Media.
      * 
@@ -274,6 +282,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Fetches the version list of a media.
      * 
@@ -300,6 +309,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Fetches eventual comments made on this media.
      * 
@@ -324,6 +334,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Downloads an archive of several Media.
      * 
@@ -344,6 +355,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Upload a new media to QBank.
      * 
@@ -379,6 +391,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Update a specific Media.
      * 
@@ -406,6 +419,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Groups one "main" Media with one or more "child" Media.
      * 
@@ -425,6 +439,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Restore a deleted Media.
      * 
@@ -446,6 +461,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Change status of a Media.
      * 
@@ -523,7 +539,7 @@ use GuzzleHttp\Post\PostFile;
     }
     /**
      * @param Slides\SlideStructure[] $structure An array of QBNK\QBank\Api\v1\Model\Slides\SlideStructure values.
-     
+
      * @return array
      */
     public function combineSlides(array $structure)
@@ -537,6 +553,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Update some properties for a Media.
      * 
@@ -558,6 +575,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Delete a Media.
      * 
@@ -580,6 +598,7 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Delete a comment.
      * 

@@ -138,11 +138,11 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
                 trigger_error('Array parameter item is not of expected type "MediaResponse"!', E_USER_WARNING);
             }
         }
-
         $this->results[] = $item;
 
         return $this;
     }
+
     /**
      * Gets the timeSearching of the SearchResult.
      * @return float	 */

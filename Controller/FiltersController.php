@@ -34,6 +34,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Returns a array of FilterItem for the chosen folder subfolders.
      * 
@@ -62,9 +63,11 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
-     * Returns a array of FilterItem for a specific freetext,
-     * optionally filtered by DeploymentSites.
+     * Returns a array of FilterItem for a specific freetext.
+     * 
+     * , optionally filtered by DeploymentSites.
      * 
      * @param string $freetext String to filter by.
      * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
@@ -88,6 +91,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Returns a array of FilterItem for the chosen property.
      * 

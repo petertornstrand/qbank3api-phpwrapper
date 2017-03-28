@@ -19,8 +19,8 @@ use QBNK\QBank\API\CachePolicy;
      * @param bool $includeProperties Whether to return the properties for each folder..
      * @param bool $includeObjectCounts Whether to return the number of objects each folder contains..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     *
-     * @return FolderResponse[]
+     
+     * @return FolderResponse[]	 
      */
     public function listFolders($root = 0, $depth = 0, $includeProperties = true, $includeObjectCounts = false, CachePolicy $cachePolicy = null)
     {
@@ -38,6 +38,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Folder.
      * 
@@ -63,6 +64,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Lists all parent Folders until the absolute root.
      * 
@@ -125,6 +127,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Add Media to Folder.
      * 
@@ -144,6 +147,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Update a Folder. Move a folder by updating the parent folder id.
      * 
@@ -166,6 +170,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Remove Media from Folder.
      * 
@@ -185,6 +190,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Delete a Folder.
      * 

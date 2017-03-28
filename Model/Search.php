@@ -643,6 +643,7 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the fileSizeCriteria of the Search.
      * @return string[]	 */
@@ -847,6 +848,7 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the Search is duplicates.
      * @return bool	 */

@@ -30,6 +30,7 @@ use QBNK\QBank\API\Model\DownloadItem;
 
         return $result;
     }
+
     /**
      * Track a Media download.
      *
@@ -50,6 +51,7 @@ use QBNK\QBank\API\Model\DownloadItem;
 
         return $result;
     }
+
     /**
      * Track a Search.
      *
@@ -71,6 +73,7 @@ use QBNK\QBank\API\Model\DownloadItem;
 
         return $result;
     }
+
     /**
      * Creates a sessionId.
      * 
@@ -93,6 +96,7 @@ use QBNK\QBank\API\Model\DownloadItem;
 
         return $result;
     }
+
     /**
      * Register a usage of a Media.
      * 
@@ -113,6 +117,7 @@ use QBNK\QBank\API\Model\DownloadItem;
 
         return $result;
     }
+
     /**
      * Track a Media view.
      *
@@ -133,6 +138,7 @@ use QBNK\QBank\API\Model\DownloadItem;
 
         return $result;
     }
+
     /**
      * Unregister (remove) a Media usage.
      * 

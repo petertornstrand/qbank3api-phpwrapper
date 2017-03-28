@@ -258,6 +258,7 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the mimetype of the MediaResponse.
      * @return MimeType	 */
@@ -428,6 +429,7 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the commentCount of the MediaResponse.
      * @return int	 */

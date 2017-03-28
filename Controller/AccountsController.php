@@ -36,6 +36,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Functionality.
      * 
@@ -58,6 +59,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Lists Groups available.
      * 
@@ -84,6 +86,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Group.
      * 
@@ -106,6 +109,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches the currently logged in User.
      * 
@@ -127,6 +131,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Lists Roles available.
      * 
@@ -153,6 +158,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific Role.
      * 
@@ -175,6 +181,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches all settings.
      * 
@@ -195,6 +202,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a setting.
      * 
@@ -216,6 +224,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Lists Users available.
      * 
@@ -242,6 +251,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Fetches a specific User.
      * 
@@ -264,6 +274,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Creates a new setting.
      * 
@@ -283,6 +294,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Create a user Create a user in QBank.
      * 
@@ -305,6 +317,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Update a user Update a user in QBank.
      * 
@@ -326,6 +339,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Add the user to one or more groups.
      * 
@@ -346,6 +360,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Update the last login time for a user Update the last login time for a user.
      * 
@@ -366,6 +381,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Dispatch a password reset mail to a user.
      * 
@@ -385,6 +401,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Reset a password for a user with password reset hash.
      * 
@@ -406,6 +423,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
+
     /**
      * Updates an existing setting.
      * 

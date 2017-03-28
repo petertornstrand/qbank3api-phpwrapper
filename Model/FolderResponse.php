@@ -169,6 +169,7 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the savedSearch of the FolderResponse.
      * @return SavedSearch	 */
