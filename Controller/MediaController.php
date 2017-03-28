@@ -73,18 +73,20 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
     /**
      * Fetches all DeployedFiles a Media has.
      * 
      * @param int $id The Media identifier..
+     * @param Media $media [DEPRECATED] Internal use only.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return DeploymentFile[]
      */
-    public function listDeployedFiles($id, CachePolicy $cachePolicy = null)
+    public function listDeployedFiles($id, Media $media = null, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
+            'query'   => ['media' => json_decode(json_encode($media), true)],
             'body'    => json_encode([]),
             'headers' => [],
         ];
