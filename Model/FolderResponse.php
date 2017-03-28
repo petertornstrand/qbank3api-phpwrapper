@@ -13,6 +13,12 @@ use DateTime;
     /** @var FolderResponse[] The Folder's children, ie. subfolders. */
     protected $subFolders;
 
+    /** @var SavedSearch The saved search of the (filter-)folder. */
+    protected $savedSearch;
+
+    /** @var int The number of objects in this folder */
+    protected $objectCount;
+
     /** @var int The base Object identifier. */
     protected $objectId;
 
@@ -40,6 +46,8 @@ use DateTime;
      * @param array $parameters An array of parameters to initialize the {@link FolderResponse} with.
      * - <b>id</b> - The Folder identifier.
      * - <b>subFolders</b> - The Folder's children, ie. subfolders.
+     * - <b>savedSearch</b> - The saved search of the (filter-)folder.
+     * - <b>objectCount</b> - The number of objects in this folder
      * - <b>objectId</b> - The base Object identifier.
      * - <b>created</b> - When the Object was created.
      * - <b>createdBy</b> - The identifier of the User who created the Object.
@@ -60,6 +68,12 @@ use DateTime;
         }
         if (isset($parameters['subFolders'])) {
             $this->setSubFolders($parameters['subFolders']);
+        }
+        if (isset($parameters['savedSearch'])) {
+            $this->setSavedSearch($parameters['savedSearch']);
+        }
+        if (isset($parameters['objectCount'])) {
+            $this->setObjectCount($parameters['objectCount']);
         }
         if (isset($parameters['objectId'])) {
             $this->setObjectId($parameters['objectId']);
@@ -152,6 +166,55 @@ use DateTime;
             }
         }
         $this->subFolders[] = $item;
+
+        return $this;
+    }
+    /**
+     * Gets the savedSearch of the FolderResponse.
+     * @return SavedSearch	 */
+    public function getSavedSearch()
+    {
+        return $this->savedSearch;
+    }
+
+    /**
+     * Sets the "savedSearch" of the FolderResponse.
+     *
+     * @param SavedSearch $savedSearch
+     *
+     * @return FolderResponse
+     */
+    public function setSavedSearch($savedSearch)
+    {
+        if ($savedSearch instanceof SavedSearch) {
+            $this->savedSearch = $savedSearch;
+        } elseif (is_array($savedSearch)) {
+            $this->savedSearch = new SavedSearch($savedSearch);
+        } else {
+            $this->savedSearch = null;
+            trigger_error('Argument must be an object of class SavedSearch. Data loss!', E_USER_WARNING);
+        }
+
+        return $this;
+    }
+    /**
+     * Gets the objectCount of the FolderResponse.
+     * @return int	 */
+    public function getObjectCount()
+    {
+        return $this->objectCount;
+    }
+
+    /**
+     * Sets the "objectCount" of the FolderResponse.
+     *
+     * @param int $objectCount
+     *
+     * @return FolderResponse
+     */
+    public function setObjectCount($objectCount)
+    {
+        $this->objectCount = $objectCount;
 
         return $this;
     }
@@ -383,6 +446,12 @@ use DateTime;
         }
         if ($this->subFolders !== null && !empty($this->subFolders)) {
             $json['subFolders'] = $this->subFolders;
+        }
+        if ($this->savedSearch !== null) {
+            $json['savedSearch'] = $this->savedSearch;
+        }
+        if ($this->objectCount !== null) {
+            $json['objectCount'] = $this->objectCount;
         }
         if ($this->objectId !== null) {
             $json['objectId'] = $this->objectId;

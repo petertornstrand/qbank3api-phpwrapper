@@ -5,6 +5,7 @@ namespace QBNK\QBank\API\Controller;
 use QBNK\QBank\API\CachePolicy;
     use QBNK\QBank\API\Model\Moodboard;
     use QBNK\QBank\API\Model\MoodboardResponse;
+    use QBNK\QBank\API\Model\MoodboardTemplateResponse;
 
     class MoodboardsController extends ControllerAbstract
     {
@@ -52,6 +53,70 @@ use QBNK\QBank\API\CachePolicy;
         ];
         $result = $this->get('v1/moodboards/'.$id.'', $parameters, $cachePolicy);
         $result = new MoodboardResponse($result);
+
+        return $result;
+    }
+    /**
+     * @param array $template 
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return array	 
+     */
+    public function formatTemplate($template, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => ['template' => $template],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/moodboards/formattemplate', $parameters, $cachePolicy);
+
+        return $result;
+    }
+    /**
+     * Lists all Moodboard templates.
+     * 
+     * Lists all Moodboard templates that the user has access to.
+     * 
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return MoodboardTemplateResponse[]	 
+     */
+    public function listTemplates(CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/moodboards/templates', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new MoodboardTemplateResponse($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+    /**
+     * Fetches a specific Moodboard template.
+     * 
+     * Fetches a specific Moodboard template by id.
+     * 
+     * @param int $templateId 
+     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return MoodboardTemplateResponse	 
+     */
+    public function retrieveTemplate($templateId, CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode([]),
+            'headers' => [],
+        ];
+        $result = $this->get('v1/moodboards/templates/'.$templateId.'', $parameters, $cachePolicy);
+        $result = new MoodboardTemplateResponse($result);
 
         return $result;
     }

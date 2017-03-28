@@ -134,10 +134,11 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
                 } catch (\Exception $e) {
                     trigger_error('Could not auto-instantiate MediaResponse. '.$e->getMessage(), E_USER_WARNING);
                 }
-            } else {
+            } elseif (!is_numeric($item)) {
                 trigger_error('Array parameter item is not of expected type "MediaResponse"!', E_USER_WARNING);
             }
         }
+
         $this->results[] = $item;
 
         return $this;

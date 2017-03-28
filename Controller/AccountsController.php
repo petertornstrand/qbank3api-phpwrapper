@@ -306,6 +306,67 @@ use QBNK\QBank\API\CachePolicy;
         return $result;
     }
     /**
+     * Update a user Update a user in QBank.
+     * 
+     * @param int $id 
+     * @param User $user The user to update
+     * @param string $password Set a new password for the user, leave blank to leave unchanged
+     
+     * @return User	 
+     */
+    public function updateUser($id, User $user, $password = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['user' => $user, 'password' => $password]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/accounts/users/'.$id.'', $parameters);
+        $result = new User($result);
+
+        return $result;
+    }
+    /**
+     * Add the user to one or more groups.
+     * 
+     * @param int $id 
+     * @param int[] $groupIds An array of int values.
+     
+     * @return User	 
+     */
+    public function addUserToGroup($id, array $groupIds)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['groupIds' => $groupIds]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/accounts/users/'.$id.'/groups', $parameters);
+        $result = new User($result);
+
+        return $result;
+    }
+    /**
+     * Update the last login time for a user Update the last login time for a user.
+     * 
+     * @param int $id 
+     * @param bool $successful Login attempt successful or not
+     
+     * @return User	 
+     */
+    public function updateLastLogin($id, $successful = null)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => json_encode(['successful' => $successful]),
+            'headers' => [],
+        ];
+        $result = $this->post('v1/accounts/users/'.$id.'/registerloginattempt', $parameters);
+        $result = new User($result);
+
+        return $result;
+    }
+    /**
      * Dispatch a password reset mail to a user.
      * 
      * . The supplied link will be included in the mail and appended with a "hash=" parameter containing the password reset hash needed to set the new password in step 2.
@@ -321,47 +382,6 @@ use QBNK\QBank\API\CachePolicy;
             'headers' => [],
         ];
         $result = $this->post('v1/accounts/users/'.$id.'/resetpassword', $parameters);
-
-        return $result;
-    }
-    /**
-     * Update a user Update a user in QBank.
-     * 
-     * @param int $userId 
-     * @param User $user The user to update
-     * @param string $password Set a new password for the user, leave blank to leave unchanged
-     
-     * @return User	 
-     */
-    public function updateUser($userId, User $user, $password = null)
-    {
-        $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['user' => $user, 'password' => $password]),
-            'headers' => [],
-        ];
-        $result = $this->post('v1/accounts/users/'.$userId.'', $parameters);
-        $result = new User($result);
-
-        return $result;
-    }
-    /**
-     * Add the user to one or more groups.
-     * 
-     * @param int $userId 
-     * @param int[] $groupIds An array of int values.
-     
-     * @return User	 
-     */
-    public function addUserToGroup($userId, array $groupIds)
-    {
-        $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['groupIds' => $groupIds]),
-            'headers' => [],
-        ];
-        $result = $this->post('v1/accounts/users/'.$userId.'/groups', $parameters);
-        $result = new User($result);
 
         return $result;
     }
