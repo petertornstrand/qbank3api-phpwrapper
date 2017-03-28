@@ -91,21 +91,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
-    /**
-     * @param array $folders 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     */
-    public function stripProperties($folders, CachePolicy $cachePolicy = null)
-    {
-        $parameters = [
-            'query'   => ['folders' => $folders],
-            'body'    => json_encode([]),
-            'headers' => [],
-        ];
-        $result = $this->get('v1/folders/stripproperties', $parameters, $cachePolicy);
 
-        return $result;
-    }
     /**
      * Create a Folder.
      * 

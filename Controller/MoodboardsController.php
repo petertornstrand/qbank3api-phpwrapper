@@ -57,23 +57,7 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
-    /**
-     * @param array $template 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
 
-     * @return array	 
-     */
-    public function formatTemplate($template, CachePolicy $cachePolicy = null)
-    {
-        $parameters = [
-            'query'   => ['template' => $template],
-            'body'    => json_encode([]),
-            'headers' => [],
-        ];
-        $result = $this->get('v1/moodboards/formattemplate', $parameters, $cachePolicy);
-
-        return $result;
-    }
     /**
      * Lists all Moodboard templates.
      * 
