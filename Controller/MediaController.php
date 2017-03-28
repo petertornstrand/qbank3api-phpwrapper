@@ -488,6 +488,27 @@ use GuzzleHttp\Post\PostFile;
 
         return $result;
     }
+
+    /**
+     * Upload a new preview for a media.
+     * 
+     * Replaces the current preview thumbnails for a media with the supplied one. Recommended image size is minimum 1000px on the longest side. If a PDF is uploaded it will be added as a preview document. This enables users to browse documents directly from within QBank. The maximum recommended file size is 10MB.
+     *
+     * @param mixed $fileData The file's data content.
+     * @param int $id 
+     */
+    public function uploadPreview($fileData, $id)
+    {
+        $parameters = [
+            'query'   => [],
+            'body'    => ['file' => new PostFile('file', $fileData)],
+            'headers' => ['Content-type' => 'multipart/form-data'],
+        ];
+        $result = $this->post('v1/media/'.$id.'/uploadpreview', $parameters);
+
+        return $result;
+    }
+
     /**
      * Upload a new version of a media.
      * 
@@ -497,7 +518,7 @@ use GuzzleHttp\Post\PostFile;
      *  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
      *  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
      *
-     * 
+     * @param mixed $fileData The file's data content.
      * @param int $id The Media identifier.
      * @param string $revisionComment The revision comment
      * @param string $name Filename of the file being uploaded
@@ -507,17 +528,24 @@ use GuzzleHttp\Post\PostFile;
      
      * @return array
      */
-    public function uploadNewVersionChunked($id, $revisionComment, $name, $chunk, $chunks, $fileId)
+    public function uploadNewVersionChunked($fileData, $id, $revisionComment, $name, $chunk, $chunks, $fileId)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['revisionComment' => $revisionComment, 'name' => $name, 'chunk' => $chunk, 'chunks' => $chunks, 'fileId' => $fileId]),
-            'headers' => [],
+            'query' => [
+                'revisionComment' => $revisionComment,
+                'name'            => $name,
+                'chunk'           => $chunk,
+                'chunks'          => $chunks,
+                'fileId'          => $fileId,
+            ],
+            'body'    => ['file' => new PostFile('file', $fileData)],
+            'headers' => ['Content-type' => 'multipart/form-data'],
         ];
         $result = $this->post('v1/media/'.$id.'/version', $parameters);
 
         return $result;
     }
+
     /**
      * Post a comment on a media.
      * 
@@ -658,6 +686,64 @@ use GuzzleHttp\Post\PostFile;
         }
         while ($chunkData = fread($fp, $chunkSize)) {
             $result = $this->uploadFileChunked($chunkData, $name, $chunk, $chunksTotal, $fileId, $categoryId);
+            if (is_callable($progress)) {
+                try {
+                    call_user_func($progress, $chunk + 1, $chunksTotal);
+                } catch (\Exception $e) {
+                    $this->logger->warning('Could not report progress due to callback error.', ['message' => $e->getMessage()]);
+                }
+            }
+            $this->logger->info('Upload progress!', ['part' => $chunk + 1, 'total' => $chunksTotal]);
+            if (isset($result['mediaId'])) {
+                return new MediaResponse($result);
+            }
+            if (isset($result['success']) && $result['success'] == false) {
+                throw new UploadException($result['error']['message'], $result['error']['code']);
+            }
+            $fileId = $result['fileId'];
+            ++$chunk;
+        }
+        if ($chunk == $chunksTotal - 1) {
+            throw new UploadException('Uploaded all chunks, but something went wrong.');
+        }
+        if ($chunkData === false) {
+            throw new UploadException('Could not read chunk '.$chunk.' from file "'.$pathname.'".');
+        }
+        throw new UploadException('Unknown upload error!');
+    }
+
+    /**
+     * Upload a new version of an existing Media in QBank.
+     *
+     * Will automatically divide files into chunks if neccessary. The specific breakpoint when chunking occurs is
+     * customizable, but defaults to the recommended maximum. It is also possible to monitor uploading via callbacks.
+     *
+     * @param int $id The ID of the existing Media
+     * @param string $pathname The pathname of the file to upload.
+     * @param string $revisionComment A comment to the new version. E.g. why.
+     * @param string  $filename The filename of the new version.
+     * @param callable $progress Provides progress monitoring. Callback should have the signature function($chunk, $chunkTotal).
+     * @param int $chunkSize The size of chunk during upload. Defaults to the recommended maximum of 10MB.
+     *
+     * @throws UploadException Thrown if something went wrong during the upload.
+     *
+     * @return MediaResponse The newly updated Media.
+     */
+    public function uploadNewVersion($id, $pathname, $revisionComment, $filename = null, $progress = null, $chunkSize = 10485760)
+    {
+        $chunk       = 0;
+        $chunksTotal = ceil(filesize($pathname) / $chunkSize);
+        $fileId      = sha1(uniqid('uploadVersion', true));
+        $filename    = $filename ?: pathinfo($filename, PATHINFO_BASENAME);
+        $fp          = fopen($pathname, 'r');
+        if ($fp === false) {
+            throw new UploadException('Could not open file "'.$pathname.'" for reading.');
+        }
+        if ($chunkSize > 10485760) {
+            $this->logger->warning('Using a chunk size larger then 10MB is not recommended. Uploading is not guaranteed to work properly.');
+        }
+        while ($chunkData = fread($fp, $chunkSize)) {
+            $result = $this->uploadNewVersionChunked($chunkData, $id, $revisionComment, $filename, $chunk, $chunksTotal, $fileId);
             if (is_callable($progress)) {
                 try {
                     call_user_func($progress, $chunk + 1, $chunksTotal);
