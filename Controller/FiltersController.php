@@ -3,25 +3,29 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Model\FilterItem;
+use QBNK\QBank\API\Model\FilterItem;
 
-    class FiltersController extends ControllerAbstract
-    {
-        /**
+class FiltersController extends ControllerAbstract
+{
+    const FREETEXT_AND = 'AND';
+    const FREETEXT_OR  = 'OR';
+
+    /**
      * Returns a array of FilterItem for the chosen categories.
      * 
      * , optionally filtered by specific DeploymentSites.
      * 
      * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
      * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
+     * @param bool $ignoreGrouping Whether to include grouped media or not.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return FilterItem[]	 
      */
-    public function categories($categoryIds, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
+    public function categories($categoryIds, $deploymentSiteIds = null, $ignoreGrouping = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['deploymentSiteIds' => $deploymentSiteIds],
+            'query'   => ['deploymentSiteIds' => $deploymentSiteIds, 'ignoreGrouping' => $ignoreGrouping],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -43,14 +47,15 @@ use QBNK\QBank\API\CachePolicy;
      * @param int $parentFolderId The folder id..
      * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
      * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
+     * @param bool $ignoreGrouping Whether to include grouped media or not.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return FilterItem[]	 
      */
-    public function folder($parentFolderId, $categoryIds = null, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
+    public function folder($parentFolderId, $categoryIds = null, $deploymentSiteIds = null, $ignoreGrouping = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds],
+            'query'   => ['categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds, 'ignoreGrouping' => $ignoreGrouping],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -71,14 +76,16 @@ use QBNK\QBank\API\CachePolicy;
      * 
      * @param string $freetext String to filter by.
      * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
+     * @param string $mode The method (AND|OR) to filter words by.
+     * @param bool $ignoreGrouping Whether to include grouped media or not.
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return FilterItem[]	 
      */
-    public function freetext($freetext, $deploymentSiteIds = null, CachePolicy $cachePolicy = null)
+    public function freetext($freetext, $deploymentSiteIds = null, $mode = self::FREETEXT_OR, $ignoreGrouping = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['deploymentSiteIds' => $deploymentSiteIds],
+            'query'   => ['deploymentSiteIds' => $deploymentSiteIds, 'mode' => $mode, 'ignoreGrouping' => $ignoreGrouping],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -101,15 +108,16 @@ use QBNK\QBank\API\CachePolicy;
      * @param bool $preloadNames If item names should be preloaded from property type.
      * @param string $categoryIds Comma separated string categoryIds we should fetch mediaIds for.
      * @param string $deploymentSiteIds Comma separated string of deploymentSiteIds we should fetch mediaIds for.
-     * @param bool $isHierarchical 
+     * @param bool $isHierarchical Whether to include grouped media or not.
+     * @param bool $ignoreGrouping 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
      
      * @return FilterItem[]	 
      */
-    public function property($systemName, $preloadNames = false, $categoryIds = null, $deploymentSiteIds = null, $isHierarchical = false, CachePolicy $cachePolicy = null)
+    public function property($systemName, $preloadNames = false, $categoryIds = null, $deploymentSiteIds = null, $isHierarchical = false, $ignoreGrouping = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['preloadNames' => $preloadNames, 'categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds, 'isHierarchical' => $isHierarchical],
+            'query'   => ['preloadNames' => $preloadNames, 'categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds, 'isHierarchical' => $isHierarchical, 'ignoreGrouping' => $ignoreGrouping],
             'body'    => json_encode([]),
             'headers' => [],
         ];
@@ -122,4 +130,4 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
-    }
+}
