@@ -385,8 +385,8 @@ class QBankApi
                         'Content-type' => 'application/json',
                         'User-Agent'   => 'qbank3api-phpwrapper/1 (qbankapi: 1; swagger: 1.1)',
                     ],
+                    'verify' => $this->verifyCertificates,
                 ],
-                'verify' => $this->verifyCertificates,
             ]);
             $this->client->getEmitter()->attach($this->getOAuth2Subscriber());
             $this->logger->debug('Guzzle client instantiated.', ['basepath' => $this->basepath]);
