@@ -49,6 +49,9 @@ class Search  implements \JsonSerializable
     /** @var bool Indicates that we should ignore grouping and return child objects in the result */
     protected $ignoreGrouping;
 
+    /** @var bool Indicates that we should include grouped objects in each object */
+    protected $includeChildren;
+
     /** @var int Search for media that have this media as parent */
     protected $parentId;
 
@@ -104,6 +107,7 @@ class Search  implements \JsonSerializable
      * - <b>moodboardIds</b> - An array with MoodboardIds to search within
      * - <b>categoryIds</b> - An array with CategoryIds to search within
      * - <b>ignoreGrouping</b> - Indicates that we should ignore grouping and return child objects in the result
+     * - <b>includeChildren</b> - Indicates that we should include grouped objects in each object
      * - <b>parentId</b> - Search for media that have this media as parent
      * - <b>deploymentSiteIds</b> - An array with DeploymentSiteIds to search within
      * - <b>properties</b> - An array of Properties to filter by
@@ -183,6 +187,9 @@ class Search  implements \JsonSerializable
         }
         if (isset($parameters['ignoreGrouping'])) {
             $this->setIgnoreGrouping($parameters['ignoreGrouping']);
+        }
+        if (isset($parameters['includeChildren'])) {
+            $this->setIncludeChildren($parameters['includeChildren']);
         }
         if (isset($parameters['parentId'])) {
             $this->setParentId($parameters['parentId']);
@@ -548,6 +555,27 @@ class Search  implements \JsonSerializable
     public function setIgnoreGrouping($ignoreGrouping)
     {
         $this->ignoreGrouping = $ignoreGrouping;
+
+        return $this;
+    }
+    /**
+     * Tells whether the Search is includeChildren.
+     * @return bool	 */
+    public function isIncludeChildren()
+    {
+        return $this->includeChildren;
+    }
+
+    /**
+     * Sets the "includeChildren" of the Search.
+     *
+     * @param bool $includeChildren
+     *
+     * @return Search
+     */
+    public function setIncludeChildren($includeChildren)
+    {
+        $this->includeChildren = $includeChildren;
 
         return $this;
     }
@@ -924,6 +952,9 @@ class Search  implements \JsonSerializable
         }
         if ($this->ignoreGrouping !== null) {
             $json['ignoreGrouping'] = $this->ignoreGrouping;
+        }
+        if ($this->includeChildren !== null) {
+            $json['includeChildren'] = $this->includeChildren;
         }
         if ($this->parentId !== null) {
             $json['parentId'] = $this->parentId;

@@ -3,13 +3,13 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Model\Search;
-    use QBNK\QBank\API\Model\SearchResult;
+use QBNK\QBank\API\Model\Search;
+use QBNK\QBank\API\Model\SearchResult;
 
-    class SearchController extends ControllerAbstract
-    {
-        const RETURN_OBJECTS = 1;
-        const RETURN_IDS     = 2;
+class SearchController extends ControllerAbstract
+{
+    const RETURN_OBJECTS = 1;
+    const RETURN_IDS     = 2;
 
     /**
      * routes to <mark>QBNK\QBank\Api\v1\Search::metadata();</mark>.
@@ -23,9 +23,8 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
-        $result = $this->get('v1/search/metadata', $parameters, $cachePolicy);
 
-        return $result;
+        return $this->get('v1/search/metadata', $parameters, $cachePolicy);
     }
 
     /**
@@ -45,6 +44,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['search' => $search]),
             'headers' => [],
         ];
+
         $result = $this->call('v1/search', $parameters, self::METHOD_POST, $cachePolicy);
         $result = new SearchResult($result);
 
@@ -65,8 +65,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['search' => $search]),
             'headers' => [],
         ];
-        $result = $this->post('v1/search/total', $parameters);
 
-        return $result;
+        $this->post('v1/search/total', $parameters);
     }
-    }
+}
