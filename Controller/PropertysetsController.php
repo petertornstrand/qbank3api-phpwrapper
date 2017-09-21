@@ -3,12 +3,12 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Model\PropertySet;
-    use QBNK\QBank\API\Model\PropertyType;
+use QBNK\QBank\API\Model\PropertySet;
+use QBNK\QBank\API\Model\PropertyType;
 
-    class PropertysetsController extends ControllerAbstract
-    {
-        /**
+class PropertysetsController extends ControllerAbstract
+{
+    /**
      * Lists all PropertySets.
      * 
      
@@ -23,6 +23,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/propertysets', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new PropertySet($entry);
@@ -48,6 +49,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/propertysets/propertytypes', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new PropertyType($entry);
@@ -67,4 +69,4 @@ use QBNK\QBank\API\CachePolicy;
 
         return $result;
     }
-    }
+}

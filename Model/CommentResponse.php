@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class CommentResponse extends Comment implements \JsonSerializable
-    {
-        /** @var int Id of the comment */
+class CommentResponse extends Comment implements \JsonSerializable
+{
+    /** @var int Id of the comment */
     protected $id;
 
     /** @var int The QBank user that wrote this comment */
@@ -193,4 +193,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

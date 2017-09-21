@@ -3,14 +3,14 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Model\Functionality;
-    use QBNK\QBank\API\Model\Group;
-    use QBNK\QBank\API\Model\Role;
-    use QBNK\QBank\API\Model\User;
+use QBNK\QBank\API\Model\Functionality;
+use QBNK\QBank\API\Model\Group;
+use QBNK\QBank\API\Model\Role;
+use QBNK\QBank\API\Model\User;
 
-    class AccountsController extends ControllerAbstract
-    {
-        /**
+class AccountsController extends ControllerAbstract
+{
+    /**
      * Lists Functionalities available.
      * 
      * Lists all Functionalities available
@@ -27,6 +27,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/functionalities', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new Functionality($entry);
@@ -54,6 +55,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/functionalities/'.$id.'', $parameters, $cachePolicy);
         $result = new Functionality($result);
 
@@ -77,6 +79,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/groups', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new Group($entry);
@@ -104,6 +107,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/groups/'.$id.'', $parameters, $cachePolicy);
         $result = new Group($result);
 
@@ -126,6 +130,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/me', $parameters, $cachePolicy);
         $result = new User($result);
 
@@ -149,6 +154,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/roles', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new Role($entry);
@@ -176,6 +182,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/roles/'.$id.'', $parameters, $cachePolicy);
         $result = new Role($result);
 
@@ -198,6 +205,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/settings', $parameters, $cachePolicy);
 
         return $result;
@@ -220,6 +228,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/settings/'.$key.'', $parameters, $cachePolicy);
 
         return $result;
@@ -242,6 +251,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/users', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new User($entry);
@@ -269,6 +279,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/accounts/users/'.$id.'', $parameters, $cachePolicy);
         $result = new User($result);
 
@@ -290,9 +301,8 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['key' => $key, 'value' => $value]),
             'headers' => [],
         ];
-        $result = $this->post('v1/accounts/settings', $parameters);
 
-        return $result;
+        $this->post('v1/accounts/settings', $parameters);
     }
 
     /**
@@ -312,6 +322,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['user' => $user, 'password' => $password, 'redirectTo' => $redirectTo, 'sendNotificationEmail' => $sendNotificationEmail]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/accounts/users', $parameters);
         $result = new User($result);
 
@@ -334,6 +345,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['user' => $user, 'password' => $password]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/accounts/users/'.$id.'', $parameters);
         $result = new User($result);
 
@@ -355,6 +367,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['groupIds' => $groupIds]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/accounts/users/'.$id.'/groups', $parameters);
         $result = new User($result);
 
@@ -376,6 +389,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['successful' => $successful]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/accounts/users/'.$id.'/registerloginattempt', $parameters);
         $result = new User($result);
 
@@ -397,9 +411,8 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['link' => $link]),
             'headers' => [],
         ];
-        $result = $this->post('v1/accounts/users/'.$id.'/resetpassword', $parameters);
 
-        return $result;
+        $this->post('v1/accounts/users/'.$id.'/resetpassword', $parameters);
     }
 
     /**
@@ -419,6 +432,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['hash' => $hash, 'password' => $password]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/accounts/users/resetpassword', $parameters);
 
         return $result;
@@ -439,8 +453,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['value' => $value]),
             'headers' => [],
         ];
-        $result = $this->put('v1/accounts/settings/'.$key.'', $parameters);
 
-        return $result;
+        $this->put('v1/accounts/settings/'.$key.'', $parameters);
     }
-    }
+}

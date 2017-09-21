@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class ExtraData  implements \JsonSerializable
-    {
-        /** @var int The ExtraData identifier. */
+class ExtraData  implements \JsonSerializable
+{
+    /** @var int The ExtraData identifier. */
     protected $id;
 
     /** @var bool Whether the object has been modified since constructed. */
@@ -354,4 +354,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

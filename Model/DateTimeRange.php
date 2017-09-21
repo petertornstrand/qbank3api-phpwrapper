@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class DateTimeRange  implements \JsonSerializable
-    {
-        /** @var DateTime Minimum date in this range, leave empty for none. */
+class DateTimeRange  implements \JsonSerializable
+{
+    /** @var DateTime Minimum date in this range, leave empty for none. */
     protected $min;
 
     /** @var DateTime Maximum date in this range, leave empty for none. */
@@ -106,4 +106,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

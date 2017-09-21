@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class MediaVersion  implements \JsonSerializable
-    {
-        /** @var int The Media identifier. */
+class MediaVersion  implements \JsonSerializable
+{
+    /** @var int The Media identifier. */
     protected $mediaId;
 
     /** @var string The Media filename */
@@ -253,4 +253,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

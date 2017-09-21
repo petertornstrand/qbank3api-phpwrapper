@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class PropertySet  implements \JsonSerializable
-    {
-        /** @var int The PropertySet identifier */
+class PropertySet  implements \JsonSerializable
+{
+    /** @var int The PropertySet identifier */
     protected $id;
 
     /** @var string The PropertySet name. */
@@ -385,4 +385,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

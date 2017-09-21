@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class MediaUsageResponse extends MediaUsage implements \JsonSerializable
-    {
-        /** @var int  */
+class MediaUsageResponse extends MediaUsage implements \JsonSerializable
+{
+    /** @var int  */
     protected $id;
 
     /** @var DateTime  */
@@ -170,4 +170,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

@@ -3,11 +3,11 @@
 namespace QBNK\QBank\API\Model;
 
 use DateTime;
-    use QBNK\QBank\API\Exception\PropertyNotFoundException;
+use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-    class FolderResponse extends Folder implements \JsonSerializable
-    {
-        /** @var int The Folder identifier. */
+class FolderResponse extends Folder implements \JsonSerializable
+{
+    /** @var int The Folder identifier. */
     protected $id;
 
     /** @var FolderResponse[] The Folder's children, ie. subfolders. */
@@ -375,7 +375,7 @@ use DateTime;
      *
      * @throws PropertyNotFoundException Thrown if the requested property does not exist.
      *
-     * @return Property
+     * @return PropertyResponse
      */
     public function getProperty($systemName)
     {
@@ -478,4 +478,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

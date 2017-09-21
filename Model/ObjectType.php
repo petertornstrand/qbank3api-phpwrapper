@@ -3,11 +3,11 @@
 namespace QBNK\QBank\API\Model;
 
 use DateTime;
-    use QBNK\QBank\API\Exception\PropertyNotFoundException;
+use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-    class ObjectType  implements \JsonSerializable
-    {
-        /** @var string The name of the ObjectType */
+class ObjectType  implements \JsonSerializable
+{
+    /** @var string The name of the ObjectType */
     protected $name;
 
     /** @var string A description of the ObjectType */
@@ -286,7 +286,7 @@ use DateTime;
      *
      * @throws PropertyNotFoundException Thrown if the requested property does not exist.
      *
-     * @return Property
+     * @return PropertyResponse
      */
     public function getProperty($systemName)
     {
@@ -408,4 +408,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

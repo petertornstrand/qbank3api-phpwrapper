@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class Moodboard  implements \JsonSerializable
-    {
-        /** @var string The pincode used to access this Moodboard. */
+class Moodboard  implements \JsonSerializable
+{
+    /** @var string The pincode used to access this Moodboard. */
     protected $pinCode;
 
     /** @var int The template used by the Moodboard. */
@@ -325,4 +325,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

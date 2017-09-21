@@ -3,11 +3,11 @@
 namespace QBNK\QBank\API\Model;
 
 use DateTime;
-    use QBNK\QBank\API\Exception\PropertyNotFoundException;
+use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-    class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
-    {
-        /** @var int The DeploymentSite identifier. */
+class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
+{
+    /** @var int The DeploymentSite identifier. */
     protected $id;
 
     /** @var int The base Object identifier. */
@@ -253,7 +253,7 @@ use DateTime;
      *
      * @throws PropertyNotFoundException Thrown if the requested property does not exist.
      *
-     * @return Property
+     * @return PropertyResponse
      */
     public function getProperty($systemName)
     {
@@ -347,4 +347,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

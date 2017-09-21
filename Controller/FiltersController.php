@@ -29,6 +29,7 @@ class FiltersController extends ControllerAbstract
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/filters/categories/'.$categoryIds.'', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FilterItem($entry);
@@ -59,6 +60,7 @@ class FiltersController extends ControllerAbstract
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/filters/folder/'.$parentFolderId.'', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FilterItem($entry);
@@ -89,6 +91,7 @@ class FiltersController extends ControllerAbstract
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/filters/freetext/'.$freetext.'', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FilterItem($entry);
@@ -121,6 +124,7 @@ class FiltersController extends ControllerAbstract
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/filters/property/'.$systemName.'', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FilterItem($entry);

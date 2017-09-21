@@ -3,13 +3,13 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Model\DeploymentSite;
-    use QBNK\QBank\API\Model\DeploymentSiteResponse;
-    use QBNK\QBank\API\Model\Protocol;
+use QBNK\QBank\API\Model\DeploymentSite;
+use QBNK\QBank\API\Model\DeploymentSiteResponse;
+use QBNK\QBank\API\Model\Protocol;
 
-    class DeploymentController extends ControllerAbstract
-    {
-        /**
+class DeploymentController extends ControllerAbstract
+{
+    /**
      * Lists all Protocols.
      * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
@@ -23,6 +23,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/deployment/protocols', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new Protocol($entry);
@@ -48,6 +49,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/deployment/protocols/'.$id.'', $parameters, $cachePolicy);
         $result = new Protocol($result);
 
@@ -70,6 +72,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/deployment/sites', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new DeploymentSiteResponse($entry);
@@ -95,6 +98,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/deployment/sites/'.$id.'', $parameters, $cachePolicy);
         $result = new DeploymentSiteResponse($result);
 
@@ -115,6 +119,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['deploymentSite' => $deploymentSite]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/deployment', $parameters);
         $result = new DeploymentSiteResponse($result);
 
@@ -136,6 +141,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['deploymentSite' => $deploymentSite]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/deployment/'.$id.'', $parameters);
         $result = new DeploymentSiteResponse($result);
 
@@ -159,6 +165,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['mediaIds' => $mediaIds]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/deployment/'.$id.'/media', $parameters);
 
         return $result;
@@ -180,6 +187,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/deployment/'.$id.'', $parameters);
         $result = new DeploymentSiteResponse($result);
 
@@ -203,8 +211,9 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/deployment/'.$id.'/media', $parameters);
 
         return $result;
     }
-    }
+}

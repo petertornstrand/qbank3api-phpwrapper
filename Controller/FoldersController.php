@@ -3,13 +3,13 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Model\Folder;
-    use QBNK\QBank\API\Model\FolderParent;
-    use QBNK\QBank\API\Model\FolderResponse;
+use QBNK\QBank\API\Model\Folder;
+use QBNK\QBank\API\Model\FolderParent;
+use QBNK\QBank\API\Model\FolderResponse;
 
-    class FoldersController extends ControllerAbstract
-    {
-        /**
+class FoldersController extends ControllerAbstract
+{
+    /**
      * Lists all Folders.
      * 
      * Lists all the Folders that the current user has access to.
@@ -29,6 +29,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/folders', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FolderResponse($entry);
@@ -59,6 +60,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/folders/'.$id.'', $parameters, $cachePolicy);
         $result = new FolderResponse($result);
 
@@ -82,6 +84,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/folders/'.$id.'/parents', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FolderParent($entry);
@@ -108,6 +111,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['folder' => $folder, 'inheritAccess' => $inheritAccess]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/folders', $parameters);
         $result = new FolderResponse($result);
 
@@ -129,6 +133,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['mediaIds' => $mediaIds]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/folders/'.$folderId.'/media', $parameters);
 
         return $result;
@@ -151,6 +156,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['folder' => $folder]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/folders/'.$id.'', $parameters);
         $result = new FolderResponse($result);
 
@@ -172,6 +178,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/folders/'.$folderId.'/media/'.$mediaId.'', $parameters);
 
         return $result;
@@ -193,9 +200,10 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/folders/'.$id.'', $parameters);
         $result = new FolderResponse($result);
 
         return $result;
     }
-    }
+}

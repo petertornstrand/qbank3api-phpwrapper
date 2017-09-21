@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class Group  implements \JsonSerializable
-    {
-        /** @var int The Group identifier. */
+class Group  implements \JsonSerializable
+{
+    /** @var int The Group identifier. */
     protected $id;
 
     /** @var string The name of the Group */
@@ -509,4 +509,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

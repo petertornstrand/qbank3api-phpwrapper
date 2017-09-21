@@ -4,10 +4,10 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class PropertyResponse  implements \JsonSerializable
-    {
-        const TEMPLATE_IMAGE = 'image';
-        const TEMPLATE_VIDEO = 'video';
+class PropertyResponse  implements \JsonSerializable
+{
+    const TEMPLATE_IMAGE = 'image';
+    const TEMPLATE_VIDEO = 'video';
 
     /** @var DateTime When the Property was created. */
     protected $created;
@@ -360,4 +360,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

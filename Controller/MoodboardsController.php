@@ -3,13 +3,13 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Model\Moodboard;
-    use QBNK\QBank\API\Model\MoodboardResponse;
-    use QBNK\QBank\API\Model\MoodboardTemplateResponse;
+use QBNK\QBank\API\Model\Moodboard;
+use QBNK\QBank\API\Model\MoodboardResponse;
+use QBNK\QBank\API\Model\MoodboardTemplateResponse;
 
-    class MoodboardsController extends ControllerAbstract
-    {
-        /**
+class MoodboardsController extends ControllerAbstract
+{
+    /**
      * Lists all Moodboards.
      * 
      * that the current user has access to.
@@ -25,6 +25,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/moodboards', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new MoodboardResponse($entry);
@@ -52,6 +53,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/moodboards/'.$id.'', $parameters, $cachePolicy);
         $result = new MoodboardResponse($result);
 
@@ -74,6 +76,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/moodboards/templates', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new MoodboardTemplateResponse($entry);
@@ -101,6 +104,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/moodboards/templates/'.$templateId.'', $parameters, $cachePolicy);
         $result = new MoodboardTemplateResponse($result);
 
@@ -123,6 +127,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['moodboard' => $moodboard]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/moodboards', $parameters);
         $result = new MoodboardResponse($result);
 
@@ -146,6 +151,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['moodboard' => $moodboard]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/moodboards/'.$id.'', $parameters);
         $result = new MoodboardResponse($result);
 
@@ -167,6 +173,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['mediaIds' => $mediaIds]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/moodboards/'.$moodboardId.'/media', $parameters);
 
         return $result;
@@ -188,6 +195,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/moodboards/'.$id.'', $parameters);
         $result = new MoodboardResponse($result);
 
@@ -209,8 +217,9 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/moodboards/'.$moodboardId.'/media/'.$mediaId.'', $parameters);
 
         return $result;
     }
-    }
+}

@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class Role  implements \JsonSerializable
-    {
-        /** @var int The Role identifier. */
+class Role  implements \JsonSerializable
+{
+    /** @var int The Role identifier. */
     protected $id;
 
     /** @var string The name of the Role */
@@ -385,4 +385,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

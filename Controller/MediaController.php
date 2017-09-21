@@ -3,25 +3,26 @@
 namespace QBNK\QBank\API\Controller;
 
 use GuzzleHttp\Post\PostFile;
-    use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Exception\UploadException;
-    use QBNK\QBank\API\Model\Comment;
-    use QBNK\QBank\API\Model\CommentResponse;
-    use QBNK\QBank\API\Model\DeploymentFile;
-    use QBNK\QBank\API\Model\DeploymentSiteResponse;
-    use QBNK\QBank\API\Model\FolderResponse;
-    use QBNK\QBank\API\Model\Media;
-    use QBNK\QBank\API\Model\MediaResponse;
-    use QBNK\QBank\API\Model\MediaUsageResponse;
-    use QBNK\QBank\API\Model\MediaVersion;
-    use QBNK\QBank\API\Model\MoodboardResponse;
-    use QBNK\QBank\API\Model\Property;
-    use QBNK\QBank\API\Model\SlideStructure;
-    use QBNK\QBank\API\Model\SocialMedia;
+use QBNK\QBank\API\CachePolicy;
+use QBNK\QBank\API\Exception\UploadException;
+use QBNK\QBank\API\Model\Comment;
+use QBNK\QBank\API\Model\CommentResponse;
+use QBNK\QBank\API\Model\DeploymentFile;
+use QBNK\QBank\API\Model\DeploymentSiteResponse;
+use QBNK\QBank\API\Model\FolderResponse;
+use QBNK\QBank\API\Model\Media;
+use QBNK\QBank\API\Model\MediaResponse;
+use QBNK\QBank\API\Model\MediaUsageResponse;
+use QBNK\QBank\API\Model\MediaVersion;
+use QBNK\QBank\API\Model\MoodboardResponse;
+use QBNK\QBank\API\Model\null;
+use QBNK\QBank\API\Model\Property;
+use QBNK\QBank\API\Model\SlideStructure;
+use QBNK\QBank\API\Model\SocialMedia;
 
-    class MediaController extends ControllerAbstract
-    {
-        /**
+class MediaController extends ControllerAbstract
+{
+    /**
      * Fetches a specific Media.
      * 
      * @param int $id The Media identifier.
@@ -36,6 +37,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'', $parameters, $cachePolicy);
         $result = new MediaResponse($result);
 
@@ -69,6 +71,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/asset', $parameters, $cachePolicy);
 
         return $result;
@@ -90,6 +93,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/deployment/files', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new DeploymentFile($entry);
@@ -115,6 +119,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/deployment/sites', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new DeploymentSiteResponse($entry);
@@ -144,6 +149,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/download', $parameters, $cachePolicy);
 
         $tmpFile = tmpfile();
@@ -174,6 +180,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/folders', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new FolderResponse($entry);
@@ -199,6 +206,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/moodboards', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new MoodboardResponse($entry);
@@ -226,6 +234,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/socialmedia/files', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new DeploymentFile($entry);
@@ -251,6 +260,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/socialmedia/sites', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new SocialMedia($entry);
@@ -276,6 +286,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/usages', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new MediaUsageResponse($entry);
@@ -303,6 +314,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$id.'/versions', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new MediaVersion($entry);
@@ -328,6 +340,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/'.$mediaId.'/comments', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new CommentResponse($entry);
@@ -346,6 +359,8 @@ use GuzzleHttp\Post\PostFile;
      * @param int[] $ids Array of Media ID:s to download.
      * @param string $template Optional template to download all Media in..
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     
+     * @return void Sets download headers and presents archive
      */
     public function downloadArchive(array $ids, $template = null, CachePolicy $cachePolicy = null)
     {
@@ -354,6 +369,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/media/download', $parameters, $cachePolicy);
 
         return $result;
@@ -417,6 +433,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode(['media' => $media]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/media/'.$id.'', $parameters);
         $result = new MediaResponse($result);
 
@@ -438,9 +455,8 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode(['children' => $children]),
             'headers' => [],
         ];
-        $result = $this->post('v1/media/'.$id.'/group', $parameters);
 
-        return $result;
+        $this->post('v1/media/'.$id.'/group', $parameters);
     }
 
     /**
@@ -459,6 +475,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/media/'.$id.'/restore', $parameters);
         $result = new MediaResponse($result);
 
@@ -484,6 +501,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode(['status' => $status]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/media/'.$id.'/status', $parameters);
 
         return $result;
@@ -504,9 +522,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => ['file' => new PostFile('file', $fileData)],
             'headers' => ['Content-type' => 'multipart/form-data'],
         ];
-        $result = $this->post('v1/media/'.$id.'/uploadpreview', $parameters);
-
-        return $result;
+        $this->post('v1/media/'.$id.'/uploadpreview', $parameters);
     }
 
     /**
@@ -563,6 +579,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode(['comment' => $comment]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/media/'.$mediaId.'/comments', $parameters);
         $result = new CommentResponse($result);
 
@@ -583,9 +600,8 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode(['structure' => $structure]),
             'headers' => [],
         ];
-        $result = $this->post('v1/media/slides/combine', $parameters);
 
-        return $result;
+        $this->post('v1/media/slides/combine', $parameters);
     }
 
     /**
@@ -605,6 +621,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode(['properties' => $properties]),
             'headers' => [],
         ];
+
         $result = $this->put('v1/media/'.$id.'/properties', $parameters);
 
         return $result;
@@ -627,6 +644,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/media/'.$id.'', $parameters);
         $result = new MediaResponse($result);
 
@@ -650,6 +668,7 @@ use GuzzleHttp\Post\PostFile;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/media/'.$mediaId.'/comments/'.$commentId.'', $parameters);
         $result = new Comment($result);
 
@@ -769,4 +788,4 @@ use GuzzleHttp\Post\PostFile;
         }
         throw new UploadException('Unknown upload error!');
     }
-    }
+}

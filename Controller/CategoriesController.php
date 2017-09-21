@@ -3,12 +3,12 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Model\Category;
-    use QBNK\QBank\API\Model\CategoryResponse;
+use QBNK\QBank\API\Model\Category;
+use QBNK\QBank\API\Model\CategoryResponse;
 
-    class CategoriesController extends ControllerAbstract
-    {
-        /**
+class CategoriesController extends ControllerAbstract
+{
+    /**
      * Lists all Categories.
      * 
      * Lists all categories that the current user has access to.
@@ -24,6 +24,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/categories', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new CategoryResponse($entry);
@@ -51,6 +52,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/categories/'.$id.'', $parameters, $cachePolicy);
         $result = new CategoryResponse($result);
 
@@ -71,6 +73,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['category' => $category]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/categories', $parameters);
         $result = new CategoryResponse($result);
 
@@ -92,6 +95,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode(['category' => $category]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/categories/'.$id.'', $parameters);
         $result = new CategoryResponse($result);
 
@@ -114,9 +118,10 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/categories/'.$id.'', $parameters);
         $result = new CategoryResponse($result);
 
         return $result;
     }
-    }
+}

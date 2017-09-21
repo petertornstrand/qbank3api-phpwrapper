@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class Functionality  implements \JsonSerializable
-    {
-        /** @var int The Functionality identifier. */
+class Functionality  implements \JsonSerializable
+{
+    /** @var int The Functionality identifier. */
     protected $id;
 
     /** @var string The name of the functionality (used programmatically) */
@@ -354,4 +354,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

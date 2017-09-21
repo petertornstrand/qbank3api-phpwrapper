@@ -3,13 +3,13 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\Model\DownloadItem;
-    use QBNK\QBank\API\Model\MediaUsage;
-    use QBNK\QBank\API\Model\MediaUsageResponse;
-    use QBNK\QBank\API\Model\Search;
+use QBNK\QBank\API\Model\MediaUsage;
+use QBNK\QBank\API\Model\MediaUsageResponse;
+use QBNK\QBank\API\Model\Search;
 
-    class EventsController extends ControllerAbstract
-    {
-        /**
+class EventsController extends ControllerAbstract
+{
+    /**
      * Track a Media custom event.
      *
      * NOTICE!
@@ -26,9 +26,8 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId, 'event' => $event]),
             'headers' => [],
         ];
-        $result = $this->post('v1/events/custom', $parameters, true);
 
-        return $result;
+        $this->post('v1/events/custom', $parameters, true);
     }
 
     /**
@@ -47,9 +46,8 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sessionId' => $sessionId, 'downloads' => $downloads]),
             'headers' => [],
         ];
-        $result = $this->post('v1/events/download', $parameters, true);
 
-        return $result;
+        $this->post('v1/events/download', $parameters, true);
     }
 
     /**
@@ -69,9 +67,8 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sessionId' => $sessionId, 'search' => $search, 'hits' => $hits]),
             'headers' => [],
         ];
-        $result = $this->post('v1/events/search', $parameters, true);
 
-        return $result;
+        $this->post('v1/events/search', $parameters, true);
     }
 
     /**
@@ -92,9 +89,8 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sourceId' => $sourceId, 'sessionHash' => $sessionHash, 'remoteIp' => $remoteIp, 'userAgent' => $userAgent, 'userId' => $userId]),
             'headers' => [],
         ];
-        $result = $this->post('v1/events/session', $parameters);
 
-        return $result;
+        $this->post('v1/events/session', $parameters);
     }
 
     /**
@@ -112,6 +108,7 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sessionId' => $sessionId, 'mediaUsage' => $mediaUsage]),
             'headers' => [],
         ];
+
         $result = $this->post('v1/events/usage', $parameters);
         $result = new MediaUsageResponse($result);
 
@@ -134,9 +131,8 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId]),
             'headers' => [],
         ];
-        $result = $this->post('v1/events/view', $parameters, true);
 
-        return $result;
+        $this->post('v1/events/view', $parameters, true);
     }
 
     /**
@@ -153,9 +149,10 @@ use QBNK\QBank\API\Model\DownloadItem;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->delete('v1/events/usage/'.$id.'', $parameters);
         $result = new MediaUsageResponse($result);
 
         return $result;
     }
-    }
+}

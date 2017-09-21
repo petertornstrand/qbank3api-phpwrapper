@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class DeploymentFile  implements \JsonSerializable
-    {
-        /** @var int The identifier of the DeploymentSite this file is deployed to. */
+class DeploymentFile  implements \JsonSerializable
+{
+    /** @var int The identifier of the DeploymentSite this file is deployed to. */
     protected $deploymentSiteId;
 
     /** @var string The filename of the deployed file. */
@@ -323,4 +323,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

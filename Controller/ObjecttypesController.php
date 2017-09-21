@@ -3,11 +3,11 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
-    use QBNK\QBank\API\Model\ObjectType;
+use QBNK\QBank\API\Model\ObjectType;
 
-    class ObjecttypesController extends ControllerAbstract
-    {
-        /**
+class ObjecttypesController extends ControllerAbstract
+{
+    /**
      * Lists all Object Types.
      * 
      * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
@@ -21,6 +21,7 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/objecttypes', $parameters, $cachePolicy);
         foreach ($result as &$entry) {
             $entry = new ObjectType($entry);
@@ -48,9 +49,10 @@ use QBNK\QBank\API\CachePolicy;
             'body'    => json_encode([]),
             'headers' => [],
         ];
+
         $result = $this->get('v1/objecttypes/'.$id.'', $parameters, $cachePolicy);
         $result = new ObjectType($result);
 
         return $result;
     }
-    }
+}

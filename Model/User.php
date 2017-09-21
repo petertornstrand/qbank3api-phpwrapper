@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class User  implements \JsonSerializable
-    {
-        /** @var int The User identifier. */
+class User  implements \JsonSerializable
+{
+    /** @var int The User identifier. */
     protected $id;
 
     /** @var string The full name of the User. */
@@ -60,6 +60,9 @@ use DateTime;
     /** @var ExtraData[] An array of ExtraData connected to this User. */
     protected $extraData;
 
+    /** @var string Type of user */
+    protected $userType;
+
     /**
      * Constructs a User.
      *
@@ -82,6 +85,7 @@ use DateTime;
      * - <b>updatedBy</b> - User Id that updated the User
      * - <b>functionalities</b> - An array of Functionalities connected to this User
      * - <b>extraData</b> - An array of ExtraData connected to this User.
+     * - <b>userType</b> - Type of user
      */
     public function __construct($parameters = [])
     {
@@ -142,6 +146,9 @@ use DateTime;
         }
         if (isset($parameters['extraData'])) {
             $this->setExtraData($parameters['extraData']);
+        }
+        if (isset($parameters['userType'])) {
+            $this->setUserType($parameters['userType']);
         }
     }
 
@@ -654,6 +661,28 @@ use DateTime;
     }
 
     /**
+     * Gets the userType of the User.
+     * @return string	 */
+    public function getUserType()
+    {
+        return $this->userType;
+    }
+
+    /**
+     * Sets the "userType" of the User.
+     *
+     * @param string $userType
+     *
+     * @return User
+     */
+    public function setUserType($userType)
+    {
+        $this->userType = $userType;
+
+        return $this;
+    }
+
+    /**
      * Gets all data that should be available in a json representation.
      *
      * @return array An associative array of the available variables.
@@ -716,7 +745,10 @@ use DateTime;
         if ($this->extraData !== null && !empty($this->extraData)) {
             $json['extraData'] = $this->extraData;
         }
+        if ($this->userType !== null) {
+            $json['userType'] = $this->userType;
+        }
 
         return $json;
     }
-    }
+}

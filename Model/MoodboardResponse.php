@@ -3,11 +3,11 @@
 namespace QBNK\QBank\API\Model;
 
 use DateTime;
-    use QBNK\QBank\API\Exception\PropertyNotFoundException;
+use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-    class MoodboardResponse extends Moodboard implements \JsonSerializable
-    {
-        /** @var int The Moodboard identifier */
+class MoodboardResponse extends Moodboard implements \JsonSerializable
+{
+    /** @var int The Moodboard identifier */
     protected $id;
 
     /** @var string Enduser hash used to identify this moodboard. */
@@ -281,7 +281,7 @@ use DateTime;
      *
      * @throws PropertyNotFoundException Thrown if the requested property does not exist.
      *
-     * @return Property
+     * @return PropertyResponse
      */
     public function getProperty($systemName)
     {
@@ -378,4 +378,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}
