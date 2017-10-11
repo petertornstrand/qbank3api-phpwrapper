@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class Command  implements \JsonSerializable
+class Command implements \JsonSerializable
 {
     /** @var array */
     protected $parameters;
@@ -14,13 +14,13 @@ class Command  implements \JsonSerializable
      * Constructs a Command.
      *
      * @param array $parameters An array of parameters to initialize the {@link Command} with.
-     * - <b>class</b> - The name of the command
+     *                          - <b>class</b> - The name of the command
      */
     public function __construct($parameters = [])
     {
         $this->parameters = [];
         foreach ($parameters as $name => $value) {
-            if (!is_callable([$this, 'set'.ucfirst($name)])) {
+            if (!is_callable([$this, 'set' . ucfirst($name)])) {
                 $this->parameters[$name] = $value;
             }
         }
@@ -32,7 +32,9 @@ class Command  implements \JsonSerializable
 
     /**
      * Gets the class of the Command.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getClass()
     {
         return $this->class;
@@ -56,7 +58,7 @@ class Command  implements \JsonSerializable
      * Gets a command parameter.
      *
      * @param $name string The name of the parameter
-     * @param $default mixed The default value if it is not defined.
+     * @param $default mixed The default value if it is not defined
      *
      * @return mixed
      */
@@ -82,13 +84,13 @@ class Command  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->class !== null) {
+        if (null !== $this->class) {
             $json['class'] = $this->class;
         }
 

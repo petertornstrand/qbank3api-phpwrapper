@@ -2,16 +2,14 @@
 
 namespace QBNK\QBank\API\Model;
 
-use QBNK\QBank\API\Exception\NotFoundException;
 use DateTime;
+use QBNK\QBank\API\Exception\NotFoundException;
 use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-class MediaResponse extends Media implements \JsonSerializable {
-
-
+class MediaResponse extends Media implements \JsonSerializable
+{
     const TEMPLATE_IMAGE = 'image';
     const TEMPLATE_VIDEO = 'video';
-
 
     /** @var int The Media identifier. */
     protected $mediaId;
@@ -73,40 +71,39 @@ class MediaResponse extends Media implements \JsonSerializable {
     /** @var PropertySet[] The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties. */
     protected $propertySets;
 
-
     /**
      * Constructs a MediaResponse.
-     * @param array $parameters An array of parameters to initialize the { @link MediaResponse } with.
-     * - <b>mediaId</b> - The Media identifier.
-     * - <b>thumbPreviewStatus</b> - Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000;
-     * - <b>extension</b> - The Media's filename extension.
-     * - <b>metadata</b> - The MetaData extracted from the Media file.
-     * - <b>mimetype</b> - The Media MimeType.
-     * - <b>size</b> - The Media size in bytes.
-     * - <b>statusId</b> - The Media status identifier.
-     * - <b>uploaded</b> - When the Media was uploaded. A datetime string on the format ISO8601.
-     * - <b>uploadedBy</b> - The identifier of the User who uploaded the Media.
-     * - <b>deployedFiles</b> - An array of deployed files
-     * - <b>commentCount</b> - Number of comments made on this media
-     * - <b>rating</b> - The rating for this media
-     * - <b>childMedias</b> - An array of Media
-     * - <b>objectId</b> - The base Object identifier.
-     * - <b>created</b> - When the Object was created.
-     * - <b>createdBy</b> - The identifier of the User who created the Object.
-     * - <b>updated</b> - When the Object was updated.
-     * - <b>updatedBy</b> - Which user that updated the Object.
-     * - <b>dirty</b> - Whether the object has been modified since constructed.
-     * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     *
+     * @param array $parameters An array of parameters to initialize the {@link MediaResponse} with.
+     *                          - <b>mediaId</b> - The Media identifier.
+     *                          - <b>thumbPreviewStatus</b> - Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000;
+     *                          - <b>extension</b> - The Media's filename extension.
+     *                          - <b>metadata</b> - The MetaData extracted from the Media file.
+     *                          - <b>mimetype</b> - The Media MimeType.
+     *                          - <b>size</b> - The Media size in bytes.
+     *                          - <b>statusId</b> - The Media status identifier.
+     *                          - <b>uploaded</b> - When the Media was uploaded. A datetime string on the format ISO8601.
+     *                          - <b>uploadedBy</b> - The identifier of the User who uploaded the Media.
+     *                          - <b>deployedFiles</b> - An array of deployed files
+     *                          - <b>commentCount</b> - Number of comments made on this media
+     *                          - <b>rating</b> - The rating for this media
+     *                          - <b>childMedias</b> - An array of Media
+     *                          - <b>objectId</b> - The base Object identifier.
+     *                          - <b>created</b> - When the Object was created.
+     *                          - <b>createdBy</b> - The identifier of the User who created the Object.
+     *                          - <b>updated</b> - When the Object was updated.
+     *                          - <b>updatedBy</b> - Which user that updated the Object.
+     *                          - <b>dirty</b> - Whether the object has been modified since constructed.
+     *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
      */
-    public function __construct($parameters = []) {
-
+    public function __construct($parameters = [])
+    {
         parent::__construct($parameters);
 
         $this->metadata = [];
         $this->deployedFiles = [];
         $this->childMedias = [];
         $this->propertySets = [];
-
 
         if (isset($parameters['mediaId'])) {
             $this->setMediaId($parameters['mediaId']);
@@ -172,18 +169,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the mediaId of the MediaResponse.
+     *
      * @return int
      */
-    public function getMediaId() {
+    public function getMediaId()
+    {
         return $this->mediaId;
     }
 
     /**
-     * Sets the "mediaId" of the MediaResponse
+     * Sets the "mediaId" of the MediaResponse.
+     *
      * @param int $mediaId
+     *
      * @return MediaResponse
      */
-    public function setMediaId($mediaId) {
+    public function setMediaId($mediaId)
+    {
         $this->mediaId = $mediaId;
 
         return $this;
@@ -191,18 +193,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the thumbPreviewStatus of the MediaResponse.
+     *
      * @return int
      */
-    public function getThumbPreviewStatus() {
+    public function getThumbPreviewStatus()
+    {
         return $this->thumbPreviewStatus;
     }
 
     /**
-     * Sets the "thumbPreviewStatus" of the MediaResponse
+     * Sets the "thumbPreviewStatus" of the MediaResponse.
+     *
      * @param int $thumbPreviewStatus
+     *
      * @return MediaResponse
      */
-    public function setThumbPreviewStatus($thumbPreviewStatus) {
+    public function setThumbPreviewStatus($thumbPreviewStatus)
+    {
         $this->thumbPreviewStatus = $thumbPreviewStatus;
 
         return $this;
@@ -210,29 +217,37 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the extension of the MediaResponse.
+     *
      * @return string
      */
-    public function getExtension() {
+    public function getExtension()
+    {
         return $this->extension;
     }
 
     /**
-     * Sets the "extension" of the MediaResponse
+     * Sets the "extension" of the MediaResponse.
+     *
      * @param string $extension
+     *
      * @return MediaResponse
      */
-    public function setExtension($extension) {
+    public function setExtension($extension)
+    {
         $this->extension = $extension;
 
         return $this;
     }
 
     /**
-     * Sets the "metadata" of the MediaResponse
+     * Sets the "metadata" of the MediaResponse.
+     *
      * @param MetaData[] $metadata
+     *
      * @return MediaResponse
      */
-    public function setMetadata(array $metadata) {
+    public function setMetadata(array $metadata)
+    {
         $this->metadata = [];
 
         foreach ($metadata as $item) {
@@ -242,19 +257,20 @@ class MediaResponse extends Media implements \JsonSerializable {
         return $this;
     }
 
-
     /**
-     * Adds an object of "Metadata" of the MediaResponse
+     * Adds an object of "Metadata" of the MediaResponse.
+     *
      * @param MetaData|array $item
+     *
      * @return MediaResponse
      */
-    public function addMetaData($item) {
-
+    public function addMetaData($item)
+    {
         if (!($item instanceof MetaData)) {
             if (is_array($item)) {
                 try {
                     $item = new MetaData($item);
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     trigger_error('Could not auto-instantiate MetaData. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
@@ -268,21 +284,26 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the mimetype of the MediaResponse.
+     *
      * @return MimeType
      */
-    public function getMimetype() {
+    public function getMimetype()
+    {
         return $this->mimetype;
     }
 
     /**
-     * Sets the "mimetype" of the MediaResponse
+     * Sets the "mimetype" of the MediaResponse.
+     *
      * @param MimeType $mimetype
+     *
      * @return MediaResponse
      */
-    public function setMimetype($mimetype) {
+    public function setMimetype($mimetype)
+    {
         if ($mimetype instanceof MimeType) {
             $this->mimetype = $mimetype;
-        } else if (is_array($mimetype)) {
+        } elseif (is_array($mimetype)) {
             $this->mimetype = new MimeType($mimetype);
         } else {
             $this->mimetype = null;
@@ -294,18 +315,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the size of the MediaResponse.
+     *
      * @return int
      */
-    public function getSize() {
+    public function getSize()
+    {
         return $this->size;
     }
 
     /**
-     * Sets the "size" of the MediaResponse
+     * Sets the "size" of the MediaResponse.
+     *
      * @param int $size
+     *
      * @return MediaResponse
      */
-    public function setSize($size) {
+    public function setSize($size)
+    {
         $this->size = $size;
 
         return $this;
@@ -313,18 +339,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the statusId of the MediaResponse.
+     *
      * @return int
      */
-    public function getStatusId() {
+    public function getStatusId()
+    {
         return $this->statusId;
     }
 
     /**
-     * Sets the "statusId" of the MediaResponse
+     * Sets the "statusId" of the MediaResponse.
+     *
      * @param int $statusId
+     *
      * @return MediaResponse
      */
-    public function setStatusId($statusId) {
+    public function setStatusId($statusId)
+    {
         $this->statusId = $statusId;
 
         return $this;
@@ -332,24 +363,29 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the uploaded of the MediaResponse.
+     *
      * @return DateTime
      */
-    public function getUploaded() {
+    public function getUploaded()
+    {
         return $this->uploaded;
     }
 
     /**
-     * Sets the "uploaded" of the MediaResponse
+     * Sets the "uploaded" of the MediaResponse.
+     *
      * @param DateTime $uploaded
+     *
      * @return MediaResponse
      */
-    public function setUploaded($uploaded) {
+    public function setUploaded($uploaded)
+    {
         if ($uploaded instanceof DateTime) {
             $this->uploaded = $uploaded;
         } else {
             try {
                 $this->uploaded = new DateTime($uploaded);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 $this->uploaded = null;
             }
         }
@@ -359,18 +395,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the uploadedBy of the MediaResponse.
+     *
      * @return int
      */
-    public function getUploadedBy() {
+    public function getUploadedBy()
+    {
         return $this->uploadedBy;
     }
 
     /**
-     * Sets the "uploadedBy" of the MediaResponse
+     * Sets the "uploadedBy" of the MediaResponse.
+     *
      * @param int $uploadedBy
+     *
      * @return MediaResponse
      */
-    public function setUploadedBy($uploadedBy) {
+    public function setUploadedBy($uploadedBy)
+    {
         $this->uploadedBy = $uploadedBy;
 
         return $this;
@@ -378,18 +419,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the deployedFiles of the MediaResponse.
+     *
      * @return DeploymentFile[]
      */
-    public function getDeployedFiles() {
+    public function getDeployedFiles()
+    {
         return $this->deployedFiles;
     }
 
     /**
-     * Sets the "deployedFiles" of the MediaResponse
+     * Sets the "deployedFiles" of the MediaResponse.
+     *
      * @param DeploymentFile[] $deployedFiles
+     *
      * @return MediaResponse
      */
-    public function setDeployedFiles(array $deployedFiles) {
+    public function setDeployedFiles(array $deployedFiles)
+    {
         $this->deployedFiles = [];
 
         foreach ($deployedFiles as $item) {
@@ -399,19 +445,20 @@ class MediaResponse extends Media implements \JsonSerializable {
         return $this;
     }
 
-
     /**
-     * Adds an object of "DeployedFiles" of the MediaResponse
+     * Adds an object of "DeployedFiles" of the MediaResponse.
+     *
      * @param DeploymentFile|array $item
+     *
      * @return MediaResponse
      */
-    public function addDeploymentFile($item) {
-
+    public function addDeploymentFile($item)
+    {
         if (!($item instanceof DeploymentFile)) {
             if (is_array($item)) {
                 try {
                     $item = new DeploymentFile($item);
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     trigger_error('Could not auto-instantiate DeploymentFile. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
@@ -425,18 +472,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the commentCount of the MediaResponse.
+     *
      * @return int
      */
-    public function getCommentCount() {
+    public function getCommentCount()
+    {
         return $this->commentCount;
     }
 
     /**
-     * Sets the "commentCount" of the MediaResponse
+     * Sets the "commentCount" of the MediaResponse.
+     *
      * @param int $commentCount
+     *
      * @return MediaResponse
      */
-    public function setCommentCount($commentCount) {
+    public function setCommentCount($commentCount)
+    {
         $this->commentCount = $commentCount;
 
         return $this;
@@ -444,18 +496,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the rating of the MediaResponse.
+     *
      * @return int
      */
-    public function getRating() {
+    public function getRating()
+    {
         return $this->rating;
     }
 
     /**
-     * Sets the "rating" of the MediaResponse
+     * Sets the "rating" of the MediaResponse.
+     *
      * @param int $rating
+     *
      * @return MediaResponse
      */
-    public function setRating($rating) {
+    public function setRating($rating)
+    {
         $this->rating = $rating;
 
         return $this;
@@ -463,18 +520,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the childMedias of the MediaResponse.
+     *
      * @return self[]
      */
-    public function getChildMedias() {
+    public function getChildMedias()
+    {
         return $this->childMedias;
     }
 
     /**
-     * Sets the "childMedias" of the MediaResponse
+     * Sets the "childMedias" of the MediaResponse.
+     *
      * @param self[] $childMedias
+     *
      * @return MediaResponse
      */
-    public function setChildMedias(array $childMedias) {
+    public function setChildMedias(array $childMedias)
+    {
         $this->childMedias = [];
 
         foreach ($childMedias as $item) {
@@ -484,19 +546,20 @@ class MediaResponse extends Media implements \JsonSerializable {
         return $this;
     }
 
-
     /**
-     * Adds an object of "ChildMedias" of the MediaResponse
+     * Adds an object of "ChildMedias" of the MediaResponse.
+     *
      * @param self|array $item
+     *
      * @return MediaResponse
      */
-    public function addself($item) {
-
+    public function addself($item)
+    {
         if (!($item instanceof self)) {
             if (is_array($item)) {
                 try {
                     $item = new self($item);
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     trigger_error('Could not auto-instantiate self. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
@@ -510,18 +573,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the objectId of the MediaResponse.
+     *
      * @return int
      */
-    public function getObjectId() {
+    public function getObjectId()
+    {
         return $this->objectId;
     }
 
     /**
-     * Sets the "objectId" of the MediaResponse
+     * Sets the "objectId" of the MediaResponse.
+     *
      * @param int $objectId
+     *
      * @return MediaResponse
      */
-    public function setObjectId($objectId) {
+    public function setObjectId($objectId)
+    {
         $this->objectId = $objectId;
 
         return $this;
@@ -529,24 +597,29 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the created of the MediaResponse.
+     *
      * @return DateTime
      */
-    public function getCreated() {
+    public function getCreated()
+    {
         return $this->created;
     }
 
     /**
-     * Sets the "created" of the MediaResponse
+     * Sets the "created" of the MediaResponse.
+     *
      * @param DateTime $created
+     *
      * @return MediaResponse
      */
-    public function setCreated($created) {
+    public function setCreated($created)
+    {
         if ($created instanceof DateTime) {
             $this->created = $created;
         } else {
             try {
                 $this->created = new DateTime($created);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 $this->created = null;
             }
         }
@@ -556,18 +629,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the createdBy of the MediaResponse.
+     *
      * @return int
      */
-    public function getCreatedBy() {
+    public function getCreatedBy()
+    {
         return $this->createdBy;
     }
 
     /**
-     * Sets the "createdBy" of the MediaResponse
+     * Sets the "createdBy" of the MediaResponse.
+     *
      * @param int $createdBy
+     *
      * @return MediaResponse
      */
-    public function setCreatedBy($createdBy) {
+    public function setCreatedBy($createdBy)
+    {
         $this->createdBy = $createdBy;
 
         return $this;
@@ -575,24 +653,29 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the updated of the MediaResponse.
+     *
      * @return DateTime
      */
-    public function getUpdated() {
+    public function getUpdated()
+    {
         return $this->updated;
     }
 
     /**
-     * Sets the "updated" of the MediaResponse
+     * Sets the "updated" of the MediaResponse.
+     *
      * @param DateTime $updated
+     *
      * @return MediaResponse
      */
-    public function setUpdated($updated) {
+    public function setUpdated($updated)
+    {
         if ($updated instanceof DateTime) {
             $this->updated = $updated;
         } else {
             try {
                 $this->updated = new DateTime($updated);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 $this->updated = null;
             }
         }
@@ -602,18 +685,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the updatedBy of the MediaResponse.
+     *
      * @return int
      */
-    public function getUpdatedBy() {
+    public function getUpdatedBy()
+    {
         return $this->updatedBy;
     }
 
     /**
-     * Sets the "updatedBy" of the MediaResponse
+     * Sets the "updatedBy" of the MediaResponse.
+     *
      * @param int $updatedBy
+     *
      * @return MediaResponse
      */
-    public function setUpdatedBy($updatedBy) {
+    public function setUpdatedBy($updatedBy)
+    {
         $this->updatedBy = $updatedBy;
 
         return $this;
@@ -621,18 +709,23 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Tells whether the MediaResponse is dirty.
+     *
      * @return bool
      */
-    public function isDirty() {
+    public function isDirty()
+    {
         return $this->dirty;
     }
 
     /**
-     * Sets the "dirty" of the MediaResponse
+     * Sets the "dirty" of the MediaResponse.
+     *
      * @param bool $dirty
+     *
      * @return MediaResponse
      */
-    public function setDirty($dirty) {
+    public function setDirty($dirty)
+    {
         $this->dirty = $dirty;
 
         return $this;
@@ -640,19 +733,25 @@ class MediaResponse extends Media implements \JsonSerializable {
 
     /**
      * Gets the propertySets of the MediaResponse.
+     *
      * @return PropertySet[]
      */
-    public function getPropertySets() {
+    public function getPropertySets()
+    {
         return $this->propertySets;
     }
 
     /**
-     * Gets a property from the first available PropertySet
-     * @param string $systemName The system name of the property to get.
-     * @throws PropertyNotFoundException Thrown if the requested property does not exist.
+     * Gets a property from the first available PropertySet.
+     *
+     * @param string $systemName the system name of the property to get
+     *
+     * @throws PropertyNotFoundException thrown if the requested property does not exist
+     *
      * @return PropertyResponse
      */
-    public function getProperty($systemName) {
+    public function getProperty($systemName)
+    {
         foreach ($this->propertySets as $propertySet) {
             /** @var PropertySet $propertySet */
             foreach ($propertySet->getProperties() as $property) {
@@ -665,11 +764,14 @@ class MediaResponse extends Media implements \JsonSerializable {
     }
 
     /**
-     * Sets the "propertySets" of the MediaResponse
+     * Sets the "propertySets" of the MediaResponse.
+     *
      * @param PropertySet[] $propertySets
+     *
      * @return MediaResponse
      */
-    public function setPropertySets(array $propertySets) {
+    public function setPropertySets(array $propertySets)
+    {
         $this->propertySets = [];
 
         foreach ($propertySets as $item) {
@@ -679,19 +781,20 @@ class MediaResponse extends Media implements \JsonSerializable {
         return $this;
     }
 
-
     /**
-     * Adds an object of "PropertySets" of the MediaResponse
+     * Adds an object of "PropertySets" of the MediaResponse.
+     *
      * @param PropertySet|array $item
+     *
      * @return MediaResponse
      */
-    public function addPropertySet($item) {
-
+    public function addPropertySet($item)
+    {
         if (!($item instanceof PropertySet)) {
             if (is_array($item)) {
                 try {
                     $item = new PropertySet($item);
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     trigger_error('Could not auto-instantiate PropertySet. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
@@ -703,48 +806,58 @@ class MediaResponse extends Media implements \JsonSerializable {
         return $this;
     }
 
-
     /**
-     * Checks if media is grouped
+     * Checks if media is grouped.
+     *
      * @return bool
      */
-    public function isGrouped() {
+    public function isGrouped()
+    {
         return !is_null($this->parentId);
     }
 
     /**
-     * Checks if media is a parent to another media
+     * Checks if media is a parent to another media.
+     *
      * @return bool
      */
-    public function isParent() {
+    public function isParent()
+    {
         return $this->parentId === $this->mediaId;
     }
 
     /**
-     * Checks if media is child to another media
+     * Checks if media is child to another media.
+     *
      * @return bool
      */
-    public function isChild() {
+    public function isChild()
+    {
         return !is_null($this->parentId) && $this->parentId !== $this->mediaId;
     }
 
     /**
-     * Gets a DeployedFile
-     * @param int|null $templateId The id of the template to get. Null for the original file.
-     * @param string $templateType The type of template.
-     * @param int $siteId The DeploymentSite id to get the template for. If not supplied, first available will be used.
-     * @throws NotFoundException Thrown if the requested deployed file does not exist.
+     * Gets a DeployedFile.
+     *
+     * @param int|null $templateId   The id of the template to get. Null for the original file.
+     * @param string   $templateType the type of template
+     * @param int      $siteId       The DeploymentSite id to get the template for. If not supplied, first available will be used.
+     *
+     * @throws NotFoundException thrown if the requested deployed file does not exist
+     *
      * @return DeploymentFile
      */
-    public function getDeployedFile($templateId, $templateType = self::TEMPLATE_IMAGE, $siteId = null) {
+    public function getDeployedFile($templateId, $templateType = self::TEMPLATE_IMAGE, $siteId = null)
+    {
         foreach ($this->deployedFiles as $deployedFile) {
             /** @var DeploymentFile $deployedFile */
-            if ($siteId === null || $siteId == $deployedFile->getDeployMentSiteId()) {
-                if ($templateType == self::TEMPLATE_VIDEO) {
-                    if ($templateId == $deployedFile->getVideoTemplateId() && $deployedFile->getImageTemplateId() === null) {
+            if (null === $siteId || $siteId == $deployedFile->getDeployMentSiteId()) {
+                if (self::TEMPLATE_VIDEO == $templateType) {
+                    if ($templateId == $deployedFile->getVideoTemplateId() && null === $deployedFile->getImageTemplateId()) {
                         return $deployedFile;
                     }
-                } else if ($templateType == self::TEMPLATE_IMAGE && $templateId == $deployedFile->getImageTemplateId() || ($templateId === null && $deployedFile->getImageTemplateId() === null && $deployedFile->getVideoTemplateId() === null)) {
+                } elseif (self::TEMPLATE_IMAGE == $templateType && $templateId == $deployedFile->getImageTemplateId() ||
+                    (null === $templateId && null === $deployedFile->getImageTemplateId() && null === $deployedFile->getVideoTemplateId())) {
                     return $deployedFile;
                 }
             }
@@ -753,14 +866,18 @@ class MediaResponse extends Media implements \JsonSerializable {
     }
 
     /**
-     * Gets MetaData
+     * Gets MetaData.
+     *
      * @param string $section The Metadata section to get. Eg. "Exif", "IPTC", etc.
-     * @param string $key The Metadata key to get. Eg. "width", "shutterspeed", etc.
-     * @throws NotFoundException Thrown if the requested Metadata does not exist.
+     * @param string $key     The Metadata key to get. Eg. "width", "shutterspeed", etc.
+     *
+     * @throws NotFoundException thrown if the requested Metadata does not exist
+     *
      * @return MetaData[]|MetaData|string The requested metadata
      */
-    public function getMetadata($section = null, $key = null) {
-        if ($section === null) {
+    public function getMetadata($section = null, $key = null)
+    {
+        if (null === $section) {
             return $this->metadata;
         }
         foreach ($this->metadata as $md) {
@@ -768,7 +885,7 @@ class MediaResponse extends Media implements \JsonSerializable {
             if ($section != $md->getSection()) {
                 continue;
             }
-            if ($key === null) {
+            if (null === $key) {
                 return $md;
             }
             foreach ($md->getData() as $k => $data) {
@@ -781,75 +898,75 @@ class MediaResponse extends Media implements \JsonSerializable {
         throw new NotFoundException('No metadata with section "' . $section . '" exists.');
     }
 
-
     /**
      * Gets all data that should be available in a json representation.
-     * @return array An associative array of the available variables.
+     *
+     * @return array an associative array of the available variables
      */
-    public function jsonSerialize() {
+    public function jsonSerialize()
+    {
         $json = parent::jsonSerialize();
 
-        if ($this->mediaId !== null) {
+        if (null !== $this->mediaId) {
             $json['mediaId'] = $this->mediaId;
         }
-        if ($this->thumbPreviewStatus !== null) {
+        if (null !== $this->thumbPreviewStatus) {
             $json['thumbPreviewStatus'] = $this->thumbPreviewStatus;
         }
-        if ($this->extension !== null) {
+        if (null !== $this->extension) {
             $json['extension'] = $this->extension;
         }
-        if ($this->metadata !== null && !empty($this->metadata)) {
+        if (null !== $this->metadata && !empty($this->metadata)) {
             $json['metadata'] = $this->metadata;
         }
-        if ($this->mimetype !== null) {
+        if (null !== $this->mimetype) {
             $json['mimetype'] = $this->mimetype;
         }
-        if ($this->size !== null) {
+        if (null !== $this->size) {
             $json['size'] = $this->size;
         }
-        if ($this->statusId !== null) {
+        if (null !== $this->statusId) {
             $json['statusId'] = $this->statusId;
         }
-        if ($this->uploaded !== null) {
+        if (null !== $this->uploaded) {
             $json['uploaded'] = $this->uploaded->format(\DateTime::ISO8601);
         }
-        if ($this->uploadedBy !== null) {
+        if (null !== $this->uploadedBy) {
             $json['uploadedBy'] = $this->uploadedBy;
         }
-        if ($this->deployedFiles !== null && !empty($this->deployedFiles)) {
+        if (null !== $this->deployedFiles && !empty($this->deployedFiles)) {
             $json['deployedFiles'] = $this->deployedFiles;
         }
-        if ($this->commentCount !== null) {
+        if (null !== $this->commentCount) {
             $json['commentCount'] = $this->commentCount;
         }
-        if ($this->rating !== null) {
+        if (null !== $this->rating) {
             $json['rating'] = $this->rating;
         }
-        if ($this->childMedias !== null && !empty($this->childMedias)) {
+        if (null !== $this->childMedias && !empty($this->childMedias)) {
             $json['childMedias'] = $this->childMedias;
         }
-        if ($this->objectId !== null) {
+        if (null !== $this->objectId) {
             $json['objectId'] = $this->objectId;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->dirty !== null) {
+        if (null !== $this->dirty) {
             $json['dirty'] = $this->dirty;
         }
-        if ($this->propertySets !== null && !empty($this->propertySets)) {
+        if (null !== $this->propertySets && !empty($this->propertySets)) {
             $json['propertySets'] = $this->propertySets;
         }
-
 
         foreach ($this->propertySets as $propertySet) {
             /** @var PropertySet $propertySet */
@@ -864,7 +981,6 @@ class MediaResponse extends Media implements \JsonSerializable {
                 }
             }
         }
-
 
         return $json;
     }

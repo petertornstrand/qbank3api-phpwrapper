@@ -14,16 +14,16 @@ class EventsController extends ControllerAbstract
      *
      * NOTICE!
      * Execution of this call will be delayed until destruct!
-     * 
-     * @param int $sessionId The session id to log the event on
-     * @param int $mediaId The ID of the media in the event
-     * @param string $event The event
+     *
+     * @param int    $sessionId The session id to log the event on
+     * @param int    $mediaId   The ID of the media in the event
+     * @param string $event     The event
      */
     public function custom($sessionId, $mediaId, $event)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId, 'event' => $event]),
+            'query' => [],
+            'body' => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId, 'event' => $event]),
             'headers' => [],
         ];
 
@@ -35,15 +35,15 @@ class EventsController extends ControllerAbstract
      *
      * NOTICE!
      * Execution of this call will be delayed until destruct!
-     * 
-     * @param int $sessionId The session id to log the download on
+     *
+     * @param int            $sessionId The session id to log the download on
      * @param DownloadItem[] $downloads An array of DownloadItem (media & template) that was downloaded
      */
     public function download($sessionId, array $downloads)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['sessionId' => $sessionId, 'downloads' => $downloads]),
+            'query' => [],
+            'body' => json_encode(['sessionId' => $sessionId, 'downloads' => $downloads]),
             'headers' => [],
         ];
 
@@ -55,16 +55,16 @@ class EventsController extends ControllerAbstract
      *
      * NOTICE!
      * Execution of this call will be delayed until destruct!
-     * 
-     * @param int $sessionId The session id to log the search on
-     * @param Search $search The Search that was made
-     * @param int $hits Number of hits for this search
+     *
+     * @param int    $sessionId The session id to log the search on
+     * @param Search $search    The Search that was made
+     * @param int    $hits      Number of hits for this search
      */
     public function search($sessionId, Search $search, $hits)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['sessionId' => $sessionId, 'search' => $search, 'hits' => $hits]),
+            'query' => [],
+            'body' => json_encode(['sessionId' => $sessionId, 'search' => $search, 'hits' => $hits]),
             'headers' => [],
         ];
 
@@ -73,20 +73,20 @@ class EventsController extends ControllerAbstract
 
     /**
      * Creates a sessionId.
-     * 
+     *
      * SessionId must be sent along with all subsequent requests to track events.
-     * 
-     * @param int $sourceId the source we should log things on
+     *
+     * @param int    $sourceId    the source we should log things on
      * @param string $sessionHash Some sort of identifier for the user
-     * @param string $remoteIp Ip-address of the user
-     * @param string $userAgent the User Agent of the user
-     * @param int $userId Optional override value for the user id
+     * @param string $remoteIp    Ip-address of the user
+     * @param string $userAgent   the User Agent of the user
+     * @param int    $userId      Optional override value for the user id
      */
     public function session($sourceId, $sessionHash, $remoteIp, $userAgent, $userId = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['sourceId' => $sourceId, 'sessionHash' => $sessionHash, 'remoteIp' => $remoteIp, 'userAgent' => $userAgent, 'userId' => $userId]),
+            'query' => [],
+            'body' => json_encode(['sourceId' => $sourceId, 'sessionHash' => $sessionHash, 'remoteIp' => $remoteIp, 'userAgent' => $userAgent, 'userId' => $userId]),
             'headers' => [],
         ];
 
@@ -95,17 +95,17 @@ class EventsController extends ControllerAbstract
 
     /**
      * Register a usage of a Media.
-     * 
-     * @param int $sessionId The session id to log the event on
+     *
+     * @param int        $sessionId  The session id to log the event on
      * @param MediaUsage $mediaUsage The MediaUsage to register
-     
-     * @return MediaUsageResponse	 
+     *
+     * @return MediaUsageResponse
      */
     public function addUsage($sessionId, MediaUsage $mediaUsage)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['sessionId' => $sessionId, 'mediaUsage' => $mediaUsage]),
+            'query' => [],
+            'body' => json_encode(['sessionId' => $sessionId, 'mediaUsage' => $mediaUsage]),
             'headers' => [],
         ];
 
@@ -120,15 +120,15 @@ class EventsController extends ControllerAbstract
      *
      * NOTICE!
      * Execution of this call will be delayed until destruct!
-     * 
+     *
      * @param int $sessionId The session id to log the view on
-     * @param int $mediaId The ID of the media that was viewed
+     * @param int $mediaId   The ID of the media that was viewed
      */
     public function view($sessionId, $mediaId)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId]),
+            'query' => [],
+            'body' => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId]),
             'headers' => [],
         ];
 
@@ -137,20 +137,20 @@ class EventsController extends ControllerAbstract
 
     /**
      * Unregister (remove) a Media usage.
-     * 
-     * @param int $id The ID of the usage to remove.
-     
-     * @return MediaUsageResponse	 
+     *
+     * @param int $id the ID of the usage to remove
+     *
+     * @return MediaUsageResponse
      */
     public function removeUsage($id)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->delete('v1/events/usage/'.$id.'', $parameters);
+        $result = $this->delete('v1/events/usage/' . $id . '', $parameters);
         $result = new MediaUsageResponse($result);
 
         return $result;

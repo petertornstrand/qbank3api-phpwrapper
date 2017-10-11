@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class SlideStructure  implements \JsonSerializable
+class SlideStructure implements \JsonSerializable
 {
     /** @var int Media that contains the slide */
     protected $mediaId;
@@ -17,9 +17,9 @@ class SlideStructure  implements \JsonSerializable
      * Constructs a SlideStructure.
      *
      * @param array $parameters An array of parameters to initialize the {@link SlideStructure} with.
-     * - <b>mediaId</b> - Media that contains the slide
-     * - <b>slide</b> - Slide number, first slide is slide 0.
-     * - <b>transition</b> - The transition to use when showing this slide
+     *                          - <b>mediaId</b> - Media that contains the slide
+     *                          - <b>slide</b> - Slide number, first slide is slide 0.
+     *                          - <b>transition</b> - The transition to use when showing this slide
      */
     public function __construct($parameters = [])
     {
@@ -36,7 +36,9 @@ class SlideStructure  implements \JsonSerializable
 
     /**
      * Gets the mediaId of the SlideStructure.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getMediaId()
     {
         return $this->mediaId;
@@ -55,9 +57,12 @@ class SlideStructure  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the slide of the SlideStructure.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getSlide()
     {
         return $this->slide;
@@ -76,9 +81,12 @@ class SlideStructure  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the transition of the SlideStructure.
-     * @return SlideTransition	 */
+     *
+     * @return SlideTransition
+     */
     public function getTransition()
     {
         return $this->transition;
@@ -108,19 +116,19 @@ class SlideStructure  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->mediaId !== null) {
+        if (null !== $this->mediaId) {
             $json['mediaId'] = $this->mediaId;
         }
-        if ($this->slide !== null) {
+        if (null !== $this->slide) {
             $json['slide'] = $this->slide;
         }
-        if ($this->transition !== null) {
+        if (null !== $this->transition) {
             $json['transition'] = $this->transition;
         }
 

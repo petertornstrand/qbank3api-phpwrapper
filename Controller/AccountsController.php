@@ -12,19 +12,19 @@ class AccountsController extends ControllerAbstract
 {
     /**
      * Lists Functionalities available.
-     * 
+     *
      * Lists all Functionalities available
-     * 
-     * @param bool $includeDeleted Indicates if we should include removed Functionalities in the result.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return Functionality[]	 
+     *
+     * @param bool        $includeDeleted indicates if we should include removed Functionalities in the result
+     * @param CachePolicy $cachePolicy    a custom cache policy used for this request only
+     *
+     * @return Functionality[]
      */
     public function listFunctionalities($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['includeDeleted' => $includeDeleted],
-            'body'    => json_encode([]),
+            'query' => ['includeDeleted' => $includeDeleted],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -40,23 +40,23 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Fetches a specific Functionality.
-     * 
+     *
      * Fetches a Functionality by the specified identifier.
-     * 
-     * @param int $id The Functionality identifier.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return Functionality	 
+     *
+     * @param int         $id          the Functionality identifier
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return Functionality
      */
     public function retrieveFunctionality($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/accounts/functionalities/'.$id.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/accounts/functionalities/' . $id . '', $parameters, $cachePolicy);
         $result = new Functionality($result);
 
         return $result;
@@ -64,19 +64,19 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Lists Groups available.
-     * 
+     *
      * Lists all Groups available
-     * 
-     * @param bool $includeDeleted Indicates if we should include removed Groups in the result.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return Group[]	 
+     *
+     * @param bool        $includeDeleted indicates if we should include removed Groups in the result
+     * @param CachePolicy $cachePolicy    a custom cache policy used for this request only
+     *
+     * @return Group[]
      */
     public function listGroups($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['includeDeleted' => $includeDeleted],
-            'body'    => json_encode([]),
+            'query' => ['includeDeleted' => $includeDeleted],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -92,23 +92,23 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Fetches a specific Group.
-     * 
+     *
      * Fetches a Group by the specified identifier.
-     * 
-     * @param int $id The Group identifier.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return Group	 
+     *
+     * @param int         $id          the Group identifier
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return Group
      */
     public function retrieveGroup($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/accounts/groups/'.$id.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/accounts/groups/' . $id . '', $parameters, $cachePolicy);
         $result = new Group($result);
 
         return $result;
@@ -116,18 +116,18 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Fetches the currently logged in User.
-     * 
+     *
      * Effectively a whoami call.
-     * 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return User	 
+     *
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return User
      */
     public function retrieveCurrentUser(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -139,19 +139,19 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Lists Roles available.
-     * 
+     *
      * Lists all Roles available
-     * 
-     * @param bool $includeDeleted Indicates if we should include removed Roles in the result.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return Role[]	 
+     *
+     * @param bool        $includeDeleted indicates if we should include removed Roles in the result
+     * @param CachePolicy $cachePolicy    a custom cache policy used for this request only
+     *
+     * @return Role[]
      */
     public function listRoles($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['includeDeleted' => $includeDeleted],
-            'body'    => json_encode([]),
+            'query' => ['includeDeleted' => $includeDeleted],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -167,23 +167,23 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Fetches a specific Role.
-     * 
+     *
      * Fetches a Role by the specified identifier.
-     * 
-     * @param int $id The Role identifier.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return Role	 
+     *
+     * @param int         $id          the Role identifier
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return Role
      */
     public function retrieveRole($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/accounts/roles/'.$id.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/accounts/roles/' . $id . '', $parameters, $cachePolicy);
         $result = new Role($result);
 
         return $result;
@@ -191,18 +191,18 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Fetches all settings.
-     * 
+     *
      * Fetches all settings currently available for the current user.
-     * 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return array	 
+     *
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return array
      */
     public function listSettings(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -213,42 +213,42 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Fetches a setting.
-     * 
+     *
      * Fetches a setting for the current user.
-     * 
-     * @param string $key The key of the setting to fetch..
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return array	 
+     *
+     * @param string      $key         The key of the setting to fetch..
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return array
      */
     public function retrieveSetting($key, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/accounts/settings/'.$key.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/accounts/settings/' . $key . '', $parameters, $cachePolicy);
 
         return $result;
     }
 
     /**
      * Lists Users available.
-     * 
+     *
      * Lists all Users available
-     * 
-     * @param bool $includeDeleted Indicates if we should include removed Users in the result.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return User[]	 
+     *
+     * @param bool        $includeDeleted indicates if we should include removed Users in the result
+     * @param CachePolicy $cachePolicy    a custom cache policy used for this request only
+     *
+     * @return User[]
      */
     public function listUsers($includeDeleted = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['includeDeleted' => $includeDeleted],
-            'body'    => json_encode([]),
+            'query' => ['includeDeleted' => $includeDeleted],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -264,23 +264,23 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Fetches a specific User.
-     * 
+     *
      * Fetches a User by the specified identifier.
-     * 
-     * @param int $id The User identifier.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return User	 
+     *
+     * @param int         $id          the User identifier
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return User
      */
     public function retrieveUser($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/accounts/users/'.$id.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/accounts/users/' . $id . '', $parameters, $cachePolicy);
         $result = new User($result);
 
         return $result;
@@ -288,17 +288,17 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Creates a new setting.
-     * 
+     *
      * Creates a new, previously not existing setting.
-     * 
-     * @param string $key The key (identifier) of the setting
+     *
+     * @param string $key   The key (identifier) of the setting
      * @param string $value The value of the setting
      */
     public function createSetting($key, $value)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['key' => $key, 'value' => $value]),
+            'query' => [],
+            'body' => json_encode(['key' => $key, 'value' => $value]),
             'headers' => [],
         ];
 
@@ -307,19 +307,19 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Create a user Create a user in QBank.
-     * 
-     * @param User $user The user to create
-     * @param string $password Password for the new user, leave blank to let QBank send a password-reset link to the user
-     * @param string $redirectTo Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
-     * @param bool $sendNotificationEmail Send a notification email to the new user, as specified through the QBank backend
-     
-     * @return User	 
+     *
+     * @param User   $user                  The user to create
+     * @param string $password              Password for the new user, leave blank to let QBank send a password-reset link to the user
+     * @param string $redirectTo            Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
+     * @param bool   $sendNotificationEmail Send a notification email to the new user, as specified through the QBank backend
+     *
+     * @return User
      */
     public function createUser(User $user, $password = null, $redirectTo = null, $sendNotificationEmail = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['user' => $user, 'password' => $password, 'redirectTo' => $redirectTo, 'sendNotificationEmail' => $sendNotificationEmail]),
+            'query' => [],
+            'body' => json_encode(['user' => $user, 'password' => $password, 'redirectTo' => $redirectTo, 'sendNotificationEmail' => $sendNotificationEmail]),
             'headers' => [],
         ];
 
@@ -331,22 +331,22 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Update a user Update a user in QBank.
-     * 
-     * @param int $id 
-     * @param User $user The user to update
+     *
+     * @param int    $id
+     * @param User   $user     The user to update
      * @param string $password Set a new password for the user, leave blank to leave unchanged
-     
-     * @return User	 
+     *
+     * @return User
      */
     public function updateUser($id, User $user, $password = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['user' => $user, 'password' => $password]),
+            'query' => [],
+            'body' => json_encode(['user' => $user, 'password' => $password]),
             'headers' => [],
         ];
 
-        $result = $this->post('v1/accounts/users/'.$id.'', $parameters);
+        $result = $this->post('v1/accounts/users/' . $id . '', $parameters);
         $result = new User($result);
 
         return $result;
@@ -354,21 +354,21 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Add the user to one or more groups.
-     * 
-     * @param int $id 
-     * @param int[] $groupIds An array of int values.
-     
-     * @return User	 
+     *
+     * @param int   $id
+     * @param int[] $groupIds an array of int values
+     *
+     * @return User
      */
     public function addUserToGroup($id, array $groupIds)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['groupIds' => $groupIds]),
+            'query' => [],
+            'body' => json_encode(['groupIds' => $groupIds]),
             'headers' => [],
         ];
 
-        $result = $this->post('v1/accounts/users/'.$id.'/groups', $parameters);
+        $result = $this->post('v1/accounts/users/' . $id . '/groups', $parameters);
         $result = new User($result);
 
         return $result;
@@ -376,21 +376,21 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Update the last login time for a user Update the last login time for a user.
-     * 
-     * @param int $id 
+     *
+     * @param int  $id
      * @param bool $successful Login attempt successful or not
-     
-     * @return User	 
+     *
+     * @return User
      */
     public function updateLastLogin($id, $successful = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['successful' => $successful]),
+            'query' => [],
+            'body' => json_encode(['successful' => $successful]),
             'headers' => [],
         ];
 
-        $result = $this->post('v1/accounts/users/'.$id.'/registerloginattempt', $parameters);
+        $result = $this->post('v1/accounts/users/' . $id . '/registerloginattempt', $parameters);
         $result = new User($result);
 
         return $result;
@@ -398,38 +398,38 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Dispatch a password reset mail to a user.
-     * 
+     *
      * . The supplied link will be included in the mail and appended with a "hash=" parameter containing the password reset hash needed to set the new password in step 2.
-     * 
-     * @param int $id The User identifier.
+     *
+     * @param int    $id   the User identifier
      * @param string $link Optional link to override redirect to in the password reset mail
      */
     public function sendPasswordReset($id, $link = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['link' => $link]),
+            'query' => [],
+            'body' => json_encode(['link' => $link]),
             'headers' => [],
         ];
 
-        $this->post('v1/accounts/users/'.$id.'/resetpassword', $parameters);
+        $this->post('v1/accounts/users/' . $id . '/resetpassword', $parameters);
     }
 
     /**
      * Reset a password for a user with password reset hash.
-     * 
+     *
      * Resets a password for a user with a valid password reset hash. Hash should be obtained through "/users/{id}/sendpasswordreset".
-     * 
-     * @param string $hash Valid password reset hash
+     *
+     * @param string $hash     Valid password reset hash
      * @param string $password New password
-     
-     * @return array	 
+     *
+     * @return array
      */
     public function resetPassword($hash, $password)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['hash' => $hash, 'password' => $password]),
+            'query' => [],
+            'body' => json_encode(['hash' => $hash, 'password' => $password]),
             'headers' => [],
         ];
 
@@ -440,20 +440,20 @@ class AccountsController extends ControllerAbstract
 
     /**
      * Updates an existing setting.
-     * 
+     *
      * Updates a previously created setting.
-     * 
-     * @param string $key The key (identifier) of the setting..
+     *
+     * @param string $key   The key (identifier) of the setting..
      * @param string $value The value of the setting
      */
     public function updateSetting($key, $value)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['value' => $value]),
+            'query' => [],
+            'body' => json_encode(['value' => $value]),
             'headers' => [],
         ];
 
-        $this->put('v1/accounts/settings/'.$key.'', $parameters);
+        $this->put('v1/accounts/settings/' . $key . '', $parameters);
     }
 }

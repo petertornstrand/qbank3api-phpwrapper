@@ -9,16 +9,16 @@ class ObjecttypesController extends ControllerAbstract
 {
     /**
      * Lists all Object Types.
-     * 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return ObjectType[]	 
+     *
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return ObjectType[]
      */
     public function listObjectTypes(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -34,23 +34,23 @@ class ObjecttypesController extends ControllerAbstract
 
     /**
      * Fetches a specific ObjectType.
-     * 
+     *
      * Fetches an ObjectType by the specified identifier.
-     * 
-     * @param int $id The ObjectType identifier.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return ObjectType	 
+     *
+     * @param int         $id          the ObjectType identifier
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return ObjectType
      */
     public function retrieveObjectType($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/objecttypes/'.$id.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/objecttypes/' . $id . '', $parameters, $cachePolicy);
         $result = new ObjectType($result);
 
         return $result;

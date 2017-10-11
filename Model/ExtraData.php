@@ -4,7 +4,7 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class ExtraData  implements \JsonSerializable
+class ExtraData implements \JsonSerializable
 {
     /** @var int The ExtraData identifier. */
     protected $id;
@@ -40,16 +40,16 @@ class ExtraData  implements \JsonSerializable
      * Constructs a ExtraData.
      *
      * @param array $parameters An array of parameters to initialize the {@link ExtraData} with.
-     * - <b>id</b> - The ExtraData identifier.
-     * - <b>dirty</b> - Whether the object has been modified since constructed.
-     * - <b>deleted</b> - Indicates if this ExtraData is deleted
-     * - <b>created</b> - When the ExtraData was created.
-     * - <b>createdBy</b> - The User Id that created the ExtraData
-     * - <b>updated</b> - When the ExtraData was updated.
-     * - <b>updatedBy</b> - User Id that updated the ExtraData
-     * - <b>key</b> - The ExtraData key
-     * - <b>keyId</b> - The ExtraData Key Identifier
-     * - <b>value</b> - The value of the ExtraData
+     *                          - <b>id</b> - The ExtraData identifier.
+     *                          - <b>dirty</b> - Whether the object has been modified since constructed.
+     *                          - <b>deleted</b> - Indicates if this ExtraData is deleted
+     *                          - <b>created</b> - When the ExtraData was created.
+     *                          - <b>createdBy</b> - The User Id that created the ExtraData
+     *                          - <b>updated</b> - When the ExtraData was updated.
+     *                          - <b>updatedBy</b> - User Id that updated the ExtraData
+     *                          - <b>key</b> - The ExtraData key
+     *                          - <b>keyId</b> - The ExtraData Key Identifier
+     *                          - <b>value</b> - The value of the ExtraData
      */
     public function __construct($parameters = [])
     {
@@ -87,7 +87,9 @@ class ExtraData  implements \JsonSerializable
 
     /**
      * Gets the id of the ExtraData.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -106,9 +108,12 @@ class ExtraData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the ExtraData is dirty.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDirty()
     {
         return $this->dirty;
@@ -127,9 +132,12 @@ class ExtraData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the ExtraData is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -148,9 +156,12 @@ class ExtraData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the created of the ExtraData.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -177,9 +188,12 @@ class ExtraData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the ExtraData.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -198,9 +212,12 @@ class ExtraData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updated of the ExtraData.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -227,9 +244,12 @@ class ExtraData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the ExtraData.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -248,9 +268,12 @@ class ExtraData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the key of the ExtraData.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getKey()
     {
         return $this->key;
@@ -269,9 +292,12 @@ class ExtraData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the keyId of the ExtraData.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getKeyId()
     {
         return $this->keyId;
@@ -290,9 +316,12 @@ class ExtraData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the value of the ExtraData.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getValue()
     {
         return $this->value;
@@ -315,40 +344,40 @@ class ExtraData  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->dirty !== null) {
+        if (null !== $this->dirty) {
             $json['dirty'] = $this->dirty;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->key !== null) {
+        if (null !== $this->key) {
             $json['key'] = $this->key;
         }
-        if ($this->keyId !== null) {
+        if (null !== $this->keyId) {
             $json['keyId'] = $this->keyId;
         }
-        if ($this->value !== null) {
+        if (null !== $this->value) {
             $json['value'] = $this->value;
         }
 

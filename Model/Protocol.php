@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class Protocol  implements \JsonSerializable
+class Protocol implements \JsonSerializable
 {
     /** @var int The Protocol identifier. */
     protected $id;
@@ -20,10 +20,10 @@ class Protocol  implements \JsonSerializable
      * Constructs a Protocol.
      *
      * @param array $parameters An array of parameters to initialize the {@link Protocol} with.
-     * - <b>id</b> - The Protocol identifier.
-     * - <b>description</b> - The human readable description of the Protocol.
-     * - <b>name</b> - The Protocol name.
-     * - <b>definition</b> - The Protocol definition. Describes the needed values and other parameters.
+     *                          - <b>id</b> - The Protocol identifier.
+     *                          - <b>description</b> - The human readable description of the Protocol.
+     *                          - <b>name</b> - The Protocol name.
+     *                          - <b>definition</b> - The Protocol definition. Describes the needed values and other parameters.
      */
     public function __construct($parameters = [])
     {
@@ -43,7 +43,9 @@ class Protocol  implements \JsonSerializable
 
     /**
      * Gets the id of the Protocol.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -62,9 +64,12 @@ class Protocol  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the description of the Protocol.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -83,9 +88,12 @@ class Protocol  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the Protocol.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -104,9 +112,12 @@ class Protocol  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the definition of the Protocol.
-     * @return object	 */
+     *
+     * @return object
+     */
     public function getDefinition()
     {
         return $this->definition;
@@ -127,7 +138,7 @@ class Protocol  implements \JsonSerializable
             return $this;
         }
         $this->definition = json_decode($definition, true);
-        if ($this->definition === null) {
+        if (null === $this->definition) {
             $this->definition = $definition;
         }
 
@@ -137,22 +148,22 @@ class Protocol  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $json['description'] = $this->description;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->definition !== null) {
+        if (null !== $this->definition) {
             $json['definition'] = $this->definition;
         }
 

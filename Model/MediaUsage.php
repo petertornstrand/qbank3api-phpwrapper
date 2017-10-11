@@ -2,32 +2,32 @@
 
 namespace QBNK\QBank\API\Model;
 
-class MediaUsage  implements \JsonSerializable
+class MediaUsage implements \JsonSerializable
 {
-    /** @var int  */
+    /** @var int */
     protected $mediaId;
 
-    /** @var string  */
+    /** @var string */
     protected $mediaUrl;
 
-    /** @var string  */
+    /** @var string */
     protected $pageUrl;
 
-    /** @var string[]  */
+    /** @var string[] */
     protected $context;
 
-    /** @var string  */
+    /** @var string */
     protected $language;
 
     /**
      * Constructs a MediaUsage.
      *
      * @param array $parameters An array of parameters to initialize the {@link MediaUsage} with.
-     * - <b>mediaId</b> - 
-     * - <b>mediaUrl</b> - 
-     * - <b>pageUrl</b> - 
-     * - <b>context</b> - 
-     * - <b>language</b> - 
+     *                          - <b>mediaId</b> -
+     *                          - <b>mediaUrl</b> -
+     *                          - <b>pageUrl</b> -
+     *                          - <b>context</b> -
+     *                          - <b>language</b> -
      */
     public function __construct($parameters = [])
     {
@@ -52,7 +52,9 @@ class MediaUsage  implements \JsonSerializable
 
     /**
      * Gets the mediaId of the MediaUsage.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getMediaId()
     {
         return $this->mediaId;
@@ -71,9 +73,12 @@ class MediaUsage  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the mediaUrl of the MediaUsage.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getMediaUrl()
     {
         return $this->mediaUrl;
@@ -92,9 +97,12 @@ class MediaUsage  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the pageUrl of the MediaUsage.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getPageUrl()
     {
         return $this->pageUrl;
@@ -113,9 +121,12 @@ class MediaUsage  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the context of the MediaUsage.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getContext()
     {
         return $this->context;
@@ -134,9 +145,12 @@ class MediaUsage  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the language of the MediaUsage.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getLanguage()
     {
         return $this->language;
@@ -159,25 +173,25 @@ class MediaUsage  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->mediaId !== null) {
+        if (null !== $this->mediaId) {
             $json['mediaId'] = $this->mediaId;
         }
-        if ($this->mediaUrl !== null) {
+        if (null !== $this->mediaUrl) {
             $json['mediaUrl'] = $this->mediaUrl;
         }
-        if ($this->pageUrl !== null) {
+        if (null !== $this->pageUrl) {
             $json['pageUrl'] = $this->pageUrl;
         }
-        if ($this->context !== null && !empty($this->context)) {
+        if (null !== $this->context && !empty($this->context)) {
             $json['context'] = $this->context;
         }
-        if ($this->language !== null) {
+        if (null !== $this->language) {
             $json['language'] = $this->language;
         }
 

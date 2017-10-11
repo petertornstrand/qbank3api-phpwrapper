@@ -4,7 +4,7 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class Group  implements \JsonSerializable
+class Group implements \JsonSerializable
 {
     /** @var int The Group identifier. */
     protected $id;
@@ -46,24 +46,24 @@ class Group  implements \JsonSerializable
      * Constructs a Group.
      *
      * @param array $parameters An array of parameters to initialize the {@link Group} with.
-     * - <b>id</b> - The Group identifier.
-     * - <b>name</b> - The name of the Group
-     * - <b>description</b> - Description of what this Group means
-     * - <b>dirty</b> - Whether the object has been modified since constructed.
-     * - <b>deleted</b> - Indicates if this Group is deleted
-     * - <b>created</b> - When the Group was created.
-     * - <b>createdBy</b> - The User Id that created the Group
-     * - <b>updated</b> - When the Group was updated.
-     * - <b>updatedBy</b> - User Id that updated the Group
-     * - <b>functionalities</b> - An array of Functionalities connected to this Group
-     * - <b>roles</b> - An array of Roles connected to this Group
-     * - <b>extraData</b> - An array of ExtraData connected to this Group.
+     *                          - <b>id</b> - The Group identifier.
+     *                          - <b>name</b> - The name of the Group
+     *                          - <b>description</b> - Description of what this Group means
+     *                          - <b>dirty</b> - Whether the object has been modified since constructed.
+     *                          - <b>deleted</b> - Indicates if this Group is deleted
+     *                          - <b>created</b> - When the Group was created.
+     *                          - <b>createdBy</b> - The User Id that created the Group
+     *                          - <b>updated</b> - When the Group was updated.
+     *                          - <b>updatedBy</b> - User Id that updated the Group
+     *                          - <b>functionalities</b> - An array of Functionalities connected to this Group
+     *                          - <b>roles</b> - An array of Roles connected to this Group
+     *                          - <b>extraData</b> - An array of ExtraData connected to this Group.
      */
     public function __construct($parameters = [])
     {
         $this->functionalities = [];
-        $this->roles           = [];
-        $this->extraData       = [];
+        $this->roles = [];
+        $this->extraData = [];
 
         if (isset($parameters['id'])) {
             $this->setId($parameters['id']);
@@ -105,7 +105,9 @@ class Group  implements \JsonSerializable
 
     /**
      * Gets the id of the Group.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -124,9 +126,12 @@ class Group  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the Group.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -145,9 +150,12 @@ class Group  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the description of the Group.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -166,9 +174,12 @@ class Group  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the Group is dirty.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDirty()
     {
         return $this->dirty;
@@ -187,9 +198,12 @@ class Group  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the Group is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -208,9 +222,12 @@ class Group  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the created of the Group.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -237,9 +254,12 @@ class Group  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the Group.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -258,9 +278,12 @@ class Group  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updated of the Group.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -287,9 +310,12 @@ class Group  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the Group.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -308,9 +334,12 @@ class Group  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the functionalities of the Group.
-     * @return Functionality[]	 */
+     *
+     * @return Functionality[]
+     */
     public function getFunctionalities()
     {
         return $this->functionalities;
@@ -348,7 +377,7 @@ class Group  implements \JsonSerializable
                 try {
                     $item = new Functionality($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate Functionality. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
@@ -361,7 +390,9 @@ class Group  implements \JsonSerializable
 
     /**
      * Gets the roles of the Group.
-     * @return Role[]	 */
+     *
+     * @return Role[]
+     */
     public function getRoles()
     {
         return $this->roles;
@@ -399,7 +430,7 @@ class Group  implements \JsonSerializable
                 try {
                     $item = new Role($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate Role. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate Role. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "Role"!', E_USER_WARNING);
@@ -412,7 +443,9 @@ class Group  implements \JsonSerializable
 
     /**
      * Gets the extraData of the Group.
-     * @return ExtraData[]	 */
+     *
+     * @return ExtraData[]
+     */
     public function getExtraData()
     {
         return $this->extraData;
@@ -450,7 +483,7 @@ class Group  implements \JsonSerializable
                 try {
                     $item = new ExtraData($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate ExtraData. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate ExtraData. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
@@ -464,46 +497,46 @@ class Group  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $json['description'] = $this->description;
         }
-        if ($this->dirty !== null) {
+        if (null !== $this->dirty) {
             $json['dirty'] = $this->dirty;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->functionalities !== null && !empty($this->functionalities)) {
+        if (null !== $this->functionalities && !empty($this->functionalities)) {
             $json['functionalities'] = $this->functionalities;
         }
-        if ($this->roles !== null && !empty($this->roles)) {
+        if (null !== $this->roles && !empty($this->roles)) {
             $json['roles'] = $this->roles;
         }
-        if ($this->extraData !== null && !empty($this->extraData)) {
+        if (null !== $this->extraData && !empty($this->extraData)) {
             $json['extraData'] = $this->extraData;
         }
 

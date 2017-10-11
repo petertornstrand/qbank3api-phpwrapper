@@ -9,39 +9,37 @@ use QBNK\QBank\API\Model\SearchResult;
 class SearchController extends ControllerAbstract
 {
     const RETURN_OBJECTS = 1;
-    const RETURN_IDS     = 2;
+    const RETURN_IDS = 2;
 
     /**
-     * routes to <mark>QBNK\QBank\Api\v1\Search::metadata();</mark>.
-     * 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      */
     public function metadata(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        return $this->get('v1/search/metadata', $parameters, $cachePolicy);
+        $this->get('v1/search/metadata', $parameters, $cachePolicy);
     }
 
     /**
      * Search for Media.
-     * 
+     *
      * in QBank
-     * 
-     * @param Search $search Search parameters
-     * @param int $returnType Whether to return object, mediaIds.
-     
-     * @return SearchResult	 
+     *
+     * @param Search $search     Search parameters
+     * @param int    $returnType whether to return object, mediaIds
+     *
+     * @return SearchResult
      */
     public function search(Search $search, $returnType = self::RETURN_OBJECTS, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => ['returnType' => $returnType],
-            'body'    => json_encode(['search' => $search]),
+            'query' => ['returnType' => $returnType],
+            'body' => json_encode(['search' => $search]),
             'headers' => [],
         ];
 
@@ -53,16 +51,16 @@ class SearchController extends ControllerAbstract
 
     /**
      * Get total hit count for media search.
-     * 
+     *
      * in QBank
-     * 
+     *
      * @param Search $search Search parameters
      */
     public function searchtotal(Search $search)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['search' => $search]),
+            'query' => [],
+            'body' => json_encode(['search' => $search]),
             'headers' => [],
         ];
 

@@ -4,7 +4,7 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class Functionality  implements \JsonSerializable
+class Functionality implements \JsonSerializable
 {
     /** @var int The Functionality identifier. */
     protected $id;
@@ -40,16 +40,16 @@ class Functionality  implements \JsonSerializable
      * Constructs a Functionality.
      *
      * @param array $parameters An array of parameters to initialize the {@link Functionality} with.
-     * - <b>id</b> - The Functionality identifier.
-     * - <b>name</b> - The name of the functionality (used programmatically)
-     * - <b>description</b> - Description of what this functionality means
-     * - <b>dirty</b> - Whether the object has been modified since constructed.
-     * - <b>deleted</b> - Indicates if this Functionality is deleted
-     * - <b>created</b> - When the Functionality was created.
-     * - <b>createdBy</b> - The User Id that created the Functionality
-     * - <b>updated</b> - When the Functionality was updated.
-     * - <b>updatedBy</b> - User Id that updated the Functionality
-     * - <b>title</b> - A title that can be used to show the user
+     *                          - <b>id</b> - The Functionality identifier.
+     *                          - <b>name</b> - The name of the functionality (used programmatically)
+     *                          - <b>description</b> - Description of what this functionality means
+     *                          - <b>dirty</b> - Whether the object has been modified since constructed.
+     *                          - <b>deleted</b> - Indicates if this Functionality is deleted
+     *                          - <b>created</b> - When the Functionality was created.
+     *                          - <b>createdBy</b> - The User Id that created the Functionality
+     *                          - <b>updated</b> - When the Functionality was updated.
+     *                          - <b>updatedBy</b> - User Id that updated the Functionality
+     *                          - <b>title</b> - A title that can be used to show the user
      */
     public function __construct($parameters = [])
     {
@@ -87,7 +87,9 @@ class Functionality  implements \JsonSerializable
 
     /**
      * Gets the id of the Functionality.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -106,9 +108,12 @@ class Functionality  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the Functionality.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -127,9 +132,12 @@ class Functionality  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the description of the Functionality.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -148,9 +156,12 @@ class Functionality  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the Functionality is dirty.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDirty()
     {
         return $this->dirty;
@@ -169,9 +180,12 @@ class Functionality  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the Functionality is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -190,9 +204,12 @@ class Functionality  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the created of the Functionality.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -219,9 +236,12 @@ class Functionality  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the Functionality.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -240,9 +260,12 @@ class Functionality  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updated of the Functionality.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -269,9 +292,12 @@ class Functionality  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the Functionality.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -290,9 +316,12 @@ class Functionality  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the title of the Functionality.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getTitle()
     {
         return $this->title;
@@ -315,40 +344,40 @@ class Functionality  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $json['description'] = $this->description;
         }
-        if ($this->dirty !== null) {
+        if (null !== $this->dirty) {
             $json['dirty'] = $this->dirty;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->title !== null) {
+        if (null !== $this->title) {
             $json['title'] = $this->title;
         }
 

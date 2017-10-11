@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class FolderParent  implements \JsonSerializable
+class FolderParent implements \JsonSerializable
 {
     /** @var int The Folder identifier. */
     protected $folderid;
@@ -14,8 +14,8 @@ class FolderParent  implements \JsonSerializable
      * Constructs a FolderParent.
      *
      * @param array $parameters An array of parameters to initialize the {@link FolderParent} with.
-     * - <b>folderid</b> - The Folder identifier.
-     * - <b>depth</b> - The distance from the specified Folder identifer, ie. the reverse depth.
+     *                          - <b>folderid</b> - The Folder identifier.
+     *                          - <b>depth</b> - The distance from the specified Folder identifer, ie. the reverse depth.
      */
     public function __construct($parameters = [])
     {
@@ -29,7 +29,9 @@ class FolderParent  implements \JsonSerializable
 
     /**
      * Gets the folderid of the FolderParent.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getFolderid()
     {
         return $this->folderid;
@@ -48,9 +50,12 @@ class FolderParent  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the depth of the FolderParent.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getDepth()
     {
         return $this->depth;
@@ -73,16 +78,16 @@ class FolderParent  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->folderid !== null) {
+        if (null !== $this->folderid) {
             $json['folderid'] = $this->folderid;
         }
-        if ($this->depth !== null) {
+        if (null !== $this->depth) {
             $json['depth'] = $this->depth;
         }
 

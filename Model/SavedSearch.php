@@ -2,16 +2,16 @@
 
 namespace QBNK\QBank\API\Model;
 
-class SavedSearch  implements \JsonSerializable
+class SavedSearch implements \JsonSerializable
 {
-    /** @var string  */
+    /** @var string */
     protected $search;
 
     /**
      * Constructs a SavedSearch.
      *
      * @param array $parameters An array of parameters to initialize the {@link SavedSearch} with.
-     * - <b>search</b> - 
+     *                          - <b>search</b> -
      */
     public function __construct($parameters = [])
     {
@@ -22,7 +22,9 @@ class SavedSearch  implements \JsonSerializable
 
     /**
      * Gets the search of the SavedSearch.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getSearch()
     {
         return $this->search;
@@ -45,13 +47,13 @@ class SavedSearch  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->search !== null) {
+        if (null !== $this->search) {
             $json['search'] = $this->search;
         }
 

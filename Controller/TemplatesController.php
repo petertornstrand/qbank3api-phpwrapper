@@ -11,18 +11,18 @@ class TemplatesController extends ControllerAbstract
 {
     /**
      * List audio templates available.
-     * 
+     *
      * List all non-deleted audio templates.
-     * 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return AudioTemplate[]	 
+     *
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return AudioTemplate[]
      */
     public function listAudioTemplates(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -38,19 +38,19 @@ class TemplatesController extends ControllerAbstract
 
     /**
      * Fetches a specific AudioTemplate.
-     * 
+     *
      * Fetches a Audio Template by the specified identifier.
-     * 
-     * @param int $id The audio templates identifier..
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return AudioTemplate	 
+     *
+     * @param int         $id          The audio templates identifier..
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return AudioTemplate
      */
     public function retrieveAudioTemplate($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -62,16 +62,16 @@ class TemplatesController extends ControllerAbstract
 
     /**
      * Lists Image Templates available.
-     * 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return ImageTemplate[]	 
+     *
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return ImageTemplate[]
      */
     public function listImageTemplates(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -87,23 +87,23 @@ class TemplatesController extends ControllerAbstract
 
     /**
      * Fetches a specific Image Template.
-     * 
+     *
      * Fetches a Image Template by the specified identifier.
-     * 
-     * @param int $id The Image Template identifier.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return ImageTemplate	 
+     *
+     * @param int         $id          the Image Template identifier
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return ImageTemplate
      */
     public function retrieveImageTemplate($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/templates/images/'.$id.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/templates/images/' . $id . '', $parameters, $cachePolicy);
         $result = new ImageTemplate($result);
 
         return $result;
@@ -111,16 +111,16 @@ class TemplatesController extends ControllerAbstract
 
     /**
      * Lists Video Templates available.
-     * 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return VideoTemplate[]	 
+     *
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return VideoTemplate[]
      */
     public function listVideoTemplates(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -136,23 +136,23 @@ class TemplatesController extends ControllerAbstract
 
     /**
      * Fetches a specific Video Template.
-     * 
+     *
      * Fetches a Video Template by the specified identifier.
-     * 
-     * @param int $id The Video Template identifier.
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return VideoTemplate	 
+     *
+     * @param int         $id          the Video Template identifier
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return VideoTemplate
      */
     public function retrieveVideoTemplate($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/templates/videos/'.$id.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/templates/videos/' . $id . '', $parameters, $cachePolicy);
         $result = new VideoTemplate($result);
 
         return $result;

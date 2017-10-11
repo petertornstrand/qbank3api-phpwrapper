@@ -4,14 +4,14 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-class PropertyType  implements \JsonSerializable
+class PropertyType implements \JsonSerializable
 {
-    const DATATYPE_BOOLEAN  = 1;
+    const DATATYPE_BOOLEAN = 1;
     const DATATYPE_DATETIME = 2;
-    const DATATYPE_DECIMAL  = 3;
-    const DATATYPE_FLOAT    = 4;
-    const DATATYPE_INTEGER  = 5;
-    const DATATYPE_STRING   = 6;
+    const DATATYPE_DECIMAL = 3;
+    const DATATYPE_FLOAT = 4;
+    const DATATYPE_INTEGER = 5;
+    const DATATYPE_STRING = 6;
 
     /** @var DateTime When the Property was created. */
     protected $created;
@@ -47,16 +47,16 @@ class PropertyType  implements \JsonSerializable
      * Constructs a PropertyType.
      *
      * @param array $parameters An array of parameters to initialize the {@link PropertyType} with.
-     * - <b>created</b> - When the Property was created.
-     * - <b>createdBy</b> - The identifier of the User who created the Property.
-     * - <b>updated</b> - When the Property was updated.
-     * - <b>updatedBy</b> - Which user who updated the Property.
-     * - <b>deleted</b> - Whether the Property is deleted.
-     * - <b>name</b> - The Property name.
-     * - <b>systemName</b> - The Property system name, this is used for programmatic access.
-     * - <b>description</b> - A description of the PropertyType.
-     * - <b>dataTypeId</b> - Data type for the Property (1: Boolean, 2: DateTime, 3: Decimal, 4: Float, 5: Integer, 6: String) In addition, definition can alter the way a Property should be displayed.
-     * - <b>definition</b> - A Key/Value Object containing extra information about how this Property should be used.
+     *                          - <b>created</b> - When the Property was created.
+     *                          - <b>createdBy</b> - The identifier of the User who created the Property.
+     *                          - <b>updated</b> - When the Property was updated.
+     *                          - <b>updatedBy</b> - Which user who updated the Property.
+     *                          - <b>deleted</b> - Whether the Property is deleted.
+     *                          - <b>name</b> - The Property name.
+     *                          - <b>systemName</b> - The Property system name, this is used for programmatic access.
+     *                          - <b>description</b> - A description of the PropertyType.
+     *                          - <b>dataTypeId</b> - Data type for the Property (1: Boolean, 2: DateTime, 3: Decimal, 4: Float, 5: Integer, 6: String) In addition, definition can alter the way a Property should be displayed.
+     *                          - <b>definition</b> - A Key/Value Object containing extra information about how this Property should be used.
      */
     public function __construct($parameters = [])
     {
@@ -94,7 +94,9 @@ class PropertyType  implements \JsonSerializable
 
     /**
      * Gets the created of the PropertyType.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -121,9 +123,12 @@ class PropertyType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the PropertyType.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -142,9 +147,12 @@ class PropertyType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updated of the PropertyType.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -171,9 +179,12 @@ class PropertyType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the PropertyType.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -192,9 +203,12 @@ class PropertyType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the PropertyType is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -213,9 +227,12 @@ class PropertyType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the PropertyType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -234,9 +251,12 @@ class PropertyType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the systemName of the PropertyType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getSystemName()
     {
         return $this->systemName;
@@ -255,9 +275,12 @@ class PropertyType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the description of the PropertyType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -276,9 +299,12 @@ class PropertyType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the dataTypeId of the PropertyType.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getDataTypeId()
     {
         return $this->dataTypeId;
@@ -297,9 +323,12 @@ class PropertyType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the definition of the PropertyType.
-     * @return object	 */
+     *
+     * @return object
+     */
     public function getDefinition()
     {
         return $this->definition;
@@ -320,7 +349,7 @@ class PropertyType  implements \JsonSerializable
             return $this;
         }
         $this->definition = json_decode($definition, true);
-        if ($this->definition === null) {
+        if (null === $this->definition) {
             $this->definition = $definition;
         }
 
@@ -330,40 +359,40 @@ class PropertyType  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->systemName !== null) {
+        if (null !== $this->systemName) {
             $json['systemName'] = $this->systemName;
         }
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $json['description'] = $this->description;
         }
-        if ($this->dataTypeId !== null) {
+        if (null !== $this->dataTypeId) {
             $json['dataTypeId'] = $this->dataTypeId;
         }
-        if ($this->definition !== null) {
+        if (null !== $this->definition) {
             $json['definition'] = $this->definition;
         }
 

@@ -11,16 +11,16 @@ class DeploymentController extends ControllerAbstract
 {
     /**
      * Lists all Protocols.
-     * 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return Protocol[]	 
+     *
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return Protocol[]
      */
     public function listProtocols(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -36,21 +36,21 @@ class DeploymentController extends ControllerAbstract
 
     /**
      * Fetches a specific Protocol.
-     * 
-     * @param int $id The Protocol identifier..
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return Protocol	 
+     *
+     * @param int         $id          The Protocol identifier..
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return Protocol
      */
     public function retrieveProtocol($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/deployment/protocols/'.$id.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/deployment/protocols/' . $id . '', $parameters, $cachePolicy);
         $result = new Protocol($result);
 
         return $result;
@@ -58,18 +58,18 @@ class DeploymentController extends ControllerAbstract
 
     /**
      * Lists all DeploymentSites.
-     * 
+     *
      * Lists all DeploymentSites the current User has access to.
-     * 
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return DeploymentSiteResponse[]	 
+     *
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return DeploymentSiteResponse[]
      */
     public function listSites(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -85,21 +85,21 @@ class DeploymentController extends ControllerAbstract
 
     /**
      * Fetches a specific DeploymentSite.
-     * 
-     * @param int $id The DeploymentSite identifier..
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return DeploymentSiteResponse	 
+     *
+     * @param int         $id          The DeploymentSite identifier..
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return DeploymentSiteResponse
      */
     public function retrieveSite($id, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->get('v1/deployment/sites/'.$id.'', $parameters, $cachePolicy);
+        $result = $this->get('v1/deployment/sites/' . $id . '', $parameters, $cachePolicy);
         $result = new DeploymentSiteResponse($result);
 
         return $result;
@@ -107,16 +107,16 @@ class DeploymentController extends ControllerAbstract
 
     /**
      * Create a DeploymentSite.
-     * 
+     *
      * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite to create
-     
-     * @return DeploymentSiteResponse	 
+     *
+     * @return DeploymentSiteResponse
      */
     public function createSite(DeploymentSite $deploymentSite)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['deploymentSite' => $deploymentSite]),
+            'query' => [],
+            'body' => json_encode(['deploymentSite' => $deploymentSite]),
             'headers' => [],
         ];
 
@@ -128,21 +128,21 @@ class DeploymentController extends ControllerAbstract
 
     /**
      * Update a DeploymentSite.
-     * 
-     * @param int $id The DeploymentSite identifier.
+     *
+     * @param int            $id             the DeploymentSite identifier
      * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite representing the updates
-     
-     * @return DeploymentSiteResponse	 
+     *
+     * @return DeploymentSiteResponse
      */
     public function updateSite($id, DeploymentSite $deploymentSite)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['deploymentSite' => $deploymentSite]),
+            'query' => [],
+            'body' => json_encode(['deploymentSite' => $deploymentSite]),
             'headers' => [],
         ];
 
-        $result = $this->post('v1/deployment/'.$id.'', $parameters);
+        $result = $this->post('v1/deployment/' . $id . '', $parameters);
         $result = new DeploymentSiteResponse($result);
 
         return $result;
@@ -150,45 +150,45 @@ class DeploymentController extends ControllerAbstract
 
     /**
      * Deploy Media to a DeploymentSite.
-     * 
+     *
      * Deploy Media to a DeploymentSite, this is an asynchronous method.
-     * 
-     * @param int $id DeploymentSite to deploy to.
-     * @param int[] $mediaIds An array of int values.
-     
-     * @return array	 
+     *
+     * @param int   $id       deploymentSite to deploy to
+     * @param int[] $mediaIds an array of int values
+     *
+     * @return array
      */
     public function addMediaToDeploymentSite($id, array $mediaIds)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode(['mediaIds' => $mediaIds]),
+            'query' => [],
+            'body' => json_encode(['mediaIds' => $mediaIds]),
             'headers' => [],
         ];
 
-        $result = $this->post('v1/deployment/'.$id.'/media', $parameters);
+        $result = $this->post('v1/deployment/' . $id . '/media', $parameters);
 
         return $result;
     }
 
     /**
      * Delete a DeploymentSite.
-     * 
+     *
      * You can not delete a DeploymentSite while there are still media deployed there!
-     * 
-     * @param int $id The DeploymentSite identifier.
-     
-     * @return DeploymentSiteResponse	 
+     *
+     * @param int $id the DeploymentSite identifier
+     *
+     * @return DeploymentSiteResponse
      */
     public function removeSite($id)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->delete('v1/deployment/'.$id.'', $parameters);
+        $result = $this->delete('v1/deployment/' . $id . '', $parameters);
         $result = new DeploymentSiteResponse($result);
 
         return $result;
@@ -196,23 +196,23 @@ class DeploymentController extends ControllerAbstract
 
     /**
      * Undeploy Media from a DeploymentSite.
-     * 
+     *
      * Undeploy Media from a DeploymentSite, this is an asynchronous method.
-     * 
-     * @param int $id DeploymentSite to undeploy from.
-     * @param string $mediaIds A comma separated string of media ids we should undeploy.
-     
-     * @return array	 
+     *
+     * @param int    $id       deploymentSite to undeploy from
+     * @param string $mediaIds a comma separated string of media ids we should undeploy
+     *
+     * @return array
      */
     public function removeMediaFromDeploymentSite($id, $mediaIds)
     {
         $parameters = [
-            'query'   => ['mediaIds' => $mediaIds],
-            'body'    => json_encode([]),
+            'query' => ['mediaIds' => $mediaIds],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
-        $result = $this->delete('v1/deployment/'.$id.'/media', $parameters);
+        $result = $this->delete('v1/deployment/' . $id . '/media', $parameters);
 
         return $result;
     }

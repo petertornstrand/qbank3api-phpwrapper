@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class MimeType  implements \JsonSerializable
+class MimeType implements \JsonSerializable
 {
     /** @var int The MimeType identifier. */
     protected $id;
@@ -29,13 +29,13 @@ class MimeType  implements \JsonSerializable
      * Constructs a MimeType.
      *
      * @param array $parameters An array of parameters to initialize the {@link MimeType} with.
-     * - <b>id</b> - The MimeType identifier.
-     * - <b>mimetype</b> - The MimeType string representation.
-     * - <b>description</b> - The MimeType human readable description.
-     * - <b>imagetemplate</b> - Whether the MimeType is usable in an ImageTemplate.
-     * - <b>videotemplate</b> - Whether the MimeType is usable in a VideoTemplate.
-     * - <b>defaultextension</b> - The default file extension of the MimeType.
-     * - <b>classification</b> - The MimeType class. Eg. image, video, document.
+     *                          - <b>id</b> - The MimeType identifier.
+     *                          - <b>mimetype</b> - The MimeType string representation.
+     *                          - <b>description</b> - The MimeType human readable description.
+     *                          - <b>imagetemplate</b> - Whether the MimeType is usable in an ImageTemplate.
+     *                          - <b>videotemplate</b> - Whether the MimeType is usable in a VideoTemplate.
+     *                          - <b>defaultextension</b> - The default file extension of the MimeType.
+     *                          - <b>classification</b> - The MimeType class. Eg. image, video, document.
      */
     public function __construct($parameters = [])
     {
@@ -64,7 +64,9 @@ class MimeType  implements \JsonSerializable
 
     /**
      * Gets the id of the MimeType.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -83,9 +85,12 @@ class MimeType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the mimetype of the MimeType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getMimetype()
     {
         return $this->mimetype;
@@ -104,9 +109,12 @@ class MimeType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the description of the MimeType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -125,9 +133,12 @@ class MimeType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the MimeType is imagetemplate.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isImagetemplate()
     {
         return $this->imagetemplate;
@@ -146,9 +157,12 @@ class MimeType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the MimeType is videotemplate.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isVideotemplate()
     {
         return $this->videotemplate;
@@ -167,9 +181,12 @@ class MimeType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the defaultextension of the MimeType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDefaultextension()
     {
         return $this->defaultextension;
@@ -188,9 +205,12 @@ class MimeType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the classification of the MimeType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getClassification()
     {
         return $this->classification;
@@ -213,31 +233,31 @@ class MimeType  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->mimetype !== null) {
+        if (null !== $this->mimetype) {
             $json['mimetype'] = $this->mimetype;
         }
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $json['description'] = $this->description;
         }
-        if ($this->imagetemplate !== null) {
+        if (null !== $this->imagetemplate) {
             $json['imagetemplate'] = $this->imagetemplate;
         }
-        if ($this->videotemplate !== null) {
+        if (null !== $this->videotemplate) {
             $json['videotemplate'] = $this->videotemplate;
         }
-        if ($this->defaultextension !== null) {
+        if (null !== $this->defaultextension) {
             $json['defaultextension'] = $this->defaultextension;
         }
-        if ($this->classification !== null) {
+        if (null !== $this->classification) {
             $json['classification'] = $this->classification;
         }
 

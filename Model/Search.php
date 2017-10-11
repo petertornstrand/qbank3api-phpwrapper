@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class Search  implements \JsonSerializable
+class Search implements \JsonSerializable
 {
     /** @var int Starting offset of the search */
     protected $offset;
@@ -92,55 +92,55 @@ class Search  implements \JsonSerializable
      * Constructs a Search.
      *
      * @param array $parameters An array of parameters to initialize the {@link Search} with.
-     * - <b>offset</b> - Starting offset of the search
-     * - <b>limit</b> - The number of results to return
-     * - <b>freeText</b> - A freetext string to search for, operators like and/or/not and grouping by parentheses is available
-     * - <b>objectIds</b> - An array with ObjectIds to filter by
-     * - <b>mediaIds</b> - An array with MediaIds to filter by
-     * - <b>createdByIds</b> - Filter by creators of Media
-     * - <b>createdRange</b> - Filter by created date
-     * - <b>updatedByIds</b> - Filter by updaters of Media
-     * - <b>updatedRange</b> - Filter by updated date
-     * - <b>mediaStatusIds</b> - An array with MediaStatuses to filter by
-     * - <b>folderIds</b> - An array with FolderIds to search within
-     * - <b>folderDepth</b> - The depth of folders to fetch objects from when doing folder searches
-     * - <b>moodboardIds</b> - An array with MoodboardIds to search within
-     * - <b>categoryIds</b> - An array with CategoryIds to search within
-     * - <b>ignoreGrouping</b> - Indicates that we should ignore grouping and return child objects in the result
-     * - <b>includeChildren</b> - Indicates that we should include grouped objects in each object
-     * - <b>parentId</b> - Search for media that have this media as parent
-     * - <b>deploymentSiteIds</b> - An array with DeploymentSiteIds to search within
-     * - <b>properties</b> - An array of Properties to filter by
-     * - <b>fileSizeCriteria</b> - Filter by file size. An array with "min" and/or "max" values.
-     * - <b>widthCriteria</b> - Filter by file width. An array with "min" and/or "max" values.
-     * - <b>heightCriteria</b> - Filter by file height. An array with "min" and/or "max" values.
-     * - <b>mimeTypes</b> - Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos.
-     * - <b>fileName</b> - Filter by file name, uses normal LIKE database syntax
-     * - <b>name</b> - Filter by object name, uses normal LIKE database syntax
-     * - <b>deploymentDateRange</b> - Filter by deployment date
-     * - <b>sortFields</b> - An array of SearchSort fields to order results by
-     * - <b>duplicates</b> - Search only for duplicates
+     *                          - <b>offset</b> - Starting offset of the search
+     *                          - <b>limit</b> - The number of results to return
+     *                          - <b>freeText</b> - A freetext string to search for, operators like and/or/not and grouping by parentheses is available
+     *                          - <b>objectIds</b> - An array with ObjectIds to filter by
+     *                          - <b>mediaIds</b> - An array with MediaIds to filter by
+     *                          - <b>createdByIds</b> - Filter by creators of Media
+     *                          - <b>createdRange</b> - Filter by created date
+     *                          - <b>updatedByIds</b> - Filter by updaters of Media
+     *                          - <b>updatedRange</b> - Filter by updated date
+     *                          - <b>mediaStatusIds</b> - An array with MediaStatuses to filter by
+     *                          - <b>folderIds</b> - An array with FolderIds to search within
+     *                          - <b>folderDepth</b> - The depth of folders to fetch objects from when doing folder searches
+     *                          - <b>moodboardIds</b> - An array with MoodboardIds to search within
+     *                          - <b>categoryIds</b> - An array with CategoryIds to search within
+     *                          - <b>ignoreGrouping</b> - Indicates that we should ignore grouping and return child objects in the result
+     *                          - <b>includeChildren</b> - Indicates that we should include grouped objects in each object
+     *                          - <b>parentId</b> - Search for media that have this media as parent
+     *                          - <b>deploymentSiteIds</b> - An array with DeploymentSiteIds to search within
+     *                          - <b>properties</b> - An array of Properties to filter by
+     *                          - <b>fileSizeCriteria</b> - Filter by file size. An array with "min" and/or "max" values.
+     *                          - <b>widthCriteria</b> - Filter by file width. An array with "min" and/or "max" values.
+     *                          - <b>heightCriteria</b> - Filter by file height. An array with "min" and/or "max" values.
+     *                          - <b>mimeTypes</b> - Filter by mime type. An array of normal LIKE database syntax, for example image/% will return all images, video/% all videos.
+     *                          - <b>fileName</b> - Filter by file name, uses normal LIKE database syntax
+     *                          - <b>name</b> - Filter by object name, uses normal LIKE database syntax
+     *                          - <b>deploymentDateRange</b> - Filter by deployment date
+     *                          - <b>sortFields</b> - An array of SearchSort fields to order results by
+     *                          - <b>duplicates</b> - Search only for duplicates
      */
     public function __construct($parameters = [])
     {
-        $this->objectIds         = [];
-        $this->mediaIds          = [];
-        $this->createdByIds      = [];
-        $this->updatedByIds      = [];
-        $this->mediaStatusIds    = [];
-        $this->folderIds         = [];
-        $this->moodboardIds      = [];
-        $this->categoryIds       = [];
+        $this->objectIds = [];
+        $this->mediaIds = [];
+        $this->createdByIds = [];
+        $this->updatedByIds = [];
+        $this->mediaStatusIds = [];
+        $this->folderIds = [];
+        $this->moodboardIds = [];
+        $this->categoryIds = [];
         $this->deploymentSiteIds = [];
-        $this->properties        = [];
-        $this->fileSizeCriteria  = [];
-        $this->widthCriteria     = [];
-        $this->heightCriteria    = [];
-        $this->mimeTypes         = [];
-        $this->sortFields        = [];
+        $this->properties = [];
+        $this->fileSizeCriteria = [];
+        $this->widthCriteria = [];
+        $this->heightCriteria = [];
+        $this->mimeTypes = [];
+        $this->sortFields = [];
 
-        $this->offset         = 0;
-        $this->limit          = 50;
+        $this->offset = 0;
+        $this->limit = 50;
         $this->mediaStatusIds = [4];
 
         if (isset($parameters['offset'])) {
@@ -231,7 +231,9 @@ class Search  implements \JsonSerializable
 
     /**
      * Gets the offset of the Search.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getOffset()
     {
         return $this->offset;
@@ -250,9 +252,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the limit of the Search.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getLimit()
     {
         return $this->limit;
@@ -271,9 +276,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the freeText of the Search.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getFreeText()
     {
         return $this->freeText;
@@ -292,9 +300,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the objectIds of the Search.
-     * @return int[]	 */
+     *
+     * @return int[]
+     */
     public function getObjectIds()
     {
         return $this->objectIds;
@@ -313,9 +324,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the mediaIds of the Search.
-     * @return int[]	 */
+     *
+     * @return int[]
+     */
     public function getMediaIds()
     {
         return $this->mediaIds;
@@ -334,9 +348,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the createdByIds of the Search.
-     * @return int[]	 */
+     *
+     * @return int[]
+     */
     public function getCreatedByIds()
     {
         return $this->createdByIds;
@@ -355,9 +372,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the createdRange of the Search.
-     * @return DateTimeRange	 */
+     *
+     * @return DateTimeRange
+     */
     public function getCreatedRange()
     {
         return $this->createdRange;
@@ -383,9 +403,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updatedByIds of the Search.
-     * @return int[]	 */
+     *
+     * @return int[]
+     */
     public function getUpdatedByIds()
     {
         return $this->updatedByIds;
@@ -404,9 +427,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updatedRange of the Search.
-     * @return DateTimeRange	 */
+     *
+     * @return DateTimeRange
+     */
     public function getUpdatedRange()
     {
         return $this->updatedRange;
@@ -432,9 +458,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the mediaStatusIds of the Search.
-     * @return int[]	 */
+     *
+     * @return int[]
+     */
     public function getMediaStatusIds()
     {
         return $this->mediaStatusIds;
@@ -453,9 +482,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the folderIds of the Search.
-     * @return int[]	 */
+     *
+     * @return int[]
+     */
     public function getFolderIds()
     {
         return $this->folderIds;
@@ -474,9 +506,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the folderDepth of the Search.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getFolderDepth()
     {
         return $this->folderDepth;
@@ -495,9 +530,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the moodboardIds of the Search.
-     * @return int[]	 */
+     *
+     * @return int[]
+     */
     public function getMoodboardIds()
     {
         return $this->moodboardIds;
@@ -516,9 +554,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the categoryIds of the Search.
-     * @return int[]	 */
+     *
+     * @return int[]
+     */
     public function getCategoryIds()
     {
         return $this->categoryIds;
@@ -537,9 +578,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the Search is ignoreGrouping.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isIgnoreGrouping()
     {
         return $this->ignoreGrouping;
@@ -558,9 +602,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the Search is includeChildren.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isIncludeChildren()
     {
         return $this->includeChildren;
@@ -579,9 +626,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the parentId of the Search.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getParentId()
     {
         return $this->parentId;
@@ -600,9 +650,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the deploymentSiteIds of the Search.
-     * @return int[]	 */
+     *
+     * @return int[]
+     */
     public function getDeploymentSiteIds()
     {
         return $this->deploymentSiteIds;
@@ -621,9 +674,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the properties of the Search.
-     * @return PropertyCriteria[]	 */
+     *
+     * @return PropertyCriteria[]
+     */
     public function getProperties()
     {
         return $this->properties;
@@ -661,7 +717,7 @@ class Search  implements \JsonSerializable
                 try {
                     $item = new PropertyCriteria($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate PropertyCriteria. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate PropertyCriteria. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "PropertyCriteria"!', E_USER_WARNING);
@@ -674,7 +730,9 @@ class Search  implements \JsonSerializable
 
     /**
      * Gets the fileSizeCriteria of the Search.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getFileSizeCriteria()
     {
         return $this->fileSizeCriteria;
@@ -693,9 +751,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the widthCriteria of the Search.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getWidthCriteria()
     {
         return $this->widthCriteria;
@@ -714,9 +775,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the heightCriteria of the Search.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getHeightCriteria()
     {
         return $this->heightCriteria;
@@ -735,9 +799,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the mimeTypes of the Search.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getMimeTypes()
     {
         return $this->mimeTypes;
@@ -756,9 +823,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the fileName of the Search.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getFileName()
     {
         return $this->fileName;
@@ -777,9 +847,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the Search.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -798,9 +871,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the deploymentDateRange of the Search.
-     * @return DateTimeRange	 */
+     *
+     * @return DateTimeRange
+     */
     public function getDeploymentDateRange()
     {
         return $this->deploymentDateRange;
@@ -826,9 +902,12 @@ class Search  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the sortFields of the Search.
-     * @return SearchSort[]	 */
+     *
+     * @return SearchSort[]
+     */
     public function getSortFields()
     {
         return $this->sortFields;
@@ -866,7 +945,7 @@ class Search  implements \JsonSerializable
                 try {
                     $item = new SearchSort($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate SearchSort. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate SearchSort. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "SearchSort"!', E_USER_WARNING);
@@ -879,7 +958,9 @@ class Search  implements \JsonSerializable
 
     /**
      * Tells whether the Search is duplicates.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDuplicates()
     {
         return $this->duplicates;
@@ -902,94 +983,94 @@ class Search  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->offset !== null) {
+        if (null !== $this->offset) {
             $json['offset'] = $this->offset;
         }
-        if ($this->limit !== null) {
+        if (null !== $this->limit) {
             $json['limit'] = $this->limit;
         }
-        if ($this->freeText !== null) {
+        if (null !== $this->freeText) {
             $json['freeText'] = $this->freeText;
         }
-        if ($this->objectIds !== null && !empty($this->objectIds)) {
+        if (null !== $this->objectIds && !empty($this->objectIds)) {
             $json['objectIds'] = $this->objectIds;
         }
-        if ($this->mediaIds !== null && !empty($this->mediaIds)) {
+        if (null !== $this->mediaIds && !empty($this->mediaIds)) {
             $json['mediaIds'] = $this->mediaIds;
         }
-        if ($this->createdByIds !== null && !empty($this->createdByIds)) {
+        if (null !== $this->createdByIds && !empty($this->createdByIds)) {
             $json['createdByIds'] = $this->createdByIds;
         }
-        if ($this->createdRange !== null) {
+        if (null !== $this->createdRange) {
             $json['createdRange'] = $this->createdRange;
         }
-        if ($this->updatedByIds !== null && !empty($this->updatedByIds)) {
+        if (null !== $this->updatedByIds && !empty($this->updatedByIds)) {
             $json['updatedByIds'] = $this->updatedByIds;
         }
-        if ($this->updatedRange !== null) {
+        if (null !== $this->updatedRange) {
             $json['updatedRange'] = $this->updatedRange;
         }
-        if ($this->mediaStatusIds !== null && !empty($this->mediaStatusIds)) {
+        if (null !== $this->mediaStatusIds && !empty($this->mediaStatusIds)) {
             $json['mediaStatusIds'] = $this->mediaStatusIds;
         }
-        if ($this->folderIds !== null && !empty($this->folderIds)) {
+        if (null !== $this->folderIds && !empty($this->folderIds)) {
             $json['folderIds'] = $this->folderIds;
         }
-        if ($this->folderDepth !== null) {
+        if (null !== $this->folderDepth) {
             $json['folderDepth'] = $this->folderDepth;
         }
-        if ($this->moodboardIds !== null && !empty($this->moodboardIds)) {
+        if (null !== $this->moodboardIds && !empty($this->moodboardIds)) {
             $json['moodboardIds'] = $this->moodboardIds;
         }
-        if ($this->categoryIds !== null && !empty($this->categoryIds)) {
+        if (null !== $this->categoryIds && !empty($this->categoryIds)) {
             $json['categoryIds'] = $this->categoryIds;
         }
-        if ($this->ignoreGrouping !== null) {
+        if (null !== $this->ignoreGrouping) {
             $json['ignoreGrouping'] = $this->ignoreGrouping;
         }
-        if ($this->includeChildren !== null) {
+        if (null !== $this->includeChildren) {
             $json['includeChildren'] = $this->includeChildren;
         }
-        if ($this->parentId !== null) {
+        if (null !== $this->parentId) {
             $json['parentId'] = $this->parentId;
         }
-        if ($this->deploymentSiteIds !== null && !empty($this->deploymentSiteIds)) {
+        if (null !== $this->deploymentSiteIds && !empty($this->deploymentSiteIds)) {
             $json['deploymentSiteIds'] = $this->deploymentSiteIds;
         }
-        if ($this->properties !== null && !empty($this->properties)) {
+        if (null !== $this->properties && !empty($this->properties)) {
             $json['properties'] = $this->properties;
         }
-        if ($this->fileSizeCriteria !== null && !empty($this->fileSizeCriteria)) {
+        if (null !== $this->fileSizeCriteria && !empty($this->fileSizeCriteria)) {
             $json['fileSizeCriteria'] = $this->fileSizeCriteria;
         }
-        if ($this->widthCriteria !== null && !empty($this->widthCriteria)) {
+        if (null !== $this->widthCriteria && !empty($this->widthCriteria)) {
             $json['widthCriteria'] = $this->widthCriteria;
         }
-        if ($this->heightCriteria !== null && !empty($this->heightCriteria)) {
+        if (null !== $this->heightCriteria && !empty($this->heightCriteria)) {
             $json['heightCriteria'] = $this->heightCriteria;
         }
-        if ($this->mimeTypes !== null && !empty($this->mimeTypes)) {
+        if (null !== $this->mimeTypes && !empty($this->mimeTypes)) {
             $json['mimeTypes'] = $this->mimeTypes;
         }
-        if ($this->fileName !== null) {
+        if (null !== $this->fileName) {
             $json['fileName'] = $this->fileName;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->deploymentDateRange !== null) {
+        if (null !== $this->deploymentDateRange) {
             $json['deploymentDateRange'] = $this->deploymentDateRange;
         }
-        if ($this->sortFields !== null && !empty($this->sortFields)) {
+        if (null !== $this->sortFields && !empty($this->sortFields)) {
             $json['sortFields'] = $this->sortFields;
         }
-        if ($this->duplicates !== null) {
+        if (null !== $this->duplicates) {
             $json['duplicates'] = $this->duplicates;
         }
 

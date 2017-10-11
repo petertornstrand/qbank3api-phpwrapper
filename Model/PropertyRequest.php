@@ -11,7 +11,7 @@ class PropertyRequest extends PropertyCriteria implements \JsonSerializable
      * Constructs a PropertyRequest.
      *
      * @param array $parameters An array of parameters to initialize the {@link PropertyRequest} with.
-     * - <b>forfetching</b> - Whether this property should be included in the SearchResult.
+     *                          - <b>forfetching</b> - Whether this property should be included in the SearchResult.
      */
     public function __construct($parameters = [])
     {
@@ -26,7 +26,9 @@ class PropertyRequest extends PropertyCriteria implements \JsonSerializable
 
     /**
      * Tells whether the PropertyRequest is forfetching.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isForfetching()
     {
         return $this->forfetching;
@@ -49,13 +51,13 @@ class PropertyRequest extends PropertyCriteria implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = parent::jsonSerialize();
 
-        if ($this->forfetching !== null) {
+        if (null !== $this->forfetching) {
             $json['forfetching'] = $this->forfetching;
         }
 

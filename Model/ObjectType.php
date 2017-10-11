@@ -5,7 +5,7 @@ namespace QBNK\QBank\API\Model;
 use DateTime;
 use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-class ObjectType  implements \JsonSerializable
+class ObjectType implements \JsonSerializable
 {
     /** @var string The name of the ObjectType */
     protected $name;
@@ -41,16 +41,16 @@ class ObjectType  implements \JsonSerializable
      * Constructs a ObjectType.
      *
      * @param array $parameters An array of parameters to initialize the {@link ObjectType} with.
-     * - <b>name</b> - The name of the ObjectType
-     * - <b>description</b> - A description of the ObjectType
-     * - <b>type</b> - The type of Object Type.
-     * - <b>id</b> - The id of the ObjectType
-     * - <b>created</b> - When the ObjectType was created.
-     * - <b>createdBy</b> - The identifier of the User who created the ObjectType.
-     * - <b>updated</b> - When the ObjectType was updated.
-     * - <b>updatedBy</b> - Which user that updated the ObjectType.
-     * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
-     * - <b>deleted</b> - Whether this ObjectType is deleted.
+     *                          - <b>name</b> - The name of the ObjectType
+     *                          - <b>description</b> - A description of the ObjectType
+     *                          - <b>type</b> - The type of Object Type.
+     *                          - <b>id</b> - The id of the ObjectType
+     *                          - <b>created</b> - When the ObjectType was created.
+     *                          - <b>createdBy</b> - The identifier of the User who created the ObjectType.
+     *                          - <b>updated</b> - When the ObjectType was updated.
+     *                          - <b>updatedBy</b> - Which user that updated the ObjectType.
+     *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     *                          - <b>deleted</b> - Whether this ObjectType is deleted.
      */
     public function __construct($parameters = [])
     {
@@ -90,7 +90,9 @@ class ObjectType  implements \JsonSerializable
 
     /**
      * Gets the name of the ObjectType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -109,9 +111,12 @@ class ObjectType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the description of the ObjectType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -130,9 +135,12 @@ class ObjectType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the type of the ObjectType.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getType()
     {
         return $this->type;
@@ -151,9 +159,12 @@ class ObjectType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the id of the ObjectType.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -172,9 +183,12 @@ class ObjectType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the created of the ObjectType.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -201,9 +215,12 @@ class ObjectType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the ObjectType.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -222,9 +239,12 @@ class ObjectType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updated of the ObjectType.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -251,9 +271,12 @@ class ObjectType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the ObjectType.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -272,19 +295,23 @@ class ObjectType  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the propertySets of the ObjectType.
-     * @return PropertySet[]	 */
+     *
+     * @return PropertySet[]
+     */
     public function getPropertySets()
     {
         return $this->propertySets;
     }
+
     /**
      * Gets a property from the first available PropertySet.
      *
-     * @param string $systemName The system name of the property to get.
+     * @param string $systemName the system name of the property to get
      *
-     * @throws PropertyNotFoundException Thrown if the requested property does not exist.
+     * @throws PropertyNotFoundException thrown if the requested property does not exist
      *
      * @return PropertyResponse
      */
@@ -298,7 +325,7 @@ class ObjectType  implements \JsonSerializable
                 }
             }
         }
-        throw new PropertyNotFoundException('No Property with the system name "'.$systemName.'" exists.');
+        throw new PropertyNotFoundException('No Property with the system name "' . $systemName . '" exists.');
     }
 
     /**
@@ -333,7 +360,7 @@ class ObjectType  implements \JsonSerializable
                 try {
                     $item = new PropertySet($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate PropertySet. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
@@ -346,7 +373,9 @@ class ObjectType  implements \JsonSerializable
 
     /**
      * Tells whether the ObjectType is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -369,40 +398,40 @@ class ObjectType  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $json['description'] = $this->description;
         }
-        if ($this->type !== null) {
+        if (null !== $this->type) {
             $json['type'] = $this->type;
         }
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->propertySets !== null && !empty($this->propertySets)) {
+        if (null !== $this->propertySets && !empty($this->propertySets)) {
             $json['propertySets'] = $this->propertySets;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
 

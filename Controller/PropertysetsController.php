@@ -10,17 +10,17 @@ class PropertysetsController extends ControllerAbstract
 {
     /**
      * Lists all PropertySets.
-     * 
-     
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
-     * @return PropertySet[]	
+     *
+
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return PropertySet[]
      */
     public function listPropertySets(CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -36,17 +36,17 @@ class PropertysetsController extends ControllerAbstract
 
     /**
      * Lists all PropertyTypes in QBank.
-     * 
-     * @param null $systemName Returns the specified propertytype
-     * @param CachePolicy $cachePolicy A custom cache policy used for this request only.
-     
+     *
+     * @param null        $systemName  Returns the specified propertytype
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
      * @return PropertyType[]|PropertyType|null
      */
     public function listPropertyTypes($systemName = null, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query'   => [],
-            'body'    => json_encode([]),
+            'query' => [],
+            'body' => json_encode([]),
             'headers' => [],
         ];
 
@@ -57,14 +57,14 @@ class PropertysetsController extends ControllerAbstract
         unset($entry);
         reset($result);
 
-        if ($systemName !== null) {
+        if (null !== $systemName) {
             foreach ($result as $entry) {
                 if ($entry->getSystemName() === $systemName) {
                     return $entry;
                 }
             }
 
-            return;
+            return null;
         }
 
         return $result;
