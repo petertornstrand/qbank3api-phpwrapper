@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class DateTimeRange  implements \JsonSerializable
-    {
-        /** @var DateTime Minimum date in this range, leave empty for none. */
+class DateTimeRange implements \JsonSerializable
+{
+    /** @var DateTime Minimum date in this range, leave empty for none. */
     protected $min;
 
     /** @var DateTime Maximum date in this range, leave empty for none. */
@@ -16,8 +16,8 @@ use DateTime;
      * Constructs a DateTimeRange.
      *
      * @param array $parameters An array of parameters to initialize the {@link DateTimeRange} with.
-     * - <b>min</b> - Minimum date in this range, leave empty for none.
-     * - <b>max</b> - Maximum date in this range, leave empty for none.
+     *                          - <b>min</b> - Minimum date in this range, leave empty for none.
+     *                          - <b>max</b> - Maximum date in this range, leave empty for none.
      */
     public function __construct($parameters = [])
     {
@@ -31,7 +31,9 @@ use DateTime;
 
     /**
      * Gets the min of the DateTimeRange.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getMin()
     {
         return $this->min;
@@ -58,9 +60,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the max of the DateTimeRange.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getMax()
     {
         return $this->max;
@@ -91,19 +96,19 @@ use DateTime;
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->min !== null) {
+        if (null !== $this->min) {
             $json['min'] = $this->min->format(\DateTime::ISO8601);
         }
-        if ($this->max !== null) {
+        if (null !== $this->max) {
             $json['max'] = $this->max->format(\DateTime::ISO8601);
         }
 
         return $json;
     }
-    }
+}

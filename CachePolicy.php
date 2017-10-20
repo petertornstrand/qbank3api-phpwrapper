@@ -7,7 +7,7 @@ namespace QBNK\QBank\API;
  */
 class CachePolicy
 {
-    const OFF        = 0;
+    const OFF = 0;
     const EVERYTHING = 1;
     const TOKEN_ONLY = 2;
 
@@ -21,7 +21,7 @@ class CachePolicy
      * Creates a new CachePolicy.
      *
      * @param int $cacheType The behaviour of the cache. Must be one of the CachePolicy constants.
-     * @param int $lifetime The cache lifetime in seconds.
+     * @param int $lifetime  the cache lifetime in seconds
      */
     public function __construct($cacheType, $lifetime)
     {
@@ -32,14 +32,14 @@ class CachePolicy
     protected function setCacheType($cacheType)
     {
         if (!in_array($cacheType, [self::OFF, self::EVERYTHING, self::TOKEN_ONLY])) {
-            throw new \OutOfRangeException('Invalid cache type "'.$cacheType.'". Must be one of the CachePolicy constants.');
+            throw new \OutOfRangeException('Invalid cache type "' . $cacheType . '". Must be one of the CachePolicy constants.');
         }
         $this->cacheType = (int) $cacheType;
     }
 
     public function isEnabled()
     {
-        return $this->cacheType != self::OFF;
+        return self::OFF != $this->cacheType;
     }
 
     public function getCacheType()

@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class User  implements \JsonSerializable
-    {
-        /** @var int The User identifier. */
+class User implements \JsonSerializable
+{
+    /** @var int The User identifier. */
     protected $id;
 
     /** @var string The full name of the User. */
@@ -60,34 +60,38 @@ use DateTime;
     /** @var ExtraData[] An array of ExtraData connected to this User. */
     protected $extraData;
 
+    /** @var string Type of user */
+    protected $userType;
+
     /**
      * Constructs a User.
      *
      * @param array $parameters An array of parameters to initialize the {@link User} with.
-     * - <b>id</b> - The User identifier.
-     * - <b>name</b> - The full name of the User.
-     * - <b>email</b> - Email-address of the User
-     * - <b>endDate</b> - Optional last date this User can log in
-     * - <b>startDate</b> - Optional first date this user can start logging in
-     * - <b>firstName</b> - First name of the User
-     * - <b>lastName</b> - Last name of the User
-     * - <b>userName</b> - Username for the User
-     * - <b>lastLogin</b> - Last login time of the User
-     * - <b>groups</b> - An array of Groups this User is a member of (Note: this will be left as null when listing Users.
-     * - <b>dirty</b> - Whether the User has been modified since constructed.
-     * - <b>deleted</b> - Indicates if this User is deleted
-     * - <b>created</b> - When the User was created.
-     * - <b>createdBy</b> - The User Id that created the User
-     * - <b>updated</b> - When the User was updated.
-     * - <b>updatedBy</b> - User Id that updated the User
-     * - <b>functionalities</b> - An array of Functionalities connected to this User
-     * - <b>extraData</b> - An array of ExtraData connected to this User.
+     *                          - <b>id</b> - The User identifier.
+     *                          - <b>name</b> - The full name of the User.
+     *                          - <b>email</b> - Email-address of the User
+     *                          - <b>endDate</b> - Optional last date this User can log in
+     *                          - <b>startDate</b> - Optional first date this user can start logging in
+     *                          - <b>firstName</b> - First name of the User
+     *                          - <b>lastName</b> - Last name of the User
+     *                          - <b>userName</b> - Username for the User
+     *                          - <b>lastLogin</b> - Last login time of the User
+     *                          - <b>groups</b> - An array of Groups this User is a member of (Note: this will be left as null when listing Users.
+     *                          - <b>dirty</b> - Whether the User has been modified since constructed.
+     *                          - <b>deleted</b> - Indicates if this User is deleted
+     *                          - <b>created</b> - When the User was created.
+     *                          - <b>createdBy</b> - The User Id that created the User
+     *                          - <b>updated</b> - When the User was updated.
+     *                          - <b>updatedBy</b> - User Id that updated the User
+     *                          - <b>functionalities</b> - An array of Functionalities connected to this User
+     *                          - <b>extraData</b> - An array of ExtraData connected to this User.
+     *                          - <b>userType</b> - Type of user
      */
     public function __construct($parameters = [])
     {
-        $this->groups          = [];
+        $this->groups = [];
         $this->functionalities = [];
-        $this->extraData       = [];
+        $this->extraData = [];
 
         if (isset($parameters['id'])) {
             $this->setId($parameters['id']);
@@ -143,11 +147,16 @@ use DateTime;
         if (isset($parameters['extraData'])) {
             $this->setExtraData($parameters['extraData']);
         }
+        if (isset($parameters['userType'])) {
+            $this->setUserType($parameters['userType']);
+        }
     }
 
     /**
      * Gets the id of the User.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -166,9 +175,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the name of the User.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -187,9 +199,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the email of the User.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
@@ -208,9 +223,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the endDate of the User.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getEndDate()
     {
         return $this->endDate;
@@ -237,9 +255,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the startDate of the User.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getStartDate()
     {
         return $this->startDate;
@@ -266,9 +287,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the firstName of the User.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getFirstName()
     {
         return $this->firstName;
@@ -287,9 +311,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the lastName of the User.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getLastName()
     {
         return $this->lastName;
@@ -308,9 +335,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the userName of the User.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getUserName()
     {
         return $this->userName;
@@ -329,9 +359,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the lastLogin of the User.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getLastLogin()
     {
         return $this->lastLogin;
@@ -358,9 +391,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the groups of the User.
-     * @return Group[]	 */
+     *
+     * @return Group[]
+     */
     public function getGroups()
     {
         return $this->groups;
@@ -398,7 +434,7 @@ use DateTime;
                 try {
                     $item = new Group($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate Group. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate Group. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "Group"!', E_USER_WARNING);
@@ -411,7 +447,9 @@ use DateTime;
 
     /**
      * Tells whether the User is dirty.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDirty()
     {
         return $this->dirty;
@@ -430,9 +468,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the User is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -451,9 +492,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the created of the User.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -480,9 +524,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the User.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -501,9 +548,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updated of the User.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -530,9 +580,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the User.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -551,9 +604,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the functionalities of the User.
-     * @return Functionality[]	 */
+     *
+     * @return Functionality[]
+     */
     public function getFunctionalities()
     {
         return $this->functionalities;
@@ -591,7 +647,7 @@ use DateTime;
                 try {
                     $item = new Functionality($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate Functionality. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
@@ -604,7 +660,9 @@ use DateTime;
 
     /**
      * Gets the extraData of the User.
-     * @return ExtraData[]	 */
+     *
+     * @return ExtraData[]
+     */
     public function getExtraData()
     {
         return $this->extraData;
@@ -642,7 +700,7 @@ use DateTime;
                 try {
                     $item = new ExtraData($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate ExtraData. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate ExtraData. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "ExtraData"!', E_USER_WARNING);
@@ -654,69 +712,96 @@ use DateTime;
     }
 
     /**
+     * Gets the userType of the User.
+     *
+     * @return string
+     */
+    public function getUserType()
+    {
+        return $this->userType;
+    }
+
+    /**
+     * Sets the "userType" of the User.
+     *
+     * @param string $userType
+     *
+     * @return User
+     */
+    public function setUserType($userType)
+    {
+        $this->userType = $userType;
+
+        return $this;
+    }
+
+    /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->email !== null) {
+        if (null !== $this->email) {
             $json['email'] = $this->email;
         }
-        if ($this->endDate !== null) {
+        if (null !== $this->endDate) {
             $json['endDate'] = $this->endDate->format(\DateTime::ISO8601);
         }
-        if ($this->startDate !== null) {
+        if (null !== $this->startDate) {
             $json['startDate'] = $this->startDate->format(\DateTime::ISO8601);
         }
-        if ($this->firstName !== null) {
+        if (null !== $this->firstName) {
             $json['firstName'] = $this->firstName;
         }
-        if ($this->lastName !== null) {
+        if (null !== $this->lastName) {
             $json['lastName'] = $this->lastName;
         }
-        if ($this->userName !== null) {
+        if (null !== $this->userName) {
             $json['userName'] = $this->userName;
         }
-        if ($this->lastLogin !== null) {
+        if (null !== $this->lastLogin) {
             $json['lastLogin'] = $this->lastLogin->format(\DateTime::ISO8601);
         }
-        if ($this->groups !== null && !empty($this->groups)) {
+        if (null !== $this->groups && !empty($this->groups)) {
             $json['groups'] = $this->groups;
         }
-        if ($this->dirty !== null) {
+        if (null !== $this->dirty) {
             $json['dirty'] = $this->dirty;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->functionalities !== null && !empty($this->functionalities)) {
+        if (null !== $this->functionalities && !empty($this->functionalities)) {
             $json['functionalities'] = $this->functionalities;
         }
-        if ($this->extraData !== null && !empty($this->extraData)) {
+        if (null !== $this->extraData && !empty($this->extraData)) {
             $json['extraData'] = $this->extraData;
+        }
+        if (null !== $this->userType) {
+            $json['userType'] = $this->userType;
         }
 
         return $json;
     }
-    }
+}

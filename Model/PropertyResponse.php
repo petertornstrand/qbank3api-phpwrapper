@@ -4,10 +4,10 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class PropertyResponse  implements \JsonSerializable
-    {
-        const TEMPLATE_IMAGE = 'image';
-        const TEMPLATE_VIDEO = 'video';
+class PropertyResponse implements \JsonSerializable
+{
+    const TEMPLATE_IMAGE = 'image';
+    const TEMPLATE_VIDEO = 'video';
 
     /** @var DateTime When the Property was created. */
     protected $created;
@@ -37,14 +37,14 @@ use DateTime;
      * Constructs a PropertyResponse.
      *
      * @param array $parameters An array of parameters to initialize the {@link PropertyResponse} with.
-     * - <b>created</b> - When the Property was created.
-     * - <b>createdBy</b> - The identifier of the User who created the Property.
-     * - <b>updated</b> - When the Property was updated.
-     * - <b>updatedBy</b> - Which user who updated the Property.
-     * - <b>deleted</b> - Whether the Property is deleted.
-     * - <b>dirty</b> - Whether the Property has been modified since constructed.
-     * - <b>propertyType</b> - The PropertyType describing this Property.
-     * - <b>value</b> - The value of the Property.
+     *                          - <b>created</b> - When the Property was created.
+     *                          - <b>createdBy</b> - The identifier of the User who created the Property.
+     *                          - <b>updated</b> - When the Property was updated.
+     *                          - <b>updatedBy</b> - Which user who updated the Property.
+     *                          - <b>deleted</b> - Whether the Property is deleted.
+     *                          - <b>dirty</b> - Whether the Property has been modified since constructed.
+     *                          - <b>propertyType</b> - The PropertyType describing this Property.
+     *                          - <b>value</b> - The value of the Property.
      */
     public function __construct($parameters = [])
     {
@@ -76,7 +76,9 @@ use DateTime;
 
     /**
      * Gets the created of the PropertyResponse.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -103,9 +105,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the PropertyResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -124,9 +129,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updated of the PropertyResponse.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -153,9 +161,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the PropertyResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -174,9 +185,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the PropertyResponse is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -195,9 +209,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the PropertyResponse is dirty.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDirty()
     {
         return $this->dirty;
@@ -216,9 +233,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the propertyType of the PropertyResponse.
-     * @return PropertyType	 */
+     *
+     * @return PropertyType
+     */
     public function getPropertyType()
     {
         return $this->propertyType;
@@ -244,9 +264,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the value of the PropertyResponse.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getValue()
     {
         return $this->value;
@@ -301,13 +324,13 @@ use DateTime;
             case PropertyType::DATATYPE_DATETIME:
                 if ($value instanceof \DateTime) {
                     return $value;
-                } else {
+                }
                     try {
                         return new \DateTime($value);
                     } catch (\Exception $e) {
-                        return;
+                        return null;
                     }
-                }
+
                 break;
             case PropertyType::DATATYPE_FLOAT:
                 return (float) $value;
@@ -327,37 +350,37 @@ use DateTime;
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->dirty !== null) {
+        if (null !== $this->dirty) {
             $json['dirty'] = $this->dirty;
         }
-        if ($this->propertyType !== null) {
+        if (null !== $this->propertyType) {
             $json['propertyType'] = $this->propertyType;
         }
-        if ($this->value !== null) {
+        if (null !== $this->value) {
             $json['value'] = $this->value;
         }
 
         return $json;
     }
-    }
+}

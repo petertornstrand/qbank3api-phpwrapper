@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class MetaData  implements \JsonSerializable
+class MetaData implements \JsonSerializable
 {
     /** @var string The MetaData section name. */
     protected $section;
@@ -14,8 +14,8 @@ class MetaData  implements \JsonSerializable
      * Constructs a MetaData.
      *
      * @param array $parameters An array of parameters to initialize the {@link MetaData} with.
-     * - <b>section</b> - The MetaData section name.
-     * - <b>data</b> - The MetaData data as a key-value object.
+     *                          - <b>section</b> - The MetaData section name.
+     *                          - <b>data</b> - The MetaData data as a key-value object.
      */
     public function __construct($parameters = [])
     {
@@ -29,7 +29,9 @@ class MetaData  implements \JsonSerializable
 
     /**
      * Gets the section of the MetaData.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getSection()
     {
         return $this->section;
@@ -48,9 +50,12 @@ class MetaData  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the data of the MetaData.
-     * @return object	 */
+     *
+     * @return object
+     */
     public function getData()
     {
         return $this->data;
@@ -71,7 +76,7 @@ class MetaData  implements \JsonSerializable
             return $this;
         }
         $this->data = json_decode($data, true);
-        if ($this->data === null) {
+        if (null === $this->data) {
             $this->data = $data;
         }
 
@@ -81,16 +86,16 @@ class MetaData  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->section !== null) {
+        if (null !== $this->section) {
             $json['section'] = $this->section;
         }
-        if ($this->data !== null) {
+        if (null !== $this->data) {
             $json['data'] = $this->data;
         }
 

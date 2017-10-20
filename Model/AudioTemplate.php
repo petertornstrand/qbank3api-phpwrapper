@@ -2,12 +2,12 @@
 
 namespace QBNK\QBank\API\Model;
 
-class VideoTemplate implements \JsonSerializable
+class AudioTemplate implements \JsonSerializable
 {
-    /** @var int The Video Template identifier */
+    /** @var int The Audio Template identifier */
     protected $id;
 
-    /** @var string The name of the Video Template */
+    /** @var string The name of the Audio Template */
     protected $name;
 
     /** @var MimeType */
@@ -17,11 +17,11 @@ class VideoTemplate implements \JsonSerializable
     protected $commands;
 
     /**
-     * Constructs a VideoTemplate.
+     * Constructs a AudioTemplate.
      *
-     * @param array $parameters An array of parameters to initialize the {@link VideoTemplate} with.
-     *                          - <b>id</b> - The Video Template identifier
-     *                          - <b>name</b> - The name of the Video Template
+     * @param array $parameters An array of parameters to initialize the {@link AudioTemplate} with.
+     *                          - <b>id</b> - The Audio Template identifier
+     *                          - <b>name</b> - The name of the Audio Template
      *                          - <b>mimeType</b> -
      *                          - <b>commands</b> - An array of commands for this template
      */
@@ -44,7 +44,7 @@ class VideoTemplate implements \JsonSerializable
     }
 
     /**
-     * Gets the id of the VideoTemplate.
+     * Gets the id of the AudioTemplate.
      *
      * @return int
      */
@@ -54,11 +54,11 @@ class VideoTemplate implements \JsonSerializable
     }
 
     /**
-     * Sets the "id" of the VideoTemplate.
+     * Sets the "id" of the AudioTemplate.
      *
      * @param int $id
      *
-     * @return VideoTemplate
+     * @return AudioTemplate
      */
     public function setId($id)
     {
@@ -68,7 +68,7 @@ class VideoTemplate implements \JsonSerializable
     }
 
     /**
-     * Gets the name of the VideoTemplate.
+     * Gets the name of the AudioTemplate.
      *
      * @return string
      */
@@ -78,11 +78,11 @@ class VideoTemplate implements \JsonSerializable
     }
 
     /**
-     * Sets the "name" of the VideoTemplate.
+     * Sets the "name" of the AudioTemplate.
      *
      * @param string $name
      *
-     * @return VideoTemplate
+     * @return AudioTemplate
      */
     public function setName($name)
     {
@@ -92,7 +92,7 @@ class VideoTemplate implements \JsonSerializable
     }
 
     /**
-     * Gets the mimeType of the VideoTemplate.
+     * Gets the mimeType of the AudioTemplate.
      *
      * @return MimeType
      */
@@ -102,11 +102,11 @@ class VideoTemplate implements \JsonSerializable
     }
 
     /**
-     * Sets the "mimeType" of the VideoTemplate.
+     * Sets the "mimeType" of the AudioTemplate.
      *
      * @param MimeType $mimeType
      *
-     * @return VideoTemplate
+     * @return AudioTemplate
      */
     public function setMimeType($mimeType)
     {
@@ -123,7 +123,7 @@ class VideoTemplate implements \JsonSerializable
     }
 
     /**
-     * Gets the commands of the VideoTemplate.
+     * Gets the commands of the AudioTemplate.
      *
      * @return Command[]
      */
@@ -133,11 +133,11 @@ class VideoTemplate implements \JsonSerializable
     }
 
     /**
-     * Sets the "commands" of the VideoTemplate.
+     * Sets the "commands" of the AudioTemplate.
      *
      * @param Command[] $commands
      *
-     * @return VideoTemplate
+     * @return AudioTemplate
      */
     public function setCommands(array $commands)
     {
@@ -151,11 +151,11 @@ class VideoTemplate implements \JsonSerializable
     }
 
     /**
-     * Adds an object of "Commands" of the VideoTemplate.
+     * Adds an object of "Commands" of the AudioTemplate.
      *
      * @param Command|array $item
      *
-     * @return VideoTemplate
+     * @return AudioTemplate
      */
     public function addCommand($item)
     {

@@ -98,15 +98,15 @@ class QBankApi
     protected $templates;
 
     /**
-     * @param string $qbankURL The URL to the QBank API.
-     * @param Credentials $credentials The credentials used to connect.
-     * @param array $options Associative array containing options.
-     * <ul>
-     * <li>Cache $options[cache] A cache implementation to store tokens and responses in. Highly recommended.</li>
-     * <li>QBankCachePolicy $options[cachePolicy] A policy on how to use caching for API queries, if not provided cache will not be available for API queries.</li>
-     * <li>LoggerInterface $options[log] A PSR-3 log implementation.</li>
-     * <li>bool $options[verifyCertificates] Whether to verify certificates for https connections. Defaults to true.</li>
-     * </ul>
+     * @param string      $qbankURL    the URL to the QBank API
+     * @param Credentials $credentials the credentials used to connect
+     * @param array       $options     Associative array containing options.
+     *                                 <ul>
+     *                                 <li>Cache $options[cache] A cache implementation to store tokens and responses in. Highly recommended.</li>
+     *                                 <li>QBankCachePolicy $options[cachePolicy] A policy on how to use caching for API queries, if not provided cache will not be available for API queries.</li>
+     *                                 <li>LoggerInterface $options[log] A PSR-3 log implementation.</li>
+     *                                 <li>bool $options[verifyCertificates] Whether to verify certificates for https connections. Defaults to true.</li>
+     *                                 </ul>
      */
     public function __construct($qbankURL, Credentials $credentials, array $options = [])
     {
@@ -126,7 +126,7 @@ class QBankApi
         if (!empty($options['cache']) && $options['cache'] instanceof Cache) {
             $this->cache = $options['cache'];
             if ($this->cache instanceof CacheProvider && !$this->cache->getNamespace()) {
-                $this->cache->setNamespace(md5($this->basepath.$this->credentials->getUsername().$this->credentials->getPassword()));
+                $this->cache->setNamespace(md5($this->basepath . $this->credentials->getUsername() . $this->credentials->getPassword()));
             }
         } else {
             $this->logger->notice('No caching supplied! Without caching both performance and security is reduced.');
@@ -166,6 +166,7 @@ class QBankApi
 
         return $this->accounts;
     }
+
     /**
      * Categories defines which PropertySets should be available for Media. All Media belongs to exactly one Category.
      *
@@ -180,6 +181,7 @@ class QBankApi
 
         return $this->categories;
     }
+
     /**
      * DeploymentSites are places where Media from QBank may be published to, to allow public access. Protocols define the way the publishing executes.
      *
@@ -194,6 +196,7 @@ class QBankApi
 
         return $this->deployment;
     }
+
     /**
      * Class Events.
      *
@@ -208,6 +211,7 @@ class QBankApi
 
         return $this->events;
     }
+
     /**
      * Filters are used for filtering media by its folder, category or a specific property.
      *
@@ -222,6 +226,7 @@ class QBankApi
 
         return $this->filters;
     }
+
     /**
      * Folders are used to group Media in a hierarchial manner.
      *
@@ -236,6 +241,7 @@ class QBankApi
 
         return $this->folders;
     }
+
     /**
      * A Media is any uploaded file in QBank. A Media belongs to a Category and may have customer defined Properties.
      *
@@ -250,6 +256,7 @@ class QBankApi
 
         return $this->media;
     }
+
     /**
      * Moodboards are public, usually temporary, areas used to expose Media in QBank. Any Media may be added to a Moodboard, which any outside user may then access until the Moodboard expiration date is due. Moodboards can be templated in different ways to fit many purposes.
      *
@@ -264,6 +271,7 @@ class QBankApi
 
         return $this->moodboards;
     }
+
     /**
      * Object types define sets of propertySets that can be applied to any Object of the corresponding object type class, such as a Media or a Folder.
      *
@@ -278,6 +286,7 @@ class QBankApi
 
         return $this->objecttypes;
     }
+
     /**
      * PropertySets groups Properties together.
      *
@@ -292,6 +301,7 @@ class QBankApi
 
         return $this->propertysets;
     }
+
     /**
      * @return SearchController
      */
@@ -304,6 +314,7 @@ class QBankApi
 
         return $this->search;
     }
+
     /**
      * SocialMedia are places where Media from QBank may be published to, to allow public access. Protocols define the way the publishing executes.
      *
@@ -318,6 +329,7 @@ class QBankApi
 
         return $this->socialmedia;
     }
+
     /**
      * @return TemplatesController
      */
@@ -341,12 +353,12 @@ class QBankApi
     protected function buildBasepath($url)
     {
         if (!preg_match('#(\w+:)?//#', $url)) {
-            $url = '//'.$url;
+            $url = '//' . $url;
         }
 
         $urlParts = parse_url($url);
 
-        if ($urlParts === false) {
+        if (false === $urlParts) {
             throw new \InvalidArgumentException('Could not parse QBank URL.');
         }
 
@@ -356,17 +368,17 @@ class QBankApi
         }
 
         // Add the api path automattically if ommitted for qbank.se hosted QBank instances
-        if ((empty($urlParts['path']) || $urlParts['path'] == '/')
-            && substr($urlParts['host'], -strlen('qbank.se')) == 'qbank.se') {
+        if ((empty($urlParts['path']) || '/' == $urlParts['path'])
+            && 'qbank.se' == substr($urlParts['host'], -strlen('qbank.se'))) {
             $urlParts['path'] = '/api/';
         }
 
         // Pad the end of the path with a slash
-        if (substr($urlParts['path'], -1) != '/') {
+        if ('/' != substr($urlParts['path'], -1)) {
             $urlParts['path'] .= '/';
         }
 
-        return $urlParts['scheme'].'://'.$urlParts['host'].(!empty($urlParts['port']) ? ':'.$urlParts['port'] : '').$urlParts['path'];
+        return $urlParts['scheme'] . '://' . $urlParts['host'] . (!empty($urlParts['port']) ? ':' . $urlParts['port'] : '') . $urlParts['path'];
     }
 
     /**
@@ -381,9 +393,9 @@ class QBankApi
                 'base_url' => $this->basepath,
                 'defaults' => [
                     'headers' => [
-                        'Accept'       => 'application/json',
+                        'Accept' => 'application/json',
                         'Content-type' => 'application/json',
-                        'User-Agent'   => 'qbank3api-phpwrapper/1 (qbankapi: 1; swagger: 1.1)',
+                        'User-Agent' => 'qbank3api-phpwrapper/1 (qbankapi: 1; swagger: 1.1)',
                     ],
                     'verify' => $this->verifyCertificates,
                 ],
@@ -403,14 +415,14 @@ class QBankApi
     protected function getOAuth2Subscriber()
     {
         if (!($this->oauth2Subscriber instanceof OAuth2Subscriber)) {
-            $client                 = new Client(['base_url' => $this->basepath.'oauth2/token']);
+            $client = new Client(['base_url' => $this->basepath . 'oauth2/token']);
             $this->oauth2Subscriber = new OAuth2Subscriber(
                 new PasswordCredentials(
                     $client,
                     [
                         'client_id' => $this->credentials->getClientId(),
-                        'username'  => $this->credentials->getUsername(),
-                        'password'  => $this->credentials->getPassword(),
+                        'username' => $this->credentials->getUsername(),
+                        'password' => $this->credentials->getPassword(),
                     ]
                 ),
                 new RefreshToken($client, ['client_id' => $this->credentials->getClientId()])
@@ -428,7 +440,7 @@ class QBankApi
                         break;
                 }
 
-                return;
+                return null;
             });
         }
 
@@ -441,14 +453,12 @@ class QBankApi
      * Changing the credentials will effectively switch the user using QBank and is useful when implementing some tiered
      * service.
      *
-     * @param string $user Username of the new user.
-     * @param string $password Password of the new user.
-     *
-     * @return void
+     * @param string $user     username of the new user
+     * @param string $password password of the new user
      */
     public function updateCredentials($user, $password)
     {
-        $oldUser           = $this->credentials->getUsername();
+        $oldUser = $this->credentials->getUsername();
         $this->credentials = new Credentials($this->credentials->getClientId(), $user, $password);
         unset($password);
         if ($this->client instanceof Client) {
@@ -457,7 +467,7 @@ class QBankApi
             $this->client->getEmitter()->attach($this->getOAuth2Subscriber());
         }
         if ($this->cache instanceof CacheProvider) {
-            $this->cache->setNamespace(md5($this->basepath.$this->credentials->getUsername().$this->credentials->getPassword()));
+            $this->cache->setNamespace(md5($this->basepath . $this->credentials->getUsername() . $this->credentials->getPassword()));
         }
         $this->logger->notice('Updated user!', ['old' => $oldUser, 'new' => $user]);
     }
@@ -467,9 +477,7 @@ class QBankApi
      *
      * This is normally done automatically, but exposed for transparency reasons.
      *
-     * @param TokenData $token The token set.
-     *
-     * @return void
+     * @param TokenData $token the token set
      */
     public function setCachedToken(TokenData $token)
     {
@@ -481,7 +489,7 @@ class QBankApi
     /**
      * Gets the token used for authentication.
      *
-     * @return TokenData|null Returns the token if it exists, null if not.
+     * @return TokenData|null returns the token if it exists, null if not
      */
     public function getToken()
     {
@@ -494,7 +502,7 @@ class QBankApi
         }
         if (!$token->accessToken) {
             $response = $this->getClient()->get();      // Trigger call to get a token. Don't care about the result.
-            $token    = $this->oauth2Subscriber->getTokenData();
+            $token = $this->oauth2Subscriber->getTokenData();
         }
 
         return $token->accessToken ? $token : null;
@@ -504,8 +512,6 @@ class QBankApi
      * Invalidates the token used for authentication.
      *
      * This is normally done automatically, but exposed for transparency reasons.
-     *
-     * @return void
      */
     public function invalidateCachedToken()
     {

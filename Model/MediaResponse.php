@@ -3,13 +3,13 @@
 namespace QBNK\QBank\API\Model;
 
 use DateTime;
-    use QBNK\QBank\API\Exception\NotFoundException;
-    use QBNK\QBank\API\Exception\PropertyNotFoundException;
+use QBNK\QBank\API\Exception\NotFoundException;
+use QBNK\QBank\API\Exception\PropertyNotFoundException;
 
-    class MediaResponse extends Media implements \JsonSerializable
-    {
-        const TEMPLATE_IMAGE = 'image';
-        const TEMPLATE_VIDEO = 'video';
+class MediaResponse extends Media implements \JsonSerializable
+{
+    const TEMPLATE_IMAGE = 'image';
+    const TEMPLATE_VIDEO = 'video';
 
     /** @var int The Media identifier. */
     protected $mediaId;
@@ -44,6 +44,12 @@ use DateTime;
     /** @var int Number of comments made on this media */
     protected $commentCount;
 
+    /** @var int The rating for this media */
+    protected $rating;
+
+    /** @var self[] An array of Media */
+    protected $childMedias;
+
     /** @var int The base Object identifier. */
     protected $objectId;
 
@@ -69,32 +75,35 @@ use DateTime;
      * Constructs a MediaResponse.
      *
      * @param array $parameters An array of parameters to initialize the {@link MediaResponse} with.
-     * - <b>mediaId</b> - The Media identifier.
-     * - <b>thumbPreviewStatus</b> - Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000;
-     * - <b>extension</b> - The Media's filename extension.
-     * - <b>metadata</b> - The MetaData extracted from the Media file.
-     * - <b>mimetype</b> - The Media MimeType.
-     * - <b>size</b> - The Media size in bytes.
-     * - <b>statusId</b> - The Media status identifier.
-     * - <b>uploaded</b> - When the Media was uploaded. A datetime string on the format ISO8601.
-     * - <b>uploadedBy</b> - The identifier of the User who uploaded the Media.
-     * - <b>deployedFiles</b> - An array of deployed files
-     * - <b>commentCount</b> - Number of comments made on this media
-     * - <b>objectId</b> - The base Object identifier.
-     * - <b>created</b> - When the Object was created.
-     * - <b>createdBy</b> - The identifier of the User who created the Object.
-     * - <b>updated</b> - When the Object was updated.
-     * - <b>updatedBy</b> - Which user that updated the Object.
-     * - <b>dirty</b> - Whether the object has been modified since constructed.
-     * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     *                          - <b>mediaId</b> - The Media identifier.
+     *                          - <b>thumbPreviewStatus</b> - Indicates if this Media has a thumbnail, preview and/or if they have been changed. This is a bit field, with the following values currently in use; Has thumbnail = 0b00000001; Has preview = 0b00000010; Thumbnail changed = 0b00000100; Preview changed = 0b00001000;
+     *                          - <b>extension</b> - The Media's filename extension.
+     *                          - <b>metadata</b> - The MetaData extracted from the Media file.
+     *                          - <b>mimetype</b> - The Media MimeType.
+     *                          - <b>size</b> - The Media size in bytes.
+     *                          - <b>statusId</b> - The Media status identifier.
+     *                          - <b>uploaded</b> - When the Media was uploaded. A datetime string on the format ISO8601.
+     *                          - <b>uploadedBy</b> - The identifier of the User who uploaded the Media.
+     *                          - <b>deployedFiles</b> - An array of deployed files
+     *                          - <b>commentCount</b> - Number of comments made on this media
+     *                          - <b>rating</b> - The rating for this media
+     *                          - <b>childMedias</b> - An array of Media
+     *                          - <b>objectId</b> - The base Object identifier.
+     *                          - <b>created</b> - When the Object was created.
+     *                          - <b>createdBy</b> - The identifier of the User who created the Object.
+     *                          - <b>updated</b> - When the Object was updated.
+     *                          - <b>updatedBy</b> - Which user that updated the Object.
+     *                          - <b>dirty</b> - Whether the object has been modified since constructed.
+     *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
      */
     public function __construct($parameters = [])
     {
         parent::__construct($parameters);
 
-        $this->metadata      = [];
+        $this->metadata = [];
         $this->deployedFiles = [];
-        $this->propertySets  = [];
+        $this->childMedias = [];
+        $this->propertySets = [];
 
         if (isset($parameters['mediaId'])) {
             $this->setMediaId($parameters['mediaId']);
@@ -129,6 +138,12 @@ use DateTime;
         if (isset($parameters['commentCount'])) {
             $this->setCommentCount($parameters['commentCount']);
         }
+        if (isset($parameters['rating'])) {
+            $this->setRating($parameters['rating']);
+        }
+        if (isset($parameters['childMedias'])) {
+            $this->setChildMedias($parameters['childMedias']);
+        }
         if (isset($parameters['objectId'])) {
             $this->setObjectId($parameters['objectId']);
         }
@@ -154,7 +169,9 @@ use DateTime;
 
     /**
      * Gets the mediaId of the MediaResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getMediaId()
     {
         return $this->mediaId;
@@ -173,9 +190,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the thumbPreviewStatus of the MediaResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getThumbPreviewStatus()
     {
         return $this->thumbPreviewStatus;
@@ -194,9 +214,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the extension of the MediaResponse.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getExtension()
     {
         return $this->extension;
@@ -248,7 +271,7 @@ use DateTime;
                 try {
                     $item = new MetaData($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate MetaData. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate MetaData. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "MetaData"!', E_USER_WARNING);
@@ -261,7 +284,9 @@ use DateTime;
 
     /**
      * Gets the mimetype of the MediaResponse.
-     * @return MimeType	 */
+     *
+     * @return MimeType
+     */
     public function getMimetype()
     {
         return $this->mimetype;
@@ -287,9 +312,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the size of the MediaResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getSize()
     {
         return $this->size;
@@ -308,9 +336,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the statusId of the MediaResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getStatusId()
     {
         return $this->statusId;
@@ -329,9 +360,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the uploaded of the MediaResponse.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUploaded()
     {
         return $this->uploaded;
@@ -358,9 +392,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the uploadedBy of the MediaResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUploadedBy()
     {
         return $this->uploadedBy;
@@ -379,9 +416,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the deployedFiles of the MediaResponse.
-     * @return DeploymentFile[]	 */
+     *
+     * @return DeploymentFile[]
+     */
     public function getDeployedFiles()
     {
         return $this->deployedFiles;
@@ -419,7 +459,7 @@ use DateTime;
                 try {
                     $item = new DeploymentFile($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate DeploymentFile. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate DeploymentFile. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "DeploymentFile"!', E_USER_WARNING);
@@ -432,7 +472,9 @@ use DateTime;
 
     /**
      * Gets the commentCount of the MediaResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCommentCount()
     {
         return $this->commentCount;
@@ -451,9 +493,89 @@ use DateTime;
 
         return $this;
     }
+
+    /**
+     * Gets the rating of the MediaResponse.
+     *
+     * @return int
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Sets the "rating" of the MediaResponse.
+     *
+     * @param int $rating
+     *
+     * @return MediaResponse
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Gets the childMedias of the MediaResponse.
+     *
+     * @return self[]
+     */
+    public function getChildMedias()
+    {
+        return $this->childMedias;
+    }
+
+    /**
+     * Sets the "childMedias" of the MediaResponse.
+     *
+     * @param self[] $childMedias
+     *
+     * @return MediaResponse
+     */
+    public function setChildMedias(array $childMedias)
+    {
+        $this->childMedias = [];
+
+        foreach ($childMedias as $item) {
+            $this->addself($item);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Adds an object of "ChildMedias" of the MediaResponse.
+     *
+     * @param self|array $item
+     *
+     * @return MediaResponse
+     */
+    public function addself($item)
+    {
+        if (!($item instanceof self)) {
+            if (is_array($item)) {
+                try {
+                    $item = new self($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate self. ' . $e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "self"!', E_USER_WARNING);
+            }
+        }
+        $this->childMedias[] = $item;
+
+        return $this;
+    }
+
     /**
      * Gets the objectId of the MediaResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getObjectId()
     {
         return $this->objectId;
@@ -472,9 +594,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the created of the MediaResponse.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -501,9 +626,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the MediaResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -522,9 +650,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updated of the MediaResponse.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -551,9 +682,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the MediaResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -572,9 +706,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the MediaResponse is dirty.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDirty()
     {
         return $this->dirty;
@@ -593,21 +730,25 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the propertySets of the MediaResponse.
-     * @return PropertySet[]	 */
+     *
+     * @return PropertySet[]
+     */
     public function getPropertySets()
     {
         return $this->propertySets;
     }
+
     /**
      * Gets a property from the first available PropertySet.
      *
-     * @param string $systemName The system name of the property to get.
+     * @param string $systemName the system name of the property to get
      *
-     * @throws PropertyNotFoundException Thrown if the requested property does not exist.
+     * @throws PropertyNotFoundException thrown if the requested property does not exist
      *
-     * @return Property
+     * @return PropertyResponse
      */
     public function getProperty($systemName)
     {
@@ -619,7 +760,7 @@ use DateTime;
                 }
             }
         }
-        throw new PropertyNotFoundException('No Property with the system name "'.$systemName.'" exists.');
+        throw new PropertyNotFoundException('No Property with the system name "' . $systemName . '" exists.');
     }
 
     /**
@@ -654,7 +795,7 @@ use DateTime;
                 try {
                     $item = new PropertySet($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate PropertySet. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate PropertySet. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "PropertySet"!', E_USER_WARNING);
@@ -692,17 +833,17 @@ use DateTime;
      */
     public function isChild()
     {
-        return !is_null($this->parentId) &&  $this->parentId !== $this->mediaId;
+        return !is_null($this->parentId) && $this->parentId !== $this->mediaId;
     }
 
     /**
      * Gets a DeployedFile.
      *
-     * @param int|null $templateId The id of the template to get. Null for the original file.
-     * @param string $templateType The type of template.
-     * @param int $siteId The DeploymentSite id to get the template for. If not supplied, first available will be used.
+     * @param int|null $templateId   The id of the template to get. Null for the original file.
+     * @param string   $templateType the type of template
+     * @param int      $siteId       The DeploymentSite id to get the template for. If not supplied, first available will be used.
      *
-     * @throws NotFoundException Thrown if the requested deployed file does not exist.
+     * @throws NotFoundException thrown if the requested deployed file does not exist
      *
      * @return DeploymentFile
      */
@@ -710,33 +851,33 @@ use DateTime;
     {
         foreach ($this->deployedFiles as $deployedFile) {
             /** @var DeploymentFile $deployedFile */
-            if ($siteId === null || $siteId == $deployedFile->getDeployMentSiteId()) {
-                if ($templateType == self::TEMPLATE_VIDEO) {
-                    if ($templateId == $deployedFile->getVideoTemplateId() && $deployedFile->getImageTemplateId() === null) {
+            if (null === $siteId || $siteId == $deployedFile->getDeployMentSiteId()) {
+                if (self::TEMPLATE_VIDEO == $templateType) {
+                    if ($templateId == $deployedFile->getVideoTemplateId() && null === $deployedFile->getImageTemplateId()) {
                         return $deployedFile;
                     }
-                } elseif ($templateType == self::TEMPLATE_IMAGE && $templateId == $deployedFile->getImageTemplateId() ||
-                    ($templateId === null && $deployedFile->getImageTemplateId() === null && $deployedFile->getVideoTemplateId() === null)) {
+                } elseif (self::TEMPLATE_IMAGE == $templateType && $templateId == $deployedFile->getImageTemplateId() ||
+                    (null === $templateId && null === $deployedFile->getImageTemplateId() && null === $deployedFile->getVideoTemplateId())) {
                     return $deployedFile;
                 }
             }
         }
-        throw new NotFoundException('No DeploymentFile with the id "'.$templateId.'" exists.');
+        throw new NotFoundException('No DeploymentFile with the id "' . $templateId . '" exists.');
     }
 
     /**
      * Gets MetaData.
      *
      * @param string $section The Metadata section to get. Eg. "Exif", "IPTC", etc.
-     * @param string $key The Metadata key to get. Eg. "width", "shutterspeed", etc.
+     * @param string $key     The Metadata key to get. Eg. "width", "shutterspeed", etc.
      *
-     * @throws NotFoundException Thrown if the requested Metadata does not exist.
+     * @throws NotFoundException thrown if the requested Metadata does not exist
      *
      * @return MetaData[]|MetaData|string The requested metadata
      */
     public function getMetadata($section = null, $key = null)
     {
-        if ($section === null) {
+        if (null === $section) {
             return $this->metadata;
         }
         foreach ($this->metadata as $md) {
@@ -744,7 +885,7 @@ use DateTime;
             if ($section != $md->getSection()) {
                 continue;
             }
-            if ($key === null) {
+            if (null === $key) {
                 return $md;
             }
             foreach ($md->getData() as $k => $data) {
@@ -752,72 +893,78 @@ use DateTime;
                     return $data;
                 }
             }
-            throw new NotFoundException('No metadata with section "'.$section.'" and key "'.$key.'" exists.');
+            throw new NotFoundException('No metadata with section "' . $section . '" and key "' . $key . '" exists.');
         }
-        throw new NotFoundException('No metadata with section "'.$section.'" exists.');
+        throw new NotFoundException('No metadata with section "' . $section . '" exists.');
     }
 
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = parent::jsonSerialize();
 
-        if ($this->mediaId !== null) {
+        if (null !== $this->mediaId) {
             $json['mediaId'] = $this->mediaId;
         }
-        if ($this->thumbPreviewStatus !== null) {
+        if (null !== $this->thumbPreviewStatus) {
             $json['thumbPreviewStatus'] = $this->thumbPreviewStatus;
         }
-        if ($this->extension !== null) {
+        if (null !== $this->extension) {
             $json['extension'] = $this->extension;
         }
-        if ($this->metadata !== null && !empty($this->metadata)) {
+        if (null !== $this->metadata && !empty($this->metadata)) {
             $json['metadata'] = $this->metadata;
         }
-        if ($this->mimetype !== null) {
+        if (null !== $this->mimetype) {
             $json['mimetype'] = $this->mimetype;
         }
-        if ($this->size !== null) {
+        if (null !== $this->size) {
             $json['size'] = $this->size;
         }
-        if ($this->statusId !== null) {
+        if (null !== $this->statusId) {
             $json['statusId'] = $this->statusId;
         }
-        if ($this->uploaded !== null) {
+        if (null !== $this->uploaded) {
             $json['uploaded'] = $this->uploaded->format(\DateTime::ISO8601);
         }
-        if ($this->uploadedBy !== null) {
+        if (null !== $this->uploadedBy) {
             $json['uploadedBy'] = $this->uploadedBy;
         }
-        if ($this->deployedFiles !== null && !empty($this->deployedFiles)) {
+        if (null !== $this->deployedFiles && !empty($this->deployedFiles)) {
             $json['deployedFiles'] = $this->deployedFiles;
         }
-        if ($this->commentCount !== null) {
+        if (null !== $this->commentCount) {
             $json['commentCount'] = $this->commentCount;
         }
-        if ($this->objectId !== null) {
+        if (null !== $this->rating) {
+            $json['rating'] = $this->rating;
+        }
+        if (null !== $this->childMedias && !empty($this->childMedias)) {
+            $json['childMedias'] = $this->childMedias;
+        }
+        if (null !== $this->objectId) {
             $json['objectId'] = $this->objectId;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->dirty !== null) {
+        if (null !== $this->dirty) {
             $json['dirty'] = $this->dirty;
         }
-        if ($this->propertySets !== null && !empty($this->propertySets)) {
+        if (null !== $this->propertySets && !empty($this->propertySets)) {
             $json['propertySets'] = $this->propertySets;
         }
 
@@ -837,4 +984,4 @@ use DateTime;
 
         return $json;
     }
-    }
+}

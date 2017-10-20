@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class PropertySet  implements \JsonSerializable
-    {
-        /** @var int The PropertySet identifier */
+class PropertySet implements \JsonSerializable
+{
+    /** @var int The PropertySet identifier */
     protected $id;
 
     /** @var string The PropertySet name. */
@@ -40,16 +40,16 @@ use DateTime;
      * Constructs a PropertySet.
      *
      * @param array $parameters An array of parameters to initialize the {@link PropertySet} with.
-     * - <b>id</b> - The PropertySet identifier
-     * - <b>name</b> - The PropertySet name.
-     * - <b>created</b> - When the PropertySet was created.
-     * - <b>createdBy</b> - The identifier of the User who created the PropertySet.
-     * - <b>updated</b> - When the PropertySet was updated.
-     * - <b>updatedBy</b> - Which user who updated the PropertySet.
-     * - <b>deleted</b> - Whether the PropertySet is deleted.
-     * - <b>dirty</b> - Whether the PropertySet has been modified since constructed.
-     * - <b>system</b> - Wheater the PropertySet is a system propertyset or not. (System propertysets are hidden from the enduser)
-     * - <b>properties</b> - The Properties associated with the PropertySet.
+     *                          - <b>id</b> - The PropertySet identifier
+     *                          - <b>name</b> - The PropertySet name.
+     *                          - <b>created</b> - When the PropertySet was created.
+     *                          - <b>createdBy</b> - The identifier of the User who created the PropertySet.
+     *                          - <b>updated</b> - When the PropertySet was updated.
+     *                          - <b>updatedBy</b> - Which user who updated the PropertySet.
+     *                          - <b>deleted</b> - Whether the PropertySet is deleted.
+     *                          - <b>dirty</b> - Whether the PropertySet has been modified since constructed.
+     *                          - <b>system</b> - Wheater the PropertySet is a system propertyset or not. (System propertysets are hidden from the enduser)
+     *                          - <b>properties</b> - The Properties associated with the PropertySet.
      */
     public function __construct($parameters = [])
     {
@@ -89,7 +89,9 @@ use DateTime;
 
     /**
      * Gets the id of the PropertySet.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -108,9 +110,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the name of the PropertySet.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -129,9 +134,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the created of the PropertySet.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -158,9 +166,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the PropertySet.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -179,9 +190,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updated of the PropertySet.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -208,9 +222,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the PropertySet.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -229,9 +246,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the PropertySet is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -250,9 +270,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the PropertySet is dirty.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDirty()
     {
         return $this->dirty;
@@ -271,9 +294,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the PropertySet is system.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isSystem()
     {
         return $this->system;
@@ -292,9 +318,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the properties of the PropertySet.
-     * @return PropertyResponse[]	 */
+     *
+     * @return PropertyResponse[]
+     */
     public function getProperties()
     {
         return $this->properties;
@@ -332,7 +361,7 @@ use DateTime;
                 try {
                     $item = new PropertyResponse($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate PropertyResponse. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate PropertyResponse. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "PropertyResponse"!', E_USER_WARNING);
@@ -346,43 +375,43 @@ use DateTime;
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->dirty !== null) {
+        if (null !== $this->dirty) {
             $json['dirty'] = $this->dirty;
         }
-        if ($this->system !== null) {
+        if (null !== $this->system) {
             $json['system'] = $this->system;
         }
-        if ($this->properties !== null && !empty($this->properties)) {
+        if (null !== $this->properties && !empty($this->properties)) {
             $json['properties'] = $this->properties;
         }
 
         return $json;
     }
-    }
+}

@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class DeploymentSite  implements \JsonSerializable
+class DeploymentSite implements \JsonSerializable
 {
     /** @var string The human readable description of the DeploymentSite. */
     protected $description;
@@ -53,28 +53,28 @@ class DeploymentSite  implements \JsonSerializable
      * Constructs a DeploymentSite.
      *
      * @param array $parameters An array of parameters to initialize the {@link DeploymentSite} with.
-     * - <b>description</b> - The human readable description of the DeploymentSite.
-     * - <b>protocol</b> - The Protocol used to deploy to the DeploymentSite.
-     * - <b>definition</b> - A key-value object with the Protocol specific values.
-     * - <b>viewserver</b> - The domain name of the server for the DeploymentSite.
-     * - <b>viewpath</b> - The url path to were files are accessible for the DeploymentSite.
-     * - <b>namingpattern</b> - The pattern used for naming the files.
-     * - <b>children</b> - Whether grouped Media should be deployed.
-     * - <b>color</b> - The color associated with the DeploymentSite as a #-prepended hexadecimal string.
-     * - <b>imagetemplates</b> - The connected ImageTemplates.
-     * - <b>videotemplates</b> - The connected VideoTemplates.
-     * - <b>categories</b> - The connected Categories.
-     * - <b>name</b> - The Objects name.
-     * - <b>deleted</b> - Whether the object is deleted.
-     * - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     * - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+     *                          - <b>description</b> - The human readable description of the DeploymentSite.
+     *                          - <b>protocol</b> - The Protocol used to deploy to the DeploymentSite.
+     *                          - <b>definition</b> - A key-value object with the Protocol specific values.
+     *                          - <b>viewserver</b> - The domain name of the server for the DeploymentSite.
+     *                          - <b>viewpath</b> - The url path to were files are accessible for the DeploymentSite.
+     *                          - <b>namingpattern</b> - The pattern used for naming the files.
+     *                          - <b>children</b> - Whether grouped Media should be deployed.
+     *                          - <b>color</b> - The color associated with the DeploymentSite as a #-prepended hexadecimal string.
+     *                          - <b>imagetemplates</b> - The connected ImageTemplates.
+     *                          - <b>videotemplates</b> - The connected VideoTemplates.
+     *                          - <b>categories</b> - The connected Categories.
+     *                          - <b>name</b> - The Objects name.
+     *                          - <b>deleted</b> - Whether the object is deleted.
+     *                          - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
+     *                          - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
      */
     public function __construct($parameters = [])
     {
         $this->imagetemplates = [];
         $this->videotemplates = [];
-        $this->categories     = [];
-        $this->properties     = [];
+        $this->categories = [];
+        $this->properties = [];
 
         if (isset($parameters['description'])) {
             $this->setDescription($parameters['description']);
@@ -125,7 +125,9 @@ class DeploymentSite  implements \JsonSerializable
 
     /**
      * Gets the description of the DeploymentSite.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -144,9 +146,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the protocol of the DeploymentSite.
-     * @return Protocol	 */
+     *
+     * @return Protocol
+     */
     public function getProtocol()
     {
         return $this->protocol;
@@ -172,9 +177,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the definition of the DeploymentSite.
-     * @return object	 */
+     *
+     * @return object
+     */
     public function getDefinition()
     {
         return $this->definition;
@@ -195,15 +203,18 @@ class DeploymentSite  implements \JsonSerializable
             return $this;
         }
         $this->definition = json_decode($definition, true);
-        if ($this->definition === null) {
+        if (null === $this->definition) {
             $this->definition = $definition;
         }
 
         return $this;
     }
+
     /**
      * Gets the viewserver of the DeploymentSite.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getViewserver()
     {
         return $this->viewserver;
@@ -222,9 +233,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the viewpath of the DeploymentSite.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getViewpath()
     {
         return $this->viewpath;
@@ -243,9 +257,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the namingpattern of the DeploymentSite.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getNamingpattern()
     {
         return $this->namingpattern;
@@ -264,9 +281,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the DeploymentSite is children.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isChildren()
     {
         return $this->children;
@@ -285,9 +305,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the color of the DeploymentSite.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getColor()
     {
         return $this->color;
@@ -306,9 +329,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the imagetemplates of the DeploymentSite.
-     * @return ImageTemplate[]	 */
+     *
+     * @return ImageTemplate[]
+     */
     public function getImagetemplates()
     {
         return $this->imagetemplates;
@@ -346,7 +372,7 @@ class DeploymentSite  implements \JsonSerializable
                 try {
                     $item = new ImageTemplate($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate ImageTemplate. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate ImageTemplate. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "ImageTemplate"!', E_USER_WARNING);
@@ -359,7 +385,9 @@ class DeploymentSite  implements \JsonSerializable
 
     /**
      * Gets the videotemplates of the DeploymentSite.
-     * @return VideoTemplate[]	 */
+     *
+     * @return VideoTemplate[]
+     */
     public function getVideotemplates()
     {
         return $this->videotemplates;
@@ -397,7 +425,7 @@ class DeploymentSite  implements \JsonSerializable
                 try {
                     $item = new VideoTemplate($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate VideoTemplate. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate VideoTemplate. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "VideoTemplate"!', E_USER_WARNING);
@@ -410,7 +438,9 @@ class DeploymentSite  implements \JsonSerializable
 
     /**
      * Gets the categories of the DeploymentSite.
-     * @return CategoryResponse[]	 */
+     *
+     * @return CategoryResponse[]
+     */
     public function getCategories()
     {
         return $this->categories;
@@ -448,7 +478,7 @@ class DeploymentSite  implements \JsonSerializable
                 try {
                     $item = new CategoryResponse($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate CategoryResponse. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate CategoryResponse. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "CategoryResponse"!', E_USER_WARNING);
@@ -461,7 +491,9 @@ class DeploymentSite  implements \JsonSerializable
 
     /**
      * Gets the name of the DeploymentSite.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -480,9 +512,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the DeploymentSite is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -501,9 +536,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the properties of the DeploymentSite.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getProperties()
     {
         return $this->properties;
@@ -522,9 +560,12 @@ class DeploymentSite  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the typeId of the DeploymentSite.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getTypeId()
     {
         return $this->typeId;
@@ -547,55 +588,55 @@ class DeploymentSite  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $json['description'] = $this->description;
         }
-        if ($this->protocol !== null) {
+        if (null !== $this->protocol) {
             $json['protocol'] = $this->protocol;
         }
-        if ($this->definition !== null) {
+        if (null !== $this->definition) {
             $json['definition'] = $this->definition;
         }
-        if ($this->viewserver !== null) {
+        if (null !== $this->viewserver) {
             $json['viewserver'] = $this->viewserver;
         }
-        if ($this->viewpath !== null) {
+        if (null !== $this->viewpath) {
             $json['viewpath'] = $this->viewpath;
         }
-        if ($this->namingpattern !== null) {
+        if (null !== $this->namingpattern) {
             $json['namingpattern'] = $this->namingpattern;
         }
-        if ($this->children !== null) {
+        if (null !== $this->children) {
             $json['children'] = $this->children;
         }
-        if ($this->color !== null) {
+        if (null !== $this->color) {
             $json['color'] = $this->color;
         }
-        if ($this->imagetemplates !== null && !empty($this->imagetemplates)) {
+        if (null !== $this->imagetemplates && !empty($this->imagetemplates)) {
             $json['imagetemplates'] = $this->imagetemplates;
         }
-        if ($this->videotemplates !== null && !empty($this->videotemplates)) {
+        if (null !== $this->videotemplates && !empty($this->videotemplates)) {
             $json['videotemplates'] = $this->videotemplates;
         }
-        if ($this->categories !== null && !empty($this->categories)) {
+        if (null !== $this->categories && !empty($this->categories)) {
             $json['categories'] = $this->categories;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->properties !== null && !empty($this->properties)) {
+        if (null !== $this->properties && !empty($this->properties)) {
             $json['properties'] = $this->properties;
         }
-        if ($this->typeId !== null) {
+        if (null !== $this->typeId) {
             $json['typeId'] = $this->typeId;
         }
 

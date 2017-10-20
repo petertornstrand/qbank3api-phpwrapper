@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class Property  implements \JsonSerializable
+class Property implements \JsonSerializable
 {
     /** @var string The system name of the Property we filter on */
     protected $systemName;
@@ -14,8 +14,8 @@ class Property  implements \JsonSerializable
      * Constructs a Property.
      *
      * @param array $parameters An array of parameters to initialize the {@link Property} with.
-     * - <b>systemName</b> - The system name of the Property we filter on
-     * - <b>value</b> - The value we filter by
+     *                          - <b>systemName</b> - The system name of the Property we filter on
+     *                          - <b>value</b> - The value we filter by
      */
     public function __construct($parameters = [])
     {
@@ -29,7 +29,9 @@ class Property  implements \JsonSerializable
 
     /**
      * Gets the systemName of the Property.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getSystemName()
     {
         return $this->systemName;
@@ -48,9 +50,12 @@ class Property  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the value of the Property.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getValue()
     {
         return $this->value;
@@ -73,16 +78,16 @@ class Property  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->systemName !== null) {
+        if (null !== $this->systemName) {
             $json['systemName'] = $this->systemName;
         }
-        if ($this->value !== null) {
+        if (null !== $this->value) {
             if ($this->value instanceof \DateTime) {
                 $json['value'] = $this->value->format(\DateTime::ISO8601);
             } else {

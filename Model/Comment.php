@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class Comment  implements \JsonSerializable
+class Comment implements \JsonSerializable
 {
     /** @var int Object that this comment is made on */
     protected $objectId;
@@ -23,11 +23,11 @@ class Comment  implements \JsonSerializable
      * Constructs a Comment.
      *
      * @param array $parameters An array of parameters to initialize the {@link Comment} with.
-     * - <b>objectId</b> - Object that this comment is made on
-     * - <b>comment</b> - The actual comment
-     * - <b>parentId</b> - If a reply, indicates this comments parent
-     * - <b>userName</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
-     * - <b>userEmail</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
+     *                          - <b>objectId</b> - Object that this comment is made on
+     *                          - <b>comment</b> - The actual comment
+     *                          - <b>parentId</b> - If a reply, indicates this comments parent
+     *                          - <b>userName</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
+     *                          - <b>userEmail</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
      */
     public function __construct($parameters = [])
     {
@@ -50,7 +50,9 @@ class Comment  implements \JsonSerializable
 
     /**
      * Gets the objectId of the Comment.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getObjectId()
     {
         return $this->objectId;
@@ -69,9 +71,12 @@ class Comment  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the comment of the Comment.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getComment()
     {
         return $this->comment;
@@ -90,9 +95,12 @@ class Comment  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the parentId of the Comment.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getParentId()
     {
         return $this->parentId;
@@ -111,9 +119,12 @@ class Comment  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the userName of the Comment.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getUserName()
     {
         return $this->userName;
@@ -132,9 +143,12 @@ class Comment  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the userEmail of the Comment.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getUserEmail()
     {
         return $this->userEmail;
@@ -157,25 +171,25 @@ class Comment  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->objectId !== null) {
+        if (null !== $this->objectId) {
             $json['objectId'] = $this->objectId;
         }
-        if ($this->comment !== null) {
+        if (null !== $this->comment) {
             $json['comment'] = $this->comment;
         }
-        if ($this->parentId !== null) {
+        if (null !== $this->parentId) {
             $json['parentId'] = $this->parentId;
         }
-        if ($this->userName !== null) {
+        if (null !== $this->userName) {
             $json['userName'] = $this->userName;
         }
-        if ($this->userEmail !== null) {
+        if (null !== $this->userEmail) {
             $json['userEmail'] = $this->userEmail;
         }
 

@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class SocialMedia  implements \JsonSerializable
+class SocialMedia implements \JsonSerializable
 {
     /** @var int The SocialMedia identifier. */
     protected $id;
@@ -23,11 +23,11 @@ class SocialMedia  implements \JsonSerializable
      * Constructs a SocialMedia.
      *
      * @param array $parameters An array of parameters to initialize the {@link SocialMedia} with.
-     * - <b>id</b> - The SocialMedia identifier.
-     * - <b>name</b> - The Objects name.
-     * - <b>deleted</b> - Whether the object is deleted.
-     * - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     * - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+     *                          - <b>id</b> - The SocialMedia identifier.
+     *                          - <b>name</b> - The Objects name.
+     *                          - <b>deleted</b> - Whether the object is deleted.
+     *                          - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
+     *                          - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
      */
     public function __construct($parameters = [])
     {
@@ -52,7 +52,9 @@ class SocialMedia  implements \JsonSerializable
 
     /**
      * Gets the id of the SocialMedia.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -71,9 +73,12 @@ class SocialMedia  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the SocialMedia.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -92,9 +97,12 @@ class SocialMedia  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the SocialMedia is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -113,9 +121,12 @@ class SocialMedia  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the properties of the SocialMedia.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getProperties()
     {
         return $this->properties;
@@ -134,9 +145,12 @@ class SocialMedia  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the typeId of the SocialMedia.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getTypeId()
     {
         return $this->typeId;
@@ -159,25 +173,25 @@ class SocialMedia  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->properties !== null && !empty($this->properties)) {
+        if (null !== $this->properties && !empty($this->properties)) {
             $json['properties'] = $this->properties;
         }
-        if ($this->typeId !== null) {
+        if (null !== $this->typeId) {
             $json['typeId'] = $this->typeId;
         }
 

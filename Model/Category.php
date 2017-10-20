@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class Category  implements \JsonSerializable
+class Category implements \JsonSerializable
 {
     /** @var int The ObjectType identifier Media belonging to this Category should have. */
     protected $mediaTypeId;
@@ -26,12 +26,12 @@ class Category  implements \JsonSerializable
      * Constructs a Category.
      *
      * @param array $parameters An array of parameters to initialize the {@link Category} with.
-     * - <b>mediaTypeId</b> - The ObjectType identifier Media belonging to this Category should have.
-     * - <b>description</b> - An optional description for the category
-     * - <b>name</b> - The Objects name.
-     * - <b>deleted</b> - Whether the object is deleted.
-     * - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     * - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+     *                          - <b>mediaTypeId</b> - The ObjectType identifier Media belonging to this Category should have.
+     *                          - <b>description</b> - An optional description for the category
+     *                          - <b>name</b> - The Objects name.
+     *                          - <b>deleted</b> - Whether the object is deleted.
+     *                          - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
+     *                          - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
      */
     public function __construct($parameters = [])
     {
@@ -59,7 +59,9 @@ class Category  implements \JsonSerializable
 
     /**
      * Gets the mediaTypeId of the Category.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getMediaTypeId()
     {
         return $this->mediaTypeId;
@@ -78,9 +80,12 @@ class Category  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the description of the Category.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -99,9 +104,12 @@ class Category  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the Category.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -120,9 +128,12 @@ class Category  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the Category is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -141,9 +152,12 @@ class Category  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the properties of the Category.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getProperties()
     {
         return $this->properties;
@@ -162,9 +176,12 @@ class Category  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the typeId of the Category.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getTypeId()
     {
         return $this->typeId;
@@ -187,28 +204,28 @@ class Category  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->mediaTypeId !== null) {
+        if (null !== $this->mediaTypeId) {
             $json['mediaTypeId'] = $this->mediaTypeId;
         }
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $json['description'] = $this->description;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->properties !== null && !empty($this->properties)) {
+        if (null !== $this->properties && !empty($this->properties)) {
             $json['properties'] = $this->properties;
         }
-        if ($this->typeId !== null) {
+        if (null !== $this->typeId) {
             $json['typeId'] = $this->typeId;
         }
 

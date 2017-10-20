@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class CommentResponse extends Comment implements \JsonSerializable
-    {
-        /** @var int Id of the comment */
+class CommentResponse extends Comment implements \JsonSerializable
+{
+    /** @var int Id of the comment */
     protected $id;
 
     /** @var int The QBank user that wrote this comment */
@@ -22,10 +22,10 @@ use DateTime;
      * Constructs a CommentResponse.
      *
      * @param array $parameters An array of parameters to initialize the {@link CommentResponse} with.
-     * - <b>id</b> - Id of the comment
-     * - <b>createdBy</b> - The QBank user that wrote this comment
-     * - <b>created</b> - Time this comment was made
-     * - <b>replies</b> - A array of eventual replies to this comment
+     *                          - <b>id</b> - Id of the comment
+     *                          - <b>createdBy</b> - The QBank user that wrote this comment
+     *                          - <b>created</b> - Time this comment was made
+     *                          - <b>replies</b> - A array of eventual replies to this comment
      */
     public function __construct($parameters = [])
     {
@@ -49,7 +49,9 @@ use DateTime;
 
     /**
      * Gets the id of the CommentResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -68,9 +70,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the CommentResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -89,9 +94,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the created of the CommentResponse.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -118,9 +126,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the replies of the CommentResponse.
-     * @return CommentResponse[]	 */
+     *
+     * @return CommentResponse[]
+     */
     public function getReplies()
     {
         return $this->replies;
@@ -158,7 +169,7 @@ use DateTime;
                 try {
                     $item = new self($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate CommentResponse. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate CommentResponse. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "CommentResponse"!', E_USER_WARNING);
@@ -172,25 +183,25 @@ use DateTime;
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = parent::jsonSerialize();
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->replies !== null && !empty($this->replies)) {
+        if (null !== $this->replies && !empty($this->replies)) {
             $json['replies'] = $this->replies;
         }
 
         return $json;
     }
-    }
+}

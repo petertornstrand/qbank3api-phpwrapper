@@ -28,7 +28,7 @@ class Credentials
     /**
      * Gets or sets the internal value.
      *
-     * @internal Hack to hide value from dumping and possibly exposing by mistake.
+     * @internal hack to hide value from dumping and possibly exposing by mistake
      *
      * @param string|null $newPassword
      *
@@ -37,7 +37,7 @@ class Credentials
     protected function password($newPassword = null)
     {
         static $password;
-        if ($newPassword !== null) {
+        if (null !== $newPassword) {
             $password = $newPassword;
         }
 

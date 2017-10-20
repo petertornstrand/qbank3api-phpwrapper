@@ -2,21 +2,21 @@
 
 namespace QBNK\QBank\API\Model;
 
-class SearchSort  implements \JsonSerializable
+class SearchSort implements \JsonSerializable
 {
-    const FIELD_ID             = 'id';
-    const FIELD_NAME           = 'name';
-    const FIELD_CREATED        = 'created';
-    const FIELD_UPDATED        = 'updated';
-    const FIELD_RELEVANCE      = 'relevance';
-    const FIELD_CATEGORY       = 'category';
-    const FIELD_SIZE           = 'size';
-    const FIELD_MIMETYPE       = 'mimetype';
-    const FIELD_POPULARITY     = 'popularity';
-    const FIELD_PROPERTY       = 'property';
+    const FIELD_ID = 'id';
+    const FIELD_NAME = 'name';
+    const FIELD_CREATED = 'created';
+    const FIELD_UPDATED = 'updated';
+    const FIELD_RELEVANCE = 'relevance';
+    const FIELD_CATEGORY = 'category';
+    const FIELD_SIZE = 'size';
+    const FIELD_MIMETYPE = 'mimetype';
+    const FIELD_POPULARITY = 'popularity';
+    const FIELD_PROPERTY = 'property';
     const FIELD_DEPLOYMENTDATE = 'deploymentdate';
 
-    const DIRECTION_ASCENDING  = 'asc';
+    const DIRECTION_ASCENDING = 'asc';
     const DIRECTION_DESCENDING = 'desc';
 
     /** @var string Field to sort by */
@@ -44,13 +44,13 @@ class SearchSort  implements \JsonSerializable
      * Constructs a SearchSort.
      *
      * @param array $parameters An array of parameters to initialize the {@link SearchSort} with.
-     * - <b>sortField</b> - Field to sort by
-     * - <b>sortDirection</b> - Sort Direction
-     * - <b>sourceId</b> - When sorting on Media Popularity, the source to check (QBank Backend, frontend, etc)
-     * - <b>dateRange</b> - When sorting on Media Popularity, a optional dateRange to find popular media within
-     * - <b>systemName</b> - When sorting on a property, the system name of the property to sort on
-     * - <b>jsonKey</b> - When sorting on a Json Property, the Json key to sort by
-     * - <b>deploymentSiteId</b> - When sorting on deploymentdate, the optional site id to sort by
+     *                          - <b>sortField</b> - Field to sort by
+     *                          - <b>sortDirection</b> - Sort Direction
+     *                          - <b>sourceId</b> - When sorting on Media Popularity, the source to check (QBank Backend, frontend, etc)
+     *                          - <b>dateRange</b> - When sorting on Media Popularity, a optional dateRange to find popular media within
+     *                          - <b>systemName</b> - When sorting on a property, the system name of the property to sort on
+     *                          - <b>jsonKey</b> - When sorting on a Json Property, the Json key to sort by
+     *                          - <b>deploymentSiteId</b> - When sorting on deploymentdate, the optional site id to sort by
      */
     public function __construct($parameters = [])
     {
@@ -79,7 +79,9 @@ class SearchSort  implements \JsonSerializable
 
     /**
      * Gets the sortField of the SearchSort.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getSortField()
     {
         return $this->sortField;
@@ -98,9 +100,12 @@ class SearchSort  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the sortDirection of the SearchSort.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getSortDirection()
     {
         return $this->sortDirection;
@@ -119,9 +124,12 @@ class SearchSort  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the sourceId of the SearchSort.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getSourceId()
     {
         return $this->sourceId;
@@ -140,9 +148,12 @@ class SearchSort  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the dateRange of the SearchSort.
-     * @return DateTimeRange	 */
+     *
+     * @return DateTimeRange
+     */
     public function getDateRange()
     {
         return $this->dateRange;
@@ -168,9 +179,12 @@ class SearchSort  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the systemName of the SearchSort.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getSystemName()
     {
         return $this->systemName;
@@ -189,9 +203,12 @@ class SearchSort  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the jsonKey of the SearchSort.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getJsonKey()
     {
         return $this->jsonKey;
@@ -210,9 +227,12 @@ class SearchSort  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the deploymentSiteId of the SearchSort.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getDeploymentSiteId()
     {
         return $this->deploymentSiteId;
@@ -235,31 +255,31 @@ class SearchSort  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->sortField !== null) {
+        if (null !== $this->sortField) {
             $json['sortField'] = $this->sortField;
         }
-        if ($this->sortDirection !== null) {
+        if (null !== $this->sortDirection) {
             $json['sortDirection'] = $this->sortDirection;
         }
-        if ($this->sourceId !== null) {
+        if (null !== $this->sourceId) {
             $json['sourceId'] = $this->sourceId;
         }
-        if ($this->dateRange !== null) {
+        if (null !== $this->dateRange) {
             $json['dateRange'] = $this->dateRange;
         }
-        if ($this->systemName !== null) {
+        if (null !== $this->systemName) {
             $json['systemName'] = $this->systemName;
         }
-        if ($this->jsonKey !== null) {
+        if (null !== $this->jsonKey) {
             $json['jsonKey'] = $this->jsonKey;
         }
-        if ($this->deploymentSiteId !== null) {
+        if (null !== $this->deploymentSiteId) {
             $json['deploymentSiteId'] = $this->deploymentSiteId;
         }
 

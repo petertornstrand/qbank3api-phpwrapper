@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class Folder  implements \JsonSerializable
+class Folder implements \JsonSerializable
 {
     /** @var int An optional parent Folder identifier. */
     protected $parentId;
@@ -23,11 +23,11 @@ class Folder  implements \JsonSerializable
      * Constructs a Folder.
      *
      * @param array $parameters An array of parameters to initialize the {@link Folder} with.
-     * - <b>parentId</b> - An optional parent Folder identifier.
-     * - <b>name</b> - The Objects name.
-     * - <b>deleted</b> - Whether the object is deleted.
-     * - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     * - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+     *                          - <b>parentId</b> - An optional parent Folder identifier.
+     *                          - <b>name</b> - The Objects name.
+     *                          - <b>deleted</b> - Whether the object is deleted.
+     *                          - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
+     *                          - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
      */
     public function __construct($parameters = [])
     {
@@ -52,7 +52,9 @@ class Folder  implements \JsonSerializable
 
     /**
      * Gets the parentId of the Folder.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getParentId()
     {
         return $this->parentId;
@@ -71,9 +73,12 @@ class Folder  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the Folder.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -92,9 +97,12 @@ class Folder  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the Folder is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -113,9 +121,12 @@ class Folder  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the properties of the Folder.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getProperties()
     {
         return $this->properties;
@@ -134,9 +145,12 @@ class Folder  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the typeId of the Folder.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getTypeId()
     {
         return $this->typeId;
@@ -159,25 +173,25 @@ class Folder  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->parentId !== null) {
+        if (null !== $this->parentId) {
             $json['parentId'] = $this->parentId;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->properties !== null && !empty($this->properties)) {
+        if (null !== $this->properties && !empty($this->properties)) {
             $json['properties'] = $this->properties;
         }
-        if ($this->typeId !== null) {
+        if (null !== $this->typeId) {
             $json['typeId'] = $this->typeId;
         }
 

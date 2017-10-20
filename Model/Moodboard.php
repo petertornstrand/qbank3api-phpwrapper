@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class Moodboard  implements \JsonSerializable
-    {
-        /** @var string The pincode used to access this Moodboard. */
+class Moodboard implements \JsonSerializable
+{
+    /** @var string The pincode used to access this Moodboard. */
     protected $pinCode;
 
     /** @var int The template used by the Moodboard. */
@@ -37,15 +37,15 @@ use DateTime;
      * Constructs a Moodboard.
      *
      * @param array $parameters An array of parameters to initialize the {@link Moodboard} with.
-     * - <b>pinCode</b> - The pincode used to access this Moodboard.
-     * - <b>templateId</b> - The template used by the Moodboard.
-     * - <b>expireDate</b> - The date and time this Moodboard expires.
-     * - <b>definition</b> - A Key/Value Object containing specific template related settings.
-     * - <b>visitNotification</b> - Whether this moodboard should notify owner on visits and uploads
-     * - <b>name</b> - The Objects name.
-     * - <b>deleted</b> - Whether the object is deleted.
-     * - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     * - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+     *                          - <b>pinCode</b> - The pincode used to access this Moodboard.
+     *                          - <b>templateId</b> - The template used by the Moodboard.
+     *                          - <b>expireDate</b> - The date and time this Moodboard expires.
+     *                          - <b>definition</b> - A Key/Value Object containing specific template related settings.
+     *                          - <b>visitNotification</b> - Whether this moodboard should notify owner on visits and uploads
+     *                          - <b>name</b> - The Objects name.
+     *                          - <b>deleted</b> - Whether the object is deleted.
+     *                          - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
+     *                          - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
      */
     public function __construct($parameters = [])
     {
@@ -82,7 +82,9 @@ use DateTime;
 
     /**
      * Gets the pinCode of the Moodboard.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getPinCode()
     {
         return $this->pinCode;
@@ -101,9 +103,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the templateId of the Moodboard.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getTemplateId()
     {
         return $this->templateId;
@@ -122,9 +127,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the expireDate of the Moodboard.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getExpireDate()
     {
         return $this->expireDate;
@@ -151,9 +159,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the definition of the Moodboard.
-     * @return object	 */
+     *
+     * @return object
+     */
     public function getDefinition()
     {
         return $this->definition;
@@ -174,15 +185,18 @@ use DateTime;
             return $this;
         }
         $this->definition = json_decode($definition, true);
-        if ($this->definition === null) {
+        if (null === $this->definition) {
             $this->definition = $definition;
         }
 
         return $this;
     }
+
     /**
      * Tells whether the Moodboard is visitNotification.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isVisitNotification()
     {
         return $this->visitNotification;
@@ -201,9 +215,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the name of the Moodboard.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -222,9 +239,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the Moodboard is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -243,9 +263,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the properties of the Moodboard.
-     * @return string[]	 */
+     *
+     * @return string[]
+     */
     public function getProperties()
     {
         return $this->properties;
@@ -264,9 +287,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the typeId of the Moodboard.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getTypeId()
     {
         return $this->typeId;
@@ -289,40 +315,40 @@ use DateTime;
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->pinCode !== null) {
+        if (null !== $this->pinCode) {
             $json['pinCode'] = $this->pinCode;
         }
-        if ($this->templateId !== null) {
+        if (null !== $this->templateId) {
             $json['templateId'] = $this->templateId;
         }
-        if ($this->expireDate !== null) {
+        if (null !== $this->expireDate) {
             $json['expireDate'] = $this->expireDate->format(\DateTime::ISO8601);
         }
-        if ($this->definition !== null) {
+        if (null !== $this->definition) {
             $json['definition'] = $this->definition;
         }
-        if ($this->visitNotification !== null) {
+        if (null !== $this->visitNotification) {
             $json['visitNotification'] = $this->visitNotification;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->properties !== null && !empty($this->properties)) {
+        if (null !== $this->properties && !empty($this->properties)) {
             $json['properties'] = $this->properties;
         }
-        if ($this->typeId !== null) {
+        if (null !== $this->typeId) {
             $json['typeId'] = $this->typeId;
         }
 
         return $json;
     }
-    }
+}

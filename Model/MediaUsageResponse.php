@@ -4,28 +4,28 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class MediaUsageResponse extends MediaUsage implements \JsonSerializable
-    {
-        /** @var int  */
+class MediaUsageResponse extends MediaUsage implements \JsonSerializable
+{
+    /** @var int */
     protected $id;
 
-    /** @var DateTime  */
+    /** @var DateTime */
     protected $created;
 
-    /** @var DateTime  */
+    /** @var DateTime */
     protected $deleted;
 
-    /** @var int  */
+    /** @var int */
     protected $updatedBy;
 
     /**
      * Constructs a MediaUsageResponse.
      *
      * @param array $parameters An array of parameters to initialize the {@link MediaUsageResponse} with.
-     * - <b>id</b> - 
-     * - <b>created</b> - 
-     * - <b>deleted</b> - 
-     * - <b>updatedBy</b> - 
+     *                          - <b>id</b> -
+     *                          - <b>created</b> -
+     *                          - <b>deleted</b> -
+     *                          - <b>updatedBy</b> -
      */
     public function __construct($parameters = [])
     {
@@ -47,7 +47,9 @@ use DateTime;
 
     /**
      * Gets the id of the MediaUsageResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -66,9 +68,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the created of the MediaUsageResponse.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -95,9 +100,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the deleted of the MediaUsageResponse.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getDeleted()
     {
         return $this->deleted;
@@ -124,9 +132,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the MediaUsageResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -149,25 +160,25 @@ use DateTime;
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = parent::jsonSerialize();
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
 
         return $json;
     }
-    }
+}

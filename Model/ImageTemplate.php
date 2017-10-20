@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class ImageTemplate  implements \JsonSerializable
+class ImageTemplate implements \JsonSerializable
 {
     /** @var int The Image Template identifier */
     protected $id;
@@ -10,7 +10,7 @@ class ImageTemplate  implements \JsonSerializable
     /** @var string The name of the Image Template */
     protected $name;
 
-    /** @var MimeType  */
+    /** @var MimeType */
     protected $mimeType;
 
     /** @var Command[] An array of commands for this template */
@@ -20,10 +20,10 @@ class ImageTemplate  implements \JsonSerializable
      * Constructs a ImageTemplate.
      *
      * @param array $parameters An array of parameters to initialize the {@link ImageTemplate} with.
-     * - <b>id</b> - The Image Template identifier
-     * - <b>name</b> - The name of the Image Template
-     * - <b>mimeType</b> - 
-     * - <b>commands</b> - An array of commands for this template
+     *                          - <b>id</b> - The Image Template identifier
+     *                          - <b>name</b> - The name of the Image Template
+     *                          - <b>mimeType</b> -
+     *                          - <b>commands</b> - An array of commands for this template
      */
     public function __construct($parameters = [])
     {
@@ -45,7 +45,9 @@ class ImageTemplate  implements \JsonSerializable
 
     /**
      * Gets the id of the ImageTemplate.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -64,9 +66,12 @@ class ImageTemplate  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the ImageTemplate.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -85,9 +90,12 @@ class ImageTemplate  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the mimeType of the ImageTemplate.
-     * @return MimeType	 */
+     *
+     * @return MimeType
+     */
     public function getMimeType()
     {
         return $this->mimeType;
@@ -113,9 +121,12 @@ class ImageTemplate  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the commands of the ImageTemplate.
-     * @return Command[]	 */
+     *
+     * @return Command[]
+     */
     public function getCommands()
     {
         return $this->commands;
@@ -153,7 +164,7 @@ class ImageTemplate  implements \JsonSerializable
                 try {
                     $item = new Command($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate Command. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate Command. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "Command"!', E_USER_WARNING);
@@ -167,22 +178,22 @@ class ImageTemplate  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->mimeType !== null) {
+        if (null !== $this->mimeType) {
             $json['mimeType'] = $this->mimeType;
         }
-        if ($this->commands !== null && !empty($this->commands)) {
+        if (null !== $this->commands && !empty($this->commands)) {
             $json['commands'] = $this->commands;
         }
 

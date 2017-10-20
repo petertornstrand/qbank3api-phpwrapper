@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class SlideTransition  implements \JsonSerializable
+class SlideTransition implements \JsonSerializable
 {
     /** @var int The transition to use */
     protected $type;
@@ -35,15 +35,15 @@ class SlideTransition  implements \JsonSerializable
      * Constructs a SlideTransition.
      *
      * @param array $parameters An array of parameters to initialize the {@link SlideTransition} with.
-     * - <b>type</b> - The transition to use
-     * - <b>speed</b> - Speed of the transition, in milliseconds
-     * - <b>advanceAfterTime</b> - Advance to the next slide after X milliseconds
-     * - <b>advanceOnClick</b> - Indicates if we should move to the next slide on mouse click
-     * - <b>orientation</b> - Orientation of transition, if applicable
-     * - <b>direction</b> - Direction of transition, if applicable
-     * - <b>pattern</b> - Pattern of transition, if applicable
-     * - <b>bounce</b> - Indicates if transition should bounce, if applicable
-     * - <b>fromBlack</b> - Indicates if transition should bounce, if applicable
+     *                          - <b>type</b> - The transition to use
+     *                          - <b>speed</b> - Speed of the transition, in milliseconds
+     *                          - <b>advanceAfterTime</b> - Advance to the next slide after X milliseconds
+     *                          - <b>advanceOnClick</b> - Indicates if we should move to the next slide on mouse click
+     *                          - <b>orientation</b> - Orientation of transition, if applicable
+     *                          - <b>direction</b> - Direction of transition, if applicable
+     *                          - <b>pattern</b> - Pattern of transition, if applicable
+     *                          - <b>bounce</b> - Indicates if transition should bounce, if applicable
+     *                          - <b>fromBlack</b> - Indicates if transition should bounce, if applicable
      */
     public function __construct($parameters = [])
     {
@@ -78,7 +78,9 @@ class SlideTransition  implements \JsonSerializable
 
     /**
      * Gets the type of the SlideTransition.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getType()
     {
         return $this->type;
@@ -97,9 +99,12 @@ class SlideTransition  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the speed of the SlideTransition.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getSpeed()
     {
         return $this->speed;
@@ -118,9 +123,12 @@ class SlideTransition  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the advanceAfterTime of the SlideTransition.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getAdvanceAfterTime()
     {
         return $this->advanceAfterTime;
@@ -139,9 +147,12 @@ class SlideTransition  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the SlideTransition is advanceOnClick.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isAdvanceOnClick()
     {
         return $this->advanceOnClick;
@@ -160,9 +171,12 @@ class SlideTransition  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the orientation of the SlideTransition.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getOrientation()
     {
         return $this->orientation;
@@ -181,9 +195,12 @@ class SlideTransition  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the direction of the SlideTransition.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getDirection()
     {
         return $this->direction;
@@ -202,9 +219,12 @@ class SlideTransition  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the pattern of the SlideTransition.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getPattern()
     {
         return $this->pattern;
@@ -223,9 +243,12 @@ class SlideTransition  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the SlideTransition is bounce.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isBounce()
     {
         return $this->bounce;
@@ -244,9 +267,12 @@ class SlideTransition  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Tells whether the SlideTransition is fromBlack.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isFromBlack()
     {
         return $this->fromBlack;
@@ -269,37 +295,37 @@ class SlideTransition  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->type !== null) {
+        if (null !== $this->type) {
             $json['type'] = $this->type;
         }
-        if ($this->speed !== null) {
+        if (null !== $this->speed) {
             $json['speed'] = $this->speed;
         }
-        if ($this->advanceAfterTime !== null) {
+        if (null !== $this->advanceAfterTime) {
             $json['advanceAfterTime'] = $this->advanceAfterTime;
         }
-        if ($this->advanceOnClick !== null) {
+        if (null !== $this->advanceOnClick) {
             $json['advanceOnClick'] = $this->advanceOnClick;
         }
-        if ($this->orientation !== null) {
+        if (null !== $this->orientation) {
             $json['orientation'] = $this->orientation;
         }
-        if ($this->direction !== null) {
+        if (null !== $this->direction) {
             $json['direction'] = $this->direction;
         }
-        if ($this->pattern !== null) {
+        if (null !== $this->pattern) {
             $json['pattern'] = $this->pattern;
         }
-        if ($this->bounce !== null) {
+        if (null !== $this->bounce) {
             $json['bounce'] = $this->bounce;
         }
-        if ($this->fromBlack !== null) {
+        if (null !== $this->fromBlack) {
             $json['fromBlack'] = $this->fromBlack;
         }
 

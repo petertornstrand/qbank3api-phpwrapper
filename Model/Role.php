@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class Role  implements \JsonSerializable
-    {
-        /** @var int The Role identifier. */
+class Role implements \JsonSerializable
+{
+    /** @var int The Role identifier. */
     protected $id;
 
     /** @var string The name of the Role */
@@ -40,16 +40,16 @@ use DateTime;
      * Constructs a Role.
      *
      * @param array $parameters An array of parameters to initialize the {@link Role} with.
-     * - <b>id</b> - The Role identifier.
-     * - <b>name</b> - The name of the Role
-     * - <b>description</b> - Description of what this Role means
-     * - <b>dirty</b> - Whether the object has been modified since constructed.
-     * - <b>deleted</b> - Indicates if this Role is deleted
-     * - <b>created</b> - When the Role was created.
-     * - <b>createdBy</b> - The User Id that created the Role
-     * - <b>updated</b> - When the Role was updated.
-     * - <b>updatedBy</b> - User Id that updated the Role
-     * - <b>functionalities</b> - An array of Functionalities connected to this role
+     *                          - <b>id</b> - The Role identifier.
+     *                          - <b>name</b> - The name of the Role
+     *                          - <b>description</b> - Description of what this Role means
+     *                          - <b>dirty</b> - Whether the object has been modified since constructed.
+     *                          - <b>deleted</b> - Indicates if this Role is deleted
+     *                          - <b>created</b> - When the Role was created.
+     *                          - <b>createdBy</b> - The User Id that created the Role
+     *                          - <b>updated</b> - When the Role was updated.
+     *                          - <b>updatedBy</b> - User Id that updated the Role
+     *                          - <b>functionalities</b> - An array of Functionalities connected to this role
      */
     public function __construct($parameters = [])
     {
@@ -89,7 +89,9 @@ use DateTime;
 
     /**
      * Gets the id of the Role.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -108,9 +110,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the name of the Role.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -129,9 +134,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the description of the Role.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -150,9 +158,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the Role is dirty.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDirty()
     {
         return $this->dirty;
@@ -171,9 +182,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Tells whether the Role is deleted.
-     * @return bool	 */
+     *
+     * @return bool
+     */
     public function isDeleted()
     {
         return $this->deleted;
@@ -192,9 +206,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the created of the Role.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -221,9 +238,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the createdBy of the Role.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -242,9 +262,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updated of the Role.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getUpdated()
     {
         return $this->updated;
@@ -271,9 +294,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the updatedBy of the Role.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -292,9 +318,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the functionalities of the Role.
-     * @return Functionality[]	 */
+     *
+     * @return Functionality[]
+     */
     public function getFunctionalities()
     {
         return $this->functionalities;
@@ -332,7 +361,7 @@ use DateTime;
                 try {
                     $item = new Functionality($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate Functionality. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate Functionality. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } else {
                 trigger_error('Array parameter item is not of expected type "Functionality"!', E_USER_WARNING);
@@ -346,43 +375,43 @@ use DateTime;
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->description !== null) {
+        if (null !== $this->description) {
             $json['description'] = $this->description;
         }
-        if ($this->dirty !== null) {
+        if (null !== $this->dirty) {
             $json['dirty'] = $this->dirty;
         }
-        if ($this->deleted !== null) {
+        if (null !== $this->deleted) {
             $json['deleted'] = $this->deleted;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->createdBy !== null) {
+        if (null !== $this->createdBy) {
             $json['createdBy'] = $this->createdBy;
         }
-        if ($this->updated !== null) {
+        if (null !== $this->updated) {
             $json['updated'] = $this->updated->format(\DateTime::ISO8601);
         }
-        if ($this->updatedBy !== null) {
+        if (null !== $this->updatedBy) {
             $json['updatedBy'] = $this->updatedBy;
         }
-        if ($this->functionalities !== null && !empty($this->functionalities)) {
+        if (null !== $this->functionalities && !empty($this->functionalities)) {
             $json['functionalities'] = $this->functionalities;
         }
 
         return $json;
     }
-    }
+}

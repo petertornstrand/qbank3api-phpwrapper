@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \ArrayAccess
+class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAccess
 {
     /** @var int Number of hits per page in the SearchResult */
     protected $limit;
@@ -23,11 +23,11 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
      * Constructs a SearchResult.
      *
      * @param array $parameters An array of parameters to initialize the {@link SearchResult} with.
-     * - <b>limit</b> - Number of hits per page in the SearchResult
-     * - <b>offset</b> - Starting position of SearchResult
-     * - <b>results</b> - An array of Media matching the search
-     * - <b>timeSearching</b> - Time spent searching
-     * - <b>totalHits</b> - Total number of hits
+     *                          - <b>limit</b> - Number of hits per page in the SearchResult
+     *                          - <b>offset</b> - Starting position of SearchResult
+     *                          - <b>results</b> - An array of Media matching the search
+     *                          - <b>timeSearching</b> - Time spent searching
+     *                          - <b>totalHits</b> - Total number of hits
      */
     public function __construct($parameters = [])
     {
@@ -52,7 +52,9 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
 
     /**
      * Gets the limit of the SearchResult.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getLimit()
     {
         return $this->limit;
@@ -71,9 +73,12 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
 
         return $this;
     }
+
     /**
      * Gets the offset of the SearchResult.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getOffset()
     {
         return $this->offset;
@@ -92,9 +97,12 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
 
         return $this;
     }
+
     /**
      * Gets the results of the SearchResult.
-     * @return MediaResponse[]	 */
+     *
+     * @return MediaResponse[]
+     */
     public function getResults()
     {
         return $this->results;
@@ -132,7 +140,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
                 try {
                     $item = new MediaResponse($item);
                 } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate MediaResponse. '.$e->getMessage(), E_USER_WARNING);
+                    trigger_error('Could not auto-instantiate MediaResponse. ' . $e->getMessage(), E_USER_WARNING);
                 }
             } elseif (!is_numeric($item)) {
                 trigger_error('Array parameter item is not of expected type "MediaResponse"!', E_USER_WARNING);
@@ -145,7 +153,9 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
 
     /**
      * Gets the timeSearching of the SearchResult.
-     * @return float	 */
+     *
+     * @return float
+     */
     public function getTimeSearching()
     {
         return $this->timeSearching;
@@ -164,9 +174,12 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
 
         return $this;
     }
+
     /**
      * Gets the totalHits of the SearchResult.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getTotalHits()
     {
         return $this->totalHits;
@@ -231,7 +244,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
      */
     public function valid()
     {
-        return $this->key() !== null;
+        return null !== $this->key();
     }
 
     /**
@@ -252,7 +265,7 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
      */
     public function offsetSet($offset, $value)
     {
-        if ($offset === null) {
+        if (null === $offset) {
             $this->results[] = $value;
         } else {
             $this->results[$offset] = $value;
@@ -270,25 +283,25 @@ class SearchResult  implements \JsonSerializable , \Countable, \Iterator, \Array
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->limit !== null) {
+        if (null !== $this->limit) {
             $json['limit'] = $this->limit;
         }
-        if ($this->offset !== null) {
+        if (null !== $this->offset) {
             $json['offset'] = $this->offset;
         }
-        if ($this->results !== null && !empty($this->results)) {
+        if (null !== $this->results && !empty($this->results)) {
             $json['results'] = $this->results;
         }
-        if ($this->timeSearching !== null) {
+        if (null !== $this->timeSearching) {
             $json['timeSearching'] = $this->timeSearching;
         }
-        if ($this->totalHits !== null) {
+        if (null !== $this->totalHits) {
             $json['totalHits'] = $this->totalHits;
         }
 

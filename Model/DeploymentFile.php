@@ -4,9 +4,9 @@ namespace QBNK\QBank\API\Model;
 
 use DateTime;
 
-    class DeploymentFile  implements \JsonSerializable
-    {
-        /** @var int The identifier of the DeploymentSite this file is deployed to. */
+class DeploymentFile implements \JsonSerializable
+{
+    /** @var int The identifier of the DeploymentSite this file is deployed to. */
     protected $deploymentSiteId;
 
     /** @var string The filename of the deployed file. */
@@ -37,15 +37,15 @@ use DateTime;
      * Constructs a DeploymentFile.
      *
      * @param array $parameters An array of parameters to initialize the {@link DeploymentFile} with.
-     * - <b>deploymentSiteId</b> - The identifier of the DeploymentSite this file is deployed to.
-     * - <b>remoteFile</b> - The filename of the deployed file.
-     * - <b>imageTemplateId</b> - The identifier of the Image template used.
-     * - <b>videoTemplateId</b> - The identifier of the Video template used.
-     * - <b>templateName</b> - The name of the template, if any.
-     * - <b>created</b> - The time of deployment for this file.
-     * - <b>filename</b> - The original filename of the file when uploaded to QBank.
-     * - <b>filesize</b> - The size of the file on disk
-     * - <b>metadata</b> - Metadata associated with the deployed media
+     *                          - <b>deploymentSiteId</b> - The identifier of the DeploymentSite this file is deployed to.
+     *                          - <b>remoteFile</b> - The filename of the deployed file.
+     *                          - <b>imageTemplateId</b> - The identifier of the Image template used.
+     *                          - <b>videoTemplateId</b> - The identifier of the Video template used.
+     *                          - <b>templateName</b> - The name of the template, if any.
+     *                          - <b>created</b> - The time of deployment for this file.
+     *                          - <b>filename</b> - The original filename of the file when uploaded to QBank.
+     *                          - <b>filesize</b> - The size of the file on disk
+     *                          - <b>metadata</b> - Metadata associated with the deployed media
      */
     public function __construct($parameters = [])
     {
@@ -80,7 +80,9 @@ use DateTime;
 
     /**
      * Gets the deploymentSiteId of the DeploymentFile.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getDeploymentSiteId()
     {
         return $this->deploymentSiteId;
@@ -99,9 +101,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the remoteFile of the DeploymentFile.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getRemoteFile()
     {
         return $this->remoteFile;
@@ -120,9 +125,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the imageTemplateId of the DeploymentFile.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getImageTemplateId()
     {
         return $this->imageTemplateId;
@@ -141,9 +149,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the videoTemplateId of the DeploymentFile.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getVideoTemplateId()
     {
         return $this->videoTemplateId;
@@ -162,9 +173,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the templateName of the DeploymentFile.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getTemplateName()
     {
         return $this->templateName;
@@ -183,9 +197,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the created of the DeploymentFile.
-     * @return DateTime	 */
+     *
+     * @return DateTime
+     */
     public function getCreated()
     {
         return $this->created;
@@ -212,9 +229,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the filename of the DeploymentFile.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getFilename()
     {
         return $this->filename;
@@ -233,9 +253,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the filesize of the DeploymentFile.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getFilesize()
     {
         return $this->filesize;
@@ -254,9 +277,12 @@ use DateTime;
 
         return $this;
     }
+
     /**
      * Gets the metadata of the DeploymentFile.
-     * @return object	 */
+     *
+     * @return object
+     */
     public function getMetadata()
     {
         return $this->metadata;
@@ -277,7 +303,7 @@ use DateTime;
             return $this;
         }
         $this->metadata = json_decode($metadata, true);
-        if ($this->metadata === null) {
+        if (null === $this->metadata) {
             $this->metadata = $metadata;
         }
 
@@ -287,40 +313,40 @@ use DateTime;
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->deploymentSiteId !== null) {
+        if (null !== $this->deploymentSiteId) {
             $json['deploymentSiteId'] = $this->deploymentSiteId;
         }
-        if ($this->remoteFile !== null) {
+        if (null !== $this->remoteFile) {
             $json['remoteFile'] = $this->remoteFile;
         }
-        if ($this->imageTemplateId !== null) {
+        if (null !== $this->imageTemplateId) {
             $json['imageTemplateId'] = $this->imageTemplateId;
         }
-        if ($this->videoTemplateId !== null) {
+        if (null !== $this->videoTemplateId) {
             $json['videoTemplateId'] = $this->videoTemplateId;
         }
-        if ($this->templateName !== null) {
+        if (null !== $this->templateName) {
             $json['templateName'] = $this->templateName;
         }
-        if ($this->created !== null) {
+        if (null !== $this->created) {
             $json['created'] = $this->created->format(\DateTime::ISO8601);
         }
-        if ($this->filename !== null) {
+        if (null !== $this->filename) {
             $json['filename'] = $this->filename;
         }
-        if ($this->filesize !== null) {
+        if (null !== $this->filesize) {
             $json['filesize'] = $this->filesize;
         }
-        if ($this->metadata !== null) {
+        if (null !== $this->metadata) {
             $json['metadata'] = $this->metadata;
         }
 
         return $json;
     }
-    }
+}

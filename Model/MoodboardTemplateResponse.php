@@ -2,7 +2,7 @@
 
 namespace QBNK\QBank\API\Model;
 
-class MoodboardTemplateResponse  implements \JsonSerializable
+class MoodboardTemplateResponse implements \JsonSerializable
 {
     /** @var int The template identifier. */
     protected $id;
@@ -17,9 +17,9 @@ class MoodboardTemplateResponse  implements \JsonSerializable
      * Constructs a MoodboardTemplateResponse.
      *
      * @param array $parameters An array of parameters to initialize the {@link MoodboardTemplateResponse} with.
-     * - <b>id</b> - The template identifier.
-     * - <b>name</b> - The template name.
-     * - <b>options</b> - Dynamic object detailing the templates options.
+     *                          - <b>id</b> - The template identifier.
+     *                          - <b>name</b> - The template name.
+     *                          - <b>options</b> - Dynamic object detailing the templates options.
      */
     public function __construct($parameters = [])
     {
@@ -36,7 +36,9 @@ class MoodboardTemplateResponse  implements \JsonSerializable
 
     /**
      * Gets the id of the MoodboardTemplateResponse.
-     * @return int	 */
+     *
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -55,9 +57,12 @@ class MoodboardTemplateResponse  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the name of the MoodboardTemplateResponse.
-     * @return string	 */
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -76,9 +81,12 @@ class MoodboardTemplateResponse  implements \JsonSerializable
 
         return $this;
     }
+
     /**
      * Gets the options of the MoodboardTemplateResponse.
-     * @return object	 */
+     *
+     * @return object
+     */
     public function getOptions()
     {
         return $this->options;
@@ -99,7 +107,7 @@ class MoodboardTemplateResponse  implements \JsonSerializable
             return $this;
         }
         $this->options = json_decode($options, true);
-        if ($this->options === null) {
+        if (null === $this->options) {
             $this->options = $options;
         }
 
@@ -109,19 +117,19 @@ class MoodboardTemplateResponse  implements \JsonSerializable
     /**
      * Gets all data that should be available in a json representation.
      *
-     * @return array An associative array of the available variables.
+     * @return array an associative array of the available variables
      */
     public function jsonSerialize()
     {
         $json = [];
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $json['id'] = $this->id;
         }
-        if ($this->name !== null) {
+        if (null !== $this->name) {
             $json['name'] = $this->name;
         }
-        if ($this->options !== null) {
+        if (null !== $this->options) {
             $json['options'] = $this->options;
         }
 
