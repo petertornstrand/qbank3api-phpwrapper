@@ -15,7 +15,8 @@ class MetaData implements \JsonSerializable
      *
      * @param array $parameters An array of parameters to initialize the {@link MetaData} with.
      *                          - <b>section</b> - The MetaData section name.
-     *                          - <b>data</b> - The MetaData data as a key-value object.
+     * - <b>data</b> - The MetaData data as a key-value object.
+
      */
     public function __construct($parameters = [])
     {
@@ -29,9 +30,7 @@ class MetaData implements \JsonSerializable
 
     /**
      * Gets the section of the MetaData.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getSection()
     {
         return $this->section;
@@ -53,9 +52,7 @@ class MetaData implements \JsonSerializable
 
     /**
      * Gets the data of the MetaData.
-     *
-     * @return object
-     */
+     * @return object	 */
     public function getData()
     {
         return $this->data;

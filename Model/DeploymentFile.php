@@ -45,7 +45,8 @@ class DeploymentFile implements \JsonSerializable
      *                          - <b>created</b> - The time of deployment for this file.
      *                          - <b>filename</b> - The original filename of the file when uploaded to QBank.
      *                          - <b>filesize</b> - The size of the file on disk
-     *                          - <b>metadata</b> - Metadata associated with the deployed media
+     * - <b>metadata</b> - Metadata associated with the deployed media
+
      */
     public function __construct($parameters = [])
     {
@@ -80,9 +81,7 @@ class DeploymentFile implements \JsonSerializable
 
     /**
      * Gets the deploymentSiteId of the DeploymentFile.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getDeploymentSiteId()
     {
         return $this->deploymentSiteId;
@@ -104,9 +103,7 @@ class DeploymentFile implements \JsonSerializable
 
     /**
      * Gets the remoteFile of the DeploymentFile.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getRemoteFile()
     {
         return $this->remoteFile;
@@ -128,9 +125,7 @@ class DeploymentFile implements \JsonSerializable
 
     /**
      * Gets the imageTemplateId of the DeploymentFile.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getImageTemplateId()
     {
         return $this->imageTemplateId;
@@ -152,9 +147,7 @@ class DeploymentFile implements \JsonSerializable
 
     /**
      * Gets the videoTemplateId of the DeploymentFile.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getVideoTemplateId()
     {
         return $this->videoTemplateId;
@@ -176,9 +169,7 @@ class DeploymentFile implements \JsonSerializable
 
     /**
      * Gets the templateName of the DeploymentFile.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getTemplateName()
     {
         return $this->templateName;
@@ -200,9 +191,7 @@ class DeploymentFile implements \JsonSerializable
 
     /**
      * Gets the created of the DeploymentFile.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -232,9 +221,7 @@ class DeploymentFile implements \JsonSerializable
 
     /**
      * Gets the filename of the DeploymentFile.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getFilename()
     {
         return $this->filename;
@@ -256,9 +243,7 @@ class DeploymentFile implements \JsonSerializable
 
     /**
      * Gets the filesize of the DeploymentFile.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getFilesize()
     {
         return $this->filesize;
@@ -280,9 +265,7 @@ class DeploymentFile implements \JsonSerializable
 
     /**
      * Gets the metadata of the DeploymentFile.
-     *
-     * @return object
-     */
+     * @return object	 */
     public function getMetadata()
     {
         return $this->metadata;

@@ -5,12 +5,9 @@ namespace QBNK\QBank\API;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\CacheProvider;
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use QBNK\GuzzleOAuth2\GrantType\PasswordCredentials;
-use QBNK\GuzzleOAuth2\GrantType\RefreshToken;
-use QBNK\GuzzleOAuth2\OAuth2Subscriber;
-use QBNK\GuzzleOAuth2\TokenData;
 use QBNK\QBank\API\Controller\AccountsController;
 use QBNK\QBank\API\Controller\CategoriesController;
 use QBNK\QBank\API\Controller\DeploymentController;
@@ -24,6 +21,10 @@ use QBNK\QBank\API\Controller\PropertysetsController;
 use QBNK\QBank\API\Controller\SearchController;
 use QBNK\QBank\API\Controller\SocialmediaController;
 use QBNK\QBank\API\Controller\TemplatesController;
+use Sainsburys\Guzzle\Oauth2\AccessToken;
+use Sainsburys\Guzzle\Oauth2\GrantType\PasswordCredentials;
+use Sainsburys\Guzzle\Oauth2\GrantType\RefreshToken;
+use Sainsburys\Guzzle\Oauth2\Middleware\OAuthMiddleware;
 
 /**
  * This is the main class to instantiate and use when communicating with QBank.
@@ -52,8 +53,8 @@ class QBankApi
     /** @var Client */
     protected $client;
 
-    /** @var OAuth2Subscriber */
-    protected $oauth2Subscriber;
+    /** @var OAuthMiddleware */
+    protected $oauth2Middleware;
 
     /** @var bool */
     protected $verifyCertificates;
@@ -149,6 +150,18 @@ class QBankApi
             $this->verifyCertificates = (bool) $options['verifyCertificates'];
         } else {
             $this->verifyCertificates = true;
+        }
+    }
+
+    /**
+     * Ensures that any existing tokens are saved for future use.
+     */
+    public function __destruct()
+    {
+        if ($this->oauth2Middleware instanceof OAuthMiddleware) {
+            $accessToken = $this->oauth2Middleware->getAccessToken();
+            $refreshToken = $this->oauth2Middleware->getRefreshToken();
+            $this->setTokens($accessToken, $refreshToken);
         }
     }
 
@@ -367,7 +380,7 @@ class QBankApi
             $urlParts['scheme'] = 'http';
         }
 
-        // Add the api path automattically if ommitted for qbank.se hosted QBank instances
+        // Add the api path automatically if omitted for qbank.se hosted QBank instances
         if ((empty($urlParts['path']) || '/' == $urlParts['path'])
             && 'qbank.se' == substr($urlParts['host'], -strlen('qbank.se'))) {
             $urlParts['path'] = '/api/';
@@ -389,18 +402,20 @@ class QBankApi
     protected function getClient()
     {
         if (!($this->client instanceof Client)) {
+            $handlerStack = HandlerStack::create();
+            $handlerStack = $this->withOAuth2MiddleWare($handlerStack);
             $this->client = new Client([
-                'base_url' => $this->basepath,
-                'defaults' => [
-                    'headers' => [
-                        'Accept' => 'application/json',
-                        'Content-type' => 'application/json',
-                        'User-Agent' => 'qbank3api-phpwrapper/1 (qbankapi: 1; swagger: 1.1)',
-                    ],
-                    'verify' => $this->verifyCertificates,
+                'handler' => $handlerStack,
+                'auth' => 'oauth2',
+                'base_uri' => $this->basepath,
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json',
+                    'User-Agent' => 'qbank3api-phpwrapper/2 (qbankapi: 1; swagger: 1.1)',
                 ],
+                'verify' => $this->verifyCertificates,
             ]);
-            $this->client->getEmitter()->attach($this->getOAuth2Subscriber());
+
             $this->logger->debug('Guzzle client instantiated.', ['basepath' => $this->basepath]);
         }
 
@@ -408,43 +423,38 @@ class QBankApi
     }
 
     /**
-     * Gets the instance of the OAuth2 subscriber.
+     * Adds the OAuth2 middleware to the handler stack.
      *
-     * @return OAuth2Subscriber
+     * @return HandlerStack
      */
-    protected function getOAuth2Subscriber()
+    protected function withOAuth2MiddleWare(HandlerStack $stack)
     {
-        if (!($this->oauth2Subscriber instanceof OAuth2Subscriber)) {
-            $client = new Client(['base_url' => $this->basepath . 'oauth2/token']);
-            $this->oauth2Subscriber = new OAuth2Subscriber(
-                new PasswordCredentials(
-                    $client,
-                    [
-                        'client_id' => $this->credentials->getClientId(),
-                        'username' => $this->credentials->getUsername(),
-                        'password' => $this->credentials->getPassword(),
-                    ]
-                ),
-                new RefreshToken($client, ['client_id' => $this->credentials->getClientId()])
+        if (!($this->oauth2Middleware instanceof OAuthMiddleware)) {
+            $oauthClient = new Client(['base_uri' => $this->basepath]);
+            $config = [
+                PasswordCredentials::CONFIG_USERNAME => $this->credentials->getUsername(),
+                PasswordCredentials::CONFIG_PASSWORD => $this->credentials->getPassword(),
+                PasswordCredentials::CONFIG_CLIENT_ID => $this->credentials->getClientId(),
+                PasswordCredentials::CONFIG_TOKEN_URL => 'oauth2/token',
+            ];
+            $this->oauth2Middleware = new OAuthMiddleware(
+                $oauthClient,
+                new PasswordCredentials($oauthClient, $config),
+                new RefreshToken($oauthClient, $config)
             );
-            $this->oauth2Subscriber->tokenPersistence(function ($method, TokenData $token = null) {
-                switch ($method) {
-                    case 'get':
-                        return $this->getToken();
-                        break;
-                    case 'set':
-                        $this->setCachedToken($token);
-                        break;
-                    case 'delete':
-                        $this->invalidateCachedToken();
-                        break;
-                }
-
-                return null;
-            });
+            $tokens = $this->getTokens();
+            if (!empty($tokens['accessTokens'])) {
+                $this->oauth2Middleware->setAccessToken($tokens['accessTokens']);
+            }
+            if (!empty($tokens['refreshTokens'])) {
+                $this->oauth2Middleware->setRefreshToken($tokens['refreshTokens']);
+            }
         }
 
-        return $this->oauth2Subscriber;
+        $stack->push($this->oauth2Middleware->onBefore());
+        $stack->push($this->oauth2Middleware->onFailure(3));
+
+        return $stack;
     }
 
     /**
@@ -462,9 +472,8 @@ class QBankApi
         $this->credentials = new Credentials($this->credentials->getClientId(), $user, $password);
         unset($password);
         if ($this->client instanceof Client) {
-            $this->client->getEmitter()->detach($this->oauth2Subscriber);
-            $this->oauth2Subscriber = null;
-            $this->client->getEmitter()->attach($this->getOAuth2Subscriber());
+            $this->client = $this->oauth2Middleware = null;
+            $this->client = $this->getClient();
         }
         if ($this->cache instanceof CacheProvider) {
             $this->cache->setNamespace(md5($this->basepath . $this->credentials->getUsername() . $this->credentials->getPassword()));
@@ -473,50 +482,63 @@ class QBankApi
     }
 
     /**
-     * Sets the token used for authentication.
+     * Sets the tokens used for authentication.
      *
      * This is normally done automatically, but exposed for transparency reasons.
      *
-     * @param TokenData $token the token set
+     * @param AccessToken      $accessToken
+     * @param AccessToken|null $refreshToken
      */
-    public function setCachedToken(TokenData $token)
+    public function setTokens(AccessToken $accessToken, AccessToken $refreshToken = null)
     {
-        if ($this->cache instanceof Cache) {
-            $this->cache->save('oauth2token', serialize($token), 3600 * 24 * 13);
+        if ($accessToken instanceof AccessToken && false === $accessToken->isExpired()) {
+            if ($this->cache instanceof Cache) {
+                $this->cache->save(
+                    'oauth2accesstoken',
+                    serialize($accessToken),
+                    $accessToken->getExpires()->getTimestamp() - (new \DateTime())->getTimestamp()
+                );
+            }
+            $this->oauth2Middleware->setAccessToken($accessToken);
+        }
+        if ($refreshToken instanceof AccessToken && false === $accessToken->isExpired()) {
+            if ($this->cache instanceof Cache) {
+                $this->cache->save(
+                    'oauth2refreshtoken',
+                    serialize($refreshToken),
+                    $refreshToken->getExpires() instanceof \DateTime ?
+                        $refreshToken->getExpires()->getTimestamp() - (new \DateTime())->getTimestamp() :
+                        3600 * 24 * 13
+                );
+            }
+            $this->oauth2Middleware->setRefreshToken($refreshToken);
         }
     }
 
     /**
      * Gets the token used for authentication.
      *
-     * @return TokenData|null returns the token if it exists, null if not
+     * @return array ['accessToken' => AccessToken|null, 'refreshToken' => RefreshToken|null]
      */
-    public function getToken()
+    public function getTokens()
     {
-        $token = new TokenData();
-        if ($this->oauth2Subscriber instanceof OAuth2Subscriber) {
-            $token = $this->oauth2Subscriber->getTokenData();
+        $tokens = ['accessToken' => null, 'refreshToken' => null];
+        if ($this->oauth2Middleware instanceof OAuthMiddleware) {
+            $tokens['accessToken'] = $this->oauth2Middleware->getAccessToken();
+            $tokens['refreshToken'] = $this->oauth2Middleware->getRefreshToken();
         }
-        if (!$token->accessToken && $this->cache instanceof Cache && $this->cache->contains('oauth2token')) {
-            $token = unserialize($this->cache->fetch('oauth2token'));
+        if ($this->cache instanceof Cache && empty($tokens['accessToken']) && $this->cache->contains('oauth2accesstoken')) {
+            $tokens['accessToken'] = unserialize($this->cache->fetch('oauth2accesstoken'));
         }
-        if (!$token->accessToken) {
-            $response = $this->getClient()->get();      // Trigger call to get a token. Don't care about the result.
-            $token = $this->oauth2Subscriber->getTokenData();
+        if ($this->cache instanceof Cache && empty($tokens['accessToken']) && $this->cache->contains('oauth2refreshtoken')) {
+            $tokens['refreshToken'] = unserialize($this->cache->fetch('oauth2refreshtoken'));
+        }
+        if (empty($tokens['accessToken'])) {
+            $response = $this->getClient()->get('/');      // Trigger call to get a token. Don't care about the result.
+            $tokens['accessToken'] = $this->oauth2Middleware->getAccessToken();
+            $tokens['refreshToken'] = $this->oauth2Middleware->getRefreshToken();
         }
 
-        return $token->accessToken ? $token : null;
-    }
-
-    /**
-     * Invalidates the token used for authentication.
-     *
-     * This is normally done automatically, but exposed for transparency reasons.
-     */
-    public function invalidateCachedToken()
-    {
-        if ($this->cache instanceof Cache) {
-            $this->cache->delete('oauth2token');
-        }
+        return $tokens;
     }
 }

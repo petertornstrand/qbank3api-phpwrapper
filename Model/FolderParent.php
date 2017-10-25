@@ -15,7 +15,8 @@ class FolderParent implements \JsonSerializable
      *
      * @param array $parameters An array of parameters to initialize the {@link FolderParent} with.
      *                          - <b>folderid</b> - The Folder identifier.
-     *                          - <b>depth</b> - The distance from the specified Folder identifer, ie. the reverse depth.
+     * - <b>depth</b> - The distance from the specified Folder identifer, ie. the reverse depth.
+
      */
     public function __construct($parameters = [])
     {
@@ -29,9 +30,7 @@ class FolderParent implements \JsonSerializable
 
     /**
      * Gets the folderid of the FolderParent.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getFolderid()
     {
         return $this->folderid;
@@ -53,9 +52,7 @@ class FolderParent implements \JsonSerializable
 
     /**
      * Gets the depth of the FolderParent.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getDepth()
     {
         return $this->depth;

@@ -374,25 +374,22 @@ use QBNK\QBank\API\Model\Property;
         }
 
         /**
-         * Publishes an archive of several Media.
+         * @param mixed       $media
+         * @param CachePolicy $cachePolicy a custom cache policy used for this request only
          *
-         * Publishes an archive of several Media to a deploymentssite by supplying either a list of mediaIds or objectIds and a deployment site id.
-         *
-         * @param string      $idType           Type of ID, Object or Media, sending ObjectId will automatically use the latest version of a Object..
-         * @param string      $ids              a comma-separated list of IDs to zip and publish
-         * @param int         $deploymentSiteId the site to publish the archive to
-         * @param string      $filename         Optional filename for the zip-archive, a filename will automatically be generated if omitted..
-         * @param CachePolicy $cachePolicy      a custom cache policy used for this request only
+         * @return array
          */
-        public function publishArchive($idType, $ids, $deploymentSiteId, $filename = null, CachePolicy $cachePolicy = null)
+        public function ensureNotPermanentlyDeleted($media, CachePolicy $cachePolicy = null)
         {
             $parameters = [
-            'query' => ['idType' => $idType, 'ids' => $ids, 'deploymentSiteId' => $deploymentSiteId, 'filename' => $filename],
+            'query' => ['media' => $media],
             'body' => json_encode([]),
             'headers' => [],
         ];
 
-            $this->get('v1/media/publishArchive', $parameters, $cachePolicy);
+            $result = $this->get('v1/media/ensurenotpermanentlydeleted', $parameters, $cachePolicy);
+
+            return $result;
         }
 
         /**
@@ -404,13 +401,12 @@ use QBNK\QBank\API\Model\Property;
          *  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
          *  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
          *
-         * @param mixed  $fileData   the file's data content
-         * @param string $name       Filename of the file being uploaded
-         * @param int    $chunk      The chunk we are currently uploading, starts at 0
-         * @param int    $chunks     Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
-         * @param string $fileId     A unique fileId that will be used for this upload, if none is given one will be given to you
-         * @param int    $categoryId The category to place the file in
-         *
+         * @param  mixed  $fileData   the file's data content
+         * @param  string $name       Filename of the file being uploaded
+         * @param  int    $chunk      The chunk we are currently uploading, starts at 0
+         * @param  int    $chunks     Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
+         * @param  string $fileId     A unique fileId that will be used for this upload, if none is given one will be given to you
+         * @param  int    $categoryId The category to place the file in
          * @return array
          */
         public function uploadFileChunked($fileData, $name, $chunk, $chunks, $fileId, $categoryId)
@@ -436,9 +432,8 @@ use QBNK\QBank\API\Model\Property;
          *
          * Note that type_id cannot be set directly, but must be decided by the category. The properties parameter of the media
          *
-         * @param int   $id    the Media identifier
-         * @param Media $media A JSON encoded Media representing the updates
-         *
+         * @param  int           $id    the Media identifier
+         * @param  Media         $media A JSON encoded Media representing the updates
          * @return MediaResponse
          */
         public function updateMedia($id, Media $media)
@@ -476,7 +471,9 @@ use QBNK\QBank\API\Model\Property;
             'headers' => [],
         ];
 
-            $this->post('v1/media/' . $id . '/group', $parameters);
+            $result = $this->post('v1/media/' . $id . '/group', $parameters);
+
+            return $result;
         }
 
         /**
@@ -484,8 +481,7 @@ use QBNK\QBank\API\Model\Property;
          *
          * Can not restore a Media that has been hard deleted!
          *
-         * @param int $id the Media identifier
-         *
+         * @param  int           $id the Media identifier
          * @return MediaResponse
          */
         public function restoreMedia($id)
@@ -509,9 +505,8 @@ use QBNK\QBank\API\Model\Property;
          *  Possible statuses are: <ul> <li>approved</li> </ul>
          *
          *
-         * @param int    $id     the Media identifier
-         * @param string $status The new status of the media
-         *
+         * @param  int    $id     the Media identifier
+         * @param  string $status The new status of the media
          * @return array
          */
         public function setStatus($id, $status)
@@ -554,14 +549,13 @@ use QBNK\QBank\API\Model\Property;
          *  POST /media.json?chunks=3&chunk=1&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
          *  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
          *
-         * @param mixed  $fileData        the file's data content
-         * @param int    $id              the Media identifier
-         * @param string $revisionComment The revision comment
-         * @param string $name            Filename of the file being uploaded
-         * @param int    $chunk           The chunk we are currently uploading, starts at 0
-         * @param int    $chunks          Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
-         * @param string $fileId          A unique fileId that will be used for this upload, if none is given one will be given to you
-         *
+         * @param  mixed  $fileData        the file's data content
+         * @param  int    $id              the Media identifier
+         * @param  string $revisionComment The revision comment
+         * @param  string $name            Filename of the file being uploaded
+         * @param  int    $chunk           The chunk we are currently uploading, starts at 0
+         * @param  int    $chunks          Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
+         * @param  string $fileId          A unique fileId that will be used for this upload, if none is given one will be given to you
          * @return array
          */
         public function uploadNewVersionChunked($fileData, $id, $revisionComment, $name, $chunk, $chunks, $fileId)
@@ -587,9 +581,8 @@ use QBNK\QBank\API\Model\Property;
          *
          * , leave username and useremail empty to post as the user that is logged on to the API.
          *
-         * @param int     $mediaId the media to post the comment on
-         * @param Comment $comment The comment to post
-         *
+         * @param  int             $mediaId the media to post the comment on
+         * @param  Comment         $comment The comment to post
          * @return CommentResponse
          */
         public function createComment($mediaId, Comment $comment)
@@ -621,7 +614,9 @@ use QBNK\QBank\API\Model\Property;
             'headers' => [],
         ];
 
-            $this->post('v1/media/slides/combine', $parameters);
+            $result = $this->post('v1/media/slides/combine', $parameters);
+
+            return $result;
         }
 
         /**
@@ -629,9 +624,8 @@ use QBNK\QBank\API\Model\Property;
          *
          * Update the provided properties for the specified Media. Will not update any other properties then those provided. It is preferable to use this method over updating a whole media to change a few properties as the side effects are fewer.
          *
-         * @param int        $id         the Media identifier
-         * @param Property[] $properties an array of QBNK\QBank\Api\v1\Model\Property values
-         *
+         * @param  int        $id         the Media identifier
+         * @param  Property[] $properties an array of QBNK\QBank\Api\v1\Model\Property values
          * @return array
          */
         public function updateProperties($id, array $properties)
@@ -652,9 +646,8 @@ use QBNK\QBank\API\Model\Property;
          *
          * Deleting a Media will set it's status to removed but will retain all data and enable restoration of the Media, much like the trash bin of your operating system. To permanetly remove a Media, use the "hardDelete" flag.
          *
-         * @param int  $id         the Media identifier
-         * @param bool $hardDelete Prevent restoration of the Media..
-         *
+         * @param  int           $id         the Media identifier
+         * @param  bool          $hardDelete Prevent restoration of the Media..
          * @return MediaResponse
          */
         public function removeMedia($id, $hardDelete = false)
@@ -676,9 +669,8 @@ use QBNK\QBank\API\Model\Property;
          *
          * on a media
          *
-         * @param int $mediaId   the media to delete the comment from
-         * @param int $commentId the comment to delete
-         *
+         * @param  int     $mediaId   the media to delete the comment from
+         * @param  int     $commentId the comment to delete
          * @return Comment
          */
         public function removeComment($mediaId, $commentId)

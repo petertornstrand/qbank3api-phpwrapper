@@ -27,7 +27,8 @@ class MediaUsage implements \JsonSerializable
      *                          - <b>mediaUrl</b> -
      *                          - <b>pageUrl</b> -
      *                          - <b>context</b> -
-     *                          - <b>language</b> -
+     * - <b>language</b> -
+
      */
     public function __construct($parameters = [])
     {
@@ -52,9 +53,7 @@ class MediaUsage implements \JsonSerializable
 
     /**
      * Gets the mediaId of the MediaUsage.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getMediaId()
     {
         return $this->mediaId;
@@ -76,9 +75,7 @@ class MediaUsage implements \JsonSerializable
 
     /**
      * Gets the mediaUrl of the MediaUsage.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getMediaUrl()
     {
         return $this->mediaUrl;
@@ -100,9 +97,7 @@ class MediaUsage implements \JsonSerializable
 
     /**
      * Gets the pageUrl of the MediaUsage.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getPageUrl()
     {
         return $this->pageUrl;
@@ -124,9 +119,7 @@ class MediaUsage implements \JsonSerializable
 
     /**
      * Gets the context of the MediaUsage.
-     *
-     * @return string[]
-     */
+     * @return string[]	 */
     public function getContext()
     {
         return $this->context;
@@ -148,9 +141,7 @@ class MediaUsage implements \JsonSerializable
 
     /**
      * Gets the language of the MediaUsage.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getLanguage()
     {
         return $this->language;

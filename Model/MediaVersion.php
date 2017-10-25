@@ -37,7 +37,8 @@ class MediaVersion implements \JsonSerializable
      *                          - <b>replacedBy</b> - The Media replacement Media identifier. Only set when the Media has been replaced, ie. versioning.
      *                          - <b>comment</b> - An optional comment about the version.
      *                          - <b>userId</b> - The User identifier of the user who created the new version.
-     *                          - <b>version</b> - The version number
+     * - <b>version</b> - The version number
+
      */
     public function __construct($parameters = [])
     {
@@ -66,9 +67,7 @@ class MediaVersion implements \JsonSerializable
 
     /**
      * Gets the mediaId of the MediaVersion.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getMediaId()
     {
         return $this->mediaId;
@@ -90,9 +89,7 @@ class MediaVersion implements \JsonSerializable
 
     /**
      * Gets the filename of the MediaVersion.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getFilename()
     {
         return $this->filename;
@@ -114,9 +111,7 @@ class MediaVersion implements \JsonSerializable
 
     /**
      * Gets the uploaded of the MediaVersion.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUploaded()
     {
         return $this->uploaded;
@@ -146,9 +141,7 @@ class MediaVersion implements \JsonSerializable
 
     /**
      * Gets the replacedBy of the MediaVersion.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getReplacedBy()
     {
         return $this->replacedBy;
@@ -170,9 +163,7 @@ class MediaVersion implements \JsonSerializable
 
     /**
      * Gets the comment of the MediaVersion.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getComment()
     {
         return $this->comment;
@@ -194,9 +185,7 @@ class MediaVersion implements \JsonSerializable
 
     /**
      * Gets the userId of the MediaVersion.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUserId()
     {
         return $this->userId;
@@ -218,9 +207,7 @@ class MediaVersion implements \JsonSerializable
 
     /**
      * Gets the version of the MediaVersion.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getVersion()
     {
         return $this->version;

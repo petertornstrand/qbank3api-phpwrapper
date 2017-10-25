@@ -27,7 +27,8 @@ class Comment implements \JsonSerializable
      *                          - <b>comment</b> - The actual comment
      *                          - <b>parentId</b> - If a reply, indicates this comments parent
      *                          - <b>userName</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
-     *                          - <b>userEmail</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
+     * - <b>userEmail</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
+
      */
     public function __construct($parameters = [])
     {
@@ -50,9 +51,7 @@ class Comment implements \JsonSerializable
 
     /**
      * Gets the objectId of the Comment.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getObjectId()
     {
         return $this->objectId;
@@ -74,9 +73,7 @@ class Comment implements \JsonSerializable
 
     /**
      * Gets the comment of the Comment.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getComment()
     {
         return $this->comment;
@@ -98,9 +95,7 @@ class Comment implements \JsonSerializable
 
     /**
      * Gets the parentId of the Comment.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getParentId()
     {
         return $this->parentId;
@@ -122,9 +117,7 @@ class Comment implements \JsonSerializable
 
     /**
      * Gets the userName of the Comment.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getUserName()
     {
         return $this->userName;
@@ -146,9 +139,7 @@ class Comment implements \JsonSerializable
 
     /**
      * Gets the userEmail of the Comment.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getUserEmail()
     {
         return $this->userEmail;

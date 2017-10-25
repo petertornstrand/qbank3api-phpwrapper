@@ -23,7 +23,8 @@ class VideoTemplate implements \JsonSerializable
      *                          - <b>id</b> - The Video Template identifier
      *                          - <b>name</b> - The name of the Video Template
      *                          - <b>mimeType</b> -
-     *                          - <b>commands</b> - An array of commands for this template
+     * - <b>commands</b> - An array of commands for this template
+
      */
     public function __construct($parameters = [])
     {
@@ -45,9 +46,7 @@ class VideoTemplate implements \JsonSerializable
 
     /**
      * Gets the id of the VideoTemplate.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -69,9 +68,7 @@ class VideoTemplate implements \JsonSerializable
 
     /**
      * Gets the name of the VideoTemplate.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -93,9 +90,7 @@ class VideoTemplate implements \JsonSerializable
 
     /**
      * Gets the mimeType of the VideoTemplate.
-     *
-     * @return MimeType
-     */
+     * @return MimeType	 */
     public function getMimeType()
     {
         return $this->mimeType;
@@ -124,9 +119,7 @@ class VideoTemplate implements \JsonSerializable
 
     /**
      * Gets the commands of the VideoTemplate.
-     *
-     * @return Command[]
-     */
+     * @return Command[]	 */
     public function getCommands()
     {
         return $this->commands;

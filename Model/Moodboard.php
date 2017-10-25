@@ -45,7 +45,8 @@ class Moodboard implements \JsonSerializable
      *                          - <b>name</b> - The Objects name.
      *                          - <b>deleted</b> - Whether the object is deleted.
      *                          - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     *                          - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+     * - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+
      */
     public function __construct($parameters = [])
     {
@@ -82,9 +83,7 @@ class Moodboard implements \JsonSerializable
 
     /**
      * Gets the pinCode of the Moodboard.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getPinCode()
     {
         return $this->pinCode;
@@ -106,9 +105,7 @@ class Moodboard implements \JsonSerializable
 
     /**
      * Gets the templateId of the Moodboard.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getTemplateId()
     {
         return $this->templateId;
@@ -130,9 +127,7 @@ class Moodboard implements \JsonSerializable
 
     /**
      * Gets the expireDate of the Moodboard.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getExpireDate()
     {
         return $this->expireDate;
@@ -162,9 +157,7 @@ class Moodboard implements \JsonSerializable
 
     /**
      * Gets the definition of the Moodboard.
-     *
-     * @return object
-     */
+     * @return object	 */
     public function getDefinition()
     {
         return $this->definition;
@@ -194,9 +187,7 @@ class Moodboard implements \JsonSerializable
 
     /**
      * Tells whether the Moodboard is visitNotification.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isVisitNotification()
     {
         return $this->visitNotification;
@@ -218,9 +209,7 @@ class Moodboard implements \JsonSerializable
 
     /**
      * Gets the name of the Moodboard.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -242,9 +231,7 @@ class Moodboard implements \JsonSerializable
 
     /**
      * Tells whether the Moodboard is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -266,9 +253,7 @@ class Moodboard implements \JsonSerializable
 
     /**
      * Gets the properties of the Moodboard.
-     *
-     * @return string[]
-     */
+     * @return string[]	 */
     public function getProperties()
     {
         return $this->properties;
@@ -290,9 +275,7 @@ class Moodboard implements \JsonSerializable
 
     /**
      * Gets the typeId of the Moodboard.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getTypeId()
     {
         return $this->typeId;

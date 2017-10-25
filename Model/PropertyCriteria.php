@@ -36,7 +36,8 @@ class PropertyCriteria implements \JsonSerializable
      * @param array $parameters An array of parameters to initialize the {@link PropertyCriteria} with.
      *                          - <b>systemName</b> - The system name of the Property we filter on
      *                          - <b>value</b> - The value we filter by
-     *                          - <b>operator</b> - Comparison operator for the criteria
+     * - <b>operator</b> - Comparison operator for the criteria
+
      */
     public function __construct($parameters = [])
     {
@@ -53,9 +54,7 @@ class PropertyCriteria implements \JsonSerializable
 
     /**
      * Gets the systemName of the PropertyCriteria.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getSystemName()
     {
         return $this->systemName;
@@ -77,9 +76,7 @@ class PropertyCriteria implements \JsonSerializable
 
     /**
      * Gets the value of the PropertyCriteria.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getValue()
     {
         return $this->value;
@@ -101,9 +98,7 @@ class PropertyCriteria implements \JsonSerializable
 
     /**
      * Gets the operator of the PropertyCriteria.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getOperator()
     {
         return $this->operator;

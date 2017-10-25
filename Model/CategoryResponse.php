@@ -42,7 +42,8 @@ class CategoryResponse extends Category implements \JsonSerializable
      *                          - <b>updated</b> - When the Object was updated.
      *                          - <b>updatedBy</b> - Which user that updated the Object.
      *                          - <b>dirty</b> - Whether the object has been modified since constructed.
-     *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+
      */
     public function __construct($parameters = [])
     {
@@ -78,9 +79,7 @@ class CategoryResponse extends Category implements \JsonSerializable
 
     /**
      * Gets the id of the CategoryResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -102,9 +101,7 @@ class CategoryResponse extends Category implements \JsonSerializable
 
     /**
      * Gets the objectId of the CategoryResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getObjectId()
     {
         return $this->objectId;
@@ -126,9 +123,7 @@ class CategoryResponse extends Category implements \JsonSerializable
 
     /**
      * Gets the created of the CategoryResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -158,9 +153,7 @@ class CategoryResponse extends Category implements \JsonSerializable
 
     /**
      * Gets the createdBy of the CategoryResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -182,9 +175,7 @@ class CategoryResponse extends Category implements \JsonSerializable
 
     /**
      * Gets the updated of the CategoryResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -214,9 +205,7 @@ class CategoryResponse extends Category implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the CategoryResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -238,9 +227,7 @@ class CategoryResponse extends Category implements \JsonSerializable
 
     /**
      * Tells whether the CategoryResponse is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -262,9 +249,7 @@ class CategoryResponse extends Category implements \JsonSerializable
 
     /**
      * Gets the propertySets of the CategoryResponse.
-     *
-     * @return PropertySet[]
-     */
+     * @return PropertySet[]	 */
     public function getPropertySets()
     {
         return $this->propertySets;

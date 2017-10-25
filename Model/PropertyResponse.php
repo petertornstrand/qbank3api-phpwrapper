@@ -44,7 +44,8 @@ class PropertyResponse implements \JsonSerializable
      *                          - <b>deleted</b> - Whether the Property is deleted.
      *                          - <b>dirty</b> - Whether the Property has been modified since constructed.
      *                          - <b>propertyType</b> - The PropertyType describing this Property.
-     *                          - <b>value</b> - The value of the Property.
+     * - <b>value</b> - The value of the Property.
+
      */
     public function __construct($parameters = [])
     {
@@ -76,9 +77,7 @@ class PropertyResponse implements \JsonSerializable
 
     /**
      * Gets the created of the PropertyResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -108,9 +107,7 @@ class PropertyResponse implements \JsonSerializable
 
     /**
      * Gets the createdBy of the PropertyResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -132,9 +129,7 @@ class PropertyResponse implements \JsonSerializable
 
     /**
      * Gets the updated of the PropertyResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -164,9 +159,7 @@ class PropertyResponse implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the PropertyResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -188,9 +181,7 @@ class PropertyResponse implements \JsonSerializable
 
     /**
      * Tells whether the PropertyResponse is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -212,9 +203,7 @@ class PropertyResponse implements \JsonSerializable
 
     /**
      * Tells whether the PropertyResponse is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -236,9 +225,7 @@ class PropertyResponse implements \JsonSerializable
 
     /**
      * Gets the propertyType of the PropertyResponse.
-     *
-     * @return PropertyType
-     */
+     * @return PropertyType	 */
     public function getPropertyType()
     {
         return $this->propertyType;
@@ -267,9 +254,7 @@ class PropertyResponse implements \JsonSerializable
 
     /**
      * Gets the value of the PropertyResponse.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getValue()
     {
         return $this->value;

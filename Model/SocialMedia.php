@@ -27,7 +27,8 @@ class SocialMedia implements \JsonSerializable
      *                          - <b>name</b> - The Objects name.
      *                          - <b>deleted</b> - Whether the object is deleted.
      *                          - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     *                          - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+     * - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+
      */
     public function __construct($parameters = [])
     {
@@ -52,9 +53,7 @@ class SocialMedia implements \JsonSerializable
 
     /**
      * Gets the id of the SocialMedia.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -76,9 +75,7 @@ class SocialMedia implements \JsonSerializable
 
     /**
      * Gets the name of the SocialMedia.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -100,9 +97,7 @@ class SocialMedia implements \JsonSerializable
 
     /**
      * Tells whether the SocialMedia is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -124,9 +119,7 @@ class SocialMedia implements \JsonSerializable
 
     /**
      * Gets the properties of the SocialMedia.
-     *
-     * @return string[]
-     */
+     * @return string[]	 */
     public function getProperties()
     {
         return $this->properties;
@@ -148,9 +141,7 @@ class SocialMedia implements \JsonSerializable
 
     /**
      * Gets the typeId of the SocialMedia.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getTypeId()
     {
         return $this->typeId;

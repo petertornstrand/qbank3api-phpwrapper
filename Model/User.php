@@ -85,7 +85,8 @@ class User implements \JsonSerializable
      *                          - <b>updatedBy</b> - User Id that updated the User
      *                          - <b>functionalities</b> - An array of Functionalities connected to this User
      *                          - <b>extraData</b> - An array of ExtraData connected to this User.
-     *                          - <b>userType</b> - Type of user
+     * - <b>userType</b> - Type of user
+
      */
     public function __construct($parameters = [])
     {
@@ -154,9 +155,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the id of the User.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -178,9 +177,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the name of the User.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -202,9 +199,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the email of the User.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getEmail()
     {
         return $this->email;
@@ -226,9 +221,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the endDate of the User.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getEndDate()
     {
         return $this->endDate;
@@ -258,9 +251,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the startDate of the User.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getStartDate()
     {
         return $this->startDate;
@@ -290,9 +281,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the firstName of the User.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getFirstName()
     {
         return $this->firstName;
@@ -314,9 +303,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the lastName of the User.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getLastName()
     {
         return $this->lastName;
@@ -338,9 +325,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the userName of the User.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getUserName()
     {
         return $this->userName;
@@ -362,9 +347,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the lastLogin of the User.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getLastLogin()
     {
         return $this->lastLogin;
@@ -394,9 +377,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the groups of the User.
-     *
-     * @return Group[]
-     */
+     * @return Group[]	 */
     public function getGroups()
     {
         return $this->groups;
@@ -447,9 +428,7 @@ class User implements \JsonSerializable
 
     /**
      * Tells whether the User is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -471,9 +450,7 @@ class User implements \JsonSerializable
 
     /**
      * Tells whether the User is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -495,9 +472,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the created of the User.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -527,9 +502,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the createdBy of the User.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -551,9 +524,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the updated of the User.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -583,9 +554,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the User.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -607,9 +576,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the functionalities of the User.
-     *
-     * @return Functionality[]
-     */
+     * @return Functionality[]	 */
     public function getFunctionalities()
     {
         return $this->functionalities;
@@ -660,9 +627,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the extraData of the User.
-     *
-     * @return ExtraData[]
-     */
+     * @return ExtraData[]	 */
     public function getExtraData()
     {
         return $this->extraData;
@@ -713,9 +678,7 @@ class User implements \JsonSerializable
 
     /**
      * Gets the userType of the User.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getUserType()
     {
         return $this->userType;

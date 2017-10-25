@@ -25,7 +25,8 @@ class MediaUsageResponse extends MediaUsage implements \JsonSerializable
      *                          - <b>id</b> -
      *                          - <b>created</b> -
      *                          - <b>deleted</b> -
-     *                          - <b>updatedBy</b> -
+     * - <b>updatedBy</b> -
+
      */
     public function __construct($parameters = [])
     {
@@ -47,9 +48,7 @@ class MediaUsageResponse extends MediaUsage implements \JsonSerializable
 
     /**
      * Gets the id of the MediaUsageResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -71,9 +70,7 @@ class MediaUsageResponse extends MediaUsage implements \JsonSerializable
 
     /**
      * Gets the created of the MediaUsageResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -103,9 +100,7 @@ class MediaUsageResponse extends MediaUsage implements \JsonSerializable
 
     /**
      * Gets the deleted of the MediaUsageResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getDeleted()
     {
         return $this->deleted;
@@ -135,9 +130,7 @@ class MediaUsageResponse extends MediaUsage implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the MediaUsageResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;

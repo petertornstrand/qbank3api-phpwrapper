@@ -46,7 +46,8 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
      *                          - <b>updated</b> - When the Object was updated.
      *                          - <b>updatedBy</b> - Which user that updated the Object.
      *                          - <b>dirty</b> - Whether the object has been modified since constructed.
-     *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+
      */
     public function __construct($parameters = [])
     {
@@ -85,9 +86,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
 
     /**
      * Gets the id of the MoodboardResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -109,9 +108,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
 
     /**
      * Gets the hash of the MoodboardResponse.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getHash()
     {
         return $this->hash;
@@ -133,9 +130,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
 
     /**
      * Gets the objectId of the MoodboardResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getObjectId()
     {
         return $this->objectId;
@@ -157,9 +152,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
 
     /**
      * Gets the created of the MoodboardResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -189,9 +182,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
 
     /**
      * Gets the createdBy of the MoodboardResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -213,9 +204,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
 
     /**
      * Gets the updated of the MoodboardResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -245,9 +234,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the MoodboardResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -269,9 +256,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
 
     /**
      * Tells whether the MoodboardResponse is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -293,9 +278,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
 
     /**
      * Gets the propertySets of the MoodboardResponse.
-     *
-     * @return PropertySet[]
-     */
+     * @return PropertySet[]	 */
     public function getPropertySets()
     {
         return $this->propertySets;

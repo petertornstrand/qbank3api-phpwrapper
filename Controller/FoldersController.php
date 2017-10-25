@@ -98,10 +98,9 @@ class FoldersController extends ControllerAbstract
     /**
      * Create a Folder.
      *
-     * @param Folder $folder        A JSON encoded Folder to create
-     * @param int    $parentId      An optional parent folder ID. Will otherwise be created in the root level. Note that root level creation requires additional access!.
-     * @param bool   $inheritAccess Decides whether this Folder will inherit access from its parent folder
-     *
+     * @param  Folder         $folder        A JSON encoded Folder to create
+     * @param  int            $parentId      An optional parent folder ID. Will otherwise be created in the root level. Note that root level creation requires additional access!.
+     * @param  bool           $inheritAccess Decides whether this Folder will inherit access from its parent folder
      * @return FolderResponse
      */
     public function createFolder(Folder $folder, $parentId = 0, $inheritAccess = null)
@@ -121,9 +120,8 @@ class FoldersController extends ControllerAbstract
     /**
      * Add Media to Folder.
      *
-     * @param int   $folderId folder to add media to
-     * @param int[] $mediaIds an array of int values
-     *
+     * @param  int   $folderId folder to add media to
+     * @param  int[] $mediaIds an array of int values
      * @return array
      */
     public function addMediaToFolder($folderId, array $mediaIds)
@@ -144,9 +142,8 @@ class FoldersController extends ControllerAbstract
      *
      * Update a Folder.
      *
-     * @param int    $id     the Folder identifier
-     * @param Folder $folder A JSON encoded Folder representing the updates
-     *
+     * @param  int            $id     the Folder identifier
+     * @param  Folder         $folder A JSON encoded Folder representing the updates
      * @return FolderResponse
      */
     public function updateFolder($id, Folder $folder)
@@ -166,9 +163,8 @@ class FoldersController extends ControllerAbstract
     /**
      * Remove Media from Folder.
      *
-     * @param int $folderId folder to remove media from
-     * @param int $mediaId  media to remove from specified folder
-     *
+     * @param  int   $folderId folder to remove media from
+     * @param  int   $mediaId  media to remove from specified folder
      * @return array
      */
     public function removeMediaFromFolder($folderId, $mediaId)
@@ -189,8 +185,7 @@ class FoldersController extends ControllerAbstract
      *
      * Delete a Folder and all subfolders. Will NOT delete Media attached to the Folder.
      *
-     * @param int $id the Folder identifier
-     *
+     * @param  int            $id the Folder identifier
      * @return FolderResponse
      */
     public function removeFolder($id)

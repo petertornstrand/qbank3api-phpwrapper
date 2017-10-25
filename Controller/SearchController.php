@@ -22,7 +22,9 @@ class SearchController extends ControllerAbstract
             'headers' => [],
         ];
 
-        $this->get('v1/search/metadata', $parameters, $cachePolicy);
+        $result = $this->get('v1/search/metadata', $parameters, $cachePolicy);
+
+        return $result;
     }
 
     /**
@@ -30,9 +32,8 @@ class SearchController extends ControllerAbstract
      *
      * in QBank
      *
-     * @param Search $search     Search parameters
-     * @param int    $returnType whether to return object, mediaIds
-     *
+     * @param  Search       $search     Search parameters
+     * @param  int          $returnType whether to return object, mediaIds
      * @return SearchResult
      */
     public function search(Search $search, $returnType = self::RETURN_OBJECTS, CachePolicy $cachePolicy = null)
@@ -64,6 +65,8 @@ class SearchController extends ControllerAbstract
             'headers' => [],
         ];
 
-        $this->post('v1/search/total', $parameters);
+        $result = $this->post('v1/search/total', $parameters);
+
+        return $result;
     }
 }

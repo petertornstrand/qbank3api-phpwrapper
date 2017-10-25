@@ -43,7 +43,8 @@ class SlideTransition implements \JsonSerializable
      *                          - <b>direction</b> - Direction of transition, if applicable
      *                          - <b>pattern</b> - Pattern of transition, if applicable
      *                          - <b>bounce</b> - Indicates if transition should bounce, if applicable
-     *                          - <b>fromBlack</b> - Indicates if transition should bounce, if applicable
+     * - <b>fromBlack</b> - Indicates if transition should bounce, if applicable
+
      */
     public function __construct($parameters = [])
     {
@@ -78,9 +79,7 @@ class SlideTransition implements \JsonSerializable
 
     /**
      * Gets the type of the SlideTransition.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getType()
     {
         return $this->type;
@@ -102,9 +101,7 @@ class SlideTransition implements \JsonSerializable
 
     /**
      * Gets the speed of the SlideTransition.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getSpeed()
     {
         return $this->speed;
@@ -126,9 +123,7 @@ class SlideTransition implements \JsonSerializable
 
     /**
      * Gets the advanceAfterTime of the SlideTransition.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getAdvanceAfterTime()
     {
         return $this->advanceAfterTime;
@@ -150,9 +145,7 @@ class SlideTransition implements \JsonSerializable
 
     /**
      * Tells whether the SlideTransition is advanceOnClick.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isAdvanceOnClick()
     {
         return $this->advanceOnClick;
@@ -174,9 +167,7 @@ class SlideTransition implements \JsonSerializable
 
     /**
      * Gets the orientation of the SlideTransition.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getOrientation()
     {
         return $this->orientation;
@@ -198,9 +189,7 @@ class SlideTransition implements \JsonSerializable
 
     /**
      * Gets the direction of the SlideTransition.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getDirection()
     {
         return $this->direction;
@@ -222,9 +211,7 @@ class SlideTransition implements \JsonSerializable
 
     /**
      * Gets the pattern of the SlideTransition.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getPattern()
     {
         return $this->pattern;
@@ -246,9 +233,7 @@ class SlideTransition implements \JsonSerializable
 
     /**
      * Tells whether the SlideTransition is bounce.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isBounce()
     {
         return $this->bounce;
@@ -270,9 +255,7 @@ class SlideTransition implements \JsonSerializable
 
     /**
      * Tells whether the SlideTransition is fromBlack.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isFromBlack()
     {
         return $this->fromBlack;

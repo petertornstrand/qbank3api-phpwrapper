@@ -4,12 +4,9 @@ namespace QBNK\QBank\API\Controller;
 
 use Doctrine\Common\Cache\Cache;
 use GuzzleHttp\Client;
-use GuzzleHttp\Event\CompleteEvent;
-use GuzzleHttp\Event\ErrorEvent;
-use GuzzleHttp\Message\RequestInterface;
-use GuzzleHttp\Message\ResponseInterface;
-use GuzzleHttp\Pool;
-use GuzzleHttp\Post\PostBodyInterface;
+use GuzzleHttp\Promise;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use QBNK\QBank\API\CachePolicy;
@@ -49,23 +46,23 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Performs a request to the QBank API.
      *
-     * @param string      $endpoint    the API endpoint URL to request
-     * @param array       $parameters  the parameters to send
-     * @param string      $method      the HTTP verb to use
-     * @param CachePolicy $cachePolicy the custom caching policy to use
-     * @param bool        $delayed     if the request should be delayed until destruction
+     * @param string      $endpoint    The API endpoint URL to request.
+     * @param array       $parameters  The parameters to send.
+     * @param string      $method      The HTTP verb to use.
+     * @param CachePolicy $cachePolicy The custom caching policy to use.
+     * @param bool        $delayed     If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
-     * @throws RequestException
-     * @throws ResponseException
+     * @throws \QBNK\QBank\API\Exception\RequestException  Thrown if there was something wrong with the request.
+     * @throws \QBNK\QBank\API\Exception\ResponseException Thrown if there was something wrong with the response.
      */
     protected function call($endpoint, array $parameters = [], $method = self::METHOD_GET, CachePolicy $cachePolicy = null, $delayed = false)
     {
         $cachePolicy = (null !== $cachePolicy) ? $cachePolicy : $this->cachePolicy;
 
         if ($delayed) {
-            $this->delayedRequests[] = $this->client->createRequest(strtoupper($method), $endpoint, $parameters);
+            $this->delayedRequests[] = $this->client->requestAsync(strtoupper($method), $endpoint, $parameters);
             $this->logger->debug(
                 'Request to QBank added to delayed queue. ' . strtoupper($method) . ' ' . $endpoint,
                 [
@@ -80,10 +77,10 @@ abstract class ControllerAbstract implements LoggerAwareInterface
 
         if (
             $cachePolicy->isEnabled()
-            && (self::METHOD_GET == $method || self::METHOD_POST == $method && preg_match('/v\d+\/search/', $endpoint))
+            && (self::METHOD_GET === $method || (self::METHOD_POST === $method && preg_match('/v\d+\/search/', $endpoint)))
             && $this->cache->contains(md5($endpoint . json_encode($parameters)))
         ) {
-            /** @var string $response */
+            /** @var array $response */
             $response = $this->cache->fetch(md5($endpoint . json_encode($parameters)));
             $this->logger->info(
                 'Using cached response. ' . strtoupper($method) . ' ' . $endpoint,
@@ -109,34 +106,35 @@ abstract class ControllerAbstract implements LoggerAwareInterface
                     'parameters' => $parameters,
                     'time' => number_format(round((microtime(true) - $start) * 1000), 0, '.', ' ') . ' ms',
                     'method' => $method,
-                    'response' => substr($response->getBody(), 0, 4096),
+                    'response' => substr($response->getBody()->__toString(), 0, 4096),
                 ]
             );
 
             $data = null;
-            if (in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type'))))) {
+            if (in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type')[0])), false)
+                && !empty($response->getBody()->__toString())) {
                 try {
-                    $data = $response->json();
-                } catch (\RuntimeException $re) {
+                    $data = \GuzzleHttp\json_decode($response->getBody()->__toString(), true);
+                } catch (\Exception $re) {
                     $this->logger->error(
                         'Error while receiving response from QBank. ' . strtoupper($method) . ' ' . $endpoint,
                         [
-                            'message' => 'Response not in json format.',
+                            'message' => $re->getMessage(),
                             'endpoint' => $endpoint,
                             'parameters' => $parameters,
                             'method' => $method,
-                            'response' => substr($response->getBody(), 0, 4096),
+                            'response' => substr($response->getBody()->__toString(), 0, 4096),
                         ]
                     );
-                    throw new ResponseException('Error while receiving response from QBank: Response not in json format.');
+                    throw new ResponseException('Error while receiving response from QBank: ' . $re->getMessage());
                 }
             } else {
                 return $response->getBody()->__toString();
             }
 
             if (
-                $cachePolicy->isEnabled() && CachePolicy::EVERYTHING == $cachePolicy->getCacheType()
-                && (self::METHOD_GET == $method || self::METHOD_POST == $method && preg_match('/v\d+\/search/', $endpoint))
+                $cachePolicy->isEnabled() && CachePolicy::EVERYTHING === $cachePolicy->getCacheType()
+                && (self::METHOD_GET === $method || (self::METHOD_POST === $method && preg_match('/v\d+\/search/', $endpoint)))
             ) {
                 $this->cache->save(md5($endpoint . json_encode($parameters)), $data, $cachePolicy->getLifetime());
             }
@@ -151,13 +149,13 @@ abstract class ControllerAbstract implements LoggerAwareInterface
                     'endpoint' => $endpoint,
                     'parameters' => $parameters,
                     'method' => $method,
-                    'response' => $re->hasResponse() ? substr($re->getResponse()->getBody(), 0, 4096) : '',
+                    'response' => $re->hasResponse() ? substr($re->getResponse()->getBody()->__toString(), 0, 4096) : '',
                 ]
             );
             $message = null;
             $details = null;
-            if ($re->hasResponse() && 0 === strpos($re->getResponse()->getHeader('content-type'), 'application/json')) {
-                $content = $re->getResponse()->json();
+            if ($re->hasResponse() && 0 === strpos($re->getResponse()->getHeader('Content-type')[0], 'application/json')) {
+                $content = json_decode($re->getResponse()->getBody()->__toString(), true);
                 if (!empty($content['error'])) {
                     $details = $content['error'];
                 }
@@ -182,12 +180,12 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a GET request to the API.
      *
-     * @param string      $endpoint    the API endpoint URL to request
-     * @param array       $parameters  the parameters to send
-     * @param CachePolicy $cachePolicy the custom caching policy to use
-     * @param bool        $delayed     if the request should be delayed until destruction
+     * @param string      $endpoint    The API endpoint URL to request.
+     * @param array       $parameters  The parameters to send.
+     * @param CachePolicy $cachePolicy The custom caching policy to use.
+     * @param bool        $delayed     If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -200,11 +198,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a POST request to the API.
      *
-     * @param string $endpoint   the API endpoint URL to request
-     * @param array  $parameters the parameters to send
-     * @param bool   $delayed    if the request should be delayed until destruction
+     * @param string $endpoint   The API endpoint URL to request.
+     * @param array  $parameters The parameters to send.
+     * @param bool   $delayed    If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -217,11 +215,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a PUT request to the API.
      *
-     * @param string $endpoint   the API endpoint URL to request
-     * @param array  $parameters the parameters to send
-     * @param bool   $delayed    if the request should be delayed until destruction
+     * @param string $endpoint   The API endpoint URL to request.
+     * @param array  $parameters The parameters to send.
+     * @param bool   $delayed    If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -234,11 +232,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a DELETE request to the API.
      *
-     * @param string $endpoint   the API endpoint URL to request
-     * @param array  $parameters the parameters to send
-     * @param bool   $delayed    if the request should be delayed until destruction
+     * @param string $endpoint   The API endpoint URL to request.
+     * @param array  $parameters The parameters to send.
+     * @param bool   $delayed    If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -257,45 +255,25 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     {
         flush();
         if (!empty($this->delayedRequests)) {
-            $pool = new Pool(
-                $this->client,
-                $this->delayedRequests,
-                [
-                    'pool_size' => count($this->delayedRequests),
-                    'complete' => [
-                        'fn' => function (CompleteEvent $event) {
-                            $this->logger->debug(
-                                'Delayed request to QBank sent. '
-                                    . strtoupper($event->getRequest()->getMethod()) . ' ' . $event->getRequest()->getPath(),
-                                [
-                                    'endpoint' => $event->getRequest()->getPath(),
-                                    'parameters' => ($event->getRequest()->getBody() instanceof PostBodyInterface)
-                                        ? $event->getRequest()->getBody()->getFields() : [],
-                                    'method' => $event->getRequest()->getMethod(),
-                                    'response' => $event->hasResponse() ? substr($event->getResponse()->getBody(), 0, 4096) : '',
-                                ]
-                            );
-                        },
-                        'once' => true,
-                    ],
-                    'error' => [
-                        'fn' => function (ErrorEvent $event) {
-                            $this->logger->warning(
-                                'Error while sending delayed request to QBank: ' . $event->getException()->getMessage(),
-                                [
-                                    'endpoint' => $event->getRequest()->getPath(),
-                                    'parameters' => ($event->getRequest()->getBody() instanceof PostBodyInterface)
-                                        ? $event->getRequest()->getBody()->getFields() : [],
-                                    'method' => $event->getRequest()->getMethod(),
-                                    'response' => $event->hasResponse() ? substr($event->getResponse()->getBody(), 0, 4096) : '',
-                                ]
-                            );
-                        },
-                        'once' => true,
-                    ],
-                ]
-            );
-            $pool->wait();
+            $results = Promise\settle($this->delayedRequests)->wait();
+            foreach ($results as $index => $result) {
+                switch ($result['state']) {
+                    case Promise\PromiseInterface::FULFILLED:
+                        $response = $result['value'];
+                        $this->logger->debug(
+                            'Delayed request to QBank sent. ',
+                            [
+                                'response' => substr($response->getBody()->__toString(), 0, 4096),
+                            ]
+                        );
+                        break;
+                    case Promise\PromiseInterface::REJECTED:
+                        $this->logger->warning(
+                            'Error while sending delayed request to QBank: ' . $result['reason']
+                        );
+                        break;
+                }
+            }
         }
     }
 }

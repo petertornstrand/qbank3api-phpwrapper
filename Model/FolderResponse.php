@@ -54,7 +54,8 @@ class FolderResponse extends Folder implements \JsonSerializable
      *                          - <b>updated</b> - When the Object was updated.
      *                          - <b>updatedBy</b> - Which user that updated the Object.
      *                          - <b>dirty</b> - Whether the object has been modified since constructed.
-     *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+
      */
     public function __construct($parameters = [])
     {
@@ -100,9 +101,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the id of the FolderResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -124,9 +123,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the subFolders of the FolderResponse.
-     *
-     * @return FolderResponse[]
-     */
+     * @return FolderResponse[]	 */
     public function getSubFolders()
     {
         return $this->subFolders;
@@ -177,9 +174,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the savedSearch of the FolderResponse.
-     *
-     * @return SavedSearch
-     */
+     * @return SavedSearch	 */
     public function getSavedSearch()
     {
         return $this->savedSearch;
@@ -208,9 +203,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the objectCount of the FolderResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getObjectCount()
     {
         return $this->objectCount;
@@ -232,9 +225,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the objectId of the FolderResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getObjectId()
     {
         return $this->objectId;
@@ -256,9 +247,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the created of the FolderResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -288,9 +277,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the createdBy of the FolderResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -312,9 +299,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the updated of the FolderResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -344,9 +329,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the FolderResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -368,9 +351,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Tells whether the FolderResponse is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -392,9 +373,7 @@ class FolderResponse extends Folder implements \JsonSerializable
 
     /**
      * Gets the propertySets of the FolderResponse.
-     *
-     * @return PropertySet[]
-     */
+     * @return PropertySet[]	 */
     public function getPropertySets()
     {
         return $this->propertySets;

@@ -12,6 +12,7 @@ class DeploymentController extends ControllerAbstract
     /**
      * Lists all Protocols.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return Protocol[]
@@ -61,6 +62,7 @@ class DeploymentController extends ControllerAbstract
      *
      * Lists all DeploymentSites the current User has access to.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return DeploymentSiteResponse[]
@@ -108,8 +110,7 @@ class DeploymentController extends ControllerAbstract
     /**
      * Create a DeploymentSite.
      *
-     * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite to create
-     *
+     * @param  DeploymentSite         $deploymentSite A JSON encoded DeploymentSite to create
      * @return DeploymentSiteResponse
      */
     public function createSite(DeploymentSite $deploymentSite)
@@ -129,9 +130,8 @@ class DeploymentController extends ControllerAbstract
     /**
      * Update a DeploymentSite.
      *
-     * @param int            $id             the DeploymentSite identifier
-     * @param DeploymentSite $deploymentSite A JSON encoded DeploymentSite representing the updates
-     *
+     * @param  int                    $id             the DeploymentSite identifier
+     * @param  DeploymentSite         $deploymentSite A JSON encoded DeploymentSite representing the updates
      * @return DeploymentSiteResponse
      */
     public function updateSite($id, DeploymentSite $deploymentSite)
@@ -153,9 +153,8 @@ class DeploymentController extends ControllerAbstract
      *
      * Deploy Media to a DeploymentSite, this is an asynchronous method.
      *
-     * @param int   $id       deploymentSite to deploy to
-     * @param int[] $mediaIds an array of int values
-     *
+     * @param  int   $id       deploymentSite to deploy to
+     * @param  int[] $mediaIds an array of int values
      * @return array
      */
     public function addMediaToDeploymentSite($id, array $mediaIds)
@@ -176,8 +175,7 @@ class DeploymentController extends ControllerAbstract
      *
      * You can not delete a DeploymentSite while there are still media deployed there!
      *
-     * @param int $id the DeploymentSite identifier
-     *
+     * @param  int                    $id the DeploymentSite identifier
      * @return DeploymentSiteResponse
      */
     public function removeSite($id)
@@ -199,9 +197,8 @@ class DeploymentController extends ControllerAbstract
      *
      * Undeploy Media from a DeploymentSite, this is an asynchronous method.
      *
-     * @param int    $id       deploymentSite to undeploy from
-     * @param string $mediaIds a comma separated string of media ids we should undeploy
-     *
+     * @param  int    $id       deploymentSite to undeploy from
+     * @param  string $mediaIds a comma separated string of media ids we should undeploy
      * @return array
      */
     public function removeMediaFromDeploymentSite($id, $mediaIds)

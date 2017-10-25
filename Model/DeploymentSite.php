@@ -67,7 +67,8 @@ class DeploymentSite implements \JsonSerializable
      *                          - <b>name</b> - The Objects name.
      *                          - <b>deleted</b> - Whether the object is deleted.
      *                          - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
-     *                          - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+     * - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
+
      */
     public function __construct($parameters = [])
     {
@@ -125,9 +126,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the description of the DeploymentSite.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getDescription()
     {
         return $this->description;
@@ -149,9 +148,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the protocol of the DeploymentSite.
-     *
-     * @return Protocol
-     */
+     * @return Protocol	 */
     public function getProtocol()
     {
         return $this->protocol;
@@ -180,9 +177,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the definition of the DeploymentSite.
-     *
-     * @return object
-     */
+     * @return object	 */
     public function getDefinition()
     {
         return $this->definition;
@@ -212,9 +207,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the viewserver of the DeploymentSite.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getViewserver()
     {
         return $this->viewserver;
@@ -236,9 +229,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the viewpath of the DeploymentSite.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getViewpath()
     {
         return $this->viewpath;
@@ -260,9 +251,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the namingpattern of the DeploymentSite.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getNamingpattern()
     {
         return $this->namingpattern;
@@ -284,9 +273,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Tells whether the DeploymentSite is children.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isChildren()
     {
         return $this->children;
@@ -308,9 +295,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the color of the DeploymentSite.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getColor()
     {
         return $this->color;
@@ -332,9 +317,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the imagetemplates of the DeploymentSite.
-     *
-     * @return ImageTemplate[]
-     */
+     * @return ImageTemplate[]	 */
     public function getImagetemplates()
     {
         return $this->imagetemplates;
@@ -385,9 +368,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the videotemplates of the DeploymentSite.
-     *
-     * @return VideoTemplate[]
-     */
+     * @return VideoTemplate[]	 */
     public function getVideotemplates()
     {
         return $this->videotemplates;
@@ -438,9 +419,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the categories of the DeploymentSite.
-     *
-     * @return CategoryResponse[]
-     */
+     * @return CategoryResponse[]	 */
     public function getCategories()
     {
         return $this->categories;
@@ -491,9 +470,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the name of the DeploymentSite.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -515,9 +492,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Tells whether the DeploymentSite is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -539,9 +514,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the properties of the DeploymentSite.
-     *
-     * @return string[]
-     */
+     * @return string[]	 */
     public function getProperties()
     {
         return $this->properties;
@@ -563,9 +536,7 @@ class DeploymentSite implements \JsonSerializable
 
     /**
      * Gets the typeId of the DeploymentSite.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getTypeId()
     {
         return $this->typeId;

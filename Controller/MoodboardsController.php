@@ -14,6 +14,7 @@ class MoodboardsController extends ControllerAbstract
      *
      * that the current user has access to.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return MoodboardResponse[]
@@ -65,6 +66,7 @@ class MoodboardsController extends ControllerAbstract
      *
      * Lists all Moodboard templates that the user has access to.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return MoodboardTemplateResponse[]
@@ -116,8 +118,7 @@ class MoodboardsController extends ControllerAbstract
      *
      * Create a Moodboard
      *
-     * @param Moodboard $moodboard A JSON encoded Moodboard to create
-     *
+     * @param  Moodboard         $moodboard A JSON encoded Moodboard to create
      * @return MoodboardResponse
      */
     public function createMoodboard(Moodboard $moodboard)
@@ -139,9 +140,8 @@ class MoodboardsController extends ControllerAbstract
      *
      * Update a Moodboard.
      *
-     * @param int       $id        the Moodboard identifier
-     * @param Moodboard $moodboard A JSON encoded Moodboard representing the updates
-     *
+     * @param  int               $id        the Moodboard identifier
+     * @param  Moodboard         $moodboard A JSON encoded Moodboard representing the updates
      * @return MoodboardResponse
      */
     public function updateMoodboard($id, Moodboard $moodboard)
@@ -161,9 +161,8 @@ class MoodboardsController extends ControllerAbstract
     /**
      * Add Media to a Moodboard.
      *
-     * @param int   $moodboardId moodboard ID to add media to
-     * @param int[] $mediaIds    an array of int values
-     *
+     * @param  int   $moodboardId moodboard ID to add media to
+     * @param  int[] $mediaIds    an array of int values
      * @return array
      */
     public function addMediaToMoodboard($moodboardId, array $mediaIds)
@@ -184,8 +183,7 @@ class MoodboardsController extends ControllerAbstract
      *
      * Will NOT delete Media attached to the Moodboard.
      *
-     * @param int $id the Moodboard identifier
-     *
+     * @param  int               $id the Moodboard identifier
      * @return MoodboardResponse
      */
     public function removeMoodboard($id)
@@ -205,9 +203,8 @@ class MoodboardsController extends ControllerAbstract
     /**
      * Remove Media from a Moodboard.
      *
-     * @param int $moodboardId moodboard ID to remove media from
-     * @param int $mediaId     media ID to remove from specified folder
-     *
+     * @param  int   $moodboardId moodboard ID to remove media from
+     * @param  int   $mediaId     media ID to remove from specified folder
      * @return array
      */
     public function removeMediaFromMoodboard($moodboardId, $mediaId)

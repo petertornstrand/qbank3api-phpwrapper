@@ -119,7 +119,8 @@ class Search implements \JsonSerializable
      *                          - <b>name</b> - Filter by object name, uses normal LIKE database syntax
      *                          - <b>deploymentDateRange</b> - Filter by deployment date
      *                          - <b>sortFields</b> - An array of SearchSort fields to order results by
-     *                          - <b>duplicates</b> - Search only for duplicates
+     * - <b>duplicates</b> - Search only for duplicates
+
      */
     public function __construct($parameters = [])
     {
@@ -231,9 +232,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the offset of the Search.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getOffset()
     {
         return $this->offset;
@@ -255,9 +254,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the limit of the Search.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getLimit()
     {
         return $this->limit;
@@ -279,9 +276,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the freeText of the Search.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getFreeText()
     {
         return $this->freeText;
@@ -303,9 +298,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the objectIds of the Search.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getObjectIds()
     {
         return $this->objectIds;
@@ -327,9 +320,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the mediaIds of the Search.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getMediaIds()
     {
         return $this->mediaIds;
@@ -351,9 +342,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the createdByIds of the Search.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getCreatedByIds()
     {
         return $this->createdByIds;
@@ -375,9 +364,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the createdRange of the Search.
-     *
-     * @return DateTimeRange
-     */
+     * @return DateTimeRange	 */
     public function getCreatedRange()
     {
         return $this->createdRange;
@@ -406,9 +393,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the updatedByIds of the Search.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getUpdatedByIds()
     {
         return $this->updatedByIds;
@@ -430,9 +415,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the updatedRange of the Search.
-     *
-     * @return DateTimeRange
-     */
+     * @return DateTimeRange	 */
     public function getUpdatedRange()
     {
         return $this->updatedRange;
@@ -461,9 +444,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the mediaStatusIds of the Search.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getMediaStatusIds()
     {
         return $this->mediaStatusIds;
@@ -485,9 +466,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the folderIds of the Search.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getFolderIds()
     {
         return $this->folderIds;
@@ -509,9 +488,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the folderDepth of the Search.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getFolderDepth()
     {
         return $this->folderDepth;
@@ -533,9 +510,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the moodboardIds of the Search.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getMoodboardIds()
     {
         return $this->moodboardIds;
@@ -557,9 +532,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the categoryIds of the Search.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getCategoryIds()
     {
         return $this->categoryIds;
@@ -581,9 +554,7 @@ class Search implements \JsonSerializable
 
     /**
      * Tells whether the Search is ignoreGrouping.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isIgnoreGrouping()
     {
         return $this->ignoreGrouping;
@@ -605,9 +576,7 @@ class Search implements \JsonSerializable
 
     /**
      * Tells whether the Search is includeChildren.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isIncludeChildren()
     {
         return $this->includeChildren;
@@ -629,9 +598,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the parentId of the Search.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getParentId()
     {
         return $this->parentId;
@@ -653,9 +620,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the deploymentSiteIds of the Search.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getDeploymentSiteIds()
     {
         return $this->deploymentSiteIds;
@@ -677,9 +642,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the properties of the Search.
-     *
-     * @return PropertyCriteria[]
-     */
+     * @return PropertyCriteria[]	 */
     public function getProperties()
     {
         return $this->properties;
@@ -730,9 +693,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the fileSizeCriteria of the Search.
-     *
-     * @return string[]
-     */
+     * @return string[]	 */
     public function getFileSizeCriteria()
     {
         return $this->fileSizeCriteria;
@@ -754,9 +715,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the widthCriteria of the Search.
-     *
-     * @return string[]
-     */
+     * @return string[]	 */
     public function getWidthCriteria()
     {
         return $this->widthCriteria;
@@ -778,9 +737,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the heightCriteria of the Search.
-     *
-     * @return string[]
-     */
+     * @return string[]	 */
     public function getHeightCriteria()
     {
         return $this->heightCriteria;
@@ -802,9 +759,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the mimeTypes of the Search.
-     *
-     * @return string[]
-     */
+     * @return string[]	 */
     public function getMimeTypes()
     {
         return $this->mimeTypes;
@@ -826,9 +781,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the fileName of the Search.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getFileName()
     {
         return $this->fileName;
@@ -850,9 +803,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the name of the Search.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -874,9 +825,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the deploymentDateRange of the Search.
-     *
-     * @return DateTimeRange
-     */
+     * @return DateTimeRange	 */
     public function getDeploymentDateRange()
     {
         return $this->deploymentDateRange;
@@ -905,9 +854,7 @@ class Search implements \JsonSerializable
 
     /**
      * Gets the sortFields of the Search.
-     *
-     * @return SearchSort[]
-     */
+     * @return SearchSort[]	 */
     public function getSortFields()
     {
         return $this->sortFields;
@@ -958,9 +905,7 @@ class Search implements \JsonSerializable
 
     /**
      * Tells whether the Search is duplicates.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDuplicates()
     {
         return $this->duplicates;

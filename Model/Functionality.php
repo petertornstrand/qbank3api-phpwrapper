@@ -49,7 +49,8 @@ class Functionality implements \JsonSerializable
      *                          - <b>createdBy</b> - The User Id that created the Functionality
      *                          - <b>updated</b> - When the Functionality was updated.
      *                          - <b>updatedBy</b> - User Id that updated the Functionality
-     *                          - <b>title</b> - A title that can be used to show the user
+     * - <b>title</b> - A title that can be used to show the user
+
      */
     public function __construct($parameters = [])
     {
@@ -87,9 +88,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Gets the id of the Functionality.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -111,9 +110,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Gets the name of the Functionality.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -135,9 +132,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Gets the description of the Functionality.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getDescription()
     {
         return $this->description;
@@ -159,9 +154,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Tells whether the Functionality is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -183,9 +176,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Tells whether the Functionality is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -207,9 +198,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Gets the created of the Functionality.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -239,9 +228,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Gets the createdBy of the Functionality.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -263,9 +250,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Gets the updated of the Functionality.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -295,9 +280,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the Functionality.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -319,9 +302,7 @@ class Functionality implements \JsonSerializable
 
     /**
      * Gets the title of the Functionality.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getTitle()
     {
         return $this->title;

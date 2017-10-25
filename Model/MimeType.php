@@ -35,7 +35,8 @@ class MimeType implements \JsonSerializable
      *                          - <b>imagetemplate</b> - Whether the MimeType is usable in an ImageTemplate.
      *                          - <b>videotemplate</b> - Whether the MimeType is usable in a VideoTemplate.
      *                          - <b>defaultextension</b> - The default file extension of the MimeType.
-     *                          - <b>classification</b> - The MimeType class. Eg. image, video, document.
+     * - <b>classification</b> - The MimeType class. Eg. image, video, document.
+
      */
     public function __construct($parameters = [])
     {
@@ -64,9 +65,7 @@ class MimeType implements \JsonSerializable
 
     /**
      * Gets the id of the MimeType.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -88,9 +87,7 @@ class MimeType implements \JsonSerializable
 
     /**
      * Gets the mimetype of the MimeType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getMimetype()
     {
         return $this->mimetype;
@@ -112,9 +109,7 @@ class MimeType implements \JsonSerializable
 
     /**
      * Gets the description of the MimeType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getDescription()
     {
         return $this->description;
@@ -136,9 +131,7 @@ class MimeType implements \JsonSerializable
 
     /**
      * Tells whether the MimeType is imagetemplate.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isImagetemplate()
     {
         return $this->imagetemplate;
@@ -160,9 +153,7 @@ class MimeType implements \JsonSerializable
 
     /**
      * Tells whether the MimeType is videotemplate.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isVideotemplate()
     {
         return $this->videotemplate;
@@ -184,9 +175,7 @@ class MimeType implements \JsonSerializable
 
     /**
      * Gets the defaultextension of the MimeType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getDefaultextension()
     {
         return $this->defaultextension;
@@ -208,9 +197,7 @@ class MimeType implements \JsonSerializable
 
     /**
      * Gets the classification of the MimeType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getClassification()
     {
         return $this->classification;

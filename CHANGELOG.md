@@ -6,6 +6,11 @@ The format of this changelog adheres to [Semantic Versioning](http://semver.org/
 ### Added
 - This changelog
 
+## [2.0]
+### Changed
+- Updated the dependency Guzzle from version 5 to 6 to remain actual and provide the highest chance of compability with other projects.
+- Returned return statements for all "void" functions due to compability issues. As it turns out, all functions documented as returning void in the API, aren't return void. 
+
 ## [1.4.0]
 ### Added
 - Option to retrieve child medias when retrieving a media

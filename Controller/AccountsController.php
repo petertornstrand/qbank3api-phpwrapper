@@ -119,6 +119,7 @@ class AccountsController extends ControllerAbstract
      *
      * Effectively a whoami call.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return User
@@ -194,6 +195,7 @@ class AccountsController extends ControllerAbstract
      *
      * Fetches all settings currently available for the current user.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return array
@@ -302,17 +304,18 @@ class AccountsController extends ControllerAbstract
             'headers' => [],
         ];
 
-        $this->post('v1/accounts/settings', $parameters);
+        $result = $this->post('v1/accounts/settings', $parameters);
+
+        return $result;
     }
 
     /**
      * Create a user Create a user in QBank.
      *
-     * @param User   $user                  The user to create
-     * @param string $password              Password for the new user, leave blank to let QBank send a password-reset link to the user
-     * @param string $redirectTo            Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
-     * @param bool   $sendNotificationEmail Send a notification email to the new user, as specified through the QBank backend
-     *
+     * @param  User   $user                  The user to create
+     * @param  string $password              Password for the new user, leave blank to let QBank send a password-reset link to the user
+     * @param  string $redirectTo            Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
+     * @param  bool   $sendNotificationEmail Send a notification email to the new user, as specified through the QBank backend
      * @return User
      */
     public function createUser(User $user, $password = null, $redirectTo = null, $sendNotificationEmail = null)
@@ -332,10 +335,9 @@ class AccountsController extends ControllerAbstract
     /**
      * Update a user Update a user in QBank.
      *
-     * @param int    $id
-     * @param User   $user     The user to update
-     * @param string $password Set a new password for the user, leave blank to leave unchanged
-     *
+     * @param  int    $id
+     * @param  User   $user     The user to update
+     * @param  string $password Set a new password for the user, leave blank to leave unchanged
      * @return User
      */
     public function updateUser($id, User $user, $password = null)
@@ -355,9 +357,8 @@ class AccountsController extends ControllerAbstract
     /**
      * Add the user to one or more groups.
      *
-     * @param int   $id
-     * @param int[] $groupIds an array of int values
-     *
+     * @param  int   $id
+     * @param  int[] $groupIds an array of int values
      * @return User
      */
     public function addUserToGroup($id, array $groupIds)
@@ -377,9 +378,8 @@ class AccountsController extends ControllerAbstract
     /**
      * Update the last login time for a user Update the last login time for a user.
      *
-     * @param int  $id
-     * @param bool $successful Login attempt successful or not
-     *
+     * @param  int  $id
+     * @param  bool $successful Login attempt successful or not
      * @return User
      */
     public function updateLastLogin($id, $successful = null)
@@ -412,7 +412,9 @@ class AccountsController extends ControllerAbstract
             'headers' => [],
         ];
 
-        $this->post('v1/accounts/users/' . $id . '/resetpassword', $parameters);
+        $result = $this->post('v1/accounts/users/' . $id . '/resetpassword', $parameters);
+
+        return $result;
     }
 
     /**
@@ -420,9 +422,8 @@ class AccountsController extends ControllerAbstract
      *
      * Resets a password for a user with a valid password reset hash. Hash should be obtained through "/users/{id}/sendpasswordreset".
      *
-     * @param string $hash     Valid password reset hash
-     * @param string $password New password
-     *
+     * @param  string $hash     Valid password reset hash
+     * @param  string $password New password
      * @return array
      */
     public function resetPassword($hash, $password)
@@ -454,6 +455,8 @@ class AccountsController extends ControllerAbstract
             'headers' => [],
         ];
 
-        $this->put('v1/accounts/settings/' . $key . '', $parameters);
+        $result = $this->put('v1/accounts/settings/' . $key . '', $parameters);
+
+        return $result;
     }
 }
