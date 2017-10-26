@@ -56,7 +56,8 @@ class PropertyType implements \JsonSerializable
      *                          - <b>systemName</b> - The Property system name, this is used for programmatic access.
      *                          - <b>description</b> - A description of the PropertyType.
      *                          - <b>dataTypeId</b> - Data type for the Property (1: Boolean, 2: DateTime, 3: Decimal, 4: Float, 5: Integer, 6: String) In addition, definition can alter the way a Property should be displayed.
-     *                          - <b>definition</b> - A Key/Value Object containing extra information about how this Property should be used.
+     * - <b>definition</b> - A Key/Value Object containing extra information about how this Property should be used.
+
      */
     public function __construct($parameters = [])
     {
@@ -94,9 +95,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Gets the created of the PropertyType.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -126,9 +125,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Gets the createdBy of the PropertyType.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -150,9 +147,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Gets the updated of the PropertyType.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -182,9 +177,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the PropertyType.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -206,9 +199,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Tells whether the PropertyType is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -230,9 +221,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Gets the name of the PropertyType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -254,9 +243,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Gets the systemName of the PropertyType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getSystemName()
     {
         return $this->systemName;
@@ -278,9 +265,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Gets the description of the PropertyType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getDescription()
     {
         return $this->description;
@@ -302,9 +287,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Gets the dataTypeId of the PropertyType.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getDataTypeId()
     {
         return $this->dataTypeId;
@@ -326,9 +309,7 @@ class PropertyType implements \JsonSerializable
 
     /**
      * Gets the definition of the PropertyType.
-     *
-     * @return object
-     */
+     * @return object	 */
     public function getDefinition()
     {
         return $this->definition;

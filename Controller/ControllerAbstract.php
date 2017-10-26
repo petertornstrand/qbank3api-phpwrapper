@@ -49,13 +49,13 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Performs a request to the QBank API.
      *
-     * @param string      $endpoint    the API endpoint URL to request
-     * @param array       $parameters  the parameters to send
-     * @param string      $method      the HTTP verb to use
-     * @param CachePolicy $cachePolicy the custom caching policy to use
-     * @param bool        $delayed     if the request should be delayed until destruction
+     * @param string      $endpoint    The API endpoint URL to request.
+     * @param array       $parameters  The parameters to send.
+     * @param string      $method      The HTTP verb to use.
+     * @param CachePolicy $cachePolicy The custom caching policy to use.
+     * @param bool        $delayed     If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -182,12 +182,12 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a GET request to the API.
      *
-     * @param string      $endpoint    the API endpoint URL to request
-     * @param array       $parameters  the parameters to send
-     * @param CachePolicy $cachePolicy the custom caching policy to use
-     * @param bool        $delayed     if the request should be delayed until destruction
+     * @param string      $endpoint    The API endpoint URL to request.
+     * @param array       $parameters  The parameters to send.
+     * @param CachePolicy $cachePolicy The custom caching policy to use.
+     * @param bool        $delayed     If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -200,11 +200,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a POST request to the API.
      *
-     * @param string $endpoint   the API endpoint URL to request
-     * @param array  $parameters the parameters to send
-     * @param bool   $delayed    if the request should be delayed until destruction
+     * @param string $endpoint   The API endpoint URL to request.
+     * @param array  $parameters The parameters to send.
+     * @param bool   $delayed    If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -217,11 +217,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a PUT request to the API.
      *
-     * @param string $endpoint   the API endpoint URL to request
-     * @param array  $parameters the parameters to send
-     * @param bool   $delayed    if the request should be delayed until destruction
+     * @param string $endpoint   The API endpoint URL to request.
+     * @param array  $parameters The parameters to send.
+     * @param bool   $delayed    If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -234,11 +234,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a DELETE request to the API.
      *
-     * @param string $endpoint   the API endpoint URL to request
-     * @param array  $parameters the parameters to send
-     * @param bool   $delayed    if the request should be delayed until destruction
+     * @param string $endpoint   The API endpoint URL to request.
+     * @param array  $parameters The parameters to send.
+     * @param bool   $delayed    If the request should be delayed until destruction.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException

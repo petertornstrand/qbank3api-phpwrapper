@@ -94,7 +94,8 @@ class MediaResponse extends Media implements \JsonSerializable
      *                          - <b>updated</b> - When the Object was updated.
      *                          - <b>updatedBy</b> - Which user that updated the Object.
      *                          - <b>dirty</b> - Whether the object has been modified since constructed.
-     *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+
      */
     public function __construct($parameters = [])
     {
@@ -169,9 +170,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the mediaId of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getMediaId()
     {
         return $this->mediaId;
@@ -193,9 +192,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the thumbPreviewStatus of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getThumbPreviewStatus()
     {
         return $this->thumbPreviewStatus;
@@ -217,9 +214,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the extension of the MediaResponse.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getExtension()
     {
         return $this->extension;
@@ -284,9 +279,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the mimetype of the MediaResponse.
-     *
-     * @return MimeType
-     */
+     * @return MimeType	 */
     public function getMimetype()
     {
         return $this->mimetype;
@@ -315,9 +308,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the size of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getSize()
     {
         return $this->size;
@@ -339,9 +330,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the statusId of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getStatusId()
     {
         return $this->statusId;
@@ -363,9 +352,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the uploaded of the MediaResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUploaded()
     {
         return $this->uploaded;
@@ -395,9 +382,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the uploadedBy of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUploadedBy()
     {
         return $this->uploadedBy;
@@ -419,9 +404,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the deployedFiles of the MediaResponse.
-     *
-     * @return DeploymentFile[]
-     */
+     * @return DeploymentFile[]	 */
     public function getDeployedFiles()
     {
         return $this->deployedFiles;
@@ -472,9 +455,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the commentCount of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCommentCount()
     {
         return $this->commentCount;
@@ -496,9 +477,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the rating of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getRating()
     {
         return $this->rating;
@@ -520,9 +499,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the childMedias of the MediaResponse.
-     *
-     * @return self[]
-     */
+     * @return self[]	 */
     public function getChildMedias()
     {
         return $this->childMedias;
@@ -573,9 +550,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the objectId of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getObjectId()
     {
         return $this->objectId;
@@ -597,9 +572,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the created of the MediaResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -629,9 +602,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the createdBy of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -653,9 +624,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the updated of the MediaResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -685,9 +654,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the MediaResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -709,9 +676,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Tells whether the MediaResponse is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -733,9 +698,7 @@ class MediaResponse extends Media implements \JsonSerializable
 
     /**
      * Gets the propertySets of the MediaResponse.
-     *
-     * @return PropertySet[]
-     */
+     * @return PropertySet[]	 */
     public function getPropertySets()
     {
         return $this->propertySets;

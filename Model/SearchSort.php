@@ -50,7 +50,8 @@ class SearchSort implements \JsonSerializable
      *                          - <b>dateRange</b> - When sorting on Media Popularity, a optional dateRange to find popular media within
      *                          - <b>systemName</b> - When sorting on a property, the system name of the property to sort on
      *                          - <b>jsonKey</b> - When sorting on a Json Property, the Json key to sort by
-     *                          - <b>deploymentSiteId</b> - When sorting on deploymentdate, the optional site id to sort by
+     * - <b>deploymentSiteId</b> - When sorting on deploymentdate, the optional site id to sort by
+
      */
     public function __construct($parameters = [])
     {
@@ -79,9 +80,7 @@ class SearchSort implements \JsonSerializable
 
     /**
      * Gets the sortField of the SearchSort.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getSortField()
     {
         return $this->sortField;
@@ -103,9 +102,7 @@ class SearchSort implements \JsonSerializable
 
     /**
      * Gets the sortDirection of the SearchSort.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getSortDirection()
     {
         return $this->sortDirection;
@@ -127,9 +124,7 @@ class SearchSort implements \JsonSerializable
 
     /**
      * Gets the sourceId of the SearchSort.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getSourceId()
     {
         return $this->sourceId;
@@ -151,9 +146,7 @@ class SearchSort implements \JsonSerializable
 
     /**
      * Gets the dateRange of the SearchSort.
-     *
-     * @return DateTimeRange
-     */
+     * @return DateTimeRange	 */
     public function getDateRange()
     {
         return $this->dateRange;
@@ -182,9 +175,7 @@ class SearchSort implements \JsonSerializable
 
     /**
      * Gets the systemName of the SearchSort.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getSystemName()
     {
         return $this->systemName;
@@ -206,9 +197,7 @@ class SearchSort implements \JsonSerializable
 
     /**
      * Gets the jsonKey of the SearchSort.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getJsonKey()
     {
         return $this->jsonKey;
@@ -230,9 +219,7 @@ class SearchSort implements \JsonSerializable
 
     /**
      * Gets the deploymentSiteId of the SearchSort.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getDeploymentSiteId()
     {
         return $this->deploymentSiteId;

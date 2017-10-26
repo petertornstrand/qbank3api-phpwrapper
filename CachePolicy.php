@@ -21,7 +21,7 @@ class CachePolicy
      * Creates a new CachePolicy.
      *
      * @param int $cacheType The behaviour of the cache. Must be one of the CachePolicy constants.
-     * @param int $lifetime  the cache lifetime in seconds
+     * @param int $lifetime  The cache lifetime in seconds.
      */
     public function __construct($cacheType, $lifetime)
     {

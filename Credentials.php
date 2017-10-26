@@ -28,7 +28,7 @@ class Credentials
     /**
      * Gets or sets the internal value.
      *
-     * @internal hack to hide value from dumping and possibly exposing by mistake
+     * @internal Hack to hide value from dumping and possibly exposing by mistake.
      *
      * @param string|null $newPassword
      *

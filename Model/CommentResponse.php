@@ -25,7 +25,8 @@ class CommentResponse extends Comment implements \JsonSerializable
      *                          - <b>id</b> - Id of the comment
      *                          - <b>createdBy</b> - The QBank user that wrote this comment
      *                          - <b>created</b> - Time this comment was made
-     *                          - <b>replies</b> - A array of eventual replies to this comment
+     * - <b>replies</b> - A array of eventual replies to this comment
+
      */
     public function __construct($parameters = [])
     {
@@ -49,9 +50,7 @@ class CommentResponse extends Comment implements \JsonSerializable
 
     /**
      * Gets the id of the CommentResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -73,9 +72,7 @@ class CommentResponse extends Comment implements \JsonSerializable
 
     /**
      * Gets the createdBy of the CommentResponse.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -97,9 +94,7 @@ class CommentResponse extends Comment implements \JsonSerializable
 
     /**
      * Gets the created of the CommentResponse.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -129,9 +124,7 @@ class CommentResponse extends Comment implements \JsonSerializable
 
     /**
      * Gets the replies of the CommentResponse.
-     *
-     * @return CommentResponse[]
-     */
+     * @return CommentResponse[]	 */
     public function getReplies()
     {
         return $this->replies;

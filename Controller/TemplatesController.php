@@ -14,6 +14,7 @@ class TemplatesController extends ControllerAbstract
      *
      * List all non-deleted audio templates.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return AudioTemplate[]
@@ -63,6 +64,7 @@ class TemplatesController extends ControllerAbstract
     /**
      * Lists Image Templates available.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return ImageTemplate[]
@@ -112,6 +114,7 @@ class TemplatesController extends ControllerAbstract
     /**
      * Lists Video Templates available.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return VideoTemplate[]

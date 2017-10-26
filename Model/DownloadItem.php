@@ -27,7 +27,8 @@ class DownloadItem implements \JsonSerializable
      *                          - <b>imageTemplateId</b> - ImageTemplate ID
      *                          - <b>videoTemplateId</b> - ImageTemplate ID
      *                          - <b>documentTemplateId</b> - ImageTemplate ID
-     *                          - <b>audioTemplateId</b> - ImageTemplate ID
+     * - <b>audioTemplateId</b> - ImageTemplate ID
+
      */
     public function __construct($parameters = [])
     {
@@ -50,9 +51,7 @@ class DownloadItem implements \JsonSerializable
 
     /**
      * Gets the mediaId of the DownloadItem.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getMediaId()
     {
         return $this->mediaId;
@@ -74,9 +73,7 @@ class DownloadItem implements \JsonSerializable
 
     /**
      * Gets the imageTemplateId of the DownloadItem.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getImageTemplateId()
     {
         return $this->imageTemplateId;
@@ -98,9 +95,7 @@ class DownloadItem implements \JsonSerializable
 
     /**
      * Gets the videoTemplateId of the DownloadItem.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getVideoTemplateId()
     {
         return $this->videoTemplateId;
@@ -122,9 +117,7 @@ class DownloadItem implements \JsonSerializable
 
     /**
      * Gets the documentTemplateId of the DownloadItem.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getDocumentTemplateId()
     {
         return $this->documentTemplateId;
@@ -146,9 +139,7 @@ class DownloadItem implements \JsonSerializable
 
     /**
      * Gets the audioTemplateId of the DownloadItem.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getAudioTemplateId()
     {
         return $this->audioTemplateId;

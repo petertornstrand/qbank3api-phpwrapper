@@ -49,7 +49,8 @@ class ExtraData implements \JsonSerializable
      *                          - <b>updatedBy</b> - User Id that updated the ExtraData
      *                          - <b>key</b> - The ExtraData key
      *                          - <b>keyId</b> - The ExtraData Key Identifier
-     *                          - <b>value</b> - The value of the ExtraData
+     * - <b>value</b> - The value of the ExtraData
+
      */
     public function __construct($parameters = [])
     {
@@ -87,9 +88,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Gets the id of the ExtraData.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -111,9 +110,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Tells whether the ExtraData is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -135,9 +132,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Tells whether the ExtraData is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -159,9 +154,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Gets the created of the ExtraData.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -191,9 +184,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Gets the createdBy of the ExtraData.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -215,9 +206,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Gets the updated of the ExtraData.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -247,9 +236,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the ExtraData.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -271,9 +258,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Gets the key of the ExtraData.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getKey()
     {
         return $this->key;
@@ -295,9 +280,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Gets the keyId of the ExtraData.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getKeyId()
     {
         return $this->keyId;
@@ -319,9 +302,7 @@ class ExtraData implements \JsonSerializable
 
     /**
      * Gets the value of the ExtraData.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getValue()
     {
         return $this->value;

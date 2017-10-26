@@ -49,7 +49,8 @@ class Role implements \JsonSerializable
      *                          - <b>createdBy</b> - The User Id that created the Role
      *                          - <b>updated</b> - When the Role was updated.
      *                          - <b>updatedBy</b> - User Id that updated the Role
-     *                          - <b>functionalities</b> - An array of Functionalities connected to this role
+     * - <b>functionalities</b> - An array of Functionalities connected to this role
+
      */
     public function __construct($parameters = [])
     {
@@ -89,9 +90,7 @@ class Role implements \JsonSerializable
 
     /**
      * Gets the id of the Role.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -113,9 +112,7 @@ class Role implements \JsonSerializable
 
     /**
      * Gets the name of the Role.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -137,9 +134,7 @@ class Role implements \JsonSerializable
 
     /**
      * Gets the description of the Role.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getDescription()
     {
         return $this->description;
@@ -161,9 +156,7 @@ class Role implements \JsonSerializable
 
     /**
      * Tells whether the Role is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -185,9 +178,7 @@ class Role implements \JsonSerializable
 
     /**
      * Tells whether the Role is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -209,9 +200,7 @@ class Role implements \JsonSerializable
 
     /**
      * Gets the created of the Role.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -241,9 +230,7 @@ class Role implements \JsonSerializable
 
     /**
      * Gets the createdBy of the Role.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -265,9 +252,7 @@ class Role implements \JsonSerializable
 
     /**
      * Gets the updated of the Role.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -297,9 +282,7 @@ class Role implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the Role.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -321,9 +304,7 @@ class Role implements \JsonSerializable
 
     /**
      * Gets the functionalities of the Role.
-     *
-     * @return Functionality[]
-     */
+     * @return Functionality[]	 */
     public function getFunctionalities()
     {
         return $this->functionalities;

@@ -17,7 +17,8 @@ class DateTimeRange implements \JsonSerializable
      *
      * @param array $parameters An array of parameters to initialize the {@link DateTimeRange} with.
      *                          - <b>min</b> - Minimum date in this range, leave empty for none.
-     *                          - <b>max</b> - Maximum date in this range, leave empty for none.
+     * - <b>max</b> - Maximum date in this range, leave empty for none.
+
      */
     public function __construct($parameters = [])
     {
@@ -31,9 +32,7 @@ class DateTimeRange implements \JsonSerializable
 
     /**
      * Gets the min of the DateTimeRange.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getMin()
     {
         return $this->min;
@@ -63,9 +62,7 @@ class DateTimeRange implements \JsonSerializable
 
     /**
      * Gets the max of the DateTimeRange.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getMax()
     {
         return $this->max;

@@ -50,7 +50,8 @@ class ObjectType implements \JsonSerializable
      *                          - <b>updated</b> - When the ObjectType was updated.
      *                          - <b>updatedBy</b> - Which user that updated the ObjectType.
      *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
-     *                          - <b>deleted</b> - Whether this ObjectType is deleted.
+     * - <b>deleted</b> - Whether this ObjectType is deleted.
+
      */
     public function __construct($parameters = [])
     {
@@ -90,9 +91,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Gets the name of the ObjectType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -114,9 +113,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Gets the description of the ObjectType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getDescription()
     {
         return $this->description;
@@ -138,9 +135,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Gets the type of the ObjectType.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getType()
     {
         return $this->type;
@@ -162,9 +157,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Gets the id of the ObjectType.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -186,9 +179,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Gets the created of the ObjectType.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -218,9 +209,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Gets the createdBy of the ObjectType.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -242,9 +231,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Gets the updated of the ObjectType.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -274,9 +261,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the ObjectType.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -298,9 +283,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Gets the propertySets of the ObjectType.
-     *
-     * @return PropertySet[]
-     */
+     * @return PropertySet[]	 */
     public function getPropertySets()
     {
         return $this->propertySets;
@@ -373,9 +356,7 @@ class ObjectType implements \JsonSerializable
 
     /**
      * Tells whether the ObjectType is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;

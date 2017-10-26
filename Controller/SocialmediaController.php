@@ -33,6 +33,7 @@ class SocialmediaController extends ControllerAbstract
     /**
      * Lists all SocialMedia sites.
      *
+
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return SocialMedia[]

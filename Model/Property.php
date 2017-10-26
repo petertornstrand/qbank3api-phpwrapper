@@ -15,7 +15,8 @@ class Property implements \JsonSerializable
      *
      * @param array $parameters An array of parameters to initialize the {@link Property} with.
      *                          - <b>systemName</b> - The system name of the Property we filter on
-     *                          - <b>value</b> - The value we filter by
+     * - <b>value</b> - The value we filter by
+
      */
     public function __construct($parameters = [])
     {
@@ -29,9 +30,7 @@ class Property implements \JsonSerializable
 
     /**
      * Gets the systemName of the Property.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getSystemName()
     {
         return $this->systemName;
@@ -53,9 +52,7 @@ class Property implements \JsonSerializable
 
     /**
      * Gets the value of the Property.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getValue()
     {
         return $this->value;

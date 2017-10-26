@@ -57,7 +57,8 @@ class Group implements \JsonSerializable
      *                          - <b>updatedBy</b> - User Id that updated the Group
      *                          - <b>functionalities</b> - An array of Functionalities connected to this Group
      *                          - <b>roles</b> - An array of Roles connected to this Group
-     *                          - <b>extraData</b> - An array of ExtraData connected to this Group.
+     * - <b>extraData</b> - An array of ExtraData connected to this Group.
+
      */
     public function __construct($parameters = [])
     {
@@ -105,9 +106,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the id of the Group.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -129,9 +128,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the name of the Group.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -153,9 +150,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the description of the Group.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getDescription()
     {
         return $this->description;
@@ -177,9 +172,7 @@ class Group implements \JsonSerializable
 
     /**
      * Tells whether the Group is dirty.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDirty()
     {
         return $this->dirty;
@@ -201,9 +194,7 @@ class Group implements \JsonSerializable
 
     /**
      * Tells whether the Group is deleted.
-     *
-     * @return bool
-     */
+     * @return bool	 */
     public function isDeleted()
     {
         return $this->deleted;
@@ -225,9 +216,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the created of the Group.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getCreated()
     {
         return $this->created;
@@ -257,9 +246,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the createdBy of the Group.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getCreatedBy()
     {
         return $this->createdBy;
@@ -281,9 +268,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the updated of the Group.
-     *
-     * @return DateTime
-     */
+     * @return DateTime	 */
     public function getUpdated()
     {
         return $this->updated;
@@ -313,9 +298,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the updatedBy of the Group.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getUpdatedBy()
     {
         return $this->updatedBy;
@@ -337,9 +320,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the functionalities of the Group.
-     *
-     * @return Functionality[]
-     */
+     * @return Functionality[]	 */
     public function getFunctionalities()
     {
         return $this->functionalities;
@@ -390,9 +371,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the roles of the Group.
-     *
-     * @return Role[]
-     */
+     * @return Role[]	 */
     public function getRoles()
     {
         return $this->roles;
@@ -443,9 +422,7 @@ class Group implements \JsonSerializable
 
     /**
      * Gets the extraData of the Group.
-     *
-     * @return ExtraData[]
-     */
+     * @return ExtraData[]	 */
     public function getExtraData()
     {
         return $this->extraData;

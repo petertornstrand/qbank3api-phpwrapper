@@ -23,7 +23,8 @@ class FilterItem implements \JsonSerializable
      *                          - <b>id</b> - ID of the Filter (only applicable if Category or Folder FilterItem)
      *                          - <b>title</b> - Title
      *                          - <b>mediaIds</b> - An array of mediaIds that are tagged with this title
-     *                          - <b>filterItems</b> -
+     * - <b>filterItems</b> -
+
      */
     public function __construct($parameters = [])
     {
@@ -46,9 +47,7 @@ class FilterItem implements \JsonSerializable
 
     /**
      * Gets the id of the FilterItem.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -70,9 +69,7 @@ class FilterItem implements \JsonSerializable
 
     /**
      * Gets the title of the FilterItem.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getTitle()
     {
         return $this->title;
@@ -94,9 +91,7 @@ class FilterItem implements \JsonSerializable
 
     /**
      * Gets the mediaIds of the FilterItem.
-     *
-     * @return int[]
-     */
+     * @return int[]	 */
     public function getMediaIds()
     {
         return $this->mediaIds;
@@ -118,9 +113,7 @@ class FilterItem implements \JsonSerializable
 
     /**
      * Gets the filterItems of the FilterItem.
-     *
-     * @return FilterItem[]
-     */
+     * @return FilterItem[]	 */
     public function getFilterItems()
     {
         return $this->filterItems;

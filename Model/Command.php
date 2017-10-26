@@ -14,7 +14,8 @@ class Command implements \JsonSerializable
      * Constructs a Command.
      *
      * @param array $parameters An array of parameters to initialize the {@link Command} with.
-     *                          - <b>class</b> - The name of the command
+     * - <b>class</b> - The name of the command
+
      */
     public function __construct($parameters = [])
     {
@@ -32,9 +33,7 @@ class Command implements \JsonSerializable
 
     /**
      * Gets the class of the Command.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getClass()
     {
         return $this->class;

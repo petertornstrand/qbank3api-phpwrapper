@@ -23,7 +23,8 @@ class ImageTemplate implements \JsonSerializable
      *                          - <b>id</b> - The Image Template identifier
      *                          - <b>name</b> - The name of the Image Template
      *                          - <b>mimeType</b> -
-     *                          - <b>commands</b> - An array of commands for this template
+     * - <b>commands</b> - An array of commands for this template
+
      */
     public function __construct($parameters = [])
     {
@@ -45,9 +46,7 @@ class ImageTemplate implements \JsonSerializable
 
     /**
      * Gets the id of the ImageTemplate.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getId()
     {
         return $this->id;
@@ -69,9 +68,7 @@ class ImageTemplate implements \JsonSerializable
 
     /**
      * Gets the name of the ImageTemplate.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getName()
     {
         return $this->name;
@@ -93,9 +90,7 @@ class ImageTemplate implements \JsonSerializable
 
     /**
      * Gets the mimeType of the ImageTemplate.
-     *
-     * @return MimeType
-     */
+     * @return MimeType	 */
     public function getMimeType()
     {
         return $this->mimeType;
@@ -124,9 +119,7 @@ class ImageTemplate implements \JsonSerializable
 
     /**
      * Gets the commands of the ImageTemplate.
-     *
-     * @return Command[]
-     */
+     * @return Command[]	 */
     public function getCommands()
     {
         return $this->commands;

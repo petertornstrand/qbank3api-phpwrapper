@@ -27,7 +27,8 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
      *                          - <b>offset</b> - Starting position of SearchResult
      *                          - <b>results</b> - An array of Media matching the search
      *                          - <b>timeSearching</b> - Time spent searching
-     *                          - <b>totalHits</b> - Total number of hits
+     * - <b>totalHits</b> - Total number of hits
+
      */
     public function __construct($parameters = [])
     {
@@ -52,9 +53,7 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
 
     /**
      * Gets the limit of the SearchResult.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getLimit()
     {
         return $this->limit;
@@ -76,9 +75,7 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
 
     /**
      * Gets the offset of the SearchResult.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getOffset()
     {
         return $this->offset;
@@ -100,9 +97,7 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
 
     /**
      * Gets the results of the SearchResult.
-     *
-     * @return MediaResponse[]
-     */
+     * @return MediaResponse[]	 */
     public function getResults()
     {
         return $this->results;
@@ -153,9 +148,7 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
 
     /**
      * Gets the timeSearching of the SearchResult.
-     *
-     * @return float
-     */
+     * @return float	 */
     public function getTimeSearching()
     {
         return $this->timeSearching;
@@ -177,9 +170,7 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
 
     /**
      * Gets the totalHits of the SearchResult.
-     *
-     * @return int
-     */
+     * @return int	 */
     public function getTotalHits()
     {
         return $this->totalHits;

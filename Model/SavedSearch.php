@@ -11,7 +11,8 @@ class SavedSearch implements \JsonSerializable
      * Constructs a SavedSearch.
      *
      * @param array $parameters An array of parameters to initialize the {@link SavedSearch} with.
-     *                          - <b>search</b> -
+     * - <b>search</b> -
+
      */
     public function __construct($parameters = [])
     {
@@ -22,9 +23,7 @@ class SavedSearch implements \JsonSerializable
 
     /**
      * Gets the search of the SavedSearch.
-     *
-     * @return string
-     */
+     * @return string	 */
     public function getSearch()
     {
         return $this->search;
