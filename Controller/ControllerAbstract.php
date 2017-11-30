@@ -253,6 +253,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface
 
     public function __destruct()
     {
+        ob_end_flush();
         flush();
         if (!empty($this->delayedRequests)) {
             $results = Promise\settle($this->delayedRequests)->wait();
