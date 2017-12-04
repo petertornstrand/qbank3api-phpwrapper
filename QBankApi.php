@@ -5,6 +5,7 @@ namespace QBNK\QBank\API;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\CacheProvider;
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\CurlMultiHandler;
 use GuzzleHttp\HandlerStack;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -35,6 +36,9 @@ use Sainsburys\Guzzle\Oauth2\Middleware\OAuthMiddleware;
  */
 class QBankApi
 {
+    /** @var CurlMultiHandler */
+    protected $curl;
+
     /** @var LoggerInterface */
     protected $logger;
 
@@ -108,6 +112,8 @@ class QBankApi
      *                                 <li>LoggerInterface $options[log] A PSR-3 log implementation.</li>
      *                                 <li>bool $options[verifyCertificates] Whether to verify certificates for https connections. Defaults to true.</li>
      *                                 </ul>
+     *
+     * @throws \LogicException
      */
     public function __construct($qbankURL, Credentials $credentials, array $options = [])
     {
@@ -117,6 +123,8 @@ class QBankApi
         } else {
             $this->logger = new NullLogger();
         }
+
+        $this->curl = new CurlMultiHandler();
 
         $this->basepath = $this->buildBasepath($qbankURL);
 
@@ -173,7 +181,7 @@ class QBankApi
     public function accounts()
     {
         if (!$this->accounts instanceof AccountsController) {
-            $this->accounts = new AccountsController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->accounts = new AccountsController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->accounts->setLogger($this->logger);
         }
 
@@ -188,7 +196,7 @@ class QBankApi
     public function categories()
     {
         if (!$this->categories instanceof CategoriesController) {
-            $this->categories = new CategoriesController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->categories = new CategoriesController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->categories->setLogger($this->logger);
         }
 
@@ -203,7 +211,7 @@ class QBankApi
     public function deployment()
     {
         if (!$this->deployment instanceof DeploymentController) {
-            $this->deployment = new DeploymentController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->deployment = new DeploymentController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->deployment->setLogger($this->logger);
         }
 
@@ -218,7 +226,7 @@ class QBankApi
     public function events()
     {
         if (!$this->events instanceof EventsController) {
-            $this->events = new EventsController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->events = new EventsController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->events->setLogger($this->logger);
         }
 
@@ -233,7 +241,7 @@ class QBankApi
     public function filters()
     {
         if (!$this->filters instanceof FiltersController) {
-            $this->filters = new FiltersController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->filters = new FiltersController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->filters->setLogger($this->logger);
         }
 
@@ -248,7 +256,7 @@ class QBankApi
     public function folders()
     {
         if (!$this->folders instanceof FoldersController) {
-            $this->folders = new FoldersController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->folders = new FoldersController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->folders->setLogger($this->logger);
         }
 
@@ -263,7 +271,7 @@ class QBankApi
     public function media()
     {
         if (!$this->media instanceof MediaController) {
-            $this->media = new MediaController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->media = new MediaController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->media->setLogger($this->logger);
         }
 
@@ -278,7 +286,7 @@ class QBankApi
     public function moodboards()
     {
         if (!$this->moodboards instanceof MoodboardsController) {
-            $this->moodboards = new MoodboardsController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->moodboards = new MoodboardsController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->moodboards->setLogger($this->logger);
         }
 
@@ -293,7 +301,7 @@ class QBankApi
     public function objecttypes()
     {
         if (!$this->objecttypes instanceof ObjecttypesController) {
-            $this->objecttypes = new ObjecttypesController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->objecttypes = new ObjecttypesController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->objecttypes->setLogger($this->logger);
         }
 
@@ -308,7 +316,7 @@ class QBankApi
     public function propertysets()
     {
         if (!$this->propertysets instanceof PropertysetsController) {
-            $this->propertysets = new PropertysetsController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->propertysets = new PropertysetsController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->propertysets->setLogger($this->logger);
         }
 
@@ -321,7 +329,7 @@ class QBankApi
     public function search()
     {
         if (!$this->search instanceof SearchController) {
-            $this->search = new SearchController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->search = new SearchController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->search->setLogger($this->logger);
         }
 
@@ -336,7 +344,7 @@ class QBankApi
     public function socialmedia()
     {
         if (!$this->socialmedia instanceof SocialmediaController) {
-            $this->socialmedia = new SocialmediaController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->socialmedia = new SocialmediaController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->socialmedia->setLogger($this->logger);
         }
 
@@ -349,7 +357,7 @@ class QBankApi
     public function templates()
     {
         if (!$this->templates instanceof TemplatesController) {
-            $this->templates = new TemplatesController($this->getClient(), $this->cachePolicy, $this->cache);
+            $this->templates = new TemplatesController($this->getClient(), $this->cachePolicy, $this->cache, $this->curl);
             $this->templates->setLogger($this->logger);
         }
 
@@ -402,7 +410,7 @@ class QBankApi
     protected function getClient()
     {
         if (!($this->client instanceof Client)) {
-            $handlerStack = HandlerStack::create();
+            $handlerStack = HandlerStack::create($this->curl);
             $handlerStack = $this->withOAuth2MiddleWare($handlerStack);
             $this->client = new Client([
                 'handler' => $handlerStack,

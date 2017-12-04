@@ -4,8 +4,8 @@ namespace QBNK\QBank\API\Controller;
 
 use Doctrine\Common\Cache\Cache;
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\CurlMultiHandler;
 use GuzzleHttp\Promise;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -32,14 +32,18 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /** @var Cache */
     protected $cache;
 
-    /** @var RequestInterface[] */
+    /** @var Promise\PromiseInterface[] */
     protected $delayedRequests;
 
-    public function __construct(Client $client, CachePolicy $cachePolicy, Cache $cache = null)
+    /** @var CurlMultiHandler */
+    protected $handler;
+
+    public function __construct(Client $client, CachePolicy $cachePolicy, Cache $cache = null, $handler = null)
     {
         $this->client = $client;
         $this->cachePolicy = $cachePolicy;
         $this->cache = $cache;
+        $this->handler = $handler;
         $this->delayedRequests = [];
     }
 
@@ -63,6 +67,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface
 
         if ($delayed) {
             $this->delayedRequests[] = $this->client->requestAsync(strtoupper($method), $endpoint, $parameters);
+            $this->handler->execute();
             $this->logger->debug(
                 'Request to QBank added to delayed queue. ' . strtoupper($method) . ' ' . $endpoint,
                 [

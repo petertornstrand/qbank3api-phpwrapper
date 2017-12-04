@@ -81,15 +81,14 @@ use QBNK\QBank\API\Model\Property;
          * Fetches all DeployedFiles a Media has.
          *
          * @param int         $id          The Media identifier..
-         * @param media       $media       [DEPRECATED] Internal use only
          * @param CachePolicy $cachePolicy a custom cache policy used for this request only
          *
          * @return DeploymentFile[]
          */
-        public function listDeployedFiles($id, Media $media = null, CachePolicy $cachePolicy = null)
+        public function listDeployedFiles($id, CachePolicy $cachePolicy = null)
         {
             $parameters = [
-            'query' => ['media' => json_decode(json_encode($media), true)],
+            'query' => [],
             'body' => json_encode([]),
             'headers' => [],
         ];
@@ -624,9 +623,9 @@ use QBNK\QBank\API\Model\Property;
          *
          * Update the provided properties for the specified Media. Will not update any other properties then those provided. It is preferable to use this method over updating a whole media to change a few properties as the side effects are fewer.
          *
-         * @param  int        $id         the Media identifier
-         * @param  Property[] $properties an array of QBNK\QBank\Api\v1\Model\Property values
-         * @return array
+         * @param  int           $id         the Media identifier
+         * @param  Property[]    $properties an array of QBNK\QBank\Api\v1\Model\Property values
+         * @return MediaResponse
          */
         public function updateProperties($id, array $properties)
         {
@@ -637,6 +636,7 @@ use QBNK\QBank\API\Model\Property;
         ];
 
             $result = $this->put('v1/media/' . $id . '/properties', $parameters);
+            $result = new MediaResponse($result);
 
             return $result;
         }
