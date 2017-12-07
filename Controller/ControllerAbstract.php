@@ -66,6 +66,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
         $cachePolicy = (null !== $cachePolicy) ? $cachePolicy : $this->cachePolicy;
 
         if ($delayed) {
+	        /**
+	         * TODO: Rewrite to use the `GuzzleHttp\Pool` instead. Promise\settle() doesn't seem to work when in __destruct().
+	         * A rewrite of the logic when adding delayed requests has to be done due to pool taking Request instances.
+	         * See also: http://docs.guzzlephp.org/en/stable/quickstart.html#concurrent-requests
+	         */
             $this->delayedRequests[] = $this->client->requestAsync(strtoupper($method), $endpoint, $parameters);
             $this->handler->execute();
             $this->logger->debug(
