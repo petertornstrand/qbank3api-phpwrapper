@@ -4,7 +4,6 @@ namespace QBNK\QBank\API\Controller;
 
 use Doctrine\Common\Cache\Cache;
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\CurlMultiHandler;
 use GuzzleHttp\Promise;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
@@ -35,44 +34,34 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /** @var Promise\PromiseInterface[] */
     protected $delayedRequests;
 
-    /** @var CurlMultiHandler */
-    protected $handler;
-
-    public function __construct(Client $client, CachePolicy $cachePolicy, Cache $cache = null, $handler = null)
+    public function __construct(Client $client, CachePolicy $cachePolicy, Cache $cache = null)
     {
         $this->client = $client;
         $this->cachePolicy = $cachePolicy;
         $this->cache = $cache;
-        $this->handler = $handler;
         $this->delayedRequests = [];
     }
 
     /**
      * Performs a request to the QBank API.
      *
-     * @param string      $endpoint    The API endpoint URL to request.
-     * @param array       $parameters  The parameters to send.
-     * @param string      $method      The HTTP verb to use.
-     * @param CachePolicy $cachePolicy The custom caching policy to use.
-     * @param bool        $delayed     If the request should be delayed until destruction.
+     * @param string      $endpoint    the API endpoint URL to request
+     * @param array       $parameters  the parameters to send
+     * @param string      $method      the HTTP verb to use
+     * @param CachePolicy $cachePolicy the custom caching policy to use
+     * @param bool        $delayed     if the request should be delayed until destruction
      *
-     * @return array The response result.
+     * @return array the response result
      *
-     * @throws \QBNK\QBank\API\Exception\RequestException  Thrown if there was something wrong with the request.
-     * @throws \QBNK\QBank\API\Exception\ResponseException Thrown if there was something wrong with the response.
+     * @throws \QBNK\QBank\API\Exception\RequestException  thrown if there was something wrong with the request
+     * @throws \QBNK\QBank\API\Exception\ResponseException thrown if there was something wrong with the response
      */
     protected function call($endpoint, array $parameters = [], $method = self::METHOD_GET, CachePolicy $cachePolicy = null, $delayed = false)
     {
         $cachePolicy = (null !== $cachePolicy) ? $cachePolicy : $this->cachePolicy;
 
         if ($delayed) {
-	        /**
-	         * TODO: Rewrite to use the `GuzzleHttp\Pool` instead. Promise\settle() doesn't seem to work when in __destruct().
-	         * A rewrite of the logic when adding delayed requests has to be done due to pool taking Request instances.
-	         * See also: http://docs.guzzlephp.org/en/stable/quickstart.html#concurrent-requests
-	         */
             $this->delayedRequests[] = $this->client->requestAsync(strtoupper($method), $endpoint, $parameters);
-            $this->handler->execute();
             $this->logger->debug(
                 'Request to QBank added to delayed queue. ' . strtoupper($method) . ' ' . $endpoint,
                 [
@@ -121,8 +110,7 @@ abstract class ControllerAbstract implements LoggerAwareInterface
             );
 
             $data = null;
-            if (in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type')[0])), false)
-                && !empty($response->getBody()->__toString())) {
+            if (!empty($response->getBody()->__toString()) && in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type')[0])), false)) {
                 try {
                     $data = \GuzzleHttp\json_decode($response->getBody()->__toString(), true);
                 } catch (\Exception $re) {
@@ -190,12 +178,12 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a GET request to the API.
      *
-     * @param string      $endpoint    The API endpoint URL to request.
-     * @param array       $parameters  The parameters to send.
-     * @param CachePolicy $cachePolicy The custom caching policy to use.
-     * @param bool        $delayed     If the request should be delayed until destruction.
+     * @param string      $endpoint    the API endpoint URL to request
+     * @param array       $parameters  the parameters to send
+     * @param CachePolicy $cachePolicy the custom caching policy to use
+     * @param bool        $delayed     if the request should be delayed until destruction
      *
-     * @return array The response result.
+     * @return array the response result
      *
      * @throws RequestException
      * @throws ResponseException
@@ -208,11 +196,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a POST request to the API.
      *
-     * @param string $endpoint   The API endpoint URL to request.
-     * @param array  $parameters The parameters to send.
-     * @param bool   $delayed    If the request should be delayed until destruction.
+     * @param string $endpoint   the API endpoint URL to request
+     * @param array  $parameters the parameters to send
+     * @param bool   $delayed    if the request should be delayed until destruction
      *
-     * @return array The response result.
+     * @return array the response result
      *
      * @throws RequestException
      * @throws ResponseException
@@ -225,11 +213,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a PUT request to the API.
      *
-     * @param string $endpoint   The API endpoint URL to request.
-     * @param array  $parameters The parameters to send.
-     * @param bool   $delayed    If the request should be delayed until destruction.
+     * @param string $endpoint   the API endpoint URL to request
+     * @param array  $parameters the parameters to send
+     * @param bool   $delayed    if the request should be delayed until destruction
      *
-     * @return array The response result.
+     * @return array the response result
      *
      * @throws RequestException
      * @throws ResponseException
@@ -242,11 +230,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a DELETE request to the API.
      *
-     * @param string $endpoint   The API endpoint URL to request.
-     * @param array  $parameters The parameters to send.
-     * @param bool   $delayed    If the request should be delayed until destruction.
+     * @param string $endpoint   the API endpoint URL to request
+     * @param array  $parameters the parameters to send
+     * @param bool   $delayed    if the request should be delayed until destruction
      *
-     * @return array The response result.
+     * @return array the response result
      *
      * @throws RequestException
      * @throws ResponseException
@@ -263,11 +251,6 @@ abstract class ControllerAbstract implements LoggerAwareInterface
 
     public function __destruct()
     {
-        if (ob_get_length()) {
-            ob_end_flush();
-        }
-
-        flush();
         if (!empty($this->delayedRequests)) {
             $results = Promise\settle($this->delayedRequests)->wait();
             foreach ($results as $index => $result) {

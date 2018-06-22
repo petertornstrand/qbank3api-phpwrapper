@@ -504,9 +504,8 @@ use QBNK\QBank\API\Model\Property;
          *  Possible statuses are: <ul> <li>approved</li> </ul>
          *
          *
-         * @param  int    $id     the Media identifier
-         * @param  string $status The new status of the media
-         * @return array
+         * @param int    $id     the Media identifier
+         * @param string $status The new status of the media
          */
         public function setStatus($id, $status)
         {
@@ -799,5 +798,13 @@ use QBNK\QBank\API\Model\Property;
                 throw new UploadException('Could not read chunk ' . $chunk . ' from file "' . $pathname . '".');
             }
             throw new UploadException('Unknown upload error!');
+        }
+
+        /**
+         * Always execute the __destruct method of the abstract class.
+         */
+        public function __destruct()
+        {
+            parent::__destruct();
         }
     }

@@ -153,9 +153,8 @@ class DeploymentController extends ControllerAbstract
      *
      * Deploy Media to a DeploymentSite, this is an asynchronous method.
      *
-     * @param  int   $id       deploymentSite to deploy to
-     * @param  int[] $mediaIds an array of int values
-     * @return array
+     * @param int   $id       deploymentSite to deploy to
+     * @param int[] $mediaIds an array of int values
      */
     public function addMediaToDeploymentSite($id, array $mediaIds)
     {
@@ -212,5 +211,13 @@ class DeploymentController extends ControllerAbstract
         $result = $this->delete('v1/deployment/' . $id . '/media', $parameters);
 
         return $result;
+    }
+
+    /**
+     * Always execute the __destruct method of the abstract class.
+     */
+    public function __destruct()
+    {
+        parent::__destruct();
     }
 }
