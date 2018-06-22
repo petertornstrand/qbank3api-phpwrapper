@@ -8,6 +8,7 @@ The format of this changelog adheres to [Semantic Versioning](http://semver.org/
 
 ## [2.0]
 ### Changed
+- Bugfix: The delayed calls is now sent
 - Updated the dependency Guzzle from version 5 to 6 to remain actual and provide the highest chance of compability with other projects.
 - Returned return statements for all "void" functions due to compability issues. As it turns out, all functions documented as returning void in the API, aren't return void. 
 
