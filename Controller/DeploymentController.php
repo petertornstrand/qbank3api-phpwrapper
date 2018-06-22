@@ -153,8 +153,9 @@ class DeploymentController extends ControllerAbstract
      *
      * Deploy Media to a DeploymentSite, this is an asynchronous method.
      *
-     * @param int   $id       deploymentSite to deploy to
-     * @param int[] $mediaIds an array of int values
+     * @param  int   $id       deploymentSite to deploy to
+     * @param  int[] $mediaIds an array of int values
+     * @return array
      */
     public function addMediaToDeploymentSite($id, array $mediaIds)
     {

@@ -418,6 +418,7 @@ use QBNK\QBank\API\Model\Property;
                 'chunks' => $chunks,
                 'fileId' => $fileId,
                 'categoryId' => $categoryId,
+                'title' => $title
             ],
             'body' => ['file' => new PostFile('file', $fileData)],
             'headers' => ['Content-type' => 'multipart/form-data'],
@@ -504,9 +505,9 @@ use QBNK\QBank\API\Model\Property;
          * This is used to move media from the uploaded tab into the library.
          *  Possible statuses are: <ul> <li>approved</li> </ul>
          *
-         *
-         * @param int    $id     the Media identifier
-         * @param string $status The new status of the media
+         * @param  int    $id     the Media identifier
+         * @param  string $status The new status of the media
+         * @return array
          */
         public function setStatus($id, $status)
         {
