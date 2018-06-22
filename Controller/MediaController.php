@@ -406,9 +406,10 @@ use QBNK\QBank\API\Model\Property;
          * @param  int    $chunks     Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
          * @param  string $fileId     A unique fileId that will be used for this upload, if none is given one will be given to you
          * @param  int    $categoryId The category to place the file in
+         * @param  string $title      Title which will represent the media in search results etc
          * @return array
          */
-        public function uploadFileChunked($fileData, $name, $chunk, $chunks, $fileId, $categoryId)
+        public function uploadFileChunked($fileData, $name, $chunk, $chunks, $fileId, $categoryId, $title = null)
         {
             $parameters = [
             'query' => [
