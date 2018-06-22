@@ -2,9 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 The format of this changelog adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
-## [Unreleased]
-### Added
-- This changelog
+## [2.0.1]
+### Changed
+- Removed delayed requests since they're slow and blocking
+- Added option to fire and forget requests
 
 ## [2.0]
 ### Changed
