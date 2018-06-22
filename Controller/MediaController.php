@@ -801,12 +801,4 @@ use QBNK\QBank\API\Model\Property;
             }
             throw new UploadException('Unknown upload error!');
         }
-
-        /**
-         * Always execute the __destruct method of the abstract class.
-         */
-        public function __destruct()
-        {
-            parent::__destruct();
-        }
     }

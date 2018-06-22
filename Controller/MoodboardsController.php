@@ -219,12 +219,4 @@ class MoodboardsController extends ControllerAbstract
 
         return $result;
     }
-
-    /**
-     * Always execute the __destruct method of the abstract class.
-     */
-    public function __destruct()
-    {
-        parent::__destruct();
-    }
 }
