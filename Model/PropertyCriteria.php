@@ -20,6 +20,10 @@ class PropertyCriteria implements \JsonSerializable
     const OPERATOR_CONTAINS_ANY = '&&';
     const OPERATOR_NOT_CONTAINS_ANY = '!&&';
     const OPERATOR_CONTAINS_ALL = '@>';
+    const NO_VALUE = '0';
+    const HAS_VALUE = '1';
+    const HIERARCHICAL_ANY = 'h1';
+    const HIERARCHICAL_ALL = 'h2';
 
     /** @var string The system name of the Property we filter on */
     protected $systemName;
