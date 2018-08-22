@@ -3,6 +3,7 @@
 namespace QBNK\QBank\API\Controller;
 
 use QBNK\QBank\API\CachePolicy;
+use QBNK\QBank\API\Model\FolderSearch;
 use QBNK\QBank\API\Model\Search;
 use QBNK\QBank\API\Model\SearchResult;
 
@@ -45,6 +46,28 @@ class SearchController extends ControllerAbstract
         ];
 
         $result = $this->call('v1/search', $parameters, self::METHOD_POST, $cachePolicy);
+        $result = new SearchResult($result);
+
+        return $result;
+    }
+
+    /**
+     * Search for Folder.
+     *
+     * s in QBank
+     *
+     * @param  FolderSearch $search Search parameters
+     * @return SearchResult
+     */
+    public function folderSearch(FolderSearch $search)
+    {
+        $parameters = [
+            'query' => [],
+            'body' => json_encode(['search' => $search]),
+            'headers' => [],
+        ];
+
+        $result = $this->post('v1/search/folder', $parameters);
         $result = new SearchResult($result);
 
         return $result;

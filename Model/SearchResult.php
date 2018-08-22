@@ -4,14 +4,16 @@ namespace QBNK\QBank\API\Model;
 
 class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAccess
 {
+    /**
+     * @var ObjectResponse[] An array of Media matching the search
+     */
+    protected $results;
+
     /** @var int Number of hits per page in the SearchResult */
     protected $limit;
 
     /** @var int Starting position of SearchResult */
     protected $offset;
-
-    /** @var MediaResponse[] An array of Media matching the search */
-    protected $results;
 
     /** @var float Time spent searching */
     protected $timeSearching;
@@ -37,9 +39,6 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
         }
         if (isset($parameters['offset'])) {
             $this->setOffset($parameters['offset']);
-        }
-        if (isset($parameters['results'])) {
-            $this->setResults($parameters['results']);
         }
         if (isset($parameters['timeSearching'])) {
             $this->setTimeSearching($parameters['timeSearching']);
@@ -89,57 +88,6 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
     public function setOffset($offset)
     {
         $this->offset = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets the results of the SearchResult.
-     * @return MediaResponse[]	 */
-    public function getResults()
-    {
-        return $this->results;
-    }
-
-    /**
-     * Sets the "results" of the SearchResult.
-     *
-     * @param MediaResponse[] $results
-     *
-     * @return SearchResult
-     */
-    public function setResults(array $results)
-    {
-        $this->results = [];
-
-        foreach ($results as $item) {
-            $this->addMediaResponse($item);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Adds an object of "Results" of the SearchResult.
-     *
-     * @param MediaResponse|array $item
-     *
-     * @return SearchResult
-     */
-    public function addMediaResponse($item)
-    {
-        if (!($item instanceof MediaResponse)) {
-            if (is_array($item)) {
-                try {
-                    $item = new MediaResponse($item);
-                } catch (\Exception $e) {
-                    trigger_error('Could not auto-instantiate MediaResponse. ' . $e->getMessage(), E_USER_WARNING);
-                }
-            } elseif (!is_numeric($item)) {
-                trigger_error('Array parameter item is not of expected type "MediaResponse"!', E_USER_WARNING);
-            }
-        }
-        $this->results[] = $item;
 
         return $this;
     }
@@ -270,6 +218,96 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
     }
 
     /**
+     * Gets the results of the SearchResult.
+     *
+     * @return ObjectResponse[]
+     */
+    public function getResults()
+    {
+        return $this->results;
+    }
+
+    /**
+     * Sets the "results" of the SearchResult.
+     *
+     * @param \QBNK\QBank\Api\Model\ObjectResponse[] $results
+     *
+     * @return SearchResult
+     */
+    public function setResults(array $results)
+    {
+        $this->results = [];
+
+        foreach ($results as $item) {
+            /** $item ObjectResponse */
+            switch ($item->getDiscriminatorId()) {
+                case ObjectResponse::DISCRIMINATOR_FOLDER:
+                    $this->addFolderResponse($item);
+
+                    break;
+
+                case ObjectResponse::DISCRIMINATOR_MEDIA:
+                default:
+                    $this->addMediaResponse($item);
+
+                    break;
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Adds an object of "MediaResponse" of the SearchResult.
+     *
+     * @param MediaResponse|array $item
+     *
+     * @return SearchResult
+     */
+    public function addMediaResponse($item)
+    {
+        if (!($item instanceof MediaResponse)) {
+            if (is_array($item)) {
+                try {
+                    $item = new MediaResponse($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate MediaResponse. ' . $e->getMessage(), E_USER_WARNING);
+                }
+            } elseif (!is_numeric($item)) {
+                trigger_error('Array parameter item is not of expected type "MediaResponse"!', E_USER_WARNING);
+            }
+        }
+        $this->results[] = $item;
+
+        return $this;
+    }
+
+    /**
+     * Adds an object of "FolderResponse" of the SearchResult.
+     *
+     * @param FolderResponse|array $item
+     *
+     * @return SearchResult
+     */
+    public function addFolderResponse($item)
+    {
+        if (!($item instanceof FolderResponse)) {
+            if (is_array($item)) {
+                try {
+                    $item = new FolderResponse($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate FolderResponse. ' . $e->getMessage(), E_USER_WARNING);
+                }
+            } elseif (!is_numeric($item)) {
+                trigger_error('Array parameter item is not of expected type "FolderResponse"!', E_USER_WARNING);
+            }
+        }
+        $this->results[] = $item;
+
+        return $this;
+    }
+
+    /**
      * Gets all data that should be available in a json representation.
      *
      * @return array an associative array of the available variables
@@ -284,14 +322,15 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
         if (null !== $this->offset) {
             $json['offset'] = $this->offset;
         }
-        if (null !== $this->results && !empty($this->results)) {
-            $json['results'] = $this->results;
-        }
         if (null !== $this->timeSearching) {
             $json['timeSearching'] = $this->timeSearching;
         }
         if (null !== $this->totalHits) {
             $json['totalHits'] = $this->totalHits;
+        }
+
+        if (null !== $this->results && !empty($this->results)) {
+            $json['results'] = $this->results;
         }
 
         return $json;
