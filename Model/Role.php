@@ -49,8 +49,7 @@ class Role implements \JsonSerializable
      *                          - <b>createdBy</b> - The User Id that created the Role
      *                          - <b>updated</b> - When the Role was updated.
      *                          - <b>updatedBy</b> - User Id that updated the Role
-     * - <b>functionalities</b> - An array of Functionalities connected to this role
-
+     *                          - <b>functionalities</b> - An array of Functionalities connected to this role
      */
     public function __construct($parameters = [])
     {

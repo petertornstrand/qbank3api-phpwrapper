@@ -27,8 +27,7 @@ class DownloadItem implements \JsonSerializable
      *                          - <b>imageTemplateId</b> - ImageTemplate ID
      *                          - <b>videoTemplateId</b> - ImageTemplate ID
      *                          - <b>documentTemplateId</b> - ImageTemplate ID
-     * - <b>audioTemplateId</b> - ImageTemplate ID
-
+     *                          - <b>audioTemplateId</b> - ImageTemplate ID
      */
     public function __construct($parameters = [])
     {

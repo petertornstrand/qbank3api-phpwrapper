@@ -27,8 +27,7 @@ class MediaUsage implements \JsonSerializable
      *                          - <b>mediaUrl</b> -
      *                          - <b>pageUrl</b> -
      *                          - <b>context</b> -
-     * - <b>language</b> -
-
+     *                          - <b>language</b> -
      */
     public function __construct($parameters = [])
     {

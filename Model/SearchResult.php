@@ -25,10 +25,8 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
      * @param array $parameters An array of parameters to initialize the {@link SearchResult} with.
      *                          - <b>limit</b> - Number of hits per page in the SearchResult
      *                          - <b>offset</b> - Starting position of SearchResult
-     *                          - <b>results</b> - An array of Media matching the search
      *                          - <b>timeSearching</b> - Time spent searching
-     * - <b>totalHits</b> - Total number of hits
-
+     *                          - <b>totalHits</b> - Total number of hits
      */
     public function __construct($parameters = [])
     {

@@ -23,8 +23,7 @@ class AudioTemplate implements \JsonSerializable
      *                          - <b>id</b> - The Audio Template identifier
      *                          - <b>name</b> - The name of the Audio Template
      *                          - <b>mimeType</b> -
-     * - <b>commands</b> - An array of commands for this template
-
+     *                          - <b>commands</b> - An array of commands for this template
      */
     public function __construct($parameters = [])
     {

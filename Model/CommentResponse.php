@@ -25,8 +25,7 @@ class CommentResponse extends Comment implements \JsonSerializable
      *                          - <b>id</b> - Id of the comment
      *                          - <b>createdBy</b> - The QBank user that wrote this comment
      *                          - <b>created</b> - Time this comment was made
-     * - <b>replies</b> - A array of eventual replies to this comment
-
+     *                          - <b>replies</b> - A array of eventual replies to this comment
      */
     public function __construct($parameters = [])
     {

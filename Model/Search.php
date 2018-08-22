@@ -119,8 +119,7 @@ class Search implements \JsonSerializable
      *                          - <b>name</b> - Filter by object name, uses normal LIKE database syntax
      *                          - <b>deploymentDateRange</b> - Filter by deployment date
      *                          - <b>sortFields</b> - An array of SearchSort fields to order results by
-     * - <b>duplicates</b> - Search only for duplicates
-
+     *                          - <b>duplicates</b> - Search only for duplicates
      */
     public function __construct($parameters = [])
     {

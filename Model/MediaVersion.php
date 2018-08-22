@@ -37,8 +37,7 @@ class MediaVersion implements \JsonSerializable
      *                          - <b>replacedBy</b> - The Media replacement Media identifier. Only set when the Media has been replaced, ie. versioning.
      *                          - <b>comment</b> - An optional comment about the version.
      *                          - <b>userId</b> - The User identifier of the user who created the new version.
-     * - <b>version</b> - The version number
-
+     *                          - <b>version</b> - The version number
      */
     public function __construct($parameters = [])
     {

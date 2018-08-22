@@ -43,8 +43,7 @@ class SlideTransition implements \JsonSerializable
      *                          - <b>direction</b> - Direction of transition, if applicable
      *                          - <b>pattern</b> - Pattern of transition, if applicable
      *                          - <b>bounce</b> - Indicates if transition should bounce, if applicable
-     * - <b>fromBlack</b> - Indicates if transition should bounce, if applicable
-
+     *                          - <b>fromBlack</b> - Indicates if transition should bounce, if applicable
      */
     public function __construct($parameters = [])
     {

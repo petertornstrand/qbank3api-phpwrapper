@@ -56,8 +56,7 @@ class PropertyType implements \JsonSerializable
      *                          - <b>systemName</b> - The Property system name, this is used for programmatic access.
      *                          - <b>description</b> - A description of the PropertyType.
      *                          - <b>dataTypeId</b> - Data type for the Property (1: Boolean, 2: DateTime, 3: Decimal, 4: Float, 5: Integer, 6: String) In addition, definition can alter the way a Property should be displayed.
-     * - <b>definition</b> - A Key/Value Object containing extra information about how this Property should be used.
-
+     *                          - <b>definition</b> - A Key/Value Object containing extra information about how this Property should be used.
      */
     public function __construct($parameters = [])
     {

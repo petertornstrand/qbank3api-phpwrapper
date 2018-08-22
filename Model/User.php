@@ -85,8 +85,7 @@ class User implements \JsonSerializable
      *                          - <b>updatedBy</b> - User Id that updated the User
      *                          - <b>functionalities</b> - An array of Functionalities connected to this User
      *                          - <b>extraData</b> - An array of ExtraData connected to this User.
-     * - <b>userType</b> - Type of user
-
+     *                          - <b>userType</b> - Type of user
      */
     public function __construct($parameters = [])
     {

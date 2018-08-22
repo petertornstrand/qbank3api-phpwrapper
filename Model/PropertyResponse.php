@@ -44,8 +44,7 @@ class PropertyResponse implements \JsonSerializable
      *                          - <b>deleted</b> - Whether the Property is deleted.
      *                          - <b>dirty</b> - Whether the Property has been modified since constructed.
      *                          - <b>propertyType</b> - The PropertyType describing this Property.
-     * - <b>value</b> - The value of the Property.
-
+     *                          - <b>value</b> - The value of the Property.
      */
     public function __construct($parameters = [])
     {

@@ -27,8 +27,7 @@ class Comment implements \JsonSerializable
      *                          - <b>comment</b> - The actual comment
      *                          - <b>parentId</b> - If a reply, indicates this comments parent
      *                          - <b>userName</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
-     * - <b>userEmail</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
-
+     *                          - <b>userEmail</b> - Set only if a anonymous user wrote this comment, see createdBy otherwise
      */
     public function __construct($parameters = [])
     {

@@ -54,8 +54,7 @@ class FolderResponse extends Folder implements \JsonSerializable
      *                          - <b>updated</b> - When the Object was updated.
      *                          - <b>updatedBy</b> - Which user that updated the Object.
      *                          - <b>dirty</b> - Whether the object has been modified since constructed.
-     * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
-
+     *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
      */
     public function __construct($parameters = [])
     {
@@ -485,6 +484,20 @@ class FolderResponse extends Folder implements \JsonSerializable
         }
         if (null !== $this->propertySets && !empty($this->propertySets)) {
             $json['propertySets'] = $this->propertySets;
+        }
+
+        foreach ($this->propertySets as $propertySet) {
+            /** @var PropertySet $propertySet */
+            foreach ($propertySet->getProperties() as $property) {
+                /** @var Property $property */
+                if (!isset($json['properties'][$property->getPropertyType()->getSystemName()])) {
+                    if ($property->getValue() instanceof \DateTime) {
+                        $json['properties'][$property->getPropertyType()->getSystemName()] = $property->getValue()->format(\DateTime::ISO8601);
+                    } else {
+                        $json['properties'][$property->getPropertyType()->getSystemName()] = $property->getValue();
+                    }
+                }
+            }
         }
 
         return $json;

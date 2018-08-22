@@ -49,8 +49,7 @@ class Functionality implements \JsonSerializable
      *                          - <b>createdBy</b> - The User Id that created the Functionality
      *                          - <b>updated</b> - When the Functionality was updated.
      *                          - <b>updatedBy</b> - User Id that updated the Functionality
-     * - <b>title</b> - A title that can be used to show the user
-
+     *                          - <b>title</b> - A title that can be used to show the user
      */
     public function __construct($parameters = [])
     {

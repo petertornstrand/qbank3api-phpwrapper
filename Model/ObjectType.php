@@ -50,8 +50,7 @@ class ObjectType implements \JsonSerializable
      *                          - <b>updated</b> - When the ObjectType was updated.
      *                          - <b>updatedBy</b> - Which user that updated the ObjectType.
      *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
-     * - <b>deleted</b> - Whether this ObjectType is deleted.
-
+     *                          - <b>deleted</b> - Whether this ObjectType is deleted.
      */
     public function __construct($parameters = [])
     {

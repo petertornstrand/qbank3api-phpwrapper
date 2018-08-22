@@ -35,8 +35,7 @@ class Category implements \JsonSerializable
      *                          - <b>deleted</b> - Whether the object is deleted.
      *                          - <b>properties</b> - A systemName => value array of properties. This is only used when updating an object. See the "propertySets" parameter for complete properties when fetching an object.
      *                          - <b>typeId</b> - The identifier of the ObjectType describing the propertysets this object should use.
-     * - <b>discriminatorId</b> - The discriminator id of the extending class
-
+     *                          - <b>discriminatorId</b> - The discriminator id of the extending class
      */
     public function __construct($parameters = [])
     {

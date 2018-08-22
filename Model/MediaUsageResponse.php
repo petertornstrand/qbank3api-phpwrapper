@@ -25,8 +25,7 @@ class MediaUsageResponse extends MediaUsage implements \JsonSerializable
      *                          - <b>id</b> -
      *                          - <b>created</b> -
      *                          - <b>deleted</b> -
-     * - <b>updatedBy</b> -
-
+     *                          - <b>updatedBy</b> -
      */
     public function __construct($parameters = [])
     {

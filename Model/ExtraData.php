@@ -49,8 +49,7 @@ class ExtraData implements \JsonSerializable
      *                          - <b>updatedBy</b> - User Id that updated the ExtraData
      *                          - <b>key</b> - The ExtraData key
      *                          - <b>keyId</b> - The ExtraData Key Identifier
-     * - <b>value</b> - The value of the ExtraData
-
+     *                          - <b>value</b> - The value of the ExtraData
      */
     public function __construct($parameters = [])
     {

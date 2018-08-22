@@ -35,8 +35,7 @@ class MimeType implements \JsonSerializable
      *                          - <b>imagetemplate</b> - Whether the MimeType is usable in an ImageTemplate.
      *                          - <b>videotemplate</b> - Whether the MimeType is usable in a VideoTemplate.
      *                          - <b>defaultextension</b> - The default file extension of the MimeType.
-     * - <b>classification</b> - The MimeType class. Eg. image, video, document.
-
+     *                          - <b>classification</b> - The MimeType class. Eg. image, video, document.
      */
     public function __construct($parameters = [])
     {

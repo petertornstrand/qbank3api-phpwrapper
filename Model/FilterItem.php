@@ -23,8 +23,7 @@ class FilterItem implements \JsonSerializable
      *                          - <b>id</b> - ID of the Filter (only applicable if Category or Folder FilterItem)
      *                          - <b>title</b> - Title
      *                          - <b>mediaIds</b> - An array of mediaIds that are tagged with this title
-     * - <b>filterItems</b> -
-
+     *                          - <b>filterItems</b> -
      */
     public function __construct($parameters = [])
     {

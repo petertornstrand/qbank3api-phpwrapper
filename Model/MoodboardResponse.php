@@ -46,8 +46,7 @@ class MoodboardResponse extends Moodboard implements \JsonSerializable
      *                          - <b>updated</b> - When the Object was updated.
      *                          - <b>updatedBy</b> - Which user that updated the Object.
      *                          - <b>dirty</b> - Whether the object has been modified since constructed.
-     * - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
-
+     *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
      */
     public function __construct($parameters = [])
     {

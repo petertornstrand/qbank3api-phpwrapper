@@ -45,8 +45,7 @@ class DeploymentFile implements \JsonSerializable
      *                          - <b>created</b> - The time of deployment for this file.
      *                          - <b>filename</b> - The original filename of the file when uploaded to QBank.
      *                          - <b>filesize</b> - The size of the file on disk
-     * - <b>metadata</b> - Metadata associated with the deployed media
-
+     *                          - <b>metadata</b> - Metadata associated with the deployed media
      */
     public function __construct($parameters = [])
     {

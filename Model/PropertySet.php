@@ -49,8 +49,7 @@ class PropertySet implements \JsonSerializable
      *                          - <b>deleted</b> - Whether the PropertySet is deleted.
      *                          - <b>dirty</b> - Whether the PropertySet has been modified since constructed.
      *                          - <b>system</b> - Wheater the PropertySet is a system propertyset or not. (System propertysets are hidden from the enduser)
-     * - <b>properties</b> - The Properties associated with the PropertySet.
-
+     *                          - <b>properties</b> - The Properties associated with the PropertySet.
      */
     public function __construct($parameters = [])
     {

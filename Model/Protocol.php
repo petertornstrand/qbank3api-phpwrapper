@@ -23,8 +23,7 @@ class Protocol implements \JsonSerializable
      *                          - <b>id</b> - The Protocol identifier.
      *                          - <b>description</b> - The human readable description of the Protocol.
      *                          - <b>name</b> - The Protocol name.
-     * - <b>definition</b> - The Protocol definition. Describes the needed values and other parameters.
-
+     *                          - <b>definition</b> - The Protocol definition. Describes the needed values and other parameters.
      */
     public function __construct($parameters = [])
     {

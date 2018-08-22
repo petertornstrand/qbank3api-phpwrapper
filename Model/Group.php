@@ -57,8 +57,7 @@ class Group implements \JsonSerializable
      *                          - <b>updatedBy</b> - User Id that updated the Group
      *                          - <b>functionalities</b> - An array of Functionalities connected to this Group
      *                          - <b>roles</b> - An array of Roles connected to this Group
-     * - <b>extraData</b> - An array of ExtraData connected to this Group.
-
+     *                          - <b>extraData</b> - An array of ExtraData connected to this Group.
      */
     public function __construct($parameters = [])
     {

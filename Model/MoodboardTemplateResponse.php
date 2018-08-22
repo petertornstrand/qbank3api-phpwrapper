@@ -19,8 +19,7 @@ class MoodboardTemplateResponse implements \JsonSerializable
      * @param array $parameters An array of parameters to initialize the {@link MoodboardTemplateResponse} with.
      *                          - <b>id</b> - The template identifier.
      *                          - <b>name</b> - The template name.
-     * - <b>options</b> - Dynamic object detailing the templates options.
-
+     *                          - <b>options</b> - Dynamic object detailing the templates options.
      */
     public function __construct($parameters = [])
     {

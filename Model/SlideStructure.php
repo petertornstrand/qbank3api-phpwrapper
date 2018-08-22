@@ -19,8 +19,7 @@ class SlideStructure implements \JsonSerializable
      * @param array $parameters An array of parameters to initialize the {@link SlideStructure} with.
      *                          - <b>mediaId</b> - Media that contains the slide
      *                          - <b>slide</b> - Slide number, first slide is slide 0.
-     * - <b>transition</b> - The transition to use when showing this slide
-
+     *                          - <b>transition</b> - The transition to use when showing this slide
      */
     public function __construct($parameters = [])
     {

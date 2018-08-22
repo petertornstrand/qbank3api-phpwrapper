@@ -23,8 +23,7 @@ class VideoTemplate implements \JsonSerializable
      *                          - <b>id</b> - The Video Template identifier
      *                          - <b>name</b> - The name of the Video Template
      *                          - <b>mimeType</b> -
-     * - <b>commands</b> - An array of commands for this template
-
+     *                          - <b>commands</b> - An array of commands for this template
      */
     public function __construct($parameters = [])
     {
