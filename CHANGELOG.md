@@ -2,6 +2,36 @@
 All notable changes to this project will be documented in this file.
 
 The format of this changelog adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## [2.0.2]
+### Added
+- Discriminator ID on object types
+- Property criteria operators
+<pre>
+    PropertyCriteria::NO_VALUE;
+    PropertyCriteria::HAS_VALUE;
+    PropertyCriteria::HIERARCHICAL_ANY;
+    PropertyCriteria::HIERARCHICAL_ALL;
+</pre>
+- Functionality to search for folders in the same manner as search for media with offset, property values sorting etc.
+<pre>
+	// Example
+	$folderSearch = new FolderSearch();
+	$folderSearch
+		->setOffset($offset)
+		->setParentId(PACKAGE_FOLDER)
+		->addPropertyRequest(new PropertyRequest(['systemName' => PROPERTY_SYSTEMNAME]))
+		->setLimit($limit)
+		->setSortFields([new SearchSort([
+			'sortField' => SearchSort::FIELD_PROPERTY,
+			'sortDirection' => SearchSort::DIRECTION_ASCENDING,
+			'systemName' => FOLDER_SORT_PROPERTY
+		])]);
+		
+	$folders = $this->qbankApi->search()->folderSearch($folderSearch)->getResults();
+	
+</pre>
+
 ## [2.0.1]
 ### Changed
 - Removed delayed requests since they're slow and blocking
