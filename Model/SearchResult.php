@@ -29,10 +29,15 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
      *                          - <b>offset</b> - Starting position of SearchResult
      *                          - <b>timeSearching</b> - Time spent searching
      *                          - <b>totalHits</b> - Total number of hits
+     *                          - <b>results</b> - The results of this search
      */
     public function __construct($parameters = [])
     {
         $this->results = [];
+
+        if (isset($parameters['results'])) {
+            $this->setResults($parameters['results']);
+        }
 
         if (isset($parameters['limit'])) {
             $this->setLimit($parameters['limit']);
