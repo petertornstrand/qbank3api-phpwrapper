@@ -1,6 +1,6 @@
 <?php
 
-namespace QBNK\QBank\Api\v1\Model;
+namespace QBNK\QBank\Api\Model;
 
 use DateTime;
 
