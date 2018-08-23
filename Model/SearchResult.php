@@ -245,7 +245,7 @@ class SearchResult implements \JsonSerializable, \Countable, \Iterator, \ArrayAc
 
         foreach ($results as $item) {
             /** $item ObjectResponse */
-            switch ($item->getDiscriminatorId()) {
+            switch ($item['discriminatorId']) {
                 case ObjectResponse::DISCRIMINATOR_FOLDER:
                     $this->addFolderResponse($item);
 
