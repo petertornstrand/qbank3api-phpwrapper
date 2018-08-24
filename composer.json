@@ -20,7 +20,8 @@
     "guzzlehttp/guzzle": "~6.0",
     "sainsburys/guzzle-oauth2-plugin": "~3.0",
     "doctrine/cache": "~1.3",
-    "psr/log": "1.0.0"
+    "psr/log": "1.0.0",
+    "ext-json": "*"
   },
   "prefer-stable": true,
   "suggest": {
