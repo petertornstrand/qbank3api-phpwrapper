@@ -24,7 +24,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['includeDeleted' => $includeDeleted],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -52,7 +52,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -76,7 +76,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['includeDeleted' => $includeDeleted],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -104,7 +104,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -128,7 +128,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -152,7 +152,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['includeDeleted' => $includeDeleted],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -180,7 +180,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -204,7 +204,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -227,7 +227,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -250,7 +250,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['includeDeleted' => $includeDeleted],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -278,7 +278,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -300,7 +300,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['key' => $key, 'value' => $value]),
+            'body' => json_encode(['key' => $key, 'value' => $value], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -322,7 +322,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['user' => $user, 'password' => $password, 'redirectTo' => $redirectTo, 'sendNotificationEmail' => $sendNotificationEmail]),
+            'body' => json_encode(['user' => $user, 'password' => $password, 'redirectTo' => $redirectTo, 'sendNotificationEmail' => $sendNotificationEmail], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -344,7 +344,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['user' => $user, 'password' => $password]),
+            'body' => json_encode(['user' => $user, 'password' => $password], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -365,7 +365,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['groupIds' => $groupIds]),
+            'body' => json_encode(['groupIds' => $groupIds], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -386,7 +386,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['successful' => $successful]),
+            'body' => json_encode(['successful' => $successful], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -408,7 +408,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['link' => $link]),
+            'body' => json_encode(['link' => $link], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -430,7 +430,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['hash' => $hash, 'password' => $password]),
+            'body' => json_encode(['hash' => $hash, 'password' => $password], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -451,7 +451,7 @@ class AccountsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['value' => $value]),
+            'body' => json_encode(['value' => $value], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 

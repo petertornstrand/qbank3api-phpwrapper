@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format of this changelog adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.0.3]
+### Changed
+- UTF-8 characters won't get escaped in request bodies
+
 ## [2.0.2]
 ### Added
 - Discriminator ID on object types

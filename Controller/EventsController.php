@@ -23,7 +23,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId, 'event' => $event]),
+            'body' => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId, 'event' => $event], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -45,7 +45,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['sessionId' => $sessionId, 'downloads' => $downloads]),
+            'body' => json_encode(['sessionId' => $sessionId, 'downloads' => $downloads], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -68,7 +68,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['sessionId' => $sessionId, 'search' => $search, 'hits' => $hits]),
+            'body' => json_encode(['sessionId' => $sessionId, 'search' => $search, 'hits' => $hits], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -92,7 +92,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['sourceId' => $sourceId, 'sessionHash' => $sessionHash, 'remoteIp' => $remoteIp, 'userAgent' => $userAgent, 'userId' => $userId]),
+            'body' => json_encode(['sourceId' => $sourceId, 'sessionHash' => $sessionHash, 'remoteIp' => $remoteIp, 'userAgent' => $userAgent, 'userId' => $userId], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -112,7 +112,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['sessionId' => $sessionId, 'mediaUsage' => $mediaUsage]),
+            'body' => json_encode(['sessionId' => $sessionId, 'mediaUsage' => $mediaUsage], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -135,7 +135,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId]),
+            'body' => json_encode(['sessionId' => $sessionId, 'mediaId' => $mediaId], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -154,7 +154,7 @@ class EventsController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 

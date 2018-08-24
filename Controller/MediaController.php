@@ -34,7 +34,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => ['includeChildren' => $includeChildren],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -89,7 +89,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -115,7 +115,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -145,7 +145,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => ['template' => $template, 'templateType' => $templateType],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -176,7 +176,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => ['depth' => $depth],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -202,7 +202,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -230,7 +230,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -256,7 +256,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -282,7 +282,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -310,7 +310,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -336,7 +336,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -427,7 +427,7 @@ use QBNK\QBank\API\Model\Property;
 
             $parameters = [
             'query' => [],
-            'body' => json_encode(['media' => $media]),
+            'body' => json_encode(['media' => $media], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -449,7 +449,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode(['children' => $children]),
+            'body' => json_encode(['children' => $children], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -470,7 +470,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -494,7 +494,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode(['status' => $status]),
+            'body' => json_encode(['status' => $status], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -570,7 +570,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode(['comment' => $comment]),
+            'body' => json_encode(['comment' => $comment], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -591,7 +591,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode(['structure' => $structure]),
+            'body' => json_encode(['structure' => $structure], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -613,7 +613,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode(['properties' => $properties]),
+            'body' => json_encode(['properties' => $properties], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -636,7 +636,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => ['hardDelete' => $hardDelete],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -659,7 +659,7 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 

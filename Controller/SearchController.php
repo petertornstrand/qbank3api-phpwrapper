@@ -19,7 +19,7 @@ class SearchController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -41,7 +41,7 @@ class SearchController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['returnType' => $returnType],
-            'body' => json_encode(['search' => $search]),
+            'body' => json_encode(['search' => $search], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -63,7 +63,7 @@ class SearchController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['search' => $search]),
+            'body' => json_encode(['search' => $search], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -84,7 +84,7 @@ class SearchController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['search' => $search]),
+            'body' => json_encode(['search' => $search], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 

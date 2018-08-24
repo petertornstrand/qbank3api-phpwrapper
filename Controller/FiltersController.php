@@ -26,7 +26,7 @@ class FiltersController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['deploymentSiteIds' => $deploymentSiteIds, 'ignoreGrouping' => $ignoreGrouping],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -57,7 +57,7 @@ class FiltersController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds, 'ignoreGrouping' => $ignoreGrouping],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -88,7 +88,7 @@ class FiltersController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['deploymentSiteIds' => $deploymentSiteIds, 'mode' => $mode, 'ignoreGrouping' => $ignoreGrouping],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -121,7 +121,7 @@ class FiltersController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['preloadNames' => $preloadNames, 'categoryIds' => $categoryIds, 'deploymentSiteIds' => $deploymentSiteIds, 'isHierarchical' => $isHierarchical, 'ignoreGrouping' => $ignoreGrouping],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 

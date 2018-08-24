@@ -26,7 +26,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['root' => $root, 'depth' => $depth, 'includeProperties' => $includeProperties, 'includeObjectCounts' => $includeObjectCounts],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -57,7 +57,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['depth' => $depth, 'includeProperties' => $includeProperties, 'includeObjectCounts' => $includeObjectCounts],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -81,7 +81,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -107,7 +107,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['parentId' => $parentId],
-            'body' => json_encode(['folder' => $folder, 'inheritAccess' => $inheritAccess]),
+            'body' => json_encode(['folder' => $folder, 'inheritAccess' => $inheritAccess], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -128,7 +128,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['mediaIds' => $mediaIds]),
+            'body' => json_encode(['mediaIds' => $mediaIds], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -150,7 +150,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['folder' => $folder]),
+            'body' => json_encode(['folder' => $folder], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -171,7 +171,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -192,7 +192,7 @@ class FoldersController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 

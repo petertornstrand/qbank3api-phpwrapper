@@ -19,7 +19,7 @@ class ObjecttypesController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -47,7 +47,7 @@ class ObjecttypesController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 

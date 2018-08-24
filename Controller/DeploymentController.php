@@ -21,7 +21,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -47,7 +47,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -71,7 +71,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -97,7 +97,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -117,7 +117,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['deploymentSite' => $deploymentSite]),
+            'body' => json_encode(['deploymentSite' => $deploymentSite], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -138,7 +138,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['deploymentSite' => $deploymentSite]),
+            'body' => json_encode(['deploymentSite' => $deploymentSite], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -160,7 +160,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode(['mediaIds' => $mediaIds]),
+            'body' => json_encode(['mediaIds' => $mediaIds], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -181,7 +181,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query' => [],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
@@ -204,7 +204,7 @@ class DeploymentController extends ControllerAbstract
     {
         $parameters = [
             'query' => ['mediaIds' => $mediaIds],
-            'body' => json_encode([]),
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
 
