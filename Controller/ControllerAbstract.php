@@ -114,7 +114,8 @@ abstract class ControllerAbstract implements LoggerAwareInterface
             );
 
             $data = null;
-            if (in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type'))))) {
+            $responseString = $response->getBody()->__toString();
+            if (!empty($responseString) && in_array('application/json', array_map('trim', explode(';', $response->getHeader('Content-type'))))) {
                 try {
                     $data = $response->json();
                 } catch (\RuntimeException $re) {
