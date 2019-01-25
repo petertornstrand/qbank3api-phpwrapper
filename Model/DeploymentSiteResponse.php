@@ -31,6 +31,9 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
     /** @var PropertySet[] The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties. */
     protected $propertySets;
 
+    /** @var int The discriminator id of the extending class */
+    protected $discriminatorId;
+
     /**
      * Constructs a DeploymentSiteResponse.
      *
@@ -43,6 +46,7 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
      *                          - <b>updatedBy</b> - Which user that updated the Object.
      *                          - <b>dirty</b> - Whether the object has been modified since constructed.
      *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     *                          - <b>discriminatorId</b> - The discriminator id of the extending class
      */
     public function __construct($parameters = [])
     {
@@ -73,6 +77,9 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
         }
         if (isset($parameters['propertySets'])) {
             $this->setPropertySets($parameters['propertySets']);
+        }
+        if (isset($parameters['discriminatorId'])) {
+            $this->setDiscriminatorId($parameters['discriminatorId']);
         }
     }
 
@@ -320,6 +327,28 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
     }
 
     /**
+     * Gets the discriminatorId of the DeploymentSiteResponse.
+     * @return int	 */
+    public function getDiscriminatorId()
+    {
+        return $this->discriminatorId;
+    }
+
+    /**
+     * Sets the "discriminatorId" of the DeploymentSiteResponse.
+     *
+     * @param int $discriminatorId
+     *
+     * @return DeploymentSiteResponse
+     */
+    public function setDiscriminatorId($discriminatorId)
+    {
+        $this->discriminatorId = $discriminatorId;
+
+        return $this;
+    }
+
+    /**
      * Gets all data that should be available in a json representation.
      *
      * @return array an associative array of the available variables
@@ -351,6 +380,9 @@ class DeploymentSiteResponse extends DeploymentSite implements \JsonSerializable
         }
         if (null !== $this->propertySets && !empty($this->propertySets)) {
             $json['propertySets'] = $this->propertySets;
+        }
+        if (null !== $this->discriminatorId) {
+            $json['discriminatorId'] = $this->discriminatorId;
         }
 
         return $json;

@@ -71,6 +71,9 @@ class MediaResponse extends Media implements \JsonSerializable
     /** @var PropertySet[] The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties. */
     protected $propertySets;
 
+    /** @var int The discriminator id of the extending class */
+    protected $discriminatorId;
+
     /**
      * Constructs a MediaResponse.
      *
@@ -95,6 +98,7 @@ class MediaResponse extends Media implements \JsonSerializable
      *                          - <b>updatedBy</b> - Which user that updated the Object.
      *                          - <b>dirty</b> - Whether the object has been modified since constructed.
      *                          - <b>propertySets</b> - The objects PropertySets. This contains all properties with information and values. Use the "properties" parameter when setting properties.
+     *                          - <b>discriminatorId</b> - The discriminator id of the extending class
      */
     public function __construct($parameters = [])
     {
@@ -164,6 +168,9 @@ class MediaResponse extends Media implements \JsonSerializable
         }
         if (isset($parameters['propertySets'])) {
             $this->setPropertySets($parameters['propertySets']);
+        }
+        if (isset($parameters['discriminatorId'])) {
+            $this->setDiscriminatorId($parameters['discriminatorId']);
         }
     }
 
@@ -769,6 +776,28 @@ class MediaResponse extends Media implements \JsonSerializable
     }
 
     /**
+     * Gets the discriminatorId of the MediaResponse.
+     * @return int	 */
+    public function getDiscriminatorId()
+    {
+        return $this->discriminatorId;
+    }
+
+    /**
+     * Sets the "discriminatorId" of the MediaResponse.
+     *
+     * @param int $discriminatorId
+     *
+     * @return MediaResponse
+     */
+    public function setDiscriminatorId($discriminatorId)
+    {
+        $this->discriminatorId = $discriminatorId;
+
+        return $this;
+    }
+
+    /**
      * Checks if media is grouped.
      *
      * @return bool
@@ -928,6 +957,9 @@ class MediaResponse extends Media implements \JsonSerializable
         }
         if (null !== $this->propertySets && !empty($this->propertySets)) {
             $json['propertySets'] = $this->propertySets;
+        }
+        if (null !== $this->discriminatorId) {
+            $json['discriminatorId'] = $this->discriminatorId;
         }
 
         foreach ($this->propertySets as $propertySet) {

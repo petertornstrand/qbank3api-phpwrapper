@@ -432,7 +432,13 @@ class QBankApi
     protected function withOAuth2MiddleWare(HandlerStack $stack)
     {
         if (!($this->oauth2Middleware instanceof OAuthMiddleware)) {
-            $oauthClient = new Client(['base_uri' => $this->basepath]);
+            $oauthClient = new Client([
+                'base_uri' => $this->basepath,
+                'verify' => $this->verifyCertificates,
+                'headers' => [
+                    'User-Agent' => 'qbank3api-phpwrapper/2 (qbankapi: 1; swagger: 1.1)',
+                ],
+            ]);
             $config = [
                 PasswordCredentials::CONFIG_USERNAME => $this->credentials->getUsername(),
                 PasswordCredentials::CONFIG_PASSWORD => $this->credentials->getPassword(),

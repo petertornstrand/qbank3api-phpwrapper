@@ -18,32 +18,32 @@ abstract class ObjectResponse
     const DISCRIMINATOR_CAMPAIGN = 7;
 
     /**
-     * @var int the base Object identifier
+     * @var int The base Object identifier.
      */
     public $objectId;
 
     /**
-     * @var date {@type DateTime} When the Object was created
+     * @var date {@type DateTime} When the Object was created.
      */
     public $created;
 
     /**
-     * @var int the identifier of the User who created the Object
+     * @var int The identifier of the User who created the Object.
      */
     public $createdBy;
 
     /**
-     * @var date {@type DateTime} When the Object was updated
+     * @var date {@type DateTime} When the Object was updated.
      */
     public $updated;
 
     /**
-     * @var int which user that updated the Object
+     * @var int Which user that updated the Object.
      */
     public $updatedBy;
 
     /**
-     * @var bool whether the object has been modified since constructed
+     * @var bool Whether the object has been modified since constructed.
      */
     public $dirty;
 

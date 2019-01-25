@@ -40,16 +40,16 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Performs a request to the QBank API.
      *
-     * @param string      $endpoint      the API endpoint URL to request
-     * @param array       $parameters    the parameters to send
-     * @param string      $method        the HTTP verb to use
-     * @param CachePolicy $cachePolicy   the custom caching policy to use
-     * @param bool        $fireAndForget if the response should be ignored
+     * @param string      $endpoint      The API endpoint URL to request.
+     * @param array       $parameters    The parameters to send.
+     * @param string      $method        The HTTP verb to use.
+     * @param CachePolicy $cachePolicy   The custom caching policy to use.
+     * @param bool        $fireAndForget If the response should be ignored.
      *
-     * @return array the response result
+     * @return array The response result.
      *
-     * @throws \QBNK\QBank\API\Exception\RequestException  thrown if there was something wrong with the request
-     * @throws \QBNK\QBank\API\Exception\ResponseException thrown if there was something wrong with the response
+     * @throws \QBNK\QBank\API\Exception\RequestException  Thrown if there was something wrong with the request.
+     * @throws \QBNK\QBank\API\Exception\ResponseException Thrown if there was something wrong with the response.
      */
     protected function call($endpoint, array $parameters = [], $method = self::METHOD_GET, CachePolicy $cachePolicy = null, $fireAndForget = false)
     {
@@ -174,12 +174,12 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a GET request to the API.
      *
-     * @param string      $endpoint      the API endpoint URL to request
-     * @param array       $parameters    the parameters to send
-     * @param CachePolicy $cachePolicy   the custom caching policy to use
-     * @param bool        $fireAndForget if the response should be ignored
+     * @param string      $endpoint      The API endpoint URL to request.
+     * @param array       $parameters    The parameters to send.
+     * @param CachePolicy $cachePolicy   The custom caching policy to use.
+     * @param bool        $fireAndForget If the response should be ignored.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -192,11 +192,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a POST request to the API.
      *
-     * @param string $endpoint      the API endpoint URL to request
-     * @param array  $parameters    the parameters to send
-     * @param bool   $fireAndForget if the response should be ignored
+     * @param string $endpoint      The API endpoint URL to request.
+     * @param array  $parameters    The parameters to send.
+     * @param bool   $fireAndForget If the response should be ignored.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -209,11 +209,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a PUT request to the API.
      *
-     * @param string $endpoint      the API endpoint URL to request
-     * @param array  $parameters    the parameters to send
-     * @param bool   $fireAndForget if the response should be ignored
+     * @param string $endpoint      The API endpoint URL to request.
+     * @param array  $parameters    The parameters to send.
+     * @param bool   $fireAndForget If the response should be ignored.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
@@ -226,11 +226,11 @@ abstract class ControllerAbstract implements LoggerAwareInterface
     /**
      * Shorthand for sending a DELETE request to the API.
      *
-     * @param string $endpoint      the API endpoint URL to request
-     * @param array  $parameters    the parameters to send
-     * @param bool   $fireAndForget if the response should be ignored
+     * @param string $endpoint      The API endpoint URL to request.
+     * @param array  $parameters    The parameters to send.
+     * @param bool   $fireAndForget If the response should be ignored.
      *
-     * @return array the response result
+     * @return array The response result.
      *
      * @throws RequestException
      * @throws ResponseException
