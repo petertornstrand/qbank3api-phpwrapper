@@ -4,6 +4,15 @@ namespace QBNK\QBank\API\Model;
 
 class MimeType implements \JsonSerializable
 {
+    const CLASSIFICATION_AUDIO = 'audio';
+    const CLASSIFICATION_ARCHIVE = 'archive';
+    const CLASSIFICATION_DOCUMENT = 'document';
+    const CLASSIFICATION_IMAGE = 'image';
+    const CLASSIFICATION_VIDEO = 'video';
+    const CLASSIFICATION_FONT = 'font';
+
+    const SUB_CLASSIFICATION_VECTORIMAGE = 'vector-image';
+
     /** @var int The MimeType identifier. */
     protected $id;
 
