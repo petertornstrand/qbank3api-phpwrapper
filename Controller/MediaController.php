@@ -2,7 +2,6 @@
 
 namespace QBNK\QBank\API\Controller;
 
-use GuzzleHttp\Post\PostFile;
 use QBNK\QBank\API\CachePolicy;
 use QBNK\QBank\API\Exception\UploadException;
 use QBNK\QBank\API\Model\Comment;
@@ -16,7 +15,7 @@ use QBNK\QBank\API\Model\MediaUsageResponse;
 use QBNK\QBank\API\Model\MediaVersion;
 use QBNK\QBank\API\Model\MoodboardResponse;
 use QBNK\QBank\API\Model\Property;
-    use QBNK\QBank\API\Model\SlideStructure;
+use QBNK\QBank\API\Model\SlideStructure;
     use QBNK\QBank\API\Model\SocialMedia;
 
     class MediaController extends ControllerAbstract
@@ -401,10 +400,16 @@ use QBNK\QBank\API\Model\Property;
                 'categoryId' => $categoryId,
                 'title' => $title,
             ],
-            'body' => ['file' => new PostFile('file', $fileData)],
-            'headers' => ['Content-type' => 'multipart/form-data'],
+            'multipart' => [
+                [
+                    'name' => 'file',
+                    'contents' => \GuzzleHttp\Psr7\stream_for($fileData),
+                    'filename' => $name,
+                ],
+            ],
+            'headers' => null,
         ];
-            $result = $this->post('v1/media', $parameters);
+            $result = $this->post('v1/media.json', $parameters);
 
             return $result;
         }
@@ -515,10 +520,16 @@ use QBNK\QBank\API\Model\Property;
         {
             $parameters = [
             'query' => [],
-            'body' => ['file' => new PostFile('file', $fileData)],
-            'headers' => ['Content-type' => 'multipart/form-data'],
+            'multipart' => [
+                [
+                    'name' => 'file',
+                    'contents' => \GuzzleHttp\Psr7\stream_for($fileData),
+                    'filename' => 'preview-file',
+                ],
+            ],
+            'headers' => null,
         ];
-            $this->post('v1/media/' . $id . '/uploadpreview', $parameters);
+            $this->post('v1/media.json/' . $id . '/uploadpreview', $parameters);
         }
 
         /**
@@ -549,10 +560,16 @@ use QBNK\QBank\API\Model\Property;
                 'chunks' => $chunks,
                 'fileId' => $fileId,
             ],
-            'body' => ['file' => new PostFile('file', $fileData)],
-            'headers' => ['Content-type' => 'multipart/form-data'],
+            'multipart' => [
+                [
+                    'name' => 'file',
+                    'contents' => \GuzzleHttp\Psr7\stream_for($fileData),
+                    'filename' => $name,
+                ],
+            ],
+            'headers' => null,
         ];
-            $result = $this->post('v1/media/' . $id . '/version', $parameters);
+            $result = $this->post('v1/media.json/' . $id . '/version', $parameters);
 
             return $result;
         }
@@ -713,7 +730,9 @@ use QBNK\QBank\API\Model\Property;
                 if (isset($result['success']) && false == $result['success']) {
                     throw new UploadException($result['error']['message'], $result['error']['code']);
                 }
-                $fileId = $result['fileId'];
+                if (isset($result['fileId'])) {
+                    $fileId = $result['fileId'];
+                }
                 ++$chunk;
             }
             if ($chunk == $chunksTotal - 1) {
