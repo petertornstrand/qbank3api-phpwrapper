@@ -161,9 +161,13 @@ class QBankApi
     public function __destruct()
     {
         if ($this->oauth2Middleware instanceof OAuthMiddleware) {
-            $accessToken = $this->oauth2Middleware->getAccessToken();
-            $refreshToken = $this->oauth2Middleware->getRefreshToken();
-            $this->setTokens($accessToken, $refreshToken);
+	        try {
+		        $accessToken = $this->oauth2Middleware->getAccessToken();
+		        $refreshToken = $this->oauth2Middleware->getRefreshToken();
+		        $this->setTokens($accessToken, $refreshToken);
+	        } catch (\Exception $e) {
+		        $this->logger->warning('Could not store tokens: '.$e->getMessage());
+	        }
         }
     }
 
