@@ -10,6 +10,9 @@ class MediaResponse extends Media implements \JsonSerializable
 {
     const TEMPLATE_IMAGE = 'image';
     const TEMPLATE_VIDEO = 'video';
+    const TEMPLATE_AUDIO = 'audio';
+    const TEMPLATE_FONT = 'font';
+    const TEMPLATE_DOCUMENT = 'document';
 
     /** @var int The Media identifier. */
     protected $mediaId;
@@ -843,16 +846,57 @@ class MediaResponse extends Media implements \JsonSerializable
         foreach ($this->deployedFiles as $deployedFile) {
             /** @var DeploymentFile $deployedFile */
             if (null === $siteId || $siteId == $deployedFile->getDeployMentSiteId()) {
-                if (self::TEMPLATE_VIDEO == $templateType) {
-                    if ($templateId == $deployedFile->getVideoTemplateId() && null === $deployedFile->getImageTemplateId()) {
+                switch ($templateType) {
+                case self::TEMPLATE_IMAGE:
+                    if ($templateId == $deployedFile->getImageTemplateId()
+                        || (null === $templateId
+                            && null === $deployedFile->getImageTemplateId()
+                            && null === $deployedFile->getVideoTemplateId()
+                            && null === $deployedFile->getAudioTemplateId()
+                            && null === $deployedFile->getDocumentTemplateId()
+                            && null === $deployedFile->getFontTemplateId())
+                    ) {
                         return $deployedFile;
                     }
-                } elseif (self::TEMPLATE_IMAGE == $templateType && $templateId == $deployedFile->getImageTemplateId() ||
-                    (null === $templateId && null === $deployedFile->getImageTemplateId() && null === $deployedFile->getVideoTemplateId())) {
-                    return $deployedFile;
+
+                break;
+
+                case self::TEMPLATE_VIDEO:
+                    if ($templateId == $deployedFile->getVideoTemplateId()) {
+                        return $deployedFile;
+                    }
+
+                break;
+
+                case self::TEMPLATE_AUDIO:
+                    if ($templateId == $deployedFile->getAudioTemplateId()) {
+                        return $deployedFile;
+                    }
+
+                break;
+
+                case self::TEMPLATE_DOCUMENT:
+                    if ($templateId == $deployedFile->getDocumentTemplateId()) {
+                        return $deployedFile;
+                    }
+
+                break;
+
+                case self::TEMPLATE_FONT:
+                    if ($templateId == $deployedFile->getFontTemplateId()) {
+                        return $deployedFile;
+                    }
+
+                break;
+
+                default:
+                // Do nothing
+
+                break;
                 }
             }
         }
+
         throw new NotFoundException('No DeploymentFile with the id "' . $templateId . '" exists.');
     }
 

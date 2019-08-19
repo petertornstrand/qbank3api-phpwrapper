@@ -18,6 +18,15 @@ class DeploymentFile implements \JsonSerializable
     /** @var int The identifier of the Video template used. */
     protected $videoTemplateId;
 
+    /** @var int The identifier of the Audio template used. */
+    protected $audioTemplateId;
+
+    /** @var int The identifier of the Document template used. */
+    protected $documentTemplateId;
+
+    /** @var int The identifier of the Font template used. */
+    protected $fontTemplateId;
+
     /** @var string The name of the template, if any. */
     protected $templateName;
 
@@ -41,6 +50,9 @@ class DeploymentFile implements \JsonSerializable
      *                          - <b>remoteFile</b> - The filename of the deployed file.
      *                          - <b>imageTemplateId</b> - The identifier of the Image template used.
      *                          - <b>videoTemplateId</b> - The identifier of the Video template used.
+     *                          - <b>audioTemplateId</b> - The identifier of the Audio template used.
+     *                          - <b>documentTemplateId</b> - The identifier of the Document template used.
+     *                          - <b>fontTemplateId</b> - The identifier of the Font template used.
      *                          - <b>templateName</b> - The name of the template, if any.
      *                          - <b>created</b> - The time of deployment for this file.
      *                          - <b>filename</b> - The original filename of the file when uploaded to QBank.
@@ -60,6 +72,15 @@ class DeploymentFile implements \JsonSerializable
         }
         if (isset($parameters['videoTemplateId'])) {
             $this->setVideoTemplateId($parameters['videoTemplateId']);
+        }
+        if (isset($parameters['audioTemplateId'])) {
+            $this->setAudioTemplateId($parameters['audioTemplateId']);
+        }
+        if (isset($parameters['documentTemplateId'])) {
+            $this->setDocumentTemplateId($parameters['documentTemplateId']);
+        }
+        if (isset($parameters['fontTemplateId'])) {
+            $this->setFontTemplateId($parameters['fontTemplateId']);
         }
         if (isset($parameters['templateName'])) {
             $this->setTemplateName($parameters['templateName']);
@@ -162,6 +183,72 @@ class DeploymentFile implements \JsonSerializable
     public function setVideoTemplateId($videoTemplateId)
     {
         $this->videoTemplateId = $videoTemplateId;
+
+        return $this;
+    }
+
+    /**
+     * Gets the audioTemplateId of the DeploymentFile.
+     * @return int	 */
+    public function getAudioTemplateId()
+    {
+        return $this->audioTemplateId;
+    }
+
+    /**
+     * Sets the "audioTemplateId" of the DeploymentFile.
+     *
+     * @param int $audioTemplateId
+     *
+     * @return DeploymentFile
+     */
+    public function setAudioTemplateId($audioTemplateId)
+    {
+        $this->audioTemplateId = $audioTemplateId;
+
+        return $this;
+    }
+
+    /**
+     * Gets the documentTemplateId of the DeploymentFile.
+     * @return int	 */
+    public function getDocumentTemplateId()
+    {
+        return $this->documentTemplateId;
+    }
+
+    /**
+     * Sets the "documentTemplateId" of the DeploymentFile.
+     *
+     * @param int $documentTemplateId
+     *
+     * @return DeploymentFile
+     */
+    public function setDocumentTemplateId($documentTemplateId)
+    {
+        $this->documentTemplateId = $documentTemplateId;
+
+        return $this;
+    }
+
+    /**
+     * Gets the fontTemplateId of the DeploymentFile.
+     * @return int	 */
+    public function getFontTemplateId()
+    {
+        return $this->fontTemplateId;
+    }
+
+    /**
+     * Sets the "fontTemplateId" of the DeploymentFile.
+     *
+     * @param int $fontTemplateId
+     *
+     * @return DeploymentFile
+     */
+    public function setFontTemplateId($fontTemplateId)
+    {
+        $this->fontTemplateId = $fontTemplateId;
 
         return $this;
     }
@@ -312,6 +399,15 @@ class DeploymentFile implements \JsonSerializable
         }
         if (null !== $this->videoTemplateId) {
             $json['videoTemplateId'] = $this->videoTemplateId;
+        }
+        if (null !== $this->audioTemplateId) {
+            $json['audioTemplateId'] = $this->audioTemplateId;
+        }
+        if (null !== $this->documentTemplateId) {
+            $json['documentTemplateId'] = $this->documentTemplateId;
+        }
+        if (null !== $this->fontTemplateId) {
+            $json['fontTemplateId'] = $this->fontTemplateId;
         }
         if (null !== $this->templateName) {
             $json['templateName'] = $this->templateName;
