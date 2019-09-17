@@ -420,6 +420,13 @@ class QBankApi
                     'User-Agent' => 'qbank3api-phpwrapper/2 (qbankapi: 1; swagger: 1.1)',
                 ],
                 'verify' => $this->verifyCertificates,
+				'allow_redirects' => [
+					'max'             => 5,
+					'strict'          => true,
+					'referer'         => false,
+					'protocols'       => ['http', 'https'],
+					'track_redirects' => false
+				]
             ]);
 
             $this->logger->debug('Guzzle client instantiated.', ['basepath' => $this->basepath]);
