@@ -381,34 +381,34 @@ use QBNK\QBank\API\Model\SlideStructure;
          *  POST /media.json?chunks=3&chunk=2&filename=largefile.txt&categoryId=1&fileId=<fileId from first call> (file data is sent in body)
          *
          * @param  mixed  $fileData   the file's data content
-         * @param  string $name       Filename of the file being uploaded
+         * @param  string $filename       Filename of the file being uploaded
          * @param  int    $chunk      The chunk we are currently uploading, starts at 0
          * @param  int    $chunks     Number of chunks you will be uploading, when (chunk - 1) == chunks the file will be considered uploaded
          * @param  string $fileId     A unique fileId that will be used for this upload, if none is given one will be given to you
          * @param  int    $categoryId The category to place the file in
-         * @param  string $title      Title which will represent the media in search results etc
+         * @param  string $title      Title to use for media instead of filename
          * @return array
          */
-        public function uploadFileChunked($fileData, $name, $chunk, $chunks, $fileId, $categoryId, $title = null)
+        public function uploadFileChunked($fileData, $filename, $chunk, $chunks, $fileId, $categoryId, $title = null)
         {
             $parameters = [
-            'query' => [
-                'name' => $name,
-                'chunk' => $chunk,
-                'chunks' => $chunks,
-                'fileId' => $fileId,
-                'categoryId' => $categoryId,
-                'title' => $title,
-            ],
-            'multipart' => [
-                [
-                    'name' => 'file',
-                    'contents' => \GuzzleHttp\Psr7\stream_for($fileData),
-                    'filename' => $name,
-                ],
-            ],
-            'headers' => null,
-        ];
+				'query' => [
+					'name' => $filename,
+					'chunk' => $chunk,
+					'chunks' => $chunks,
+					'fileId' => $fileId,
+					'categoryId' => $categoryId,
+					'title' => $title,
+				],
+				'multipart' => [
+					[
+						'name' => 'file',
+						'contents' => \GuzzleHttp\Psr7\stream_for($fileData),
+						'filename' => $filename,
+					],
+				],
+				'headers' => null,
+			];
             $result = $this->post('v1/media.json', $parameters);
 
             return $result;
@@ -693,16 +693,17 @@ use QBNK\QBank\API\Model\SlideStructure;
          * customizable, but defaults to the recommended maximum. It is also possible to monitor uploading via callbacks.
          *
          * @param string   $pathname   the pathname of the file to upload
-         * @param string   $name       the name of the new Media
+         * @param string   $filename   Filename to set
          * @param int      $categoryId the ID of the Category the new Media should belong to
          * @param callable $progress   Provides progress monitoring. Callback should have the signature function($chunk, $chunkTotal).
          * @param int      $chunkSize  The size of chunk during upload. Defaults to the recommended maximum of 10MB.
+		 * @param string   $title		Optional media title to set, instead of using filename
          *
          * @throws UploadException thrown if something went wrong during the upload
          *
          * @return MediaResponse the newly created Media
          */
-        public function uploadFile($pathname, $name, $categoryId, $progress = null, $chunkSize = 10485760)
+        public function uploadFile($pathname, $filename, $categoryId, $progress = null, $chunkSize = 10485760, $title = null)
         {
             $chunk = 0;
             $chunksTotal = ceil(filesize($pathname) / $chunkSize);
@@ -715,7 +716,7 @@ use QBNK\QBank\API\Model\SlideStructure;
                 $this->logger->warning('Using a chunk size larger then 10MB is not recommended. Uploading is not guaranteed to work properly.');
             }
             while ($chunkData = fread($fp, $chunkSize)) {
-                $result = $this->uploadFileChunked($chunkData, $name, $chunk, $chunksTotal, $fileId, $categoryId);
+                $result = $this->uploadFileChunked($chunkData, $filename, $chunk, $chunksTotal, $fileId, $categoryId, $title);
                 if (is_callable($progress)) {
                     try {
                         call_user_func($progress, $chunk + 1, $chunksTotal);
