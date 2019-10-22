@@ -459,4 +459,24 @@ class AccountsController extends ControllerAbstract
 
         return $result;
     }
+
+    /**
+     * Removes an existing setting.
+     *
+     * Updates a previously created setting.
+     *
+     * @param string $key The key (identifier) of the setting..
+     */
+    public function removeSetting($key)
+    {
+        $parameters = [
+            'query' => [],
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
+            'headers' => [],
+        ];
+
+        $result = $this->delete('v1/accounts/settings/' . $key . '', $parameters);
+
+        return $result;
+    }
 }
