@@ -95,15 +95,16 @@ class AccountsController extends ControllerAbstract
      *
      * Fetches a Group by the specified identifier.
      *
-     * @param int         $id          the Group identifier
-     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     * @param int         $id           the Group identifier
+     * @param bool        $includeUsers
+     * @param CachePolicy $cachePolicy  a custom cache policy used for this request only
      *
      * @return Group
      */
-    public function retrieveGroup($id, CachePolicy $cachePolicy = null)
+    public function retrieveGroup($id, $includeUsers = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query' => [],
+            'query' => ['includeUsers' => $includeUsers],
             'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
