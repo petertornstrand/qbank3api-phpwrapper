@@ -95,15 +95,16 @@ class AccountsController extends ControllerAbstract
      *
      * Fetches a Group by the specified identifier.
      *
-     * @param int         $id          the Group identifier
-     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     * @param int         $id           the Group identifier
+     * @param bool        $includeUsers
+     * @param CachePolicy $cachePolicy  a custom cache policy used for this request only
      *
      * @return Group
      */
-    public function retrieveGroup($id, CachePolicy $cachePolicy = null)
+    public function retrieveGroup($id, $includeUsers = false, CachePolicy $cachePolicy = null)
     {
         $parameters = [
-            'query' => [],
+            'query' => ['includeUsers' => $includeUsers],
             'body' => json_encode([], JSON_UNESCAPED_UNICODE),
             'headers' => [],
         ];
@@ -119,7 +120,6 @@ class AccountsController extends ControllerAbstract
      *
      * Effectively a whoami call.
      *
-
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return User
@@ -195,7 +195,6 @@ class AccountsController extends ControllerAbstract
      *
      * Fetches all settings currently available for the current user.
      *
-
      * @param CachePolicy $cachePolicy a custom cache policy used for this request only
      *
      * @return array
@@ -289,6 +288,33 @@ class AccountsController extends ControllerAbstract
     }
 
     /**
+     * Search for users by email.
+     *
+     * @param string      $byEmail     search for users by email
+     * @param string      $userType    which user types to consider
+     * @param CachePolicy $cachePolicy a custom cache policy used for this request only
+     *
+     * @return User[]
+     */
+    public function searchUsers($byEmail, $userType = 'all_users', CachePolicy $cachePolicy = null)
+    {
+        $parameters = [
+            'query' => ['byEmail' => $byEmail, 'userType' => $userType],
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
+            'headers' => [],
+        ];
+
+        $result = $this->get('v1/accounts/users/search', $parameters, $cachePolicy);
+        foreach ($result as &$entry) {
+            $entry = new User($entry);
+        }
+        unset($entry);
+        reset($result);
+
+        return $result;
+    }
+
+    /**
      * Creates a new setting.
      *
      * Creates a new, previously not existing setting.
@@ -312,10 +338,11 @@ class AccountsController extends ControllerAbstract
     /**
      * Create a user Create a user in QBank.
      *
-     * @param  User   $user                  The user to create
-     * @param  string $password              Password for the new user, leave blank to let QBank send a password-reset link to the user
-     * @param  string $redirectTo            Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
-     * @param  bool   $sendNotificationEmail Send a notification email to the new user, as specified through the QBank backend
+     * @param User   $user                  The user to create
+     * @param string $password              Password for the new user, leave blank to let QBank send a password-reset link to the user
+     * @param string $redirectTo            Only used if leaving $password blank, a URL to redirect the user to after setting his/hers password
+     * @param bool   $sendNotificationEmail Send a notification email to the new user, as specified through the QBank backend
+     *
      * @return User
      */
     public function createUser(User $user, $password = null, $redirectTo = null, $sendNotificationEmail = null)
@@ -335,9 +362,10 @@ class AccountsController extends ControllerAbstract
     /**
      * Update a user Update a user in QBank.
      *
-     * @param  int    $id
-     * @param  User   $user     The user to update
-     * @param  string $password Set a new password for the user, leave blank to leave unchanged
+     * @param int    $id
+     * @param User   $user     The user to update
+     * @param string $password Set a new password for the user, leave blank to leave unchanged
+     *
      * @return User
      */
     public function updateUser($id, User $user, $password = null)
@@ -357,8 +385,9 @@ class AccountsController extends ControllerAbstract
     /**
      * Add the user to one or more groups.
      *
-     * @param  int   $id
-     * @param  int[] $groupIds an array of int values
+     * @param int   $id
+     * @param int[] $groupIds an array of int values
+     *
      * @return User
      */
     public function addUserToGroup($id, array $groupIds)
@@ -378,8 +407,9 @@ class AccountsController extends ControllerAbstract
     /**
      * Update the last login time for a user Update the last login time for a user.
      *
-     * @param  int  $id
-     * @param  bool $successful Login attempt successful or not
+     * @param int  $id
+     * @param bool $successful Login attempt successful or not
+     *
      * @return User
      */
     public function updateLastLogin($id, $successful = null)
@@ -422,8 +452,9 @@ class AccountsController extends ControllerAbstract
      *
      * Resets a password for a user with a valid password reset hash. Hash should be obtained through "/users/{id}/sendpasswordreset".
      *
-     * @param  string $hash     Valid password reset hash
-     * @param  string $password New password
+     * @param string $hash     Valid password reset hash
+     * @param string $password New password
+     *
      * @return array
      */
     public function resetPassword($hash, $password)
@@ -456,6 +487,26 @@ class AccountsController extends ControllerAbstract
         ];
 
         $result = $this->put('v1/accounts/settings/' . $key . '', $parameters);
+
+        return $result;
+    }
+
+    /**
+     * Removes an existing setting.
+     *
+     * Updates a previously created setting.
+     *
+     * @param string $key The key (identifier) of the setting..
+     */
+    public function removeSetting($key)
+    {
+        $parameters = [
+            'query' => [],
+            'body' => json_encode([], JSON_UNESCAPED_UNICODE),
+            'headers' => [],
+        ];
+
+        $result = $this->delete('v1/accounts/settings/' . $key . '', $parameters);
 
         return $result;
     }

@@ -8,39 +8,30 @@ class Group implements \JsonSerializable
 {
     /** @var int The Group identifier. */
     protected $id;
-
     /** @var string The name of the Group */
     protected $name;
-
     /** @var string Description of what this Group means */
     protected $description;
-
     /** @var bool Whether the object has been modified since constructed. */
     protected $dirty;
-
     /** @var bool Indicates if this Group is deleted */
     protected $deleted;
-
     /** @var DateTime When the Group was created. */
     protected $created;
-
     /** @var int The User Id that created the Group */
     protected $createdBy;
-
     /** @var DateTime When the Group was updated. */
     protected $updated;
-
     /** @var int User Id that updated the Group */
     protected $updatedBy;
-
     /** @var Functionality[] An array of Functionalities connected to this Group */
     protected $functionalities;
-
     /** @var Role[] An array of Roles connected to this Group */
     protected $roles;
-
     /** @var ExtraData[] An array of ExtraData connected to this Group. */
     protected $extraData;
+    /** @var User[] An array of the Users that members of this Group. */
+    protected $users;
 
     /**
      * Constructs a Group.
@@ -58,12 +49,14 @@ class Group implements \JsonSerializable
      *                          - <b>functionalities</b> - An array of Functionalities connected to this Group
      *                          - <b>roles</b> - An array of Roles connected to this Group
      *                          - <b>extraData</b> - An array of ExtraData connected to this Group.
+     *                          - <b>users</b> - An array of the Users that members of this Group.
      */
     public function __construct($parameters = [])
     {
         $this->functionalities = [];
         $this->roles = [];
         $this->extraData = [];
+        $this->users = [];
 
         if (isset($parameters['id'])) {
             $this->setId($parameters['id']);
@@ -100,6 +93,9 @@ class Group implements \JsonSerializable
         }
         if (isset($parameters['extraData'])) {
             $this->setExtraData($parameters['extraData']);
+        }
+        if (isset($parameters['users'])) {
+            $this->setUsers($parameters['users']);
         }
     }
 
@@ -471,6 +467,57 @@ class Group implements \JsonSerializable
     }
 
     /**
+     * Gets the users of the Group.
+     * @return User[]	 */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Sets the "users" of the Group.
+     *
+     * @param User[] $users
+     *
+     * @return Group
+     */
+    public function setUsers(array $users)
+    {
+        $this->users = [];
+
+        foreach ($users as $item) {
+            $this->addUser($item);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Adds an object of "Users" of the Group.
+     *
+     * @param User|array $item
+     *
+     * @return Group
+     */
+    public function addUser($item)
+    {
+        if (!($item instanceof User)) {
+            if (is_array($item)) {
+                try {
+                    $item = new User($item);
+                } catch (\Exception $e) {
+                    trigger_error('Could not auto-instantiate User. ' . $e->getMessage(), E_USER_WARNING);
+                }
+            } else {
+                trigger_error('Array parameter item is not of expected type "User"!', E_USER_WARNING);
+            }
+        }
+        $this->users[] = $item;
+
+        return $this;
+    }
+
+    /**
      * Gets all data that should be available in a json representation.
      *
      * @return array an associative array of the available variables
@@ -514,6 +561,9 @@ class Group implements \JsonSerializable
         }
         if (null !== $this->extraData && !empty($this->extraData)) {
             $json['extraData'] = $this->extraData;
+        }
+        if (null !== $this->users && !empty($this->users)) {
+            $json['users'] = $this->users;
         }
 
         return $json;
