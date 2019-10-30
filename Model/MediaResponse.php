@@ -845,45 +845,58 @@ class MediaResponse extends Media implements \JsonSerializable
     {
         foreach ($this->deployedFiles as $deployedFile) {
             /** @var DeploymentFile $deployedFile */
-            if (null === $siteId || $siteId == $deployedFile->getDeployMentSiteId()) {
+            if (null === $siteId || $siteId == $deployedFile->getDeploymentSiteId()) {
                 switch ($templateType) {
                 case self::TEMPLATE_IMAGE:
                     if ($templateId == $deployedFile->getImageTemplateId()
-                        || (null === $templateId
-                            && null === $deployedFile->getImageTemplateId()
                             && null === $deployedFile->getVideoTemplateId()
                             && null === $deployedFile->getAudioTemplateId()
                             && null === $deployedFile->getDocumentTemplateId()
-                            && null === $deployedFile->getFontTemplateId())
-                    ) {
+                            && null === $deployedFile->getFontTemplateId()) {
                         return $deployedFile;
                     }
 
                 break;
 
                 case self::TEMPLATE_VIDEO:
-                    if ($templateId == $deployedFile->getVideoTemplateId()) {
+                    if ($templateId == $deployedFile->getVideoTemplateId()
+                            && null === $deployedFile->getImageTemplateId()
+                            && null === $deployedFile->getAudioTemplateId()
+                            && null === $deployedFile->getDocumentTemplateId()
+                            && null === $deployedFile->getFontTemplateId()) {
                         return $deployedFile;
                     }
 
                 break;
 
                 case self::TEMPLATE_AUDIO:
-                    if ($templateId == $deployedFile->getAudioTemplateId()) {
+                    if ($templateId == $deployedFile->getAudioTemplateId()
+                            && null === $deployedFile->getImageTemplateId()
+                            && null === $deployedFile->getVideoTemplateId()
+                            && null === $deployedFile->getDocumentTemplateId()
+                            && null === $deployedFile->getFontTemplateId()) {
                         return $deployedFile;
                     }
 
                 break;
 
                 case self::TEMPLATE_DOCUMENT:
-                    if ($templateId == $deployedFile->getDocumentTemplateId()) {
+                    if ($templateId == $deployedFile->getDocumentTemplateId()
+                            && null === $deployedFile->getImageTemplateId()
+                            && null === $deployedFile->getVideoTemplateId()
+                            && null === $deployedFile->getAudioTemplateId()
+                            && null === $deployedFile->getFontTemplateId()) {
                         return $deployedFile;
                     }
 
                 break;
 
                 case self::TEMPLATE_FONT:
-                    if ($templateId == $deployedFile->getFontTemplateId()) {
+                    if ($templateId == $deployedFile->getFontTemplateId()
+                            && null === $deployedFile->getImageTemplateId()
+                            && null === $deployedFile->getVideoTemplateId()
+                            && null === $deployedFile->getAudioTemplateId()
+                            && null === $deployedFile->getDocumentTemplateId()) {
                         return $deployedFile;
                     }
 

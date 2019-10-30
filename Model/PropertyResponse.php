@@ -271,10 +271,12 @@ class PropertyResponse implements \JsonSerializable
         $definition = $this->propertyType->getDefinition();
         if (isset($definition['hierarchical']) && $definition['hierarchical']) {
             $this->value = [];
-            foreach ($value as $v) {
-                foreach ($v['value'] as $itemValue) {
-                    $this->value[] = $this->convertValue($itemValue['value']);
+            foreach ($value as $branch) {
+            	$branchValue = [];
+                foreach ($branch['value'] as $itemValue) {
+					$branchValue[] = $this->convertValue($itemValue['value']);
                 }
+                $this->value[] = $branchValue;
             }
         } elseif (!empty($definition['array'])) {
             if (empty($definition['multiplechoice']) && isset($definition['options']) && is_array($definition['options'])) {
